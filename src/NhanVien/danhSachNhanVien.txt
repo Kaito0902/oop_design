@@ -1,0 +1,2 @@
+NV01,Nguyen Van A,0123456789,nguyenvana@example.com,1990,Nam,Nhan vien quan ly,2015,1.5,10,200,1990,1.2
+NV02,Le Thi B,0987654321,lethib@example.com,1985,Nu,Nhan vien quan ly,2020,1.2,12,150,1985,0.9
