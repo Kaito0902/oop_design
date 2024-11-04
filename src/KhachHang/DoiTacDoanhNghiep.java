@@ -1,8 +1,9 @@
 package KhachHang;
 
-public class DoiTacDoanhNghiep extends KhachHang {
+public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     //attribute
     private String tenCongTy;
+    private boolean traGop;
 
     //non-parameted
     public DoiTacDoanhNghiep() {
@@ -25,9 +26,25 @@ public class DoiTacDoanhNghiep extends KhachHang {
         this.tenCongTy = tenCongTy;
     }
 
+    //input kiem tra co muon tra gop
+    @Override
+    public void input() {
+        super.input();
+        System.out.println("Ban co muon thanh toan tra gop?(Y/N):");
+        String chon = scanner.nextLine();
+        if ( chon.equals("y") || chon.equals("Y"))
+            traGop = true;
+        else
+            traGop = false;
+    }
+
+    @Override
+    public double laiSuatTraGop() {
+        return 0;
+    }
+
     @Override
     public double tinhDiemThuong() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
@@ -38,7 +55,10 @@ public class DoiTacDoanhNghiep extends KhachHang {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10s", tenCongTy);
+        if (traGop)    
+            return super.toString() + String.format("%-10.2f %-15d %-10.2f",tinhUuDai(),tinhDiemThuong(), laiSuatTraGop());
+        else
+            return super.toString();
     }
 
     

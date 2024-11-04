@@ -2,6 +2,7 @@ package KhachHang;
 
 import java.util.Scanner;
 public abstract class KhachHang {
+    static int tongKH = 0;
     static Scanner scanner = new Scanner(System.in);
     //atrribute thông tin cá nhân 
     protected String hoTen;
@@ -12,10 +13,9 @@ public abstract class KhachHang {
     protected String email;
     protected String maKhachHang;
     protected String loaiKhachHang;
-    private String[] loai = {"Tiem nang", "Than Thiet", "Uu dai"};  
-    private String[] gt = {"Anh", "Chi"};      
+    private String[] loai = {"Tiem nang", "Than Thiet", "Uu dai", "Binh Thuong"};      
     //các thuộc tính/tính năng thêm cho khách hàng
-    // protected HoaDon lichSuDonHang[];//1khách hàng có nhiều hóa đơn mua hàng
+    // protected HoaDon hoaDon[];//1khách hàng có nhiều hóa đơn mua hàng
     // protected DonDatHang gioHang[];//1 khách hàng có nhiều đơn đặt hàng
     // protected BaoHanh baoHang[];//1 khách hàng có nhiều loại sản phẩm cần bảo hành
     protected String khieuNai;//khách hàng có thể góp ý dịch vụ
@@ -35,10 +35,11 @@ public abstract class KhachHang {
         this.diaChi = diaChi;
         this.sdt = sdt;
         this.email = email;
-        this.maKhachHang = maKhachHang;
+        this.maKhachHang = "kh" + String.format("%02d", ++tongKH);
         this.loaiKhachHang = loaiKhachHang;
         this.khieuNai = khieuNai;
         this.tichDiem = tichDiem;
+        tongKH++;
     }
     
     //getter and setter
@@ -155,19 +156,19 @@ public abstract class KhachHang {
 
     //xeploaiuudai
     public double xeploaiuudai() {
-        if ( loaiKhachHang.equals( "Tiem nang"))
-            return 0.01;
-        else if ( loaiKhachHang.equals("Uu dai") )
+        if ( loaiKhachHang.equalsIgnoreCase( "Tiem nang"))
             return 0.02;
-        else
+        else if ( loaiKhachHang.equalsIgnoreCase("Uu dai") )
+            return 0.01;
+        else if ( loaiKhachHang.equalsIgnoreCase("Than thiet"))
             return 0.05;
+        else 
+            return 0;
     }
 
     //tinh UuDai
     public abstract double tinhUuDai();
-
-
-
+    //gop y, khieu nai
     //tinh diemThuong
     public abstract double tinhDiemThuong();
 }

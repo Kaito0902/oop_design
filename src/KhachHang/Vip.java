@@ -1,12 +1,13 @@
 package KhachHang;
 
-public class Vip extends KhachHang {
+public class Vip extends KhachHang implements TraGop{
     //atrributes
     private int heSo;
+    private boolean traGop;
 
     //non-parameted
     public Vip() {
-        this.heSo = heSo = 5;
+        this.heSo = 5;
         this.loaiKhachHang = "Than thiet";
     }
 
@@ -26,22 +27,41 @@ public class Vip extends KhachHang {
         this.heSo = heSo;
     }
 
-    //tinhdiem thuong
+    //input kiem tra co tra gop khong
     @Override
-    public double tinhDiemThuong() {
-        // TODO Auto-generated method stub
-        return 0;
+    public void input() {
+        super.input();
+        System.out.println("Ban co muon thanh toan tra gop?(Y/N):");
+        String chon = scanner.nextLine();
+        if ( chon.equals("y") || chon.equals("Y"))
+            traGop = true;
+        else
+            traGop = false;
     }
 
+    //tinhdiem thuong, dua vao tong so tien da mua
+    @Override
+    public double tinhDiemThuong() {
+        return 0;
+    }
+    //tinh uu dai
     @Override
     public double tinhUuDai() {
         return xeploaiuudai()*heSo;
     }
 
+    //tra gop
     @Override
-    public String toString() {
-        return super.toString() + String.format("%-10d", heSo);
+    public double laiSuatTraGop() {
+        return 0;
     }
 
-    
+    @Override
+    public String toString() {
+        if (traGop)    
+            return super.toString() + String.format("%-10.2f %-15d %-10.2f",tinhUuDai(),tinhDiemThuong(), laiSuatTraGop());
+        else
+            return super.toString();
+    }
+
 }

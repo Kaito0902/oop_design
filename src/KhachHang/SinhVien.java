@@ -45,12 +45,6 @@ public class SinhVien extends KhachHang {
         setDiemTB(Double.parseDouble(scanner.nextLine()));
     }
 
-    //toString
-    @Override
-    public String toString() {
-        return super.toString() + String.format("%-10s %-10.2f", maKhachHang, diemTB);
-    }
-
     @Override
     public double tinhDiemThuong() {//chưa làm
         return 0;
@@ -64,6 +58,11 @@ public class SinhVien extends KhachHang {
     //xeploaidiemTB
     public double xeploaidiemTB() {
         return diemTB >= 8.5?0.1:(diemTB >= 7?0.05:(diemTB >= 5?0.02:0));
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(), tinhDiemThuong());
     }
 
     
