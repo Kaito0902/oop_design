@@ -12,9 +12,9 @@ public class Vip extends KhachHang implements TraGop{
     }
 
     //parameted
-    public Vip(String hoTen, String gioiTinh, String ngaySinh, String diaChi, int sdt, String email, String maKhachHang,
-            String loaiKhachHang, String khieuNai, int tichDiem, int heSo) {
-        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, khieuNai, tichDiem);
+    public Vip(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email, String maKhachHang,
+               String loaiKhachHang, String khieuNai, int tichDiem, int heSo) {
+        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.heSo = heSo;
     }
 
@@ -41,7 +41,7 @@ public class Vip extends KhachHang implements TraGop{
 
     //tinhdiem thuong, dua vao tong so tien da mua
     @Override
-    public double tinhDiemThuong() {
+    public int tinhDiemThuong() {
         return 0;
     }
     //tinh uu dai
@@ -50,7 +50,7 @@ public class Vip extends KhachHang implements TraGop{
         return xeploaiuudai()*heSo;
     }
 
-    //tra gop
+    //tra gop dua vao tong so tien mua
     @Override
     public double laiSuatTraGop() {
         return 0;
@@ -58,10 +58,10 @@ public class Vip extends KhachHang implements TraGop{
 
     @Override
     public String toString() {
-        if (traGop)    
-            return super.toString() + String.format("%-10.2f %-15d %-10.2f",tinhUuDai(),tinhDiemThuong(), laiSuatTraGop());
+        if (traGop)
+            return super.toString() + String.format("%-15.2f %-10d %-10.2f",tinhUuDai() ,tinhDiemThuong() , laiSuatTraGop());
         else
-            return super.toString();
+            return super.toString() + String.format("%-15.2f %-10d",tinhUuDai() ,tinhDiemThuong());
     }
 
 }

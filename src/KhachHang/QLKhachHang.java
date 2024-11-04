@@ -37,16 +37,24 @@ public class QLKhachHang {
                 }
             }
             dskh = newdskh;
-            System.out.println("Da xoa nhan vien co ma: " + maKH);
+            System.out.println("Da xoa khach hang co ma: " + maKH);
         } else {
-            System.out.println("Khong tim thay nhan vien co ma: " + maKH);
+            System.out.println("Khong tim thay khach hang co ma: " + maKH);
         }
     }
 
-    //timkiemKh
-    public KhachHang timkiemKhachHang(String maKH){
+    //timkiemKhbang ma
+    public KhachHang timkiemKhachHangTheoMa(String maKH){
         for (KhachHang kh : dskh)
             if (kh.getMaKhachHang().equals(maKH))
+                return kh;
+        return null;
+    }
+
+    //timkiemkhbang sdt
+    public KhachHang timkiemKhachHangTheoSdt(String sdt){
+        for (KhachHang kh : dskh)
+            if (kh.getSdt().equals(sdt))
                 return kh;
         return null;
     }
@@ -60,7 +68,7 @@ public class QLKhachHang {
                     dskh[i] = dskh[j];
                     dskh[j] = temp;
                 }
-        }
+    }
 
 
     //menu
@@ -75,11 +83,13 @@ public class QLKhachHang {
             System.out.printf("| %-31s|\n", "3. Xoa 1 kh");
             System.out.printf("| %-31s|\n", "4. Tim kiem 1 kh");
             System.out.printf("| %-31s|\n", "5. Sap xep dskh");
+            System.out.printf("| %-31s|\n", "6. Xuat danh sach khVip");
+            System.out.printf("| %-31s|\n", "6. Tim khach hang mua nhieu tien nhat");
             System.out.printf("| %-31s|\n", "0. Thoat chuong trinh");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
 
-            
+
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
@@ -106,36 +116,67 @@ public class QLKhachHang {
                             z.input();
                             themKH(z);
                             break;
-                        case "w":
+                        case "d":
                             KhachHang w = new Vip();
                             w.input();
                             themKH(w);
                             break;
                         default:
                             System.out.println("Lua chon khong hop le!!!");
-                            break;
                     }
                     break;
                 case 2:
-                    xuatdskh();
+                    if (dskh.length == 0)
+                        System.out.println("DANH SACH TRONG.");
+                    else {
+                        System.out.println("===================================");
+                        System.out.println("|\t      DANH SACH HOA DON      \t|");
+                        System.out.println("===================================");
+                        xuatdskh();
+                    }
                     break;
                 case 3:
                     System.out.println("Nhap ma kh muon xoa:");
-                    String ma1 = scanner.nextLine();
-                    xoa1KH(ma1);
+                    String ma = scanner.nextLine();
+                    xoa1KH(ma);
                     break;
                 case 4:
-                    System.out.println("Nhap ma kh muon tim:");
-                    String ma2 = scanner.nextLine();
-                    timkiemKhachHang(ma2);
+                    String chon1;
+                    System.out.println("a. Tim theo ma.");
+                    System.out.println("b. Tim theo sdt.");
+                    System.out.println("Nhap lua chon: ");
+                    chon1 = scanner.nextLine();
+                    switch (chon1) {
+                        case "a":
+                            System.out.println("Nhap ma kh muon tim:");
+                            String ma1 = scanner.nextLine();
+                            KhachHang kh1 = timkiemKhachHangTheoMa(ma1);
+                            if ( kh1 != null)
+                                kh1.output();
+                            else
+                                System.out.println("khong tim thay khach hang co ma:" + ma1);
+                            break;
+                        case "b":
+                            System.out.println("Nhap sdt kh muon tim:");
+                            String ma2 = scanner.nextLine();
+                            KhachHang kh2 = timkiemKhachHangTheoSdt(ma2);
+                            if ( kh2 != null )
+                                kh2.output();
+                            else
+                                System.out.println("Khong tim thay khach hang theo sdt" + ma2);
+                            break;
+                        default:
+                            System.out.println("nhap sai lua chon");
+                            break;
+                    }
                     break;
                 case 5:
                     sapxep();
+                    System.out.println("Da sap xep danh sach");
                     break;
                 default:
                     System.out.println("Lua chon khong hop le!!!");
-                    break;
-            } 
+            }
         }  while (choice != 0);
     }
 }

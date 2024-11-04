@@ -11,9 +11,9 @@ public class SinhVien extends KhachHang {
     }
 
     //parameted constructor
-    public SinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, int sdt, String email,
-            String maKhachHang, String loaiKhachHang, String khieuNai, int tichDiem, String maSV, double diemTB) {
-        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, khieuNai, tichDiem);
+    public SinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
+                    String maKhachHang, String loaiKhachHang, String khieuNai, int tichDiem, String maSV, double diemTB) {
+        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.maSV = maSV;
         this.diemTB = diemTB;
     }
@@ -46,14 +46,14 @@ public class SinhVien extends KhachHang {
     }
 
     @Override
-    public double tinhDiemThuong() {//chưa làm
+    public int tinhDiemThuong() {//chưa làm
         return 0;
     }
 
     @Override
     public double tinhUuDai() {
         return xeploaiuudai() + xeploaidiemTB();
-    }    
+    }
 
     //xeploaidiemTB
     public double xeploaidiemTB() {
@@ -62,8 +62,7 @@ public class SinhVien extends KhachHang {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(), tinhDiemThuong());
+        return super.toString() + String.format("%-10s %-10.2f %-10.2f %-15d",maSV, diemTB ,tinhUuDai(), tinhDiemThuong());
     }
 
-    
 }

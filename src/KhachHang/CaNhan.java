@@ -2,10 +2,9 @@ package KhachHang;
 
 public class CaNhan extends KhachHang {
 
-
     //tinhdiem thuong
     @Override
-    public double tinhDiemThuong() {
+    public int tinhDiemThuong() {
         return 0;
     }
 
@@ -19,5 +18,5 @@ public class CaNhan extends KhachHang {
     public String toString() {
         return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(), tinhDiemThuong());
     }
-    
+
 }
