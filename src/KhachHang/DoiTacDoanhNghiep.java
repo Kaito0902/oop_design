@@ -1,5 +1,7 @@
 package KhachHang;
 
+import GiaoDich.GiaoDich;
+
 public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     //attribute
     private String tenCongTy;
@@ -11,9 +13,9 @@ public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     }
 
     //parameted
-    public DoiTacDoanhNghiep(String hoTen, String gioiTinh, String ngaySinh, String diaChi, int sdt, String email,
-            String maKhachHang, String loaiKhachHang, String khieuNai, int tichDiem, String tenCongTy) {
-        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, khieuNai, tichDiem);
+    public DoiTacDoanhNghiep(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
+            String maKhachHang, String loaiKhachHang, int tichDiem, String tenCongTy) {
+        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.tenCongTy = tenCongTy;
     }
 
@@ -44,7 +46,7 @@ public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     }
 
     @Override
-    public double tinhDiemThuong() {
+    public int tinhDiemThuong() {
         return 0;
     }
 
@@ -58,10 +60,7 @@ public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
         if (traGop)    
             return super.toString() + String.format("%-10.2f %-15d %-10.2f",tinhUuDai(),tinhDiemThuong(), laiSuatTraGop());
         else
-            return super.toString();
+            return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(),tinhDiemThuong());
     }
 
-    
-
-    
 }

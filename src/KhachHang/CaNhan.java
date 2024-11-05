@@ -1,11 +1,12 @@
 package KhachHang;
 
-public class CaNhan extends KhachHang {
+import GiaoDich.GiaoDich;
 
+public class CaNhan extends KhachHang {
 
     //tinhdiem thuong
     @Override
-    public double tinhDiemThuong() {
+    public int tinhDiemThuong() {
         return 0;
     }
 

@@ -1,5 +1,7 @@
 package KhachHang;
 
+import GiaoDich.GiaoDich;
+
 public class SinhVien extends KhachHang {
     //attributes
     private String maSV;
@@ -11,9 +13,9 @@ public class SinhVien extends KhachHang {
     }
 
     //parameted constructor
-    public SinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, int sdt, String email,
+    public SinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
             String maKhachHang, String loaiKhachHang, String khieuNai, int tichDiem, String maSV, double diemTB) {
-        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, khieuNai, tichDiem);
+        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.maSV = maSV;
         this.diemTB = diemTB;
     }
@@ -46,7 +48,7 @@ public class SinhVien extends KhachHang {
     }
 
     @Override
-    public double tinhDiemThuong() {//chưa làm
+    public int tinhDiemThuong() {//chưa làm
         return 0;
     }
 
@@ -62,8 +64,7 @@ public class SinhVien extends KhachHang {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(), tinhDiemThuong());
+        return super.toString() + String.format("%-10s %-10.2f %-10.2f %-15d",maSV, diemTB ,tinhUuDai(), tinhDiemThuong());
     }
-
     
 }
