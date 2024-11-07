@@ -1,6 +1,6 @@
 package SanPham;
 
-public class GPU extends PhanCung implements ThanhTien{
+public class GPU extends PhanCung{
     private int dungLuongVRAM;
     private String loaiVRAM;
     private int tocDoXungNhip;

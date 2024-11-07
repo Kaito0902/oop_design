@@ -198,17 +198,35 @@ public class QLSanPham{
 
     public void docTuFile()
     {
-
+        
     }
 
     public void nhapVaoFile()
     {
+        // try{
+        //     FileWriter writer = new FileWriter("Danhsach.txt");
+        //     writer.write("Ur mom is fat");
+        //     writer.close();
+        // }
 
+        // catch(IOException e){
+        //     e.printStackTrace();
+        // }
     }
 
     public void suaPhanTuTheoMa()
     {
+        // try{
+        //     FileReader reader = new FileReader("Danhsach.txt");
+        //     int data = reader.read();
+        //     while(data != -1){
+        //         System.out.print((char)data);
+        //     }
+        // }
 
+        // catch(Exception e){
+        //     e.printStackTrace();
+        // }
     }
 
     public void xoaPhanTuTheoMa()

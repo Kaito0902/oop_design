@@ -1,6 +1,6 @@
 package SanPham;
 
-public class Laptop extends MayTinh implements ThanhTien{
+public class Laptop extends MayTinh{
     private String kichThuocManHinh;
     private float thoiLuongPin;
     private String loaiLaptop;

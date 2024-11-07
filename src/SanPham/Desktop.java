@@ -1,6 +1,6 @@
 package SanPham;
 
-public class Desktop extends MayTinh implements ThanhTien{
+public class Desktop extends MayTinh{
     private String casePC;
     private String tanNhiet;
 

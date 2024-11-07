@@ -1,6 +1,6 @@
 package SanPham;
 
-public class BoNho extends PhanCung implements ThanhTien{
+public class BoNho extends PhanCung{
     private int dungLuongBoNho;
     private String loaiBoNho;
 

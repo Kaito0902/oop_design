@@ -87,6 +87,8 @@ public abstract class SanPham{
         this.mauSacSP = mauSacSP;
     }
 
+    public abstract float ThanhTien();
+
     public void nhap()
     {
         System.out.println("Nhap ma san pham: ");

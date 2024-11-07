@@ -1,6 +1,6 @@
 package SanPham;
 
-public class Chuot extends ThietBiNgoaiVi implements ThanhTien{
+public class Chuot extends ThietBiNgoaiVi{
     private int dPI;
     private int soLanBam;
     private String denLED;

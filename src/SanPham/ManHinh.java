@@ -1,6 +1,6 @@
 package SanPham;
 
-public class ManHinh extends ThietBiNgoaiVi implements ThanhTien{
+public class ManHinh extends ThietBiNgoaiVi{
     private String kieuManHinh;
     private String kichThuoc;
     private int tanSoQuet;

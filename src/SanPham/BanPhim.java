@@ -1,6 +1,6 @@
 package SanPham;
 
-public class BanPhim extends ThietBiNgoaiVi implements ThanhTien{
+public class BanPhim extends ThietBiNgoaiVi{
     private String kichThuoc;
     private String denLED;
     private String switchBP;

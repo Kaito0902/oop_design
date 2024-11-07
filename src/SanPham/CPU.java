@@ -1,6 +1,6 @@
 package SanPham;
 
-public class CPU extends PhanCung implements ThanhTien{
+public class CPU extends PhanCung{
     private int soNhan;
     private int soLuongLoi;
     private int tocDoXungNhip;

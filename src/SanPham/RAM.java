@@ -1,6 +1,6 @@
 package SanPham;
 
-public class RAM extends PhanCung implements ThanhTien{
+public class RAM extends PhanCung{
     private int dungLuongRAM;
     private String loaiRAM;
 
