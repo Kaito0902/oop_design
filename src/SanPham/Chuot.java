@@ -56,10 +56,6 @@ public class Chuot extends ThietBiNgoaiVi{
         this.loaiChuot = loaiChuot;
     }
 
-    @Override
-    public float ThanhTien(){
-        return 1;
-    }
 
     @Override
     public void nhap()
@@ -77,12 +73,8 @@ public class Chuot extends ThietBiNgoaiVi{
 
     @Override
     public String toString() {
-        return super.toString() + "Chuot [dPI=" + dPI + ", soLanBam=" + soLanBam + ", denLED=" + denLED + ", loaiChuot=" + loaiChuot + "]";
+        return super.toString() + String.format("%-10d %-10d %-15s", dPI, soLanBam, loaiChuot);
     }
 
-    @Override
-    public void xuat()
-    {
-        System.out.println(toString());
-    }
+
 }

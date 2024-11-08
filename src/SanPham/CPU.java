@@ -82,7 +82,7 @@ public class CPU extends PhanCung{
     @Override
     public String toString() 
     {
-        return super.toString() + "CPU [soNhan=" + soNhan + ", soLuong=" + soLuongLoi + ", tocDoXungNhip=" + tocDoXungNhip + "]";
+        return super.toString() + String.format("%-10d %-10d %-10d", soNhan, soLuongLoi, tocDoXungNhip);
     }
 
     @Override

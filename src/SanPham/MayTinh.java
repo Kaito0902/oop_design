@@ -1,11 +1,11 @@
 package SanPham;
 
-public abstract class MayTinh extends SanPham{
+public abstract class MayTinh extends SanPham implements HienThiCauHinh{
     protected String nhaSanXuat;
     protected String model;
     protected String loaiMayTinh;
     protected String heDieuHanh;
-    protected boolean coCardRoi;
+    protected String coCardRoi;
     protected PhanCung[] cacLinhKien;
     protected int soLuongLinhKien;
 
@@ -14,12 +14,8 @@ public abstract class MayTinh extends SanPham{
 
     }
 
-    
-
-
-
     public MayTinh(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, boolean coCardRoi,
+            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
             PhanCung[] cacLinhKien) {
         super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
         this.nhaSanXuat = nhaSanXuat;
@@ -67,11 +63,11 @@ public abstract class MayTinh extends SanPham{
         this.heDieuHanh = heDieuHanh;
     }
 
-    public boolean isCoCardRoi() {
+    public String getCoCardRoi() {
         return coCardRoi;
     }
 
-    public void setCoCardRoi(boolean coCardRoi) {
+    public void setCoCardRoi(String coCardRoi) {
         this.coCardRoi = coCardRoi;
     }
 
@@ -106,7 +102,10 @@ public abstract class MayTinh extends SanPham{
             System.out.println("Het cho");
     }
 
-    
+    @Override
+    public void hienThiCauHinh(){
+
+    }
 
     @Override
     public void nhap()
@@ -116,18 +115,13 @@ public abstract class MayTinh extends SanPham{
         setNhaSanXuat(sc.nextLine());
         System.out.println("Nhap model san pham: ");
         setModel(sc.nextLine());
-        System.out.println("Nhap loai may tinh: ");
-        setLoaiMayTinh(sc.nextLine());
         System.out.println("Nhap he dieu hanh: ");
         setHeDieuHanh(sc.nextLine());
         System.out.println("Co card roi khong: ");
-        setCoCardRoi(Boolean.parseBoolean(sc.nextLine()));
+        setCoCardRoi(sc.nextLine());
 
         System.out.println("Nhap phan cung may tinh: ");
-
         this.cacLinhKien = new PhanCung[4];
-            
-
 
         System.out.println("CPU: ");
         CPU cpu = new CPU();
@@ -165,11 +159,6 @@ public abstract class MayTinh extends SanPham{
     }
 
 
-    @Override
-    public void xuat()
-    {
-        System.out.println(toString());
-    }
 
 
 

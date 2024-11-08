@@ -10,7 +10,6 @@ public abstract class SanPham{
     protected int thoiGianBaoHanhSP;
     protected float trongLuongSP;
     protected String mauSacSP;
-
     static int soLuongSP = 0;
     static Scanner sc = new Scanner(System.in);
 
@@ -21,7 +20,7 @@ public abstract class SanPham{
     
     public SanPham(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
             String mauSacSP) {
-        this.maSP = maSP;
+        this.maSP = "#sp" + String.format("00d", ++soLuongSP);
         this.tenSP = tenSP;
         this.giaSP = giaSP;
         this.khuyenMaiSP = khuyenMaiSP;
@@ -87,16 +86,22 @@ public abstract class SanPham{
         this.mauSacSP = mauSacSP;
     }
 
-    public abstract float ThanhTien();
+
+
+
+    public float ThanhTien(){
+        return giaSP + (giaSP * khuyenMaiSP);
+    }
+
+    // public abstract void hienThiThongTin();
 
     public void nhap()
     {
-        System.out.println("Nhap ma san pham: ");
-        setMaSP(sc.nextLine());
+        maSP = "sp" + String.format("%02d", ++soLuongSP);
         System.out.println("Nhap ten san pham: ");
         setTenSP(sc.nextLine());
         System.out.println("Nhap gia san pham: ");
-
+        setGiaSP(Float.parseFloat(sc.nextLine()));
         System.out.println("Nhap khuyen mai san pham: ");
         setKhuyenMaiSP(Float.parseFloat(sc.nextLine()));
         System.out.println("Nhap thoi gian bao hanh san pham: ");
@@ -109,10 +114,9 @@ public abstract class SanPham{
     }
 
     @Override
-    public String toString() {
-        return "SanPham [maSP=" + maSP + ", tenSP=" + tenSP + ", giaSP=" + giaSP + ", khuyenMaiSP=" + khuyenMaiSP
-                + ", thoiGianBaoHanhSP=" + thoiGianBaoHanhSP + ", trongLuongSP=" + trongLuongSP + ", mauSacSP="
-                + mauSacSP + "]";
+    public String toString(){
+        return String.format("%-10s %-20s %-15.5f %-15.2f %-10d %-10.1f %-15s",
+                maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
     }
 
     public void xuat()

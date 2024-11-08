@@ -44,11 +44,7 @@ public class BanPhim extends ThietBiNgoaiVi{
         this.switchBP = switchBP;
     }
 
-    @Override
-    public float ThanhTien(){
-        return 1;
-    }
-    
+
     @Override
     public void nhap()
     {
@@ -63,12 +59,8 @@ public class BanPhim extends ThietBiNgoaiVi{
 
     @Override
     public String toString() {
-        return super.toString() + "BanPhim [kichThuoc=" + kichThuoc + ", denLED=" + denLED + ", switchBP=" + switchBP + "]";
+        return super.toString() + String.format("%-20s %-10s %-10s", kichThuoc, denLED, switchBP);
     }
 
-    @Override
-    public void xuat()
-    {
-        System.out.println(toString());
-    }
+
 }

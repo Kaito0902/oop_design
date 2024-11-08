@@ -11,7 +11,7 @@ public class Laptop extends MayTinh{
     }
 
     public Laptop(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, boolean coCardRoi,
+            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
             PhanCung[] cacLinhKien, String kichThuocManHinh, float thoiLuongPin, String loaiLaptop) {
         super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model,
                 loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien);
@@ -64,14 +64,9 @@ public class Laptop extends MayTinh{
     @Override
     public String toString() 
     {
-        return super.toString() + "Laptop [kichThuocManHinh=" + kichThuocManHinh + ", thoiLuongPin=" + thoiLuongPin + ", loaiLaptop="
-                + loaiLaptop + "]";
+        return super.toString() + String.format("%-20s %-10.2f %-20s", kichThuocManHinh, thoiLuongPin, loaiLaptop);
     }
 
-    @Override
-    public void xuat()
-    {
-        System.out.println(toString());
-    }
+
     
 }

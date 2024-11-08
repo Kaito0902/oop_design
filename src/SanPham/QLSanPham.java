@@ -92,14 +92,16 @@ public class QLSanPham{
                 String choiceMT = sc.nextLine();
                 if(choiceMT.equalsIgnoreCase("Desktop"))
                 {
-                    SanPham desktop = new Desktop();
+                    Desktop desktop = new Desktop();
+                    desktop.loaiMayTinh = "Desktop";
                     desktop.nhap();
                     themSanPham(desktop);
                 }
 
                 else if(choiceMT.equalsIgnoreCase("Laptop"))
                 {
-                    SanPham laptop = new Laptop();
+                    Laptop laptop = new Laptop();
+                    laptop.loaiMayTinh = "Laptop";
                     laptop.nhap();
                     themSanPham(laptop);
                 }
@@ -113,33 +115,37 @@ public class QLSanPham{
             else if(choiceSP.equalsIgnoreCase("Phan Cung"))
             {
                 System.out.println("Ban muon nhap loai linh kien nao: ");
-                System.out.println("Main Board - CPU - GPU - RAM - Bo Nho");
+                System.out.println("CPU - GPU - RAM - Bo Nho");
                 String choicePC = sc.nextLine();
 
                 if(choicePC.equalsIgnoreCase("CPU"))
                 {
-                    SanPham cpu = new CPU();
+                    CPU cpu = new CPU();
+                    cpu.loaiLinhKien = "CPU";
                     cpu.nhap();
                     themSanPham(cpu);
                 }
 
                 else if(choicePC.equalsIgnoreCase("GPU"))
                 {
-                    SanPham gpu = new GPU();
+                    GPU gpu = new GPU();
+                    gpu.loaiLinhKien = "GPU";
                     gpu.nhap();
                     themSanPham(gpu);
                 }
 
                 else if(choicePC.equalsIgnoreCase("RAM"))
                 {
-                    SanPham ram = new RAM();
+                    RAM ram = new RAM();
+                    ram.loaiLinhKien = "RAM";
                     ram.nhap();
                     themSanPham(ram);
                 }
 
                 else if(choicePC.equalsIgnoreCase("Bo Nho"))
                 {
-                    SanPham boNho = new BoNho();
+                    BoNho boNho = new BoNho();
+                    boNho.loaiLinhKien = "Bo Nho";
                     boNho.nhap();
                     themSanPham(boNho);
                 }
@@ -158,21 +164,24 @@ public class QLSanPham{
 
                 if(choiceTB.equalsIgnoreCase("Chuot"))
                 {
-                    SanPham chuot = new Chuot();
+                    Chuot chuot = new Chuot();
+                    chuot.loaiThietBi = "Chuot";
                     chuot.nhap();
                     themSanPham(chuot);
                 }
 
                 else if(choiceTB.equalsIgnoreCase("Man Hinh"))
                 {
-                    SanPham manHinh = new ManHinh();
+                    ManHinh manHinh = new ManHinh();
+                    manHinh.loaiThietBi = "Man Hinh";
                     manHinh.nhap();
                     themSanPham(manHinh);
                 }
 
                 else if(choiceTB.equalsIgnoreCase("Ban Phim"))
                 {
-                    SanPham banPhim = new BanPhim();
+                    BanPhim banPhim = new BanPhim();
+                    banPhim.loaiThietBi = "Ban Phim";
                     banPhim.nhap();
                     themSanPham(banPhim);
                 }
@@ -214,28 +223,50 @@ public class QLSanPham{
         // }
     }
 
-    public void suaPhanTuTheoMa()
+    public SanPham suaPhanTuTheoMa(String maSP)
     {
-        // try{
-        //     FileReader reader = new FileReader("Danhsach.txt");
-        //     int data = reader.read();
-        //     while(data != -1){
-        //         System.out.print((char)data);
-        //     }
-        // }
+        for(var sp:ds){
+            if(sp.maSP.equals(maSP)){
 
-        // catch(Exception e){
-        //     e.printStackTrace();
-        // }
-    }
 
-    public void xoaPhanTuTheoMa()
-    {
+                }
+                return sp;
+            }
         
+        return null;
     }
 
-    public void timKiem()
+    public void xoaPhanTuTheoMa(String maSP)
     {
+        for(var sp:ds){
+            if(sp.maSP.equals(maSP)){
+                SanPham[] newDs = Arrays.copyOf(this.ds, this.ds.length - 1);
+                for(int i = 0, j = 0; i < ds.length; i++)
+                    if(!sp.maSP.equals(maSP))
+                        newDs[j++] = ds[i];
+                ds = newDs;
+                System.out.println("Da xoa san phan co ma: " + maSP);
+                return;
+            }
+        }
+        System.out.println("Khong tim thay san pham");
+    }
+
+    public SanPham timKiem()
+    {
+        System.out.println("Hay nhap ma hoac ten san pham ban muon tim: ");
+        String timSP = sc.nextLine();
+        if(timSP.startsWith("#sp")){
+
+        }
+        else{
+            for(SanPham sp:ds) {
+                if (sp.tenSP.toLowerCase().contains(tenSP.toLowerCase())) 
+                    return sp;
+                
+            }
+            return null;
+        }
 
     }
 }

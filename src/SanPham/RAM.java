@@ -65,7 +65,7 @@ public class RAM extends PhanCung{
 
     @Override
     public String toString() {
-        return super.toString() + "RAM [dungLuong=" + dungLuongRAM + ", loaiRAM=" + loaiRAM + "]";
+        return super.toString() + String.format("%-10d %-10s", dungLuongRAM, loaiRAM);
     }
 
     @Override

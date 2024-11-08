@@ -10,7 +10,7 @@ public class Desktop extends MayTinh{
     }
 
     public Desktop(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, boolean coCardRoi,
+            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
             PhanCung[] cacLinhKien, String casePC, String tanNhiet) {
         super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model,
                 loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien);
@@ -35,11 +35,6 @@ public class Desktop extends MayTinh{
     }
 
     @Override
-    public float ThanhTien(){
-        return 1;
-    }
-
-    @Override
     public void nhap()
     {
         super.nhap();
@@ -52,13 +47,9 @@ public class Desktop extends MayTinh{
     @Override
     public String toString()
     {
-        return super.toString() + "Desktop [casePC=" + casePC + ", tanNhiet=" + tanNhiet + "]";
+        return super.toString() + String.format("%-20s %-20s", casePC, tanNhiet);
     }
 
-    @Override
-    public void xuat()
-    {
-        System.out.println(toString());
-    }
+
 
 }

@@ -52,22 +52,13 @@ public abstract class ThietBiNgoaiVi extends SanPham{
         super.nhap();
         System.out.println("Nhap nha san xuat: ");
         setNhaSanXuat(sc.nextLine());
-        System.out.println("Nhap loai thiet bi: ");
-        setLoaiThietBi(sc.nextLine());
         System.out.println("Nhap phuong thuc ket noi: ");
         setPhuongThucKetNoi(sc.nextLine());
     }
 
     @Override
     public String toString() {
-        return super.toString() + "ThietBiNgoaiVi [nhaSanXuat=" + nhaSanXuat + ", loaiThietBi=" + loaiThietBi + ", phuongThucKetNoi="
-                + phuongThucKetNoi + "]";
-    }
-
-    @Override
-    public void xuat()
-    {
-        System.out.println(toString());
+        return super.toString() + String.format("%-15s %-15s %-15s", nhaSanXuat, loaiThietBi, phuongThucKetNoi);
     }
 }
 

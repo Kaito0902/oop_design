@@ -48,8 +48,6 @@ public abstract class PhanCung extends SanPham{
         super.nhap();
         System.out.println("Nhap nha san xuat: ");
         setNhaSanXuat(sc.nextLine());
-        System.out.println("Nhap loai linh kien: ");
-        setLoaiLinhKien(sc.nextLine());
         System.out.println("Nhap nha san xuat: ");
         setNhaSanXuat(sc.nextLine());
         System.out.println("Nhap model san pham: ");
@@ -58,8 +56,6 @@ public abstract class PhanCung extends SanPham{
 
     public void nhap1()
     {
-        System.out.println("Nhap loai linh kien: ");
-        setLoaiLinhKien(sc.nextLine());
         System.out.println("Nhap nha san xuat: ");
         setNhaSanXuat(sc.nextLine());
         System.out.println("Nhap model san pham: ");
@@ -68,7 +64,7 @@ public abstract class PhanCung extends SanPham{
 
     @Override
     public String toString(){
-        return super.toString() + "PhanCung [nhaSanXuat=" + nhaSanXuat + ", loaiLinhKien=" + loaiLinhKien + ", model=" + model + "]";
+        return super.toString() + String.format("%-20s %-20s %20s", nhaSanXuat, loaiLinhKien, model);
     }
 
     public String toString1(){

@@ -39,10 +39,7 @@ public class BoNho extends PhanCung{
         this.loaiBoNho = loaiBoNho;
     }
 
-    @Override
-    public float ThanhTien(){
-        return 1;
-    }
+
 
     @Override
     public void nhap()
@@ -67,8 +64,9 @@ public class BoNho extends PhanCung{
     @Override
     public String toString() 
     {
-        return super.toString() + "BoNho [dungLuong=" + dungLuongBoNho + ", loaiBoNho=" + loaiBoNho + "]";
+        return super.toString() + String.format("%-10d %-20s", dungLuongBoNho, loaiBoNho);
     }
+    
 
     @Override
     public String toString1() 

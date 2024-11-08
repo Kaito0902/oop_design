@@ -91,13 +91,8 @@ public class ManHinh extends ThietBiNgoaiVi{
 
     @Override
     public String toString() {
-        return super.toString() + "ManHinh [kieuManHinh=" + kieuManHinh + ", kichThuoc=" + kichThuoc + ", tanSoQuet=" + tanSoQuet
-                + ", tamNen=" + tamNen + ", doPhanGiai=" + doPhanGiai + "]";
+        return super.toString() + String.format("%-10s %-20s %-10d %-10s %-20s",kieuManHinh, kichThuoc, tanSoQuet, tamNen, doPhanGiai);
     }
 
-    @Override
-    public void xuat()
-    {
-        System.out.println(toString());
-    }
+
 }
