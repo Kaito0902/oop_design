@@ -77,5 +77,12 @@ public class Chuot extends ThietBiNgoaiVi{
         return super.toString() + String.format("%-10d %-10d %-15s", dPI, soLanBam, loaiChuot);
     }
 
-
+    @Override
+    public void xuat(){
+        super.xuat();
+        System.out.println("DPI chuot: " + dPI);
+        System.out.println("So lan bam chuot: " + soLanBam + " lan");
+        System.out.println("Den LED chuot: " + denLED);
+        System.out.println("Loai chuot: " + loaiChuot);
+    }
 }

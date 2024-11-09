@@ -60,7 +60,7 @@ public class BanPhim extends ThietBiNgoaiVi{
         setKichThuoc(sc.nextLine());
         System.out.println("Nhap den LED ban phim: ");
         setDenLED(sc.nextLine());
-        System.out.println("Nhap switch BP ban phim: ");
+        System.out.println("Nhap switch ban phim: ");
         setSwitchBP(sc.nextLine());
     }
 
@@ -69,5 +69,11 @@ public class BanPhim extends ThietBiNgoaiVi{
         return super.toString() + String.format("%-20s %-10s %-10s", kichThuoc, denLED, switchBP);
     }
 
-
+    @Override
+    public void xuat(){
+        super.xuat();
+        System.out.println("Kich thuoc ban phim: " + kichThuoc);
+        System.out.println("Nhap den LED ban phim: " + denLED);
+        System.out.println("Switch ban phim: " + switchBP);
+    }
 }

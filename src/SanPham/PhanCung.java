@@ -1,6 +1,6 @@
 package SanPham;
 
-public abstract class PhanCung extends SanPham{
+public abstract class PhanCung extends SanPham implements NhapCauHinh, HienThiCauHinh{
     protected String nhaSanXuat;
     protected String loaiLinhKien;
     protected String model;
@@ -52,7 +52,8 @@ public abstract class PhanCung extends SanPham{
         setModel(sc.nextLine());
     }
 
-    public void nhap1()
+    @Override
+    public void nhapCauHinh()
     {
         System.out.println("Nhap nha san xuat: ");
         setNhaSanXuat(sc.nextLine());
@@ -65,11 +66,6 @@ public abstract class PhanCung extends SanPham{
         return super.toString() + String.format("%-20s %-20s %20s", nhaSanXuat, loaiLinhKien, model);
     }
 
-    public String toString1(){
-        return "PhanCung [nhaSanXuat=" + nhaSanXuat + ", loaiLinhKien=" + loaiLinhKien + ", model=" + model + "]";
-    }
-
-
     @Override
     public void xuat()
     {
@@ -77,10 +73,5 @@ public abstract class PhanCung extends SanPham{
         System.out.println("Loai linh kien: " + loaiLinhKien);
         System.out.println("Nha san xuat linh kien: " + nhaSanXuat);
         System.out.println("Model linh kien: " + model);
-    }
-
-    public void xuat1()
-    {
-        System.out.println(toString1());
     }
 }

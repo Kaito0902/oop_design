@@ -67,4 +67,12 @@ public class Laptop extends MayTinh{
     {
         return super.toString() + String.format("%-20s %-10.2f %-20s", kichThuocManHinh, thoiLuongPin, loaiLaptop);
     }
+
+    @Override
+    public void xuat(){
+        super.xuat();
+        System.out.println("Kich thuoc man hinh Laptop: " + kichThuocManHinh);
+        System.out.println("Thoi luong pin Laptop: " + thoiLuongPin + "h");
+        System.out.println("Loai laptop: " + loaiLaptop);
+    }
 }

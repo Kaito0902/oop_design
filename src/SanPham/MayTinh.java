@@ -1,5 +1,7 @@
 package SanPham;
 
+import java.util.Arrays;
+
 public abstract class MayTinh extends SanPham implements HienThiCauHinh{
     protected String nhaSanXuat;
     protected String model;
@@ -7,7 +9,6 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
     protected String heDieuHanh;
     protected String coCardRoi;
     protected PhanCung[] cacLinhKien;
-    protected int soLuongLinhKien;
 
     public MayTinh()
     {
@@ -23,8 +24,7 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
         this.loaiMayTinh = loaiMayTinh;
         this.heDieuHanh = heDieuHanh;
         this.coCardRoi = coCardRoi;
-        this.cacLinhKien = new PhanCung[4];
-        this.soLuongLinhKien = 0;
+        this.cacLinhKien = cacLinhKien;
     }
 
     public String getNhaSanXuat() {
@@ -77,24 +77,9 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
 
     public void themPhanCung(PhanCung phanCung) 
     {
-        // soLuongLinhKien = 0;
-        // PhanCung[] newCacLinhKien = Arrays.copyOf(cacLinhKien, cacLinhKien.length + 1);
-        // newCacLinhKien[this.cacLinhKien.length] = phanCung;
-        // this.cacLinhKien = newCacLinhKien;
-        // cacLinhKien[soLuongLinhKien] = phanCung;
-        if(soLuongLinhKien <= cacLinhKien.length)
-        {
-            cacLinhKien[soLuongLinhKien] = phanCung;
-            soLuongLinhKien++;
-        }
-
-        else
-            System.out.println("Het cho");
-    }
-
-    @Override
-    public void hienThiCauHinh(){
-
+        PhanCung[] newCacLinhKien = Arrays.copyOf(this.cacLinhKien, this.cacLinhKien.length + 1);
+        newCacLinhKien[this.cacLinhKien.length] = phanCung;
+        this.cacLinhKien = newCacLinhKien;
     }
 
     @Override
@@ -110,44 +95,39 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
         System.out.println("Co card roi khong: ");
         setCoCardRoi(sc.nextLine());
 
-        System.out.println("Nhap phan cung may tinh: ");
-        this.cacLinhKien = new PhanCung[4];
+        System.out.println("Nhap cau hinh may tinh: ");
+        this.cacLinhKien = new PhanCung[0];
 
         System.out.println("CPU: ");
         CPU cpu = new CPU();
-        cpu.nhap1();
+        cpu.nhapCauHinh();
         themPhanCung(cpu);
 
         System.out.println("GPU: ");
         GPU gpu = new GPU();
-        gpu.nhap1();
+        gpu.nhapCauHinh();
         themPhanCung(gpu);
 
         System.out.println("RAM: ");
         RAM ram = new RAM();
-        ram.nhap1();
+        ram.nhapCauHinh();
         themPhanCung(ram);
     
         System.out.println("Bo Nho: ");
         BoNho boNho = new BoNho();
-        boNho.nhap1();
+        boNho.nhapCauHinh();
         themPhanCung(boNho);
     }
-    
 
-    
     @Override
-    public String toString() {
-        String xuat = "";
-        for(var i:cacLinhKien)
-        {
-            xuat += i.toString();
+    public void hienThiCauHinh()
+    {
+        System.out.println("Cau hinh may tinh: ");
+        for(PhanCung i:cacLinhKien){
+            i.hienThiCauHinh();
         }
-        return "MayTinh [nhaSanXuat=" + nhaSanXuat + ", model=" + model + ", loaiMayTinh=" + loaiMayTinh
-                + ", heDieuHanh=" + heDieuHanh + ", coCardRoi=" + coCardRoi + ", cacLinhKien="
-                + xuat + "]";
     }
-
+    
     @Override
     public void xuat(){
         super.xuat();
@@ -156,5 +136,6 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
         System.out.println("Model may tinh: " + model);
         System.out.println("He dieu hanh may tinh: " + heDieuHanh);
         System.out.println("May tinh " + coCardRoi + " card roi");
+        hienThiCauHinh();
     }
 }

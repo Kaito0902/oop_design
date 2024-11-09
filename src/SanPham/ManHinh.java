@@ -89,5 +89,13 @@ public class ManHinh extends ThietBiNgoaiVi{
         return super.toString() + String.format("%-10s %-20s %-10d %-10s %-20s",kieuManHinh, kichThuoc, tanSoQuet, tamNen, doPhanGiai);
     }
 
-
+    @Override
+    public void xuat(){
+        super.xuat();
+        System.out.println("Kieu man hinh: " + kieuManHinh);
+        System.out.println("Kich thuoc man hinh: " + kichThuoc);
+        System.out.println("Tan so quet man hinh: " + tanSoQuet + "Hz");
+        System.out.println("Tam nen man hinh: " + tamNen);
+        System.out.println("Nhap do phan giai man hinh: " + doPhanGiai);
+    }
 }

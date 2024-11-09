@@ -1,5 +1,5 @@
 package SanPham;
 
 public interface KhuyenMaiTheoTien {
-    public float KhuyenMaiTheoTien();
+    public float khuyenMaiTheoTien();
 }

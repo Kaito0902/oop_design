@@ -51,11 +51,10 @@ public class RAM extends PhanCung{
         System.out.println("Nhap loai RAM: ");
         setLoaiRAM(sc.nextLine());
     }   
-    
+
     @Override
-    public void nhap1()
+    public void nhapCauHinh()
     {
-        super.nhap1();
         System.out.println("Nhap dung luong RAM: ");
         setDungLuongRAM(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap loai RAM: ");
@@ -68,19 +67,16 @@ public class RAM extends PhanCung{
     }
 
     @Override
-    public String toString1() {
-        return super.toString1() + "RAM [dungLuong=" + dungLuongRAM + ", loaiRAM=" + loaiRAM + "]";
+    public void xuat(){
+        super.xuat();
+        System.out.println("Dung luong RAM: " + dungLuongRAM + "GB");
+        System.out.println("Loai RAM: " + loaiRAM);
     }
 
     @Override
-    public void xuat()
+    public void hienThiCauHinh()
     {
-        System.out.println(toString());
-    }
-
-    @Override
-    public void xuat1()
-    {
-        System.out.println(toString1());
+        System.out.println("Dung luong RAM: " + dungLuongRAM + "GB");
+        System.out.println("Loai RAM: " + loaiRAM);
     }
 }

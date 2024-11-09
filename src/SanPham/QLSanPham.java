@@ -1,6 +1,8 @@
 package SanPham;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -62,15 +64,18 @@ public class QLSanPham{
                     break;
 
                 case 5:
-                    //suaPhanTuTheoMa();
+                    System.out.println("Nhap ma san pham muon sua: ");
+                    suaPhanTuTheoMa(sc.nextLine());
                     break;
 
                 case 6:
-                    //xoaPhanTuTheoMa();
+                    System.out.println("Nhap ma san pham muon xoa: ");
+                    xoaPhanTuTheoMa(sc.nextLine());
                     break;
 
                 case 7:
-                    timKiem();
+                    if(timKiem() !=null)
+                        timKiem().xuat();
                     break;
 
                 default:
@@ -204,17 +209,29 @@ public class QLSanPham{
 
     public void xuatDanhSach()
     {
-        for(var i:ds)
+        for(SanPham i:ds)
             i.xuat();
     }
 
     public void docTuFile()
     {
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("DanhSach.txt"));
+            reader.readLine();
+            String line;
+            while((line = reader.readLine()) != null){
+
+            }
+            reader.close();
+        } 
         
+        catch(IOException e){
+            System.out.println("Khong doc duoc file");
+        }
     }
 
     public void nhapSanPhamVaoFile(String file, SanPham sp){
-        try {
+        try{
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(String.join(",",
             sp.getMaSP(),
@@ -224,7 +241,9 @@ public class QLSanPham{
             String.valueOf(sp.getTrongLuongSP()),
             sp.getMauSacSP())
             );
-        } 
+            writer.close();
+        }
+
         catch(IOException e){
             System.out.println("Khong ghi duoc file");
         }
@@ -232,11 +251,9 @@ public class QLSanPham{
 
     public void nhapVaoFile()
     {
-
         try{
             BufferedWriter writer = new BufferedWriter(new FileWriter("DanhSach.txt"));
             for(SanPham sp:ds){
-
                 if(sp instanceof Desktop desktop){
                     nhapSanPhamVaoFile("DanhSach.txt", desktop);
                     writer.write(String.join(",",
@@ -256,54 +273,95 @@ public class QLSanPham{
                     writer.newLine();
                 }
 
-                // else if(sp instanceof CPU cpu){
+                else if(sp instanceof CPU cpu){
+                    nhapSanPhamVaoFile("DanhSach.txt", cpu);
+                    writer.write(String.join(",",
+                    String.valueOf(cpu.getSoNhan()),
+                    String.valueOf(cpu.getSoLuongLoi()),
+                    String.valueOf(cpu.getTanSoTurBo())
+                    ));
+                    writer.newLine();
+                }
 
-                // }
+                else if(sp instanceof GPU gpu){
+                    nhapSanPhamVaoFile("DanhSach.txt", gpu);
+                    writer.write(String.join(",",
+                    gpu.getLoaiVRAM(),
+                    String.valueOf(gpu.getTocDoXungNhip()),
+                    String.valueOf(gpu.getSoNhanCUDA()),
+                    gpu.getCoRayTracing()
+                    ));
+                    writer.newLine();
+                }
 
-                // else if(sp instanceof GPU gpu){
+                else if(sp instanceof RAM ram){
+                    nhapSanPhamVaoFile("DanhSach.txt", ram);
+                    writer.write(String.join(",",
+                    String.valueOf(ram.getDungLuongRAM()),
+                    ram.getLoaiRAM()
+                    ));
+                    writer.newLine();
+                }
 
-                // }
+                else if(sp instanceof BoNho boNho){
+                    nhapSanPhamVaoFile("DanhSach.txt", boNho);
+                    writer.write(String.join(",",
+                    String.valueOf(boNho.getDungLuongBoNho()),
+                    boNho.getLoaiBoNho()
+                    ));
+                    writer.newLine();
+                }
 
-                // else if(sp instanceof RAM ram){
+                else if(sp instanceof Chuot chuot){
+                    nhapSanPhamVaoFile("DanhSach.txt", chuot);
+                    writer.write(String.join(",",
+                    String.valueOf(chuot.getdPI()),
+                    String.valueOf(chuot.getSoLanBam()),
+                    chuot.getDenLED(),
+                    chuot.getLoaiChuot()
+                    ));
+                    writer.newLine();
+                }
 
-                // }
+                else if(sp instanceof ManHinh manHinh){
+                    nhapSanPhamVaoFile("DanhSach.txt", manHinh);
+                    writer.write(String.join(",",
+                    manHinh.getKieuManHinh(),
+                    manHinh.getKichThuoc(),
+                    String.valueOf(manHinh.getTanSoQuet()),
+                    manHinh.getTamNen(),
+                    String.valueOf(manHinh.getDoPhanGiai())
+                    ));
+                    writer.newLine();
+                }
 
-                // else if(sp instanceof BoNho boNho){
-
-                // }
-
-                // else if(sp instanceof Chuot chuot){
-
-                // }
-
-                // else if(sp instanceof ManHinh manHinh){
-
-                // }
-
-                // else if(sp instanceof BanPhim banPhim){
-
-                // } 
-
+                else if(sp instanceof BanPhim banPhim){
+                    nhapSanPhamVaoFile("DanhSach.txt", banPhim);
+                    writer.write(String.join(",",
+                    banPhim.getKichThuoc(),
+                    banPhim.getDenLED(),
+                    banPhim.getSwitchBP()
+                    ));
+                    writer.newLine();
+                } 
                 writer.close();
             }
-            
         } 
         catch (IOException e){
             System.out.println("Khong ghi duoc file");
         }
     }
 
-    public SanPham suaPhanTuTheoMa(String maSP)
+    public void suaPhanTuTheoMa(String maSP)
     {
         for(var sp:ds){
             if(sp.maSP.equals(maSP)){
 
 
                 }
-                return sp;
+
             }
-        
-        return null;
+        System.out.println("Khong tim thay san pham");
     }
 
     public void xoaPhanTuTheoMa(String maSP)

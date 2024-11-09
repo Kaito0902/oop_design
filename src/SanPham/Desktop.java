@@ -42,9 +42,9 @@ public class Desktop extends MayTinh{
     public void nhap()
     {
         super.nhap();
-        System.out.println("Nhap case PC: ");
+        System.out.println("Nhap case desktop: ");
         setCasePC(sc.nextLine());
-        System.out.println("Nhap tan nhiet: ");
+        System.out.println("Nhap tan nhiet desktop: ");
         setTanNhiet(sc.nextLine());
     }
 
@@ -52,5 +52,12 @@ public class Desktop extends MayTinh{
     public String toString()
     {
         return super.toString() + String.format("%-20s %-20s", casePC, tanNhiet);
+    }
+
+    @Override
+    public void xuat(){
+        super.xuat();
+        System.out.println("Case desktop: " + casePC);
+        System.out.println("Tan nhiet desktop: " + tanNhiet);
     }
 }
