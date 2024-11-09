@@ -1,20 +1,27 @@
-import ChucNang.ChucNangMenu;
+package main_project;
+
+import BaoHanh.QLBaoHanh;
+import NhanVien.QLNghiPhep;
 import NhanVien.QLNhanVien;
+import SanPham.QLSanPham;
 
 import java.util.Scanner;
 
 public class oop_project {
+    public static QLNhanVien qlnv = new QLNhanVien();
+    public static QLNghiPhep qlnp = new QLNghiPhep();
+    public static QLSanPham qlsp = new QLSanPham();
+    public static QLBaoHanh qlbh = new QLBaoHanh();
 
     public static void main(String[] args) {
         menu();
     }
 
     public static void menu() {
-        QLNhanVien qlnv = new QLNhanVien();
         qlnv.docTuFileDSNV();
+        qlnp.docTuFileDSNP();
         boolean kt = true;
         int lc;
-        ChucNangMenu cnmn = new ChucNangMenu(qlnv);
         while (kt) {
             System.out.println("=============================");
             System.out.println("|\t     MENU CHINH       \t|");
@@ -51,7 +58,8 @@ public class oop_project {
                     break;
                 }
                 case 4: {
-                    return;
+                    kt = false;
+                    break;
                 }
                 default: {
                     System.out.println("Lua chon khong phu hop");

@@ -16,6 +16,7 @@ public abstract class NhanVien {
     protected int ngayPhepConLai;
     protected double luong;
     protected String matKhau;
+    protected boolean isdelete;
     static double luongCoBan = 250;
     static int tongNhanVien = 0;
     static Scanner sc = new Scanner(System.in);
@@ -23,8 +24,8 @@ public abstract class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau) {
-        this.maNhanVien = "nv" + String.format("%02d", ++tongNhanVien);
+    public NhanVien(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete) {
+        this.maNhanVien = maNhanVien;
         this.tenNhanVien = tenNhanVien;
         this.soDienThoai = soDienThoai;
         this.email = email;
@@ -36,6 +37,7 @@ public abstract class NhanVien {
         this.ngayPhepConLai = ngayPhepConLai;
         this.luong = luong;
         this.matKhau = matKhau;
+        this.isdelete = isdelete;
         tongNhanVien++;
     }
 
@@ -147,6 +149,7 @@ public abstract class NhanVien {
         System.out.println("Nhap he so luong: ");
         setHeSoLuong(Double.parseDouble(sc.nextLine()));
 
+        isdelete = true;
         luong = tinhLuong();
 
         ngayPhepConLai = (LocalDate.now().getYear() - namVaoLam) >= 1 ? 12 : 6;
@@ -171,26 +174,15 @@ public abstract class NhanVien {
     public abstract double heSoPhuCap();
     public abstract double tinhLuong();
 
+    // System.out.println("Nhan vien " + getTenNhanVien() + " da xin nghi " + soNgayNghi + " ngay. Con lai: " + this.ngayPhepConLai + " ngay phep.");
+
     public void nghiPhep(int soNgayNghi) {
         if (soNgayNghi <= this.ngayPhepConLai) {
             this.ngayPhepConLai -= soNgayNghi;
-            System.out.println("Nhan vien " + getTenNhanVien() + " da xin nghi " + soNgayNghi + " ngay. Con lai: " + this.ngayPhepConLai + " ngay phep.");
         } else {
-            System.out.println("Ban khong con ngay nghi phep nam.");
-            System.out.println("Neu nghi phep ban se khong nhan duoc luong ngay.");
-            while(true ){
-                System.out.println("(Y/N): ");
-                String lc = sc.nextLine();
-                if (lc.equalsIgnoreCase("y")) {
-                    double luongBiTru = tinhLuong() / 30 * soNgayNghi;
-                    luong -= luongBiTru;
-                    return;
-                } else if (lc.equalsIgnoreCase("n")) {
-                    return;
-                } else {
-                    System.out.println("Lua chon khong hop le.");
-                }
-            }
+            double luongBiTru = tinhLuong() / 30 * soNgayNghi;
+            luong -= luongBiTru;
+            this.ngayPhepConLai = 0;
         }
     }
 

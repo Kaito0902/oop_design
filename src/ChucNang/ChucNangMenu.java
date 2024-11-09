@@ -1,48 +1,45 @@
 package ChucNang;
 
+import BaoHanh.BaoHanhSanPham;
 import NhanVien.NhanVien;
 import NhanVien.NhanVienBanHang;
-import NhanVien.QLNhanVien;
 import NhanVien.NhanVienKyThuat;
 import NhanVien.NhanVienQuanLy;
 
 import java.util.Scanner;
 
-public class ChucNangMenu {
-    private static QLNhanVien qlnv;
-    static Scanner sc = new Scanner(System.in);
+import static main_project.oop_project.qlnv;
+import static main_project.oop_project.qlsp;
+import static main_project.oop_project.qlbh;
+import static main_project.oop_project.qlnp;
 
-    public ChucNangMenu(QLNhanVien qlnv) {
-        ChucNangMenu.qlnv = qlnv;
-    }
+public class ChucNangMenu {
+
+    static Scanner sc = new Scanner(System.in);
 
     public static void menuBHSP() {
         boolean ktra = true;
-        String chon;
+        int chon;
         while (ktra) {
             System.out.println("===================================");
             System.out.println("|\t     MENU SAN PHAM       \t|");
             System.out.println("===================================");
-            System.out.printf("| %-34s|\n", "a. Xuat danh sach san pham");
-            System.out.printf("| %-34s|\n", "b. Tim kiem san pham");
-            System.out.printf("| %-34s|\n", "c. Thoat                     |");
+            System.out.printf("| %-34s|\n", "1. Xuat danh sach san pham");
+            System.out.printf("| %-34s|\n", "2. Tim kiem san pham");
+            System.out.printf("| %-34s|\n", "3. Thoat                     |");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
-            chon = sc.nextLine();
+            chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
-                case "a": {
-                    //lenh
+                case 1: {
+                    qlsp.xuatDanhSach();
                     break;
                 }
-                case "b": {
-                    //lenhtim
+                case 2: {
+                    qlsp.timKiem();
                     break;
                 }
-                case "c": {
-                    //lenhtimten
-                    break;
-                }
-                case "d": {
+                case 3: {
                     ktra = false;
                     break;
                 }
@@ -57,68 +54,67 @@ public class ChucNangMenu {
 
     public static void menuGD() {
         boolean ktra = true;
-        String chon;
+        int chon;
         while (ktra) {
-
             System.out.println("===============================================");
             System.out.println("|\t          MENU GIAO DICH            \t|");
             System.out.println("===============================================");
-            System.out.printf("| %-45s|\n", "a. Nhap thong tin khach hang moi");
-            System.out.printf("| %-45s|\n", "b. Xuat danh sach khach hang");
-            System.out.printf("| %-45s|\n", "c. Sua thong tin khach hang theo ma");
-            System.out.printf("| %-45s|\n", "d. Xoa khach hang theo ma");
-            System.out.printf("| %-45s|\n", "e. Tim kiem khach hang theo so dien thoai");
-            System.out.printf("| %-45s|\n", "f. Tao hoa don moi");
-            System.out.printf("| %-45s|\n", "g. Xuat danh sach hoa don");
-            System.out.printf("| %-45s|\n", "h. Sua hoa don theo ma");
-            System.out.printf("| %-45s|\n", "i. Xoa hoa don theo ma");
-            System.out.printf("| %-45s|\n", "j. Tim kiem hoa don theo ma");
-            System.out.printf("| %-45s|\n", "k. Thoat");
+            System.out.printf("| %-45s|\n", "1. Nhap thong tin khach hang moi");
+            System.out.printf("| %-45s|\n", "2. Xuat danh sach khach hang");
+            System.out.printf("| %-45s|\n", "3. Sua thong tin khach hang theo ma");
+            System.out.printf("| %-45s|\n", "4. Xoa khach hang theo ma");
+            System.out.printf("| %-45s|\n", "5. Tim kiem khach hang theo so dien thoai");
+            System.out.printf("| %-45s|\n", "6. Tao hoa don moi");
+            System.out.printf("| %-45s|\n", "7. Xuat danh sach hoa don");
+            System.out.printf("| %-45s|\n", "8. Sua hoa don theo ma");
+            System.out.printf("| %-45s|\n", "9. Xoa hoa don theo ma");
+            System.out.printf("| %-45s|\n", "10. Tim kiem hoa don theo ma");
+            System.out.printf("| %-45s|\n", "11. Thoat");
             System.out.println("===============================================");
             System.out.print("Nhap lua chon: ");
-            chon = sc.nextLine();
+            chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
-                case "a": {
+                case 1: {
                     //nhap
                     break;
                 }
-                case "b": {
+                case 2: {
                     //xuat
                     break;
                 }
-                case "c": {
+                case 3: {
                     //sua
                     break;
                 }
-                case "d": {
+                case 4: {
                     //xoa
                     break;
                 }
-                case "e": {
+                case 5: {
                     //tk
                     break;
                 }
-                case "f": {
+                case 6: {
                     //tao
                     break;
                 }
-                case "g": {
+                case 7: {
                     //xuatds
                     break;
                 }
-                case "h": {
+                case 8: {
                     //suahd
                     break;
                 }
-                case "i": {
+                case 9: {
                     //xoahd
                     break;
                 }
-                case "j": {
+                case 10: {
                     //tim
                     break;
                 }
-                case "k": {
+                case 11: {
                     ktra = false;
                     break;
                 }
@@ -133,42 +129,42 @@ public class ChucNangMenu {
 
     public static void menuSP() {
         boolean ktra = true;
-        String chon;
+        int chon;
         while (ktra) {
             System.out.println("===================================");
             System.out.println("|\t     MENU SAN PHAM       \t|");
             System.out.println("===================================");
-            System.out.printf("| %-34s|\n", "a. Nhap danh sach san pham moi");
-            System.out.printf("| %-34s|\n", "b. Xuat danh sach san pham");
-            System.out.printf("| %-34s|\n", "c. Sua thong tin san pham theo ma");
-            System.out.printf("| %-34s|\n", "d. Xoa san pham theo ma");
-            System.out.printf("| %-34s|\n", "e. Tim kiem san pham");
-            System.out.printf("| %-34s|\n", "f. Thoat                     |");
+            System.out.printf("| %-34s|\n", "1. Nhap danh sach san pham moi");
+            System.out.printf("| %-34s|\n", "2. Xuat danh sach san pham");
+            System.out.printf("| %-34s|\n", "3. Sua thong tin san pham theo ma");
+            System.out.printf("| %-34s|\n", "4. Xoa san pham theo ma");
+            System.out.printf("| %-34s|\n", "5. Tim kiem san pham");
+            System.out.printf("| %-34s|\n", "6. Thoat                     |");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
-            chon = sc.nextLine();
+            chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
-                case "a": {
+                case 1: {
                     //nhap
                     break;
                 }
-                case "b": {
-                    //xuat
+                case 2: {
+                    qlsp.xuatDanhSach();
                     break;
                 }
-                case "c": {
-                    //sua
+                case 3: {
+                    qlsp.suaPhanTuTheoMa();
                     break;
                 }
-                case "d": {
-                    //xoa
+                case 4: {
+                    qlsp.xoaPhanTuTheoMa();
                     break;
                 }
-                case "e": {
-                    //tk
+                case 5: {
+                    qlsp.timKiem();
                     break;
                 }
-                case "f": {
+                case 6: {
                     ktra = false;
                     break;
                 }
@@ -183,42 +179,42 @@ public class ChucNangMenu {
 
     public static void menuDDH() {
         boolean ktra = true;
-        String chon;
+        int chon;
         while (ktra) {
             System.out.println("==========================================");
             System.out.println("|\t    MENU DON DAT HANG       \t|");
             System.out.println("==========================================");
-            System.out.printf("| %-40s|\n", "a. Nhap danh sach don dat hang moi");
-            System.out.printf("| %-40s|\n", "b. Xuat danh sach don dat hang");
-            System.out.printf("| %-40s|\n", "c. Sua don nhap theo ma");
-            System.out.printf("| %-40s|\n", "d. Xoa don nhap theo ma");
-            System.out.printf("| %-40s|\n", "e. Tim kiem don nhap theo ma");
-            System.out.printf("| %-40s|\n", "f. Thoat");
+            System.out.printf("| %-40s|\n", "1. Nhap danh sach don dat hang moi");
+            System.out.printf("| %-40s|\n", "2. Xuat danh sach don dat hang");
+            System.out.printf("| %-40s|\n", "3. Sua don nhap theo ma");
+            System.out.printf("| %-40s|\n", "4. Xoa don nhap theo ma");
+            System.out.printf("| %-40s|\n", "5. Tim kiem don nhap theo ma");
+            System.out.printf("| %-40s|\n", "6. Thoat");
             System.out.println("==========================================");
             System.out.print("Nhap lua chon: ");
-            chon = sc.nextLine();
+            chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
-                case "a": {
+                case 1: {
                     //nhap
                     break;
                 }
-                case "b": {
+                case 2: {
                     //xuat
                     break;
                 }
-                case "c": {
+                case 3: {
                     //sua
                     break;
                 }
-                case "d": {
+                case 4: {
                     //xoa
                     break;
                 }
-                case "e": {
+                case 5: {
                     //tk
                     break;
                 }
-                case "f": {
+                case 6: {
                     ktra = false;
                     break;
                 }
@@ -233,42 +229,40 @@ public class ChucNangMenu {
 
     public static void menuBH() {
         boolean ktra = true;
-        String chon;
+        int chon;
         while (ktra) {
             System.out.println("==========================================");
             System.out.println("|\t    MENU BAO HANH       \t|");
             System.out.println("==========================================");
-            System.out.printf("| %-40s|\n", "a. Tim kiem khach hang theo so dien thoai");
-            System.out.printf("| %-40s|\n", "b. Xem danh sach bao hanh");
-            System.out.printf("| %-40s|\n", "c. Them yeu cau bao hanh");
-            System.out.printf("| %-40s|\n", "d. Cap nhat trang thai bao hanh");
-            System.out.printf("| %-40s|\n", "e. Xoa yeu cau bao hanh");
-            System.out.printf("| %-40s|\n", "f. Thoat");
+            System.out.printf("| %-40s|\n", "1. Tim kiem khach hang theo so dien thoai");
+            System.out.printf("| %-40s|\n", "2. Xem danh sach bao hanh");
+            System.out.printf("| %-40s|\n", "3. Them yeu cau bao hanh");
+            System.out.printf("| %-40s|\n", "4. Cap nhat trang thai bao hanh");
+            System.out.printf("| %-40s|\n", "5. Thoat");
             System.out.println("==========================================");
             System.out.print("Nhap lua chon: ");
-            chon = sc.nextLine();
+            chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
-                case "a": {
+                case 1: {
                     //tk
                     break;
                 }
-                case "b": {
-                    //xem
+                case 2: {
+                    qlbh.xuatDanhSachBaoHang();
                     break;
                 }
-                case "c": {
-                    //themm
+                case 3: {
+                    BaoHanhSanPham x = new BaoHanhSanPham();
+                    x.input();
+                    qlbh.themBaoHanh(x);
                     break;
                 }
-                case "d": {
-                    //capnhat
+                case 4: {
+                    System.out.println("Nhap ma bao hanh muon cap nhat trang thai.");
+                    qlbh.capNhatTrangThaiBaoHanh(sc.nextLine());
                     break;
                 }
-                case "e": {
-                    //xoa
-                    break;
-                }
-                case "f": {
+                case 5: {
                     ktra = false;
                     break;
                 }
@@ -283,22 +277,26 @@ public class ChucNangMenu {
 
     public static void menuNV() {
         boolean ktra = true;
-        String chon;
+        int chon;
         while (ktra) {
+            qlnv.ghiVaoFileDSNV();
+            qlnp.ghiVaoFileDSNP();
             System.out.println("===================================");
             System.out.println("|\t     MENU NHAN VIEN       \t|");
             System.out.println("===================================");
-            System.out.printf("| %-34s|\n", "a. Them danh sach nhan vien");
-            System.out.printf("| %-34s|\n", "b. Xuat danh sach nhan vien");
-            System.out.printf("| %-34s|\n", "c. Sua thong tin nhan vien theo ma");
-            System.out.printf("| %-34s|\n", "d. Xoa nhan vien theo ma");
-            System.out.printf("| %-34s|\n", "e. Tim kiem nhan vien");
-            System.out.printf("| %-34s|\n", "f. Thoat                     ");
+            System.out.printf("| %-34s|\n", "1. Them danh sach nhan vien");
+            System.out.printf("| %-34s|\n", "2. Xuat danh sach nhan vien");
+            System.out.printf("| %-34s|\n", "3. Sua thong tin nhan vien theo ma");
+            System.out.printf("| %-34s|\n", "4. Xoa nhan vien theo ma");
+            System.out.printf("| %-34s|\n", "5. Tim kiem nhan vien");
+            System.out.printf("| %-34s|\n", "6. Xuat danh sach nghi phep");
+            System.out.printf("| %-34s|\n", "7. Duyet don nghi phep");
+            System.out.printf("| %-34s|\n", "8. Thoat                     ");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
-            chon = sc.nextLine();
+            chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
-                case "a": {
+                case 1: {
                     System.out.println("Nhap so luong nhan vien muon them: ");
                     int sl = Integer.parseInt(sc.nextLine());
                     int lc;
@@ -338,11 +336,11 @@ public class ChucNangMenu {
                     }
                     break;
                 }
-                case "b": {
+                case 2: {
                     qlnv.xuatDanhSachNV();
                     break;
                 }
-                case "c": {
+                case 3: {
                     System.out.println("Nhap ma nhan vien muon sua thong tin: ");
                     NhanVien nv = qlnv.suaThongTinNV(sc.nextLine());
                     if (nv != null) {
@@ -353,12 +351,12 @@ public class ChucNangMenu {
                     }
                     break;
                 }
-                case "d": {
+                case 4: {
                     System.out.println("Nhap ma nhan vien muon xoa: ");
                     qlnv.xoa1NV(sc.nextLine());
                     break;
                 }
-                case "e": {
+                case 5: {
                     System.out.println("Nhap ten ban muon tim kiem: ");
                     NhanVien nv = qlnv.timKiemNhanVien(sc.nextLine());
                     if (nv != null) {
@@ -369,7 +367,16 @@ public class ChucNangMenu {
                     }
                     break;
                 }
-                case "f": {
+                case 6: {
+                    System.out.println("DANH SACH DON XIN NGHI");
+                    qlnp.xuatDanhSach();
+                    break;
+                }
+                case 7: {
+                    qlnp.pheDuyetDon(qlnv.nguoiDangNhap());
+                    break;
+                }
+                case 8: {
                     ktra = false;
                     break;
                 }
@@ -384,42 +391,42 @@ public class ChucNangMenu {
 
     public static void menuCCC() {
         boolean ktra = true;
-        String chon;
+        int chon;
         while (ktra) {
             System.out.println("===================================");
             System.out.println("|\t     MENU CHUOI CUNG CAP       \t|");
             System.out.println("===================================");
-            System.out.printf("| %-34s|\n", "a. Them nha cung cap moi");
-            System.out.printf("| %-34s|\n", "b. Xuat danh sach nha cung cap");
-            System.out.printf("| %-34s|\n", "c. Sua thong tin nha cung cap theo ma");
-            System.out.printf("| %-34s|\n", "d. Xoa nha cung cap theo ma");
-            System.out.printf("| %-34s|\n", "e. Tim kiem nha cung cap");
-            System.out.printf("| %-34s|\n", "f. Thoat                     |");
+            System.out.printf("| %-34s|\n", "1. Them nha cung cap moi");
+            System.out.printf("| %-34s|\n", "2. Xuat danh sach nha cung cap");
+            System.out.printf("| %-34s|\n", "3. Sua thong tin nha cung cap theo ma");
+            System.out.printf("| %-34s|\n", "4. Xoa nha cung cap theo ma");
+            System.out.printf("| %-34s|\n", "5. Tim kiem nha cung cap");
+            System.out.printf("| %-34s|\n", "6. Thoat                     |");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
-            chon = sc.nextLine();
+            chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
-                case "a": {
+                case 1: {
                     //nhap
                     break;
                 }
-                case "b": {
+                case 2: {
                     //xuat
                     break;
                 }
-                case "c": {
+                case 3: {
                     //sua
                     break;
                 }
-                case "d": {
+                case 4: {
                     //xoa
                     break;
                 }
-                case "e": {
+                case 5: {
                     //tk
                     break;
                 }
-                case "f": {
+                case 6: {
                     ktra = false;
                     break;
                 }
@@ -434,32 +441,32 @@ public class ChucNangMenu {
 
     public static void menuTK() {
         boolean ktra = true;
-        String chon;
+        int chon;
         while (ktra) {
             System.out.println("===================================");
             System.out.println("|\t     MENU THONG KE       \t|");
             System.out.println("===================================");
-            System.out.printf("| %-34s|\n", "a. Xem thong ke doanh thu");
-            System.out.printf("| %-34s|\n", "b. Xem thong ke san pham");
-            System.out.printf("| %-34s|\n", "c. Xem thong ke kho");
-            System.out.printf("| %-34s|\n", "d. Thoat                     |");
+            System.out.printf("| %-34s|\n", "1. Xem thong ke doanh thu");
+            System.out.printf("| %-34s|\n", "2. Xem thong ke san pham");
+            System.out.printf("| %-34s|\n", "3. Xem thong ke kho");
+            System.out.printf("| %-34s|\n", "4. Thoat                     |");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
-            chon = sc.nextLine();
+            chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
-                case "a": {
+                case 1: {
                     //dt
                     break;
                 }
-                case "b": {
+                case 2: {
                     //sp
                     break;
                 }
-                case "c": {
+                case 3: {
                     //kho
                     break;
                 }
-                case "d": {
+                case 4: {
                     ktra = false;
                     break;
                 }

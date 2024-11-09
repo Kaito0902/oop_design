@@ -3,15 +3,15 @@ package NhanVien;
 import static ChucNang.ChucNangMenu.menuBHSP;
 import static ChucNang.ChucNangMenu.menuGD;
 
-public class NhanVienBanHang extends NhanVien {
+public class NhanVienBanHang extends NhanVien implements ThuongDoanhThu{
     private double doanhThu;
     private int soLuongGiaoDich;
 
     public NhanVienBanHang() {
     }
 
-    public NhanVienBanHang(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, double doanhThu, int soLuongGiaoDich) {
-        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau);
+    public NhanVienBanHang(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete, double doanhThu, int soLuongGiaoDich) {
+        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete);
         this.doanhThu = doanhThu;
         this.soLuongGiaoDich = soLuongGiaoDich;
     }
@@ -35,6 +35,7 @@ public class NhanVienBanHang extends NhanVien {
     @Override
     public void input() {
         super.input();
+        chucVu ="Nhan vien ban hang";
         doanhThu = 0.0;
         soLuongGiaoDich = 0;
     }
@@ -49,7 +50,8 @@ public class NhanVienBanHang extends NhanVien {
         return soLuongGiaoDich*0.01;
     }
 
-    public double tienHoaHong() {
+    @Override
+    public double thuongDoanhThu() {
         if (doanhThu < 2000)
         {
             return doanhThu*0.03;
@@ -65,7 +67,7 @@ public class NhanVienBanHang extends NhanVien {
 
     @Override
     public double tinhLuong() {
-        return luongCoBan*heSoLuong + luongCoBan*heSoPhuCap() + tienHoaHong();
+        return luongCoBan*heSoLuong + luongCoBan*heSoPhuCap() + thuongDoanhThu();
     }
 
     @Override
@@ -151,4 +153,5 @@ public class NhanVienBanHang extends NhanVien {
             }
         }
     }
+
 }

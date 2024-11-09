@@ -1,15 +1,16 @@
 package NhanVien;
 
 import static ChucNang.ChucNangMenu.*;
+import static main_project.oop_project.qlnp;
 
-public class NhanVienQuanLy extends NhanVien {
+public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
     private double chiSoHieuSuat;
 
     public NhanVienQuanLy() {
     }
 
-    public NhanVienQuanLy(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, double chiSoHieuSuat) {
-        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau);
+    public NhanVienQuanLy(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete, double chiSoHieuSuat) {
+        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete);
         this.chiSoHieuSuat = chiSoHieuSuat;
     }
 
@@ -23,6 +24,7 @@ public class NhanVienQuanLy extends NhanVien {
 
     @Override
     public void input() {
+        chucVu = "Nhan vien quan ly";
         super.input();
         chiSoHieuSuat = 0;
     }
@@ -40,7 +42,8 @@ public class NhanVienQuanLy extends NhanVien {
     // tinh chi so hieu suat (50%, 30%, 20%)
     // doanh thu, ty le hai long, chi phi (muc tieu/ thuc te)
 
-    public double thuongChiSoHieuSuat() {
+    @Override
+    public double thuongDoanhThu() {
         if (chiSoHieuSuat >= 1) {
             return 0.1;
         }
@@ -57,7 +60,7 @@ public class NhanVienQuanLy extends NhanVien {
 
     @Override
     public double tinhLuong() {
-        return luongCoBan*heSoLuong + luongCoBan*heSoPhuCap() + luongCoBan*thuongChiSoHieuSuat();
+        return luongCoBan*heSoLuong + luongCoBan*heSoPhuCap() + luongCoBan*thuongDoanhThu();
     }
 
     @Override
@@ -116,16 +119,9 @@ public class NhanVienQuanLy extends NhanVien {
                     break;
                 }
                 case 9: {
-                    System.out.println("Nhap so ngay muon nghi phep: ");
-                    int ngayNghi = Integer.parseInt(sc.nextLine());
-                    nghiPhep(ngayNghi);
-                    System.out.println("Nhap ngay bat dau nghi: ");
-                    int ngayBD = Integer.parseInt(sc.nextLine());
-                    System.out.println("Nhap thang: ");
-                    int thangBD = Integer.parseInt(sc.nextLine());
-                    System.out.println("Nhap ly do muon nghi phep: ");
-                    String lyDo = sc.nextLine();
-                    // dua vao danh sach nghi
+                    NghiPhep nghiPhep = new NghiPhep();
+                    nghiPhep.input();
+                    qlnp.themDonNghiPhep(nghiPhep);
                     break;
                 }
                 case 10: {

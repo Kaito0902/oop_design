@@ -1,2 +1,3 @@
-NV01,Nguyen Van A,0123456789,nguyenvana@example.com,1990,Nam,Nhan vien quan ly,2015,1.5,10,200,1990,1.2
-NV02,Le Thi B,0987654321,lethib@example.com,1985,Nu,Nhan vien quan ly,2020,1.2,12,150,1985,0.9
+nv01,Nguyen Van A,0123456789,nguyenvana@example.com,1990,Nam,Nhan vien quan ly,2015,1.2,12,2000.0,1990,true,1.0
+nv02,Le Thi B,0987654321,lethib@example.com,1985,Nu,Nhan vien quan ly,2020,1.5,10,1800.0,1985,true,0.9
+nv03,Ngo Dong At,0353532144,ngoquoctinh.kg83@gmail.com,2005,Nam,Nhan vien quan ly,2021,1.3,5,2200.0,2005,true,0.0

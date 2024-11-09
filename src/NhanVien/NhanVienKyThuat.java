@@ -11,8 +11,8 @@ public class NhanVienKyThuat extends NhanVien{
     public NhanVienKyThuat() {
     }
 
-    public NhanVienKyThuat(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, String[] kyNangChuyenMon, int soLuuTruBaoHanh) {
-        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau);
+    public NhanVienKyThuat(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete, String[] kyNangChuyenMon, int soLuuTruBaoHanh) {
+        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete);
         this.kyNangChuyenMon = kyNangChuyenMon;
         this.soLuuTruBaoHanh = soLuuTruBaoHanh;
     }
@@ -36,6 +36,7 @@ public class NhanVienKyThuat extends NhanVien{
     @Override
     public void input() {
         super.input();
+        chucVu = "Nhan vien ky thuat";
         kyNangChuyenMon = new String[10];
         System.out.println("Nhap so ky nang chuyen mon: ");
         int sl = Integer.parseInt(sc.nextLine());
