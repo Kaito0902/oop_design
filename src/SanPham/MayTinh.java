@@ -14,10 +14,10 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
 
     }
 
-    public MayTinh(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
-            PhanCung[] cacLinhKien) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
+    public MayTinh(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+            String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
+            PhanCung[] cacLinhKien, int soLuongLinhKien) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
         this.nhaSanXuat = nhaSanXuat;
         this.model = model;
         this.loaiMayTinh = loaiMayTinh;
@@ -25,11 +25,7 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
         this.coCardRoi = coCardRoi;
         this.cacLinhKien = new PhanCung[4];
         this.soLuongLinhKien = 0;
-
     }
-
-
-    
 
     public String getNhaSanXuat() {
         return nhaSanXuat;
@@ -78,12 +74,6 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
     public void setCacLinhKien(PhanCung[] cacLinhKien) {
         this.cacLinhKien = cacLinhKien;
     }
-
-
-
-
-
-
 
     public void themPhanCung(PhanCung phanCung) 
     {
@@ -158,12 +148,13 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
                 + xuat + "]";
     }
 
-
-
-
-
-
-
-
-
+    @Override
+    public void xuat(){
+        super.xuat();
+        System.out.println("Loai may tinh: " + loaiMayTinh);
+        System.out.println("Nha san xuat may tinh: " + nhaSanXuat);
+        System.out.println("Model may tinh: " + model);
+        System.out.println("He dieu hanh may tinh: " + heDieuHanh);
+        System.out.println("May tinh " + coCardRoi + " card roi");
+    }
 }

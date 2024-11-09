@@ -20,13 +20,15 @@ public class GPU extends PhanCung{
         this.rayTracing = rayTracing;
     }
 
-    public GPU(int dungLuongVRAM, String loaiVRAM, String rayTracing, int soNhanCUDA, int tocDoXungNhip, String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String loaiLinhKien, String model) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien, model);
+    public GPU(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+            String nhaSanXuat, String loaiLinhKien, String model, int dungLuongVRAM, String loaiVRAM, int tocDoXungNhip,
+            int soNhanCUDA, String rayTracing) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien, model);
         this.dungLuongVRAM = dungLuongVRAM;
         this.loaiVRAM = loaiVRAM;
-        this.rayTracing = rayTracing;
-        this.soNhanCUDA = soNhanCUDA;
         this.tocDoXungNhip = tocDoXungNhip;
+        this.soNhanCUDA = soNhanCUDA;
+        this.rayTracing = rayTracing;
     }
 
     public int getDungLuongVRAM() {
@@ -70,7 +72,7 @@ public class GPU extends PhanCung{
     }
 
     @Override
-    public float ThanhTien(){
+    public float thanhTien(){
         return 1;
     }
 

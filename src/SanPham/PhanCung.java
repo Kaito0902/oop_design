@@ -10,9 +10,9 @@ public abstract class PhanCung extends SanPham{
 
     }
 
-    public PhanCung(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP,
-            float trongLuongSP, String mauSacSP, String nhaSanXuat, String loaiLinhKien, String model) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
+    public PhanCung(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+            String nhaSanXuat, String loaiLinhKien, String model) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
         this.nhaSanXuat = nhaSanXuat;
         this.loaiLinhKien = loaiLinhKien;
         this.model = model;
@@ -48,8 +48,6 @@ public abstract class PhanCung extends SanPham{
         super.nhap();
         System.out.println("Nhap nha san xuat: ");
         setNhaSanXuat(sc.nextLine());
-        System.out.println("Nhap nha san xuat: ");
-        setNhaSanXuat(sc.nextLine());
         System.out.println("Nhap model san pham: ");
         setModel(sc.nextLine());
     }
@@ -75,7 +73,10 @@ public abstract class PhanCung extends SanPham{
     @Override
     public void xuat()
     {
-        System.out.println(toString());
+        super.xuat();
+        System.out.println("Loai linh kien: " + loaiLinhKien);
+        System.out.println("Nha san xuat linh kien: " + nhaSanXuat);
+        System.out.println("Model linh kien: " + model);
     }
 
     public void xuat1()

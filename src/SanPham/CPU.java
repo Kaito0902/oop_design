@@ -16,11 +16,11 @@ public class CPU extends PhanCung{
         this.tocDoXungNhip = tocDoXungNhip;
     }
 
-    public CPU(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String loaiLinhKien, String model, int soNhan, int soLuongLoi,
-            int tocDoXungNhip) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien,
-                model);
+    
+
+    public CPU(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+            String nhaSanXuat, String loaiLinhKien, String model, int soNhan, int soLuongLoi, int tocDoXungNhip) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien, model);
         this.soNhan = soNhan;
         this.soLuongLoi = soLuongLoi;
         this.tocDoXungNhip = tocDoXungNhip;
@@ -51,7 +51,7 @@ public class CPU extends PhanCung{
     }
 
     @Override
-    public float ThanhTien(){
+    public float thanhTien(){
         return 1;
     }
 

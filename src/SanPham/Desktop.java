@@ -4,21 +4,20 @@ public class Desktop extends MayTinh{
     private String casePC;
     private String tanNhiet;
 
-    public Desktop() 
-    {
+    public Desktop() {
 
     }
 
-    public Desktop(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
-            PhanCung[] cacLinhKien, String casePC, String tanNhiet) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model,
-                loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien);
+    public Desktop(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+            String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
+            PhanCung[] cacLinhKien, int soLuongLinhKien, String casePC, String tanNhiet) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model, loaiMayTinh, heDieuHanh,
+                coCardRoi, cacLinhKien, soLuongLinhKien);
         this.casePC = casePC;
         this.tanNhiet = tanNhiet;
     }
 
-    public String getCasePC() {
+    public String getCasePC(){
         return casePC;
     }
 
@@ -32,6 +31,11 @@ public class Desktop extends MayTinh{
 
     public void setTanNhiet(String tanNhiet) {
         this.tanNhiet = tanNhiet;
+    }
+
+    @Override
+    public float thanhTien(){
+        return 1;
     }
 
     @Override
@@ -49,7 +53,4 @@ public class Desktop extends MayTinh{
     {
         return super.toString() + String.format("%-20s %-20s", casePC, tanNhiet);
     }
-
-
-
 }

@@ -9,19 +9,16 @@ public class BoNho extends PhanCung{
 
     }
 
-    public BoNho(int dungLuongBoNho, String loaiBoNho) {
+    
+
+    public BoNho(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+            String nhaSanXuat, String loaiLinhKien, String model, int dungLuongBoNho, String loaiBoNho) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien, model);
         this.dungLuongBoNho = dungLuongBoNho;
         this.loaiBoNho = loaiBoNho;
     }
 
-    public BoNho(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String loaiLinhKien, String model, int dungLuongBoNho,
-            String loaiBoNho) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien,
-                model);
-        this.dungLuongBoNho = dungLuongBoNho;
-        this.loaiBoNho = loaiBoNho;
-    }
+
 
     public int getDungLuongBoNho() {
         return dungLuongBoNho;
@@ -39,7 +36,10 @@ public class BoNho extends PhanCung{
         this.loaiBoNho = loaiBoNho;
     }
 
-
+    @Override
+    public float thanhTien(){
+        return 1;
+    }
 
     @Override
     public void nhap()

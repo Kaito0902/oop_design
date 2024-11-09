@@ -10,9 +10,9 @@ public abstract class ThietBiNgoaiVi extends SanPham{
 
     } 
 
-    public ThietBiNgoaiVi(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP,
-            float trongLuongSP, String mauSacSP, String nhaSanXuat, String loaiThietBi, String phuongThucKetNoi) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
+    public ThietBiNgoaiVi(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP,
+            String mauSacSP, String nhaSanXuat, String loaiThietBi, String phuongThucKetNoi) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
         this.nhaSanXuat = nhaSanXuat;
         this.loaiThietBi = loaiThietBi;
         this.phuongThucKetNoi = phuongThucKetNoi;
@@ -59,6 +59,14 @@ public abstract class ThietBiNgoaiVi extends SanPham{
     @Override
     public String toString() {
         return super.toString() + String.format("%-15s %-15s %-15s", nhaSanXuat, loaiThietBi, phuongThucKetNoi);
+    }
+
+    @Override
+    public void xuat(){
+        super.xuat();
+        System.out.println("Loai thiet bi: " + loaiThietBi);
+        System.out.println("Nha san xuat thiet bi: " + nhaSanXuat);
+        System.out.println("Phuong thuc ket noi cua thiet bi: " + phuongThucKetNoi);
     }
 }
 

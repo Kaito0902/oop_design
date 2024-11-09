@@ -10,11 +10,12 @@ public class Laptop extends MayTinh{
 
     }
 
-    public Laptop(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
-            PhanCung[] cacLinhKien, String kichThuocManHinh, float thoiLuongPin, String loaiLaptop) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model,
-                loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien);
+    public Laptop(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+            String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
+            PhanCung[] cacLinhKien, int soLuongLinhKien, String kichThuocManHinh, float thoiLuongPin,
+            String loaiLaptop) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model, loaiMayTinh, heDieuHanh,
+                coCardRoi, cacLinhKien, soLuongLinhKien);
         this.kichThuocManHinh = kichThuocManHinh;
         this.thoiLuongPin = thoiLuongPin;
         this.loaiLaptop = loaiLaptop;
@@ -45,7 +46,7 @@ public class Laptop extends MayTinh{
     }
 
     @Override
-    public float ThanhTien(){
+    public float thanhTien(){
         return 1;
     }
 
@@ -66,7 +67,4 @@ public class Laptop extends MayTinh{
     {
         return super.toString() + String.format("%-20s %-10.2f %-20s", kichThuocManHinh, thoiLuongPin, loaiLaptop);
     }
-
-
-    
 }

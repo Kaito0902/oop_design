@@ -1,5 +1,8 @@
 package SanPham;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -59,11 +62,11 @@ public class QLSanPham{
                     break;
 
                 case 5:
-                    suaPhanTuTheoMa();
+                    //suaPhanTuTheoMa();
                     break;
 
                 case 6:
-                    xoaPhanTuTheoMa();
+                    //xoaPhanTuTheoMa();
                     break;
 
                 case 7:
@@ -210,17 +213,84 @@ public class QLSanPham{
         
     }
 
+    public void nhapSanPhamVaoFile(String file, SanPham sp){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(String.join(",",
+            sp.getMaSP(),
+            sp.getTenSP(),
+            String.valueOf(sp.getGiaSP()),
+            String.valueOf(sp.getThoiGianBaoHanhSP()),
+            String.valueOf(sp.getTrongLuongSP()),
+            sp.getMauSacSP())
+            );
+        } 
+        catch(IOException e){
+            System.out.println("Khong ghi duoc file");
+        }
+    }
+
     public void nhapVaoFile()
     {
-        // try{
-        //     FileWriter writer = new FileWriter("Danhsach.txt");
-        //     writer.write("Ur mom is fat");
-        //     writer.close();
-        // }
 
-        // catch(IOException e){
-        //     e.printStackTrace();
-        // }
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("DanhSach.txt"));
+            for(SanPham sp:ds){
+
+                if(sp instanceof Desktop desktop){
+                    nhapSanPhamVaoFile("DanhSach.txt", desktop);
+                    writer.write(String.join(",",
+                    desktop.getCasePC(),
+                    desktop.getTanNhiet())
+                    );
+                    writer.newLine();
+                }
+
+                else if(sp instanceof Laptop laptop){
+                    nhapSanPhamVaoFile("DanhSach.txt", laptop);
+                    writer.write(String.join(",",
+                    laptop.getKichThuocManHinh(),
+                    String.valueOf(laptop.getThoiLuongPin()),
+                    laptop.getLoaiLaptop())
+                    );
+                    writer.newLine();
+                }
+
+                // else if(sp instanceof CPU cpu){
+
+                // }
+
+                // else if(sp instanceof GPU gpu){
+
+                // }
+
+                // else if(sp instanceof RAM ram){
+
+                // }
+
+                // else if(sp instanceof BoNho boNho){
+
+                // }
+
+                // else if(sp instanceof Chuot chuot){
+
+                // }
+
+                // else if(sp instanceof ManHinh manHinh){
+
+                // }
+
+                // else if(sp instanceof BanPhim banPhim){
+
+                // } 
+
+                writer.close();
+            }
+            
+        } 
+        catch (IOException e){
+            System.out.println("Khong ghi duoc file");
+        }
     }
 
     public SanPham suaPhanTuTheoMa(String maSP)
@@ -257,16 +327,15 @@ public class QLSanPham{
         System.out.println("Hay nhap ma hoac ten san pham ban muon tim: ");
         String timSP = sc.nextLine();
         if(timSP.startsWith("#sp")){
-
+            for(SanPham sp:ds)
+                if(sp.maSP.equals(timSP)) 
+                    return sp;
         }
         else{
-            for(SanPham sp:ds) {
-                if (sp.tenSP.toLowerCase().contains(tenSP.toLowerCase())) 
-                    return sp;
-                
-            }
-            return null;
+            for(SanPham sp:ds)
+                if (sp.tenSP.toLowerCase().contains(timSP.toLowerCase())) 
+                    return sp;  
         }
-
+        return null;
     }
 }

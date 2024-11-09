@@ -6,7 +6,7 @@ public abstract class SanPham{
     protected String maSP;
     protected String tenSP;
     protected float giaSP;
-    protected float khuyenMaiSP;
+
     protected int thoiGianBaoHanhSP;
     protected float trongLuongSP;
     protected String mauSacSP;
@@ -18,12 +18,12 @@ public abstract class SanPham{
 
     }
     
-    public SanPham(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
+    public SanPham(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP,
             String mauSacSP) {
         this.maSP = "#sp" + String.format("00d", ++soLuongSP);
         this.tenSP = tenSP;
         this.giaSP = giaSP;
-        this.khuyenMaiSP = khuyenMaiSP;
+
         this.thoiGianBaoHanhSP = thoiGianBaoHanhSP;
         this.trongLuongSP = trongLuongSP;
         this.mauSacSP = mauSacSP;
@@ -54,13 +54,7 @@ public abstract class SanPham{
         this.giaSP = giaSP;
     }
 
-    public float getKhuyenMaiSP() {
-        return khuyenMaiSP;
-    }
 
-    public void setKhuyenMaiSP(float khuyenMaiSP) {
-        this.khuyenMaiSP = khuyenMaiSP;
-    }
 
     public int getThoiGianBaoHanhSP() {
         return thoiGianBaoHanhSP;
@@ -88,10 +82,7 @@ public abstract class SanPham{
 
 
 
-
-    public float ThanhTien(){
-        return giaSP + (giaSP * khuyenMaiSP);
-    }
+    public abstract float thanhTien();    
 
     // public abstract void hienThiThongTin();
 
@@ -102,8 +93,6 @@ public abstract class SanPham{
         setTenSP(sc.nextLine());
         System.out.println("Nhap gia san pham: ");
         setGiaSP(Float.parseFloat(sc.nextLine()));
-        System.out.println("Nhap khuyen mai san pham: ");
-        setKhuyenMaiSP(Float.parseFloat(sc.nextLine()));
         System.out.println("Nhap thoi gian bao hanh san pham: ");
         setThoiGianBaoHanhSP(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap trong luong san pham: ");
@@ -113,14 +102,19 @@ public abstract class SanPham{
         soLuongSP++;
     }
 
-    @Override
-    public String toString(){
-        return String.format("%-10s %-20s %-15.5f %-15.2f %-10d %-10.1f %-15s",
-                maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
-    }
+    // @Override
+    // public String toString(){
+    //     return String.format("%-10s %-20s %-15d %-15d %-10d %-10.1f %-15s",
+    //             maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
+    // }
 
     public void xuat()
     {
-        System.out.println(toString());
+        System.out.println("Ma san pham: " + maSP);
+        System.out.println("Ten san pham: " + maSP);
+        System.out.println("Gia san pham: " + maSP);
+        System.out.println("Thoi gian bao hanh san pham: " + maSP);
+        System.out.println("Trong luong san pham: " + maSP);
+        System.out.println("Mau sac san pham: " + maSP);
     }
 }
