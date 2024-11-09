@@ -1,9 +1,7 @@
 package KhachHang;
 
-import GiaoDich.GiaoDich;
 import java.util.Scanner;
 
-import Doan.Giaodich;
 public abstract class KhachHang {
     static int tongKH = 0;
     static Scanner scanner = new Scanner(System.in);
