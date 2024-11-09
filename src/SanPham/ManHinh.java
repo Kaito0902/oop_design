@@ -5,22 +5,20 @@ public class ManHinh extends ThietBiNgoaiVi{
     private String kichThuoc;
     private int tanSoQuet;
     private String tamNen;
-    private int doPhanGiai;
+    private String doPhanGiai;
 
     public ManHinh() 
     {
     
     }
 
-    public ManHinh(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String nhaSanXuat, String loaiThietBi, String phuongThucKetNoi, String kieuManHinh, String kichThuoc,
-            int tanSoQuet, String tamNen, int doPhanGiai) {
+    public ManHinh(String doPhanGiai, String kichThuoc, String kieuManHinh, String tamNen, int tanSoQuet, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String loaiThietBi, String phuongThucKetNoi) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiThietBi, phuongThucKetNoi);
-        this.kieuManHinh = kieuManHinh;
-        this.kichThuoc = kichThuoc;
-        this.tanSoQuet = tanSoQuet;
-        this.tamNen = tamNen;
         this.doPhanGiai = doPhanGiai;
+        this.kichThuoc = kichThuoc;
+        this.kieuManHinh = kieuManHinh;
+        this.tamNen = tamNen;
+        this.tanSoQuet = tanSoQuet;
     }
 
     public String getKieuManHinh() {
@@ -55,11 +53,11 @@ public class ManHinh extends ThietBiNgoaiVi{
         this.tamNen = tamNen;
     }
 
-    public int getDoPhanGiai() {
+    public String getDoPhanGiai() {
         return doPhanGiai;
     }
 
-    public void setDoPhanGiai(int doPhanGiai) {
+    public void setDoPhanGiai(String doPhanGiai) {
         this.doPhanGiai = doPhanGiai;
     }
 
@@ -81,7 +79,7 @@ public class ManHinh extends ThietBiNgoaiVi{
         System.out.println("Nhap tam nen man hinh: ");
         setTamNen(sc.nextLine());
         System.out.println("Nhap do phan giai man hinh: ");
-        setDoPhanGiai(Integer.parseInt(sc.nextLine()));
+        setDoPhanGiai(sc.nextLine());
     }
 
     @Override

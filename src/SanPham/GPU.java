@@ -12,23 +12,21 @@ public class GPU extends PhanCung{
 
     }
 
-    public GPU(int dungLuongVRAM, String loaiVRAM, float tocDoXungNhip, int soNhanCUDA, String rayTracing) {
+    public GPU(int dungLuongVRAM, String loaiVRAM, String rayTracing, int soNhanCUDA, float tocDoXungNhip) {
         this.dungLuongVRAM = dungLuongVRAM;
         this.loaiVRAM = loaiVRAM;
-        this.tocDoXungNhip = tocDoXungNhip;
-        this.soNhanCUDA = soNhanCUDA;
         this.rayTracing = rayTracing;
+        this.soNhanCUDA = soNhanCUDA;
+        this.tocDoXungNhip = tocDoXungNhip;
     }
 
-    public GPU(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String nhaSanXuat, String loaiLinhKien, String model, int dungLuongVRAM, String loaiVRAM,
-            float tocDoXungNhip, int soNhanCUDA, String rayTracing) {
+    public GPU(int dungLuongVRAM, String loaiVRAM, String rayTracing, int soNhanCUDA, float tocDoXungNhip, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String loaiLinhKien, String model) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien, model);
         this.dungLuongVRAM = dungLuongVRAM;
         this.loaiVRAM = loaiVRAM;
-        this.tocDoXungNhip = tocDoXungNhip;
-        this.soNhanCUDA = soNhanCUDA;
         this.rayTracing = rayTracing;
+        this.soNhanCUDA = soNhanCUDA;
+        this.tocDoXungNhip = tocDoXungNhip;
     }
 
     public int getDungLuongVRAM() {

@@ -29,6 +29,20 @@ public class QLSanPham{
         this.ds = newDS;
     }
 
+    public void nhapDanhSach1(){
+        CPU sp1 = new CPU(4, 4, 5.6f, "", "i9 17th", 1000000, 1, 0.5f, "xanh", "Intel", "CPU", "i9 17200H");
+        RAM sp2 = new RAM(16, "OK", "", "RAM", 1000000, 1, 0.2f, "den", "Asus", "RAM", "okok");
+        ManHinh sp3 = new ManHinh("1080p", "1920x1080", "IPS", "OLED", 144, "", "Man Hinh", 2000000, 1, 3, "hong", "Acer", "Man Hinh", "Day");
+
+
+        themSanPham(sp1);
+        themSanPham(sp2);
+        themSanPham(sp3);
+        // Desktop sp5 = new Desktop("ok", "ok","Lenovo", 20000000, "2", 2.1,"xam",
+        // "Lenovo", "Lenovo LOQ x15", "Gaming", "win 11", "Co",
+        // PhanCung[] cacLinhKien);
+    }
+
     public void menu()
     {
         int choiceMenu = 1;
@@ -48,7 +62,7 @@ public class QLSanPham{
             switch(choiceMenu) 
             {
                 case 1:
-                    nhapDanhSach();
+                    nhapDanhSach1();
                     break;
 
                 case 2:
@@ -330,7 +344,7 @@ public class QLSanPham{
                     manHinh.getKichThuoc(),
                     String.valueOf(manHinh.getTanSoQuet()),
                     manHinh.getTamNen(),
-                    String.valueOf(manHinh.getDoPhanGiai())
+                    manHinh.getDoPhanGiai()
                     ));
                     writer.newLine();
                 }

@@ -14,8 +14,7 @@ public class RAM extends PhanCung{
         this.loaiRAM = loaiRAM;
     }
 
-    public RAM(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String nhaSanXuat, String loaiLinhKien, String model, int dungLuongRAM, String loaiRAM) {
+    public RAM(int dungLuongRAM, String loaiRAM, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String loaiLinhKien, String model) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien, model);
         this.dungLuongRAM = dungLuongRAM;
         this.loaiRAM = loaiRAM;

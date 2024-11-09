@@ -19,14 +19,13 @@ public abstract class SanPham{
     
     public SanPham(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP,
             String mauSacSP) {
-        this.maSP = "#sp" + String.format("00d", ++soLuongSP);
+        soLuongSP++;
+        this.maSP = "#sp" + String.format("%03d", soLuongSP);
         this.tenSP = tenSP;
         this.giaSP = giaSP;
-
         this.thoiGianBaoHanhSP = thoiGianBaoHanhSP;
         this.trongLuongSP = trongLuongSP;
         this.mauSacSP = mauSacSP;
-        soLuongSP++;
     }
 
     public String getMaSP() {
@@ -80,15 +79,13 @@ public abstract class SanPham{
     }
 
 
-
     public abstract float thanhTien();    
 
 
-    
 
     public void nhap()
     {
-        maSP = "#sp" + String.format("00d", ++soLuongSP);
+        maSP = "#sp" + String.format("%03d", ++soLuongSP);
         System.out.println("Nhap ten san pham: ");
         setTenSP(sc.nextLine());
         System.out.println("Nhap gia san pham: ");
