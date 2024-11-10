@@ -74,4 +74,12 @@ public abstract class PhanCung extends SanPham implements NhapCauHinh, HienThiCa
         System.out.println("Nha san xuat linh kien: " + nhaSanXuat);
         System.out.println("Model linh kien: " + model);
     }
+
+    @Override
+    public void hienThiCauHinh()
+    {
+        System.out.println("Loai linh kien: " + loaiLinhKien);
+        System.out.println("Nha san xuat linh kien: " + nhaSanXuat);
+        System.out.println("Model linh kien: " + model);
+    }
 }

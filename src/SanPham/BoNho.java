@@ -9,8 +9,12 @@ public class BoNho extends PhanCung{
 
     }
 
-    public BoNho(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String nhaSanXuat, String loaiLinhKien, String model, int dungLuongBoNho, String loaiBoNho) {
+    public BoNho(int dungLuongBoNho, String loaiBoNho) {
+        this.dungLuongBoNho = dungLuongBoNho;
+        this.loaiBoNho = loaiBoNho;
+    }
+
+    public BoNho(int dungLuongBoNho, String loaiBoNho, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String loaiLinhKien, String model) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien, model);
         this.dungLuongBoNho = dungLuongBoNho;
         this.loaiBoNho = loaiBoNho;
@@ -73,6 +77,7 @@ public class BoNho extends PhanCung{
     @Override
     public void hienThiCauHinh()
     {
+        super.hienThiCauHinh();
         System.out.println("Dung luong bo nho: " + dungLuongBoNho + "GB");
         System.out.println("Loai bo nho: " + loaiBoNho);
     }

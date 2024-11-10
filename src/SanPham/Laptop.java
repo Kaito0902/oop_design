@@ -1,6 +1,6 @@
 package SanPham;
 
-public class Laptop extends MayTinh{
+public class Laptop extends MayTinh implements HienThiCauHinh{
     private String kichThuocManHinh;
     private float thoiLuongPin;
     private String loaiLaptop;
@@ -10,8 +10,8 @@ public class Laptop extends MayTinh{
 
     }
 
-    public Laptop(String kichThuocManHinh, String loaiLaptop, float thoiLuongPin, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien, int soLuongLinhKien) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien, soLuongLinhKien);
+    public Laptop(String kichThuocManHinh, String loaiLaptop, float thoiLuongPin, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien);
         this.kichThuocManHinh = kichThuocManHinh;
         this.loaiLaptop = loaiLaptop;
         this.thoiLuongPin = thoiLuongPin;
@@ -70,5 +70,15 @@ public class Laptop extends MayTinh{
         System.out.println("Kich thuoc man hinh Laptop: " + kichThuocManHinh);
         System.out.println("Thoi luong pin Laptop: " + thoiLuongPin + "h");
         System.out.println("Loai laptop: " + loaiLaptop);
+        hienThiCauHinh();
+    }
+
+    @Override
+    public void hienThiCauHinh()
+    {
+        System.out.println("Cau hinh may tinh: ");
+        for(PhanCung i:cacLinhKien){
+            i.hienThiCauHinh();
+        }
     }
 }

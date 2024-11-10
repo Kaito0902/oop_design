@@ -75,6 +75,7 @@ public class RAM extends PhanCung{
     @Override
     public void hienThiCauHinh()
     {
+        super.hienThiCauHinh();
         System.out.println("Dung luong RAM: " + dungLuongRAM + "GB");
         System.out.println("Loai RAM: " + loaiRAM);
     }

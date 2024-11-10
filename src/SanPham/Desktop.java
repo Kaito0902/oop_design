@@ -1,6 +1,6 @@
 package SanPham;
 
-public class Desktop extends MayTinh{
+public class Desktop extends MayTinh implements HienThiCauHinh{
     private String casePC;
     private String tanNhiet;
 
@@ -8,8 +8,8 @@ public class Desktop extends MayTinh{
 
     }
 
-    public Desktop(String casePC, String tanNhiet, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien, int soLuongLinhKien) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien, soLuongLinhKien);
+    public Desktop(String casePC, String tanNhiet, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien);
         this.casePC = casePC;
         this.tanNhiet = tanNhiet;
     }
@@ -56,5 +56,15 @@ public class Desktop extends MayTinh{
         super.xuat();
         System.out.println("Case desktop: " + casePC);
         System.out.println("Tan nhiet desktop: " + tanNhiet);
+        hienThiCauHinh();
+    }
+
+    @Override
+    public void hienThiCauHinh()
+    {
+        System.out.println("Cau hinh may tinh: ");
+        for(PhanCung i:cacLinhKien){
+            i.hienThiCauHinh();
+        }
     }
 }

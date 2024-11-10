@@ -52,8 +52,6 @@ public abstract class SanPham{
         this.giaSP = giaSP;
     }
 
-
-
     public int getThoiGianBaoHanhSP() {
         return thoiGianBaoHanhSP;
     }
@@ -109,7 +107,7 @@ public abstract class SanPham{
     {
         System.out.println("Ma san pham: " + maSP);
         System.out.println("Ten san pham: " + tenSP);
-        System.out.println("Gia san pham: " + String.format("%.3f", giaSP));
+        System.out.println("Gia san pham: " + String.format("%.3f", giaSP) + " VND");
         System.out.println("Thoi gian bao hanh san pham: " + thoiGianBaoHanhSP + " nam");
         System.out.println("Trong luong san pham: " + trongLuongSP + "kg");
         System.out.println("Mau sac san pham: " + mauSacSP);

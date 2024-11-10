@@ -93,6 +93,7 @@ public class CPU extends PhanCung{
     @Override
     public void hienThiCauHinh()
     {
+        super.hienThiCauHinh();
         System.out.println("So nhan CPU: " + soNhan);
         System.out.println("So loi CPU: " + soLuongLoi);
         System.out.println("Tan so turbo CPU: " + tanSoTurBo + "GHz");

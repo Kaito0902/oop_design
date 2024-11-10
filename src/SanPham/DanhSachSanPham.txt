@@ -1,0 +1,1 @@
+#sp002,NVIDIA GeForce RTX 4090,5.999E7,2,0.5,den

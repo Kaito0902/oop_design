@@ -2,7 +2,7 @@ package SanPham;
 
 import java.util.Arrays;
 
-public abstract class MayTinh extends SanPham implements HienThiCauHinh{
+public abstract class MayTinh extends SanPham{
     protected String nhaSanXuat;
     protected String model;
     protected String loaiMayTinh;
@@ -17,7 +17,7 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
 
     public MayTinh(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
             String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
-            PhanCung[] cacLinhKien, int soLuongLinhKien) {
+            PhanCung[] cacLinhKien) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
         this.nhaSanXuat = nhaSanXuat;
         this.model = model;
@@ -120,15 +120,6 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
     }
 
     @Override
-    public void hienThiCauHinh()
-    {
-        System.out.println("Cau hinh may tinh: ");
-        for(PhanCung i:cacLinhKien){
-            i.hienThiCauHinh();
-        }
-    }
-    
-    @Override
     public void xuat(){
         super.xuat();
         System.out.println("Loai may tinh: " + loaiMayTinh);
@@ -136,6 +127,5 @@ public abstract class MayTinh extends SanPham implements HienThiCauHinh{
         System.out.println("Model may tinh: " + model);
         System.out.println("He dieu hanh may tinh: " + heDieuHanh);
         System.out.println("May tinh " + coCardRoi + " card roi");
-        hienThiCauHinh();
     }
 }
