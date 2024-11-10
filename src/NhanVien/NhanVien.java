@@ -162,7 +162,7 @@ public abstract class NhanVien {
 
     @Override
     public String toString() {
-        return String.format("%-10s %-20s %-15s %-25s %-10d %-15s %-20s %-10d %-12.5f",
+        return String.format("%-8s %-20s %-13s %-30s %-8d %-8s %-20s %-8d %-12.5f",
                 maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh,
                 chucVu, namVaoLam, luong);
     }

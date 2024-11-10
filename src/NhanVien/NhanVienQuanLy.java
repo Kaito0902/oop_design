@@ -68,9 +68,9 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
         boolean kt = true;
         int lc;
         while (kt) {
-            System.out.println("=======================================");
-            System.out.println("|\t       MENU CHINH            \t|");
-            System.out.println("=======================================");
+            System.out.println("======================================");
+            System.out.println("|             MENU CHINH             |");
+            System.out.println("======================================");
             System.out.printf("| %-34s |\n", "1. Quan ly nhan vien");
             System.out.printf("| %-34s |\n", "2. Quan ly khach hang va hoa don");
             System.out.printf("| %-34s |\n", "3. Quan ly san pham");
@@ -82,7 +82,7 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
             System.out.printf("| %-34s |\n", "9. Xin nghi phep");
             System.out.printf("| %-34s |\n", "10. Doi mat khau");
             System.out.printf("| %-34s |\n", "11. Dang xuat");
-            System.out.println("=======================================");
+            System.out.println("======================================");
             System.out.print("Nhap lua chon: ");
             lc = Integer.parseInt(sc.nextLine());
             switch (lc) {

@@ -22,21 +22,32 @@ public class QLBaoHanh {
     }
 
     public void capNhatTrangThaiBaoHanh(String ma) {
+        boolean found = false;
         for (BaoHanhSanPham ds : dsBaoHanh) {
-            if (ds.getMaBaoHanh().equals(ma)){
-                System.out.println("1. Da xu ly bao hanh");
-                System.out.println("2. Tu choi bao hanh");
-                System.out.println("3. Huy yeu cau bao hanh");
-                System.out.println("Cap nhat trang thai: ");
-                int lc = Integer.parseInt(sc.nextLine());
-                if (lc == 1 || lc == 2 || lc == 3) {
-                    ds.setTrangThai(BaoHanhSanPham.loaiTrangThai[lc]);
-                    System.out.println("Da cap nhat trang thai.");
+            if (ds.getMaBaoHanh().equals(ma)) {
+                found = true;
+                if (!ds.getTrangThai().equals(BaoHanhSanPham.loaiTrangThai[0])) {
+                    System.out.println("1. Da xu ly bao hanh");
+                    System.out.println("2. Tu choi bao hanh");
+                    System.out.println("3. Huy yeu cau bao hanh");
+                    System.out.println("Cap nhat trang thai: ");
+                    int lc = Integer.parseInt(sc.nextLine());
+                    if (lc == 1 || lc == 2 || lc == 3) {
+                        ds.setTrangThai(BaoHanhSanPham.loaiTrangThai[lc]);
+                        System.out.println("Da cap nhat trang thai.");
+                    } else {
+                        System.out.println("Lua chon khong hop le.");
+                    }
+                } else {
+                    System.out.println("San pham da duoc cap nhat trang thai.");
+                    System.out.println("Trang thai: " + ds.getTrangThai());
                 }
-                else {
-                    System.out.println("Lua chon khong hop le.");
-                }
+                break;
             }
+        }
+
+        if (!found) {
+            System.out.println("Ma bao hanh khong dung.");
         }
     }
 }

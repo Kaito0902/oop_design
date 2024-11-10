@@ -1,6 +1,7 @@
 package main_project;
 
 import BaoHanh.QLBaoHanh;
+import KhachHang.QLKhachHang;
 import NhanVien.QLNghiPhep;
 import NhanVien.QLNhanVien;
 import SanPham.QLSanPham;
@@ -12,6 +13,7 @@ public class oop_project {
     public static QLNghiPhep qlnp = new QLNghiPhep();
     public static QLSanPham qlsp = new QLSanPham();
     public static QLBaoHanh qlbh = new QLBaoHanh();
+    public static QLKhachHang qlkh = new QLKhachHang();
 
     public static void main(String[] args) {
         menu();
@@ -35,13 +37,13 @@ public class oop_project {
             lc = new Scanner(System.in).nextInt();
             switch (lc) {
                 case 1: {
-                    System.out.println("Nhap ten tai khoan: ");
-                    String tenTaiKhoan = new Scanner(System.in).nextLine();
+                    System.out.println("Nhap so dien thoai: ");
+                    String soDienThoai = new Scanner(System.in).nextLine();
                     System.out.println("Nhap mat khau: ");
                     String matKhau = new Scanner(System.in).nextLine();
-                    if (qlnv.dangNhap(tenTaiKhoan, matKhau) != null) {
+                    if (qlnv.dangNhap(soDienThoai, matKhau) != null) {
                         System.out.println("Dang nhap thanh cong");
-                        qlnv.menuTheoNhanVien(qlnv.dangNhap(tenTaiKhoan, matKhau));
+                        qlnv.menuTheoNhanVien(qlnv.dangNhap(soDienThoai, matKhau));
                     } else {
                         System.out.println("Dang nhap that bai");
                         System.out.println("Vui long dang nhap lai");

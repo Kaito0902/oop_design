@@ -2,6 +2,7 @@ package NhanVien;
 
 import static ChucNang.ChucNangMenu.menuBHSP;
 import static ChucNang.ChucNangMenu.menuGD;
+import static main_project.oop_project.qlnp;
 
 public class NhanVienBanHang extends NhanVien implements ThuongDoanhThu{
     private double doanhThu;
@@ -42,7 +43,7 @@ public class NhanVienBanHang extends NhanVien implements ThuongDoanhThu{
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-15.2f %-10d", doanhThu, soLuongGiaoDich);
+        return super.toString() + String.format("%-10.2f %-10d", doanhThu, soLuongGiaoDich);
     }
 
     @Override
@@ -106,16 +107,9 @@ public class NhanVienBanHang extends NhanVien implements ThuongDoanhThu{
                     break;
                 }
                 case 5: {
-                    System.out.println("Nhap so ngay muon nghi phep: ");
-                    int ngayNghi = Integer.parseInt(sc.nextLine());
-                    nghiPhep(ngayNghi);
-                    System.out.println("Nhap ngay bat dau nghi: ");
-                    int ngayBD = Integer.parseInt(sc.nextLine());
-                    System.out.println("Nhap thang: ");
-                    int thangBD = Integer.parseInt(sc.nextLine());
-                    System.out.println("Nhap ly do muon nghi phep: ");
-                    String lyDo = sc.nextLine();
-                    // dua vao danh sach nghi
+                    NghiPhep nghiPhep = new NghiPhep();
+                    nghiPhep.input();
+                    qlnp.themDonNghiPhep(nghiPhep);
                     break;
                 }
                 case 6: {

@@ -1,17 +1,19 @@
 package BaoHanh;
 
 import KhachHang.KhachHang;
-import SanPham.SanPham;
-
+import NhanVien.NhanVien;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
+import static main_project.oop_project.qlkh;
+
 public class BaoHanhSanPham {
     private String maBaoHanh;
     private KhachHang khachHang;
+    private NhanVien nhanVienPhuTrach;
     private String lyDo;
     private Date ngayNhan;
     private String trangThai;
@@ -22,9 +24,10 @@ public class BaoHanhSanPham {
     public BaoHanhSanPham() {
     }
 
-    public BaoHanhSanPham(String maBaoHanh, KhachHang khachHang, String lyDo, Date ngayNhan, String[] lichSuYeuCau, String trangThai) {
+    public BaoHanhSanPham(String maBaoHanh, KhachHang khachHang, NhanVien nhanVienPhuTrach, String lyDo, Date ngayNhan, String trangThai, String[] lichSuYeuCau) {
         this.maBaoHanh = maBaoHanh;
         this.khachHang = khachHang;
+        this.nhanVienPhuTrach = nhanVienPhuTrach;
         this.lyDo = lyDo;
         this.ngayNhan = ngayNhan;
         this.trangThai = trangThai;
@@ -79,9 +82,17 @@ public class BaoHanhSanPham {
         this.khachHang = khachHang;
     }
 
+    public NhanVien getNhanVienPhuTrach() {
+        return nhanVienPhuTrach;
+    }
+
+    public void setNhanVienPhuTrach(NhanVien nhanVienPhuTrach) {
+        this.nhanVienPhuTrach = nhanVienPhuTrach;
+    }
+
     public void input() {
         System.out.println("Nhap so dien thoai: ");
-//        timkiemKhachHangTheoSdt(sc.nextline());
+        qlkh.timkiemKhachHangTheoSdt(sc.nextLine());
         System.out.println("Nhap ly do bao hanh: ");
         setLyDo(sc.nextLine());
         System.out.println("Nhap ngay nhan (dd/MM/yyy): ");
@@ -92,8 +103,19 @@ public class BaoHanhSanPham {
             System.out.println("Ngay nhan khong hop le.");
         }
         setTrangThai(loaiTrangThai[0]);
+        capNhatLichSu(trangThai);
+    }
 
-        //capnhatlichsu
+    private void capNhatLichSu(String trangThaiMoi) {
+        if (lichSuYeuCau == null) {
+            lichSuYeuCau = new String[0];
+        }
+
+        String[] lichSuMoi = new String[lichSuYeuCau.length + 1];
+        System.arraycopy(lichSuYeuCau, 0, lichSuMoi, 0, lichSuYeuCau.length);
+
+        lichSuMoi[lichSuYeuCau.length] = "Trang thai cap nhat: " + trangThaiMoi + " vao ngay " + new Date();
+        lichSuYeuCau = lichSuMoi;
     }
 
     @Override

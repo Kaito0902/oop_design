@@ -3,9 +3,10 @@ package NhanVien;
 import java.util.Arrays;
 
 import static ChucNang.ChucNangMenu.*;
+import static main_project.oop_project.qlnp;
 
 public class NhanVienKyThuat extends NhanVien{
-    private String[] kyNangChuyenMon;
+    private String[] kyNangChuyenMon = new String[0];
     private int soLuuTruBaoHanh;
 
     public NhanVienKyThuat() {
@@ -37,24 +38,30 @@ public class NhanVienKyThuat extends NhanVien{
     public void input() {
         super.input();
         chucVu = "Nhan vien ky thuat";
-        kyNangChuyenMon = new String[10];
-        System.out.println("Nhap so ky nang chuyen mon: ");
-        int sl = Integer.parseInt(sc.nextLine());
-        while (sl > 10) {
-            System.out.println("So ky nang chuyen mon khong the vuot qua 10. Vui long nhap lai.");
+
+        int sl;
+        do {
+            System.out.println("Nhap so ky nang chuyen mon (1 - 10): ");
             sl = Integer.parseInt(sc.nextLine());
-        }
-        for (int i = 0; i < sl; i++)
-        {
+            if (sl < 1 || sl > 10) {
+                System.out.println("So ky nang chuyen mon phai tu 1 den 10. Vui long nhap lai.");
+            }
+        } while (sl < 1 || sl > 10);
+
+        kyNangChuyenMon = new String[sl];
+
+        for (int i = 0; i < sl; i++) {
             System.out.println("Nhap ky nang thu " + (i + 1) + ": ");
             kyNangChuyenMon[i] = sc.nextLine();
         }
+
         soLuuTruBaoHanh = 0;
     }
 
+
     @Override
     public String toString() {
-        return super.toString() + String.format("%-30s %-10d", Arrays.toString(kyNangChuyenMon), soLuuTruBaoHanh);
+        return super.toString() + String.format("%-30s %-5d", Arrays.toString(kyNangChuyenMon), soLuuTruBaoHanh);
     }
 
     @Override
@@ -108,16 +115,9 @@ public class NhanVienKyThuat extends NhanVien{
                     break;
                 }
                 case 6: {
-                    System.out.println("Nhap so ngay muon nghi phep: ");
-                    int ngayNghi = Integer.parseInt(sc.nextLine());
-                    nghiPhep(ngayNghi);
-                    System.out.println("Nhap ngay bat dau nghi: ");
-                    int ngayBD = Integer.parseInt(sc.nextLine());
-                    System.out.println("Nhap thang: ");
-                    int thangBD = Integer.parseInt(sc.nextLine());
-                    System.out.println("Nhap ly do muon nghi phep: ");
-                    String lyDo = sc.nextLine();
-                    // dua vao danh sach nghi
+                    NghiPhep nghiPhep = new NghiPhep();
+                    nghiPhep.input();
+                    qlnp.themDonNghiPhep(nghiPhep);
                     break;
                 }
                 case 7: {

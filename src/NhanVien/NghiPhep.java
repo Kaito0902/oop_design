@@ -14,6 +14,7 @@ public class NghiPhep {
     private String trangThaiDon;
     static String[] loaiTrangThai = {"Cho phe duyet", "Da phe duyet", "Bi tu choi"};
     static Scanner sc = new Scanner(System.in);
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public NghiPhep() {
     }
@@ -93,7 +94,6 @@ public class NghiPhep {
 
         System.out.println("Nhập ngày bắt đầu nghỉ phép (dd/MM/yyyy): ");
         String ngayBatDauString = sc.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate ngayBatDau = LocalDate.parse(ngayBatDauString, formatter);
         setNgayBatDau(ngayBatDau);
 
@@ -105,7 +105,7 @@ public class NghiPhep {
 
     @Override
     public String toString() {
-        return String.format("%-10s %-18s %-10d %-15s %-25s %-15s", nhanVien.maNhanVien, nhanVien.tenNhanVien, soNgayNghi, ngayBatDau, lyDo, trangThaiDon);
+        return String.format("%-10s %-18s %-10d %-15s %-25s %-15s", nhanVien.maNhanVien, nhanVien.tenNhanVien, soNgayNghi, ngayBatDau.format(formatter), lyDo, trangThaiDon);
     }
 
     public void output() {
@@ -130,14 +130,13 @@ public class NghiPhep {
         System.out.println("Kinh gui: Ban quan ly");
         System.out.println("Toi ten la: " + getNhanVien().getTenNhanVien());
         System.out.println("Chuc vu: " + getNhanVien().getChucVu());
-        System.out.println("Toi gui don nay xin phep nghi " + getSoNgayNghi() + " ngay, nghi tu ngay: " + getNgayBatDau());
+        System.out.println("Toi gui don nay xin phep nghi " + getSoNgayNghi() + " ngay, nghi tu ngay: " + getNgayBatDau().format(formatter));
         System.out.println("Ly do: " + getLyDo());
         System.out.println("Toi cam ket hoan thanh cong viec truoc khi nghi phep va ban giao cong viec cho nguoi thay the.");
         System.out.println("Mong nhan duoc su chap thuan cua quan ly. Xin chan thanh cam on.");
         System.out.println("Xac nhan cua nhan vien: ");
         System.out.println(getNhanVien().getTenNhanVien());
         LocalDate today = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         System.out.println(today.format(formatter));
     }
 

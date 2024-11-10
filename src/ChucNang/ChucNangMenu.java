@@ -46,7 +46,6 @@ public class ChucNangMenu {
                 default: {
                     System.out.println("Lua chon khong hop le");
                     System.out.println("Vui long lua chon lai");
-                    break;
                 }
             }
         }
@@ -121,7 +120,6 @@ public class ChucNangMenu {
                 default: {
                     System.out.println("Lua chon khong hop le");
                     System.out.println("Vui long lua chon lai");
-                    break;
                 }
             }
         }
@@ -171,7 +169,6 @@ public class ChucNangMenu {
                 default: {
                     System.out.println("Lua chon khong hop le");
                     System.out.println("Vui long lua chon lai");
-                    break;
                 }
             }
         }
@@ -221,7 +218,6 @@ public class ChucNangMenu {
                 default: {
                     System.out.println("Lua chon khong hop le");
                     System.out.println("Vui long lua chon lai");
-                    break;
                 }
             }
         }
@@ -269,7 +265,6 @@ public class ChucNangMenu {
                 default: {
                     System.out.println("Lua chon khong hop le");
                     System.out.println("Vui long lua chon lai");
-                    break;
                 }
             }
         }
@@ -281,9 +276,9 @@ public class ChucNangMenu {
         while (ktra) {
             qlnv.ghiVaoFileDSNV();
             qlnp.ghiVaoFileDSNP();
-            System.out.println("===================================");
-            System.out.println("|\t     MENU NHAN VIEN       \t|");
-            System.out.println("===================================");
+            System.out.println("=====================================");
+            System.out.println("|\t        MENU NHAN VIEN         \t|");
+            System.out.println("=====================================");
             System.out.printf("| %-34s|\n", "1. Them danh sach nhan vien");
             System.out.printf("| %-34s|\n", "2. Xuat danh sach nhan vien");
             System.out.printf("| %-34s|\n", "3. Sua thong tin nhan vien theo ma");
@@ -292,7 +287,7 @@ public class ChucNangMenu {
             System.out.printf("| %-34s|\n", "6. Xuat danh sach nghi phep");
             System.out.printf("| %-34s|\n", "7. Duyet don nghi phep");
             System.out.printf("| %-34s|\n", "8. Thoat                     ");
-            System.out.println("===================================");
+            System.out.println("=====================================");
             System.out.print("Nhap lua chon: ");
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
@@ -383,7 +378,6 @@ public class ChucNangMenu {
                 default: {
                     System.out.println("Lua chon khong hop le");
                     System.out.println("Vui long lua chon lai");
-                    break;
                 }
             }
         }
@@ -433,7 +427,6 @@ public class ChucNangMenu {
                 default: {
                     System.out.println("Lua chon khong hop le");
                     System.out.println("Vui long lua chon lai");
-                    break;
                 }
             }
         }
@@ -473,7 +466,6 @@ public class ChucNangMenu {
                 default: {
                     System.out.println("Lua chon khong hop le");
                     System.out.println("Vui long lua chon lai");
-                    break;
                 }
             }
         }

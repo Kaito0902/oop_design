@@ -80,11 +80,12 @@ public class QLNghiPhep {
     public void ghiVaoFileDSNP() {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\NhanVien\\danhSachDonNghiPhep"))){
             for (NghiPhep ds : dsNghiPhep) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 writer.write(String.join(",",
                         ds.getNhanVien().maNhanVien,
                         ds.getNhanVien().tenNhanVien,
                         String.valueOf(ds.getSoNgayNghi()),
-                        String.valueOf(ds.getNgayBatDau()),
+                        String.valueOf(ds.getNgayBatDau().format(formatter)),
                         ds.getLyDo(),
                         ds.getTrangThaiDon()));
                 writer.newLine();
