@@ -1,1 +1,6 @@
 #sp001,i9-14900KS,1.85E7,1,0.5,xanh,32,24,6.2
+#sp002,NVIDIA GeForce RTX 4090,5.999E7,2,0.5,den,24,GDDR6X,2610.0,16384,Co
+#sp003,RAM,1000000.0,1,0.2,den,16,OK
+#sp004,Man Hinh,2000000.0,1,3.0,hong,Phang,15.6 inches,144,OLED,4K
+#sp005,SamSung 980 Pro,1990000.0,1,1.2,den,512,SSD
+#sp006,Lenovo LOQ,2.899E7,2,2.4,xam,15.6 inches,3.5,Gaming,CPU,Intel,Intel Core i9 14900KS,32,24,6.2,GPU,Nvidia,ASUS ROG Strix LC GeForce,24,GDDR6X,2610.0,16384,Co,RAM,Asus,okok,16,OK,Bo Nho,SamSung,MZ-V8P500BW,512,SSD
