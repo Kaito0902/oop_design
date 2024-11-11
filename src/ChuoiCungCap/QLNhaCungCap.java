@@ -29,12 +29,12 @@ public class QLNhaCungCap {
                 dsncc[dsncc.length - 1] = null;
                 i--;
                 found = true;
-                System.out.println("Đã xóa nhà cung cấp có mã: " + maNCC);
+                System.out.println("Da xoa nha cung cap co ma: " + maNCC);
                 break;
             }
         }
         if (!found) {
-            System.out.println("Không tìm thấy nhà cung cấp có mã: " + maNCC);
+            System.out.println("Khong tim thay nha cung cap co ma nay: " + maNCC);
         }
     }
     public void timKiemNhaCungCapTheoChiPhi(double chiPhi) {
@@ -46,7 +46,7 @@ public class QLNhaCungCap {
             }
         }
         if (!found) {
-            System.out.println("Không có nhà cung cấp nào với chi phí nhập hàng: " + chiPhi);
+            System.out.println("Khong co nha cung cap co phi nhap : " + chiPhi);
         }
     }
     public void sapXepNhaCungCapTheoChiPhi() {
@@ -59,28 +59,28 @@ public class QLNhaCungCap {
                 }
             }
         }
-        System.out.println("Danh sách nhà cung cấp đã được sắp xếp theo chi phí nhập hàng.");
+        System.out.println("Danh sach nha cung cap da duoc sap xep.");
     }
     public void laySoLuongNhaCungCap() {
         int count = 0;
         for (NhaCungCap hd  : dsncc) {
             if (hd != null) count++;
         }
-        System.out.println("Số lượng nha cung cap hiện tại: " + count);
+        System.out.println("So luong nha cung cap: " + count);
     }
 
     public void menu() {
         int choice;
         do {
-            System.out.println("===== QUẢN LÝ NHÀ CUNG CẤP =====");
-            System.out.println("1. Thêm nhà cung cấp");
-            System.out.println("2. Xuất danh sách nhà cung cấp");
-            System.out.println("3. Xóa nhà cung cấp");
-            System.out.println("4. Tìm kiếm nhà cung cấp theo chi phí nhập hàng");
-            System.out.println("5. Sắp xếp nhà cung cấp theo chi phí nhập hàng");
-            System.out.println("6. Lấy số lượng nhà cung cấp");
-            System.out.println("0. Thoát");
-            System.out.print("Nhập lựa chọn của bạn: ");
+            System.out.println("===== Quan ly nha cung cap =====");
+            System.out.println("1. Them nha cung cap");
+            System.out.println("2. Xuat danh sach nha cung cap");
+            System.out.println("3. Xoa nha cung cap");
+            System.out.println("4.Tim kiem nha cung cap theo chi phí nhap hang");
+            System.out.println("5. Sap xep nha cung cap theo chi phi nhap hang");
+            System.out.println("6. Lay so luong nha cung cap");
+            System.out.println("0. Thoat");
+            System.out.print("Nhap lua chon");
             choice = sc.nextInt();
             sc.nextLine(); // Đọc dòng mới sau khi nhập số
 
@@ -94,7 +94,7 @@ public class QLNhaCungCap {
                     xuatNCC();
                     break;
                 case 3:
-                    System.out.print("Nhập mã nhà cung cấp cần xóa: ");
+                    System.out.print("Nhap ma nha cung cap can xoa ");
                     String maXoa = sc.nextLine();
                     xoaNhaCungCap(maXoa);
                     break;
@@ -110,10 +110,10 @@ public class QLNhaCungCap {
                     laySoLuongNhaCungCap();
                     break;
                 case 0:
-                    System.out.println("Thoát chương trình.");
+                    System.out.println("Thoat chuong trinh.");
                     break;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ.");
+                    System.out.println("Lua chon khong hop le.");
             }
         } while (choice != 0);
     }

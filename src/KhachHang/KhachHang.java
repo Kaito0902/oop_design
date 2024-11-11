@@ -6,5 +6,9 @@ public class KhachHang {
     private String soDienThoai;
     private String email;
     private String diaChi;
+    public boolean equalsIgnoreCase(String tenKhachHang2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'equalsIgnoreCase'");
+    }
 
 }
