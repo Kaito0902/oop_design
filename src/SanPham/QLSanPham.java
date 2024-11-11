@@ -468,7 +468,7 @@ public class QLSanPham{
             if(sp.maSP.equals(maSP)){
                 sp.nhap();
                 sp.maSP = maSP;
-                System.out.println("Da sua thong tin san pham");
+                System.out.println("Da sua thong tin san pham co ma: " + maSP);
                 return;
                 }
             }
@@ -477,11 +477,11 @@ public class QLSanPham{
 
     public void xoaPhanTuTheoMa(String maSP)
     {
-        for(var sp:ds){
+        for(SanPham sp:ds){
             if(sp.maSP.equals(maSP)){
                 SanPham[] newDs = Arrays.copyOf(this.ds, this.ds.length - 1);
                 for(int i = 0, j = 0; i < ds.length; i++)
-                    if(!sp.maSP.equals(maSP))
+                    if(!ds[i].maSP.equals(maSP))
                         newDs[j++] = ds[i];
                 ds = newDs;
                 System.out.println("Da xoa san phan co ma: " + maSP);
