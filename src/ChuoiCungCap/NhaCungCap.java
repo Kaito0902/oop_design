@@ -139,6 +139,7 @@ public class NhaCungCap {
         System.out.print("Nhập chi phí nhập hàng: ");
         chiPhiNhapHang = sc.nextDouble();
         sc.nextLine();  
+        
         System.out.println("Nhập thông tin sản phẩm:");
         tenSanPham = new SanPham();  
         tenSanPham.nhap(); // Giả sử có hàm `nhap()` trong lớp SanPham để nhập thông tin sản phẩm

@@ -5,7 +5,7 @@ import java.util.Scanner;
 import NhanVien.NhanVien;
 import SanPham.SanPham;
 
-public class KhoHang extends QLHoaDon {
+public class KhoHang{
     private String maKho;
     private String tenKho;
     private String diaChiKho;
@@ -90,7 +90,7 @@ public class KhoHang extends QLHoaDon {
     }
 
     
-    public void nhap() {
+    public void input() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Nhập mã kho: ");

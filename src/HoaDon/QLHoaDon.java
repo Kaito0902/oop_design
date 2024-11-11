@@ -80,7 +80,7 @@ public class QLHoaDon {
         switch (choice) {
             case 1:
                 HoaDon a =new HoaDon();
-                a.nhap();
+                a.input();
                 themHD(a); 
                 break;
         

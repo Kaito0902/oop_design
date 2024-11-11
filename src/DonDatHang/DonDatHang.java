@@ -17,6 +17,7 @@ public class DonDatHang {
     protected String hinhThucGiaoHang;
     protected double doanhThuDonDatHang;
     static Scanner sc = new Scanner(System.in);
+    
     public DonDatHang() {
     }
     public DonDatHang(String maDonDatHang, LocalDate ngayDatHang, LocalDate ngayGiaoHang, SanPham sanPham,

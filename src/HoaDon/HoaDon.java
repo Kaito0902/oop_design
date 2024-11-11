@@ -6,15 +6,18 @@ import KhachHang.KhachHang;
 import NhanVien.NhanVien;
 import SanPham.SanPham;
 
+
+
 public class HoaDon {
     protected String maHoaDon;
     protected int ngayLapHoaDon;
     protected LocalDate ngayDenHanThanhToan;
     protected int soLuong;
     protected double tongSoTien;
-    protected NhanVien nhanVienLapHoaDon ;
+    protected NhanVien nhanVienLapHoaDon;
     protected KhuyenMai khuyenMai;
-    protected final String khachHang = "Cua hang ban laptop"; 
+    protected DoiTra doiTra;
+    protected KhachHang khachHang;
     protected SanPham sanPham;
     protected double doanhThuHoaDon;
     protected double tienThue;
@@ -42,7 +45,7 @@ public class HoaDon {
         this.chietKhau = chietKhau;
         this.phuongThucThanhToan = phuongThucThanhToan;
     }
-    public void nhap() {
+    public void input() {
         System.out.print("Nhap ma hoa don: "); 
         maHoaDon = scanner.nextLine(); 
 
@@ -56,16 +59,9 @@ public class HoaDon {
         soLuong = Integer.parseInt(scanner.nextLine()); 
 
         System.out.print("Nhap tong so tien: "); 
-        tongSoTien = Double.parseDouble(scanner.nextLine()); 
+        tongSoTien = Double.parseDouble(scanner.nextLine());
 
-        // Giả định rằng NhanVien, KhuyenMai, và SanPham có phương thức nhập thông tin riêng 
 
-        nhanVienLapHoaDon = new NhanVien(); 
-        nhanVienLapHoaDon.nhapThongTin(); 
-        khuyenMai = new KhuyenMai(); 
-        khuyenMai.nhapThongTin(); 
-        sanPham = new SanPham(); 
-        sanPham.nhap();
         
         System.out.print("Nhap doanh thu hoa don: "); 
         doanhThuHoaDon = Double.parseDouble(scanner.nextLine()); 
@@ -78,6 +74,29 @@ public class HoaDon {
 
         System.out.print("Nhap phuong thuc thanh toan: "); 
         phuongThucThanhToan = scanner.nextLine(); 
+
+        
+
+         // Kiểm tra và nhập thông tin khách hàng
+         System.out.print("Nhập số điện thoại khách hàng: ");
+         String soDienThoai = scanner.nextLine();
+
+         khachHang = KhachHang.timKhachHangTheoSdt(soDienThoai);
+        if (khachHang == null) {
+            System.out.println("Khách hàng chưa mua lần nào, vui lòng nhập thông tin khách hàng mới:");
+            khachHang = new KhachHang();
+            khachHang.input(); // Gọi phương thức nhập thông tin từ lớp KhachHang
+        }
+        System.out.print("Nhập mã khuyến mãi (nếu có): ");
+        String maKhuyenMai = scanner.nextLine();
+        if (!maKhuyenMai.isEmpty()) {
+            khuyenMai = KhuyenMai.timKhuyenMai(maKhuyenMai);
+            if (khuyenMai == null) {
+                System.out.println("Mã khuyến mãi không tồn tại, bỏ qua khuyến mãi.");
+            }
+        }
+
+
         }
         @Override
         public String toString() {

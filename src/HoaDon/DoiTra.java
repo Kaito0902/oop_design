@@ -1,8 +1,9 @@
 package HoaDon;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class DoiTra extends HoaDon {
+public class DoiTra  {
     private String maDoiTra;
     private String tenDoiTra;
     private String dieuKienDoiTra;
@@ -11,6 +12,7 @@ public class DoiTra extends HoaDon {
     private String hinhThucHoanTien;
     private LocalDate ngayBatDauApDung;
     private LocalDate ngayKetThucApDung;
+    
     public DoiTra() {
     }
     
@@ -75,10 +77,11 @@ public class DoiTra extends HoaDon {
         this.ngayKetThucApDung = ngayKetThucApDung;
     }
 
-    @Override
-    public void nhap() {
-        // TODO Auto-generated method stub
-        super.nhap();
+    
+    public void input() {
+        Scanner scanner = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         System.out.print("Nhập mã đổi trả: ");
         maDoiTra = scanner.nextLine();
 
@@ -88,27 +91,27 @@ public class DoiTra extends HoaDon {
         System.out.print("Nhập điều kiện đổi trả: ");
         dieuKienDoiTra = scanner.nextLine();
 
-        System.out.print("Nhập thời gian đổi trả (số ngày): ");
+        System.out.print("Nhập thời gian đổi trả (ngày): ");
         thoiGianDoiTra = scanner.nextInt();
 
         System.out.print("Nhập phí đổi trả: ");
         phiDoiTra = scanner.nextDouble();
-        scanner.nextLine();
+        scanner.nextLine(); // Đọc bỏ dòng thừa sau khi nhập số
 
         System.out.print("Nhập hình thức hoàn tiền: ");
         hinhThucHoanTien = scanner.nextLine();
 
-        System.out.print("Nhập ngày bắt đầu áp dụng: ");
-        ngayBatDauApDung = LocalDate.parse(scanner.nextLine());
+        System.out.print("Nhập ngày bắt đầu áp dụng (yyyy-MM-dd): ");
+        ngayBatDauApDung = LocalDate.parse(scanner.nextLine(), formatter);
 
-        System.out.print("Nhập ngày kết thúc áp dụng: ");
-        ngayKetThucApDung = LocalDate.parse(scanner.nextLine());
+        System.out.print("Nhập ngày kết thúc áp dụng (yyyy-MM-dd): ");
+        ngayKetThucApDung = LocalDate.parse(scanner.nextLine(), formatter);
     }
 
+    // Phương thức toString để hiển thị thông tin đổi trả
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString()+"DoiTra{" +
+        return "DoiTra{" +
                 "maDoiTra='" + maDoiTra + '\'' +
                 ", tenDoiTra='" + tenDoiTra + '\'' +
                 ", dieuKienDoiTra='" + dieuKienDoiTra + '\'' +
