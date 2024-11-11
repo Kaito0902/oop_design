@@ -85,7 +85,9 @@ public class QLKhachHang {
             System.out.printf("| %-31s|\n", "4. Tim kiem 1 kh");
             System.out.printf("| %-31s|\n", "5. Sap xep dskh");
             System.out.printf("| %-31s|\n", "6. Xuat danh sach khVip");
-            System.out.printf("| %-31s|\n", "6. Tim khach hang mua nhieu tien nhat");
+            System.out.printf("| %-31s|\n", "7. Tim khach hang mua nhieu tien nhat");
+            System.out.printf("| %-31s|\n", "8. Sua thongtin khach hang"); 
+            System.out.printf("| %-31s|\n", "9. Lay sl khach hang"); 
             System.out.printf("| %-31s|\n", "0. Thoat chuong trinh");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");

@@ -1,5 +1,5 @@
 package KhachHang;
 
 public interface TraGop {
-    double laiSuatTraGop();
+    double laiSuatTraGop( double tongSoTien);
 }

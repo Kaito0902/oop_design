@@ -1,9 +1,10 @@
 package KhachHang;
 
-import GiaoDich.GiaoDich;
 import java.util.Scanner;
 
-import Doan.Giaodich;
+import HoaDon.HoaDon;
+import HoaDon.QLHoaDon; 
+
 public abstract class KhachHang {
     static int tongKH = 0;
     static Scanner scanner = new Scanner(System.in);
@@ -20,7 +21,7 @@ public abstract class KhachHang {
     private String[] loai = {"Tiem nang", "Than Thiet", "Uu dai", "Binh Thuong"};  
 
     //các thuộc tính/tính năng thêm cho khách hàng
-    protected GiaoDich giaodich[] = new GiaoDich[10];//1khách hàng có nhiều hóa đơn mua hàng
+    protected HoaDon giaodich[] = new HoaDon[10];//1khách hàng có nhiều hóa đơn mua hàng
     protected int soluonggiaodich;
     // protected DonDatHang gioHang[];//1 khách hàng có nhiều đơn đặt hàng
     // protected BaoHanh baoHang[];//1 khách hàng có nhiều loại sản phẩm cần bảo hành
@@ -114,7 +115,7 @@ public abstract class KhachHang {
         while (!ktra(loaiKhachHang)) {
             System.out.println("loai khach hang khong hop le!!!");
             System.out.println("Nhap lai:");
-            scanner.nextLine();
+            loaiKhachHang = scanner.nextLine();
         }
         this.loaiKhachHang = loaiKhachHang;
     }
@@ -130,6 +131,13 @@ public abstract class KhachHang {
     //input
     public void input() {
         tongKH++;
+        inputInfo();
+        inputType();
+        inputGiaoDich();
+    }
+
+    // nhap thong tin khach hang
+    public void inputInfo() {
         System.out.println("Nhap HoTen:");
         setHoTen(scanner.nextLine());
         System.out.println("Nhap gioi tinh:");
@@ -142,11 +150,12 @@ public abstract class KhachHang {
         setEmail(scanner.nextLine());
         System.out.println("Nhap dia chi:");
         setDiaChi(scanner.nextLine());
+    }
 
-        // chi KH ca nhan moi can ham nhap loai:
+    public void inputType() {
         if ( (this instanceof CaNhan)){
-            System.out.println("Nhap loai khach hang (Tiem nang, Than Thiet, Uu dai, Binh Thuong):");
-            setLoaiKhachHang(scanner.nextLine());
+            // System.out.println("Nhap loai khach hang (Tiem nang, Than Thiet, Uu dai, Binh Thuong):");
+            setLoaiKhachHang("Binh Thuong");
         }
         else if ( this instanceof SinhVien ) {
             setLoaiKhachHang("Uu dai");
@@ -155,21 +164,25 @@ public abstract class KhachHang {
             setLoaiKhachHang("Than Thiet");
         }
             setLoaiKhachHang("Tiem Nang");
+    }
 
+    public void inputGiaoDich() {
         // giao dich
-        boolean themgiaodich = false;
+        boolean themgiaodich;
         System.out.println("Ban co muon them giao dich khong(Y/N):");
-            String chon = scanner.nextLine();
-            if ( chon.equalsIgnoreCase("N") )
-                themgiaodich = false;
-            else
-                themgiaodich = true;
+        String chon = scanner.nextLine();
+        themgiaodich = !chon.equalsIgnoreCase("N");
+    
         while (themgiaodich) {
-            GiaoDich gd =  new GiaoDich();
+            HoaDon gd = new HoaDon();
             gd.input();
             giaodich[soluonggiaodich++] = gd;
+    
+            System.out.println("Ban co muon them giao dich khac khong(Y/N):");
+            chon = scanner.nextLine();
+            themgiaodich = !chon.equalsIgnoreCase("N");
+            // setGiaoDich[];
         }
-        // setGiaoDich[];
     }
 
     //output 
@@ -207,5 +220,5 @@ public abstract class KhachHang {
     //tinh UuDai
     public abstract double tinhUuDai();
     //tinh diemThuong
-    public abstract int tinhDiemThuong();
+    public abstract int tinhDiemThuong(double tongSoTien);
 }

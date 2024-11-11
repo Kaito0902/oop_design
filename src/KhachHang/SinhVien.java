@@ -1,10 +1,9 @@
 package KhachHang;
 
-import GiaoDich.GiaoDich;
+import HoaDon.HoaDon;
 
 public class SinhVien extends KhachHang {
     //attributes
-    private String maSV;
     private double diemTB;
 
     //non-parameted constructor
@@ -16,24 +15,20 @@ public class SinhVien extends KhachHang {
     public SinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
             String maKhachHang, String loaiKhachHang, String khieuNai, int tichDiem, String maSV, double diemTB) {
         super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
-        this.maSV = maSV;
         this.diemTB = diemTB;
     }
 
     //getter and setter
-    public String getMaSV() {
-        return maSV;
-    }
-
-    public void setMaSV(String maSV) {
-        this.maSV = maSV;
-    }
-
     public double getDiemTB() {
         return diemTB;
     }
 
     public void setDiemTB(double diemTB) {
+        while (diemTB < 0.0 && diemTB > 10.0 ) {
+            System.out.println("diemtb khong duoc duoi 0 ");
+            System.out.println("Vui long nhap lai: ");
+            scanner.nextDouble();
+        }
         this.diemTB = diemTB;
     }
 
@@ -41,15 +36,13 @@ public class SinhVien extends KhachHang {
     @Override
     public void input() {
         super.input();
-        System.out.println("Nhap ma SV:");
-        setMaSV(scanner.nextLine());
         System.out.println("Nhap diem TB:");
         setDiemTB(Double.parseDouble(scanner.nextLine()));
     }
 
     @Override
-    public int tinhDiemThuong() {//chưa làm
-        return 0;
+    public int tinhDiemThuong(double tongSoTien ) {
+        return (int) (tongSoTien / 100000)*2;
     }
 
     @Override
@@ -64,7 +57,7 @@ public class SinhVien extends KhachHang {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10s %-10.2f %-10.2f %-15d",maSV, diemTB ,tinhUuDai(), tinhDiemThuong());
+        return super.toString() + String.format("%-10.2f %-10.2f %-15d", diemTB ,tinhUuDai(), tinhDiemThuong(1000000));
     }
     
 }

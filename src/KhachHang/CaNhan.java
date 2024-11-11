@@ -1,13 +1,13 @@
 package KhachHang;
 
-import GiaoDich.GiaoDich;
+import HoaDon.HoaDon;
 
 public class CaNhan extends KhachHang {
 
     //tinhdiem thuong
     @Override
-    public int tinhDiemThuong() {
-        return 0;
+    public int tinhDiemThuong( double tongSoTien ) {
+        return (int) (tongSoTien / 100000);
     }
 
     //tinh uu dai
@@ -18,7 +18,7 @@ public class CaNhan extends KhachHang {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(), tinhDiemThuong());
+        return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(), tinhDiemThuong(1000000));
     }
     
 }

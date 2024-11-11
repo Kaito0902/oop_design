@@ -1,6 +1,6 @@
 package KhachHang;
 
-import GiaoDich.GiaoDich;
+import HoaDon.HoaDon;
 
 public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     //attribute
@@ -41,13 +41,13 @@ public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     }
 
     @Override
-    public double laiSuatTraGop() {
-        return 0;
+    public double laiSuatTraGop( double tongSoTien) {
+        return traGop ? (0.03*tongSoTien) : 0;
     }
 
     @Override
-    public int tinhDiemThuong() {
-        return 0;
+    public int tinhDiemThuong( double tongSoTien ) {
+        return (int) (tongSoTien / 100000)*10;
     }
 
     @Override
@@ -58,9 +58,9 @@ public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     @Override
     public String toString() {
         if (traGop)    
-            return super.toString() + String.format("%-10.2f %-15d %-10.2f",tinhUuDai(),tinhDiemThuong(), laiSuatTraGop());
+            return super.toString() + String.format("%-10.2f %-15d %-10.2f",tinhUuDai(),tinhDiemThuong(1000000), laiSuatTraGop(1000000));
         else
-            return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(),tinhDiemThuong());
+            return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(),tinhDiemThuong(1000000));
     }
 
 }
