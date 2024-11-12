@@ -73,24 +73,24 @@ public class QLKhachHang {
     }
 
     //tim khach hang co so tien cao nhat 
-    public void timkiemKhachHangCoTienCaoNhat(QLHoaDon qlHoaDon) {
-        KhachHang khMax = null;
-        double maxtien = 0;
-        for ( KhachHang kh : dskh ){
-            double max = qlHoaDon.getTongSoTien(kh.getSdt());
-            if ( max > maxtien ) {
-                maxtien = max;
-                khMax = kh;
-            }
-        }
-        if ( khMax != null ){
-            System.out.println("KH co so tien giao dich cao nhat la:");
-            khMax.output();
-        }
-        else {
-            System.out.println("Khong tim thay khach hang nao");
-        }
-    }
+//    public void timkiemKhachHangCoTienCaoNhat(QLHoaDon qlHoaDon) {
+//        KhachHang khMax = null;
+//        double maxtien = 0;
+//        for ( KhachHang kh : dskh ){
+//            double max = qlHoaDon.getTongSoTien(kh.getSdt());
+//            if ( max > maxtien ) {
+//                maxtien = max;
+//                khMax = kh;
+//            }
+//        }
+//        if ( khMax != null ){
+//            System.out.println("KH co so tien giao dich cao nhat la:");
+//            khMax.output();
+//        }
+//        else {
+//            System.out.println("Khong tim thay khach hang nao");
+//        }
+//    }
     
     //sapxepkh
     public void sapxep() {
@@ -398,7 +398,7 @@ public class QLKhachHang {
                     }
                     break;
                 case 7:
-                    timkiemKhachHangCoTienCaoNhat(qlhd);
+                  //  timkiemKhachHangCoTienCaoNhat(qlhd);
                     break;
                 case 8:
                     System.out.println("Nhap sdt kh muon tim:");

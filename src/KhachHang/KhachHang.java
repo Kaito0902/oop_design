@@ -194,13 +194,13 @@ public abstract class KhachHang {
         
         while (themgiaodich) {
             HoaDon gd = new HoaDon();
-            gd.input();
+          //  gd.input();
 
             if ( soluonggiaodich < giaodich.length )
                 giaodich[soluonggiaodich++] = gd;
             else
                 System.out.println("khong the them giao dich:So luong dat toi da!!!");  
-            qlhd.themHD(gd);
+          //  qlhd.themHD(gd);
         
 
             while ( true ) {

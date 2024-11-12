@@ -1,0 +1,5 @@
+km1,Uu dai lon,1-1-2024,1-1-2025,Khong dieu kien,Laptop,200000.0
+km2,Deal ngon,1-6-2024,1-1-2025,Khach hang la sinh vien,GPU,400000.0
+km3,Thiet bi tot,1-6-2024,1-10-2024,Thanh toan online,Chuot, 20000.0
+km4,Tang nang suat,1-9-2024,1-2-2025,Thanh toan online,Ram, 250000.0
+km5,Sale tet,1-9-2024,1-2-2025,Thanh toan online,Laptop, 600000.0
