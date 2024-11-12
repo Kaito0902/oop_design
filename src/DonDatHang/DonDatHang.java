@@ -18,7 +18,7 @@ public class DonDatHang {
     protected double doanhThuDonDatHang;
     static Scanner sc = new Scanner(System.in);
     
-    public DonDatHang() {
+    public DonDatHang(String maDonDatHang2, LocalDate ngayDatHang2, LocalDate ngayGiaoHang2, String sanPham2, double tongTien2, double soLuong2, String nhaCungCap2, String hinhThucGiaoHang2, Double doanhThuDonDatHang2) {
     }
     public DonDatHang(String maDonDatHang, LocalDate ngayDatHang, LocalDate ngayGiaoHang, SanPham sanPham,
             double tongTien, double soLuong, NhaCungCap nhaCungCap, String hinhThucGiaoHang,
@@ -33,6 +33,7 @@ public class DonDatHang {
         this.hinhThucGiaoHang = hinhThucGiaoHang;
         this.doanhThuDonDatHang = doanhThuDonDatHang;
     }
+    public DonDatHang(){};
     public String getMaDonDatHang() {
         return maDonDatHang;
     }
@@ -107,7 +108,7 @@ public class DonDatHang {
 
         System.out.println("Nhập thông tin sản phẩm:");
         sanPham = new SanPham();
-        sanPham.nhap();  // Giả sử lớp SanPham có phương thức nhap()
+        sanPham.input();  // Giả sử lớp SanPham có phương thức nhap()
 
         System.out.print("Nhập số lượng: ");
         soLuong = sc.nextDouble();

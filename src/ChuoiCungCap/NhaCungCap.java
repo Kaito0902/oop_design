@@ -142,7 +142,7 @@ public class NhaCungCap {
         
         System.out.println("Nhập thông tin sản phẩm:");
         tenSanPham = new SanPham();  
-        tenSanPham.nhap(); // Giả sử có hàm `nhap()` trong lớp SanPham để nhập thông tin sản phẩm
+        tenSanPham.input(); // Giả sử có hàm `nhap()` trong lớp SanPham để nhập thông tin sản phẩm
 
         System.out.print("Nhập ghi chú: ");
         ghiChu = sc.nextLine();

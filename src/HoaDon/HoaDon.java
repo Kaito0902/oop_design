@@ -25,8 +25,7 @@ public class HoaDon {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public HoaDon() {
-    }
+   
 
     public HoaDon(String maHoaDon, LocalDate ngayLapHoaDon, int soLuong, double tongSoTien,
             NhanVien nhanVienLapHoaDon, KhuyenMai khuyenMai, SanPham sanPham,   double tienThue,
@@ -42,6 +41,132 @@ public class HoaDon {
         this.chietKhau = chietKhau;
         this.phuongThucThanhToan = phuongThucThanhToan;
     }
+    
+    public HoaDon() {
+        //TODO Auto-generated constructor stub
+    }
+
+
+    public HoaDon(String maHoaDon2, LocalDate ngayLapHoaDon2, int soLuong2, double tongSoTien2, String tenKhachHang,
+            double tienThue2, double chietKhau2, String phuongThucThanhToan2) {
+        //TODO Auto-generated constructor stub
+    }
+
+    public void setMaHoaDon(String maHoaDon) {
+        this.maHoaDon = maHoaDon;
+    }
+
+
+    public LocalDate getNgayLapHoaDon() {
+        return ngayLapHoaDon;
+    }
+
+
+    public void setNgayLapHoaDon(LocalDate ngayLapHoaDon) {
+        this.ngayLapHoaDon = ngayLapHoaDon;
+    }
+
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
+
+    public void setTongSoTien(double tongSoTien) {
+        this.tongSoTien = tongSoTien;
+    }
+
+
+    public NhanVien getNhanVienLapHoaDon() {
+        return nhanVienLapHoaDon;
+    }
+
+
+    public void setNhanVienLapHoaDon(NhanVien nhanVienLapHoaDon) {
+        this.nhanVienLapHoaDon = nhanVienLapHoaDon;
+    }
+
+
+    public KhuyenMai getKhuyenMai() {
+        return khuyenMai;
+    }
+
+
+    public void setKhuyenMai(KhuyenMai khuyenMai) {
+        this.khuyenMai = khuyenMai;
+    }
+
+
+    public DoiTra getDoiTra() {
+        return doiTra;
+    }
+
+
+    public void setDoiTra(DoiTra doiTra) {
+        this.doiTra = doiTra;
+    }
+
+
+    public void setKhachHang(KhachHang khachHang) {
+        this.khachHang = khachHang;
+    }
+
+
+    public SanPham getSanPham() {
+        return sanPham;
+    }
+
+
+    public void setSanPham(SanPham sanPham) {
+        this.sanPham = sanPham;
+    }
+
+
+    public double getTienThue() {
+        return tienThue;
+    }
+
+
+    public void setTienThue(double tienThue) {
+        this.tienThue = tienThue;
+    }
+
+
+    public double getChietKhau() {
+        return chietKhau;
+    }
+
+
+    public void setChietKhau(double chietKhau) {
+        this.chietKhau = chietKhau;
+    }
+
+
+    public String getPhuongThucThanhToan() {
+        return phuongThucThanhToan;
+    }
+
+
+    public void setPhuongThucThanhToan(String phuongThucThanhToan) {
+        this.phuongThucThanhToan = phuongThucThanhToan;
+    }
+
+
+    public static Scanner getScanner() {
+        return scanner;
+    }
+
+
+    public static void setScanner(Scanner scanner) {
+        HoaDon.scanner = scanner;
+    }
+
+
     public void input() {
         System.out.print("Nhap ma hoa don: "); 
         maHoaDon = scanner.nextLine(); 
@@ -108,6 +233,21 @@ public class HoaDon {
         }
         public void xuat(){
             System.out.println(toString());
+        }
+
+        public CharSequence getMaHoaDon() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getMaHoaDon'");
+        }
+
+        public String getKhachHang() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getKhachHang'");
+        }
+
+        public double getTongSoTien() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getTongSoTien'");
         }
 
      }
