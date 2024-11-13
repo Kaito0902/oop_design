@@ -19,7 +19,7 @@ public class NhaCungCap {
     protected SanPham tenSanPham; 
     protected String ghiChu;
     static Scanner sc = new Scanner(System.in);
-    public NhaCungCap() {
+    public NhaCungCap(String maNhaCungCap2, String tenNhaCungCap2, String diaChi2, String thanhPho2, String quocGia2, String email2, String maSoThue2, LocalDate ngayHopTac2, double chiPhiNhapHang2, String tenSanPham2, String ghiChu2) {
     }
     public NhaCungCap(String maNhaCungCap, String tenNhaCungCap, String diaChi, String thanhPho, String quocGia,
             String email, String maSoThue, LocalDate ngayHopTac, double chiPhiNhapHang, SanPham tenSanPham,
@@ -35,6 +35,9 @@ public class NhaCungCap {
         this.chiPhiNhapHang = chiPhiNhapHang;
         this.tenSanPham = tenSanPham;
         this.ghiChu = ghiChu;
+    }
+    public NhaCungCap() {
+        //TODO Auto-generated constructor stub
     }
     public String getMaNhaCungCap() {
         return maNhaCungCap;

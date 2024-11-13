@@ -174,8 +174,6 @@ public class HoaDon {
         System.out.print("Nhap ngay lap hoa don: "); 
         ngayLapHoaDon =  LocalDate.parse(scanner.nextLine());  
 
-        System.out.print("Nhap ngay den han thanh toan: ");
-
         System.out.print("Nhap so luong: "); 
         soLuong = Integer.parseInt(scanner.nextLine()); 
 
@@ -197,7 +195,7 @@ public class HoaDon {
          System.out.print("Nhập số điện thoại khách hàng: ");
          String soDienThoai = scanner.nextLine();
 
-         khachHang = KhachHang.timKhachHangTheoSdt(soDienThoai);
+         khachHang = KhachHang.timKiemKhachHangTheoSdt(soDienThoai);
         if (khachHang == null) {
             System.out.println("Khách hàng chưa mua lần nào, vui lòng nhập thông tin khách hàng mới:");
             khachHang = new KhachHang();

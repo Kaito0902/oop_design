@@ -67,7 +67,7 @@ public class QLDonDatHang {
 
     // Phuong thuc ghi danh sach don dat hang vao file
     public void ghiVaoFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("danhSachDonDatHang.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ADMIN\\oop_design\\src\\DonDatHang\\danhSachDonDatHang.txt"))) {
             for (DonDatHang ddh : dsddh) {
                 writer.write(ddh.toString());
                 writer.newLine();
@@ -80,7 +80,7 @@ public class QLDonDatHang {
 
     // Phuong thuc doc danh sach don dat hang tu file
     public void docTuFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("danhSachDonDatHang.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ADMIN\\oop_design\\src\\DonDatHang\\danhSachDonDatHang.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
