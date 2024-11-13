@@ -3,17 +3,17 @@ package SanPham;
 public class ManHinh extends ThietBiNgoaiVi{
     private String kieuManHinh;
     private String kichThuoc;
-    private int tanSoQuet;
     private String tamNen;
     private String doPhanGiai;
+    private int tanSoQuet;
 
     public ManHinh() 
     {
     
     }
 
-    public ManHinh(String doPhanGiai, String kichThuoc, String kieuManHinh, String tamNen, int tanSoQuet, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String loaiThietBi, String phuongThucKetNoi) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiThietBi, phuongThucKetNoi);
+    public ManHinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String kieuManHinh, String kichThuoc, String tamNen, String doPhanGiai, int tanSoQuet){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.doPhanGiai = doPhanGiai;
         this.kichThuoc = kichThuoc;
         this.kieuManHinh = kieuManHinh;

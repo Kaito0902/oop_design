@@ -1,7 +1,6 @@
 package SanPham;
 
 public class BanPhim extends ThietBiNgoaiVi{
-    private String kichThuoc;
     private String denLED;
     private String switchBP;
 
@@ -10,25 +9,11 @@ public class BanPhim extends ThietBiNgoaiVi{
 
     }
 
-    
-
-    public BanPhim(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String nhaSanXuat, String loaiThietBi, String phuongThucKetNoi, String kichThuoc, String denLED,
-            String switchBP) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiThietBi, phuongThucKetNoi);
-        this.kichThuoc = kichThuoc;
+    public BanPhim(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+                String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String denLED, String switchBP){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.denLED = denLED;
         this.switchBP = switchBP;
-    }
-
-
-
-    public String getKichThuoc() {
-        return kichThuoc;
-    }
-
-    public void setKichThuoc(String kichThuoc) {
-        this.kichThuoc = kichThuoc;
     }
 
     public String getDenLED() {
@@ -56,8 +41,6 @@ public class BanPhim extends ThietBiNgoaiVi{
     public void nhap()
     {
         super.nhap();
-        System.out.println("Nhap kich thuoc ban phim: ");
-        setKichThuoc(sc.nextLine());
         System.out.println("Nhap den LED ban phim: ");
         setDenLED(sc.nextLine());
         System.out.println("Nhap switch ban phim: ");
@@ -66,13 +49,12 @@ public class BanPhim extends ThietBiNgoaiVi{
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-20s %-10s %-10s", kichThuoc, denLED, switchBP);
+        return super.toString() + String.format("%-10s %-10s", denLED, switchBP);
     }
 
     @Override
     public void xuat(){
         super.xuat();
-        System.out.println("Kich thuoc ban phim: " + kichThuoc);
         System.out.println("Nhap den LED ban phim: " + denLED);
         System.out.println("Switch ban phim: " + switchBP);
     }

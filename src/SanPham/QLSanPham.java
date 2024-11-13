@@ -29,44 +29,48 @@ public class QLSanPham{
         this.ds = newDS;
     }
 
-    PhanCung[] cacLinhKien = new PhanCung[4];
+
     public void nhapDanhSach1(){
-        CPU sp1 = new CPU(24, 32, 6.2f, "", "i9-14900KS", 18500000, 1, 0.5f, "xanh", "Intel", "CPU", "Intel Core i9 14900KS");
-        GPU sp2 = new GPU(24, "GDDR6X", 2610, 16384, "Co", "", "NVIDIA GeForce RTX 4090", 59990000, 2, 0.5f, "den", "Nvidia", "GPU", "ASUS ROG Strix LC GeForce");
-        RAM sp3 = new RAM(16, "OK", "", "RAM", 1000000, 1, 0.2f, "den", "Asus", "RAM", "okok");
-        ManHinh sp4 = new ManHinh("4K", "15.6 inches", "Phang", "OLED", 144, "", "Man Hinh", 2000000, 1, 3, "hong", "Acer", "ASUS ProArt PA24US", "Day");
-        BoNho sp5 = new BoNho(512, "SSD", "", "SamSung 980 Pro", 1990000, 1, 1.2f, "den", "SamSung", "Bo Nho", "MZ-V8P500BW");
+        CPU sp1 = new CPU("#sp001", "i9-14900KS", 18500000, "6 thang", 0.5f, "xanh", "CPU", "Intel", "Intel Core i9 14900KS", 32, 24, 6.2f);
+        GPU sp2 = new GPU("#sp002", "NVIDIA GeForce RTX 4090", 59990000, "1 nam", 0.5f, "den", "GPU", "Nvidia", "ASUS ROG Strix LC GeForce", 24, "GDDR6X", 2610, 16384, "Co");
+        RAM sp3 = new RAM("#sp003", "T-Group T-Force Delta", 1190000, "6 thang", 0.2f, "den", "RAM", "TeamGroup", "T-Group T-Force Delta 1x16GB 3600", 16, "DDR4-3600");
+        BoNho sp4 = new BoNho("#sp004", "SamSung 980 Pro", 1990000, "6 thang", 1.2f, "den", "Bo Nho", "SamSung", "MZ-V8P500BW", 512, "SSD");
+        Chuot sp5 = new Chuot("#sp005", "Logitech G502 X Plus", 3290000, "2 nam", 0.1f, "trang", "Chuot", "Logitech", "Khong Day", 25000, "RGB Light Sync");
+        BanPhim sp6 = new BanPhim("#sp006", "Razer Huntsman V3 Pro TKL", 5345000, "2 nam", 0.5f, "den", "Ban Phim", "Razer", "Co Day", "Razer Chroma™ RGB", "Razer Analog Optical Switch Gen-2");
+        ManHinh sp7 = new ManHinh("#sp007", "ASUS ProArt PA24US", 2000000, "2 nam", 3, "hong", "Man Hinh", "Acer", "Day", "Phang", "15.6 inches", "OLED", "4K", 144);
         
+        PhanCung[] cacLinhKien = new PhanCung[4];
         cacLinhKien[0] = sp1;
         cacLinhKien[1] = sp2;
         cacLinhKien[2] = sp3;
-        cacLinhKien[3] = sp5;
+        cacLinhKien[3] = sp4;
 
-        Laptop sp6 = new Laptop("15.6 inches", "Gaming", 3.5f, "", "Lenovo LOQ", 28990000, 2, 2.4f, "xam",
-        "Lenovo", "Lenovo LOQ 15IRX9 83DV00D5VN", "Laptop", "Win 11", "Co", cacLinhKien);
-        
+        Desktop sp8 = new Desktop("#sp008", "GVN x ASUS Advanced Ai", 140000000, "3 nam", 10, "den", "Desktop", "Asus", "GVN x ASUS Advanced Ai", "Win 11", "Co", cacLinhKien, "ASUS ROG Hyperion GR701", "ASUS ROG STRIX LC III 360 ARGB LCD");
+        Laptop sp9 = new Laptop("#sp009", "Lenovo LOQ", 28990000, "2 nam", 2.4f, "xam", "Laptop", "Lenovo", "Lenovo LOQ 15IRX9 83DV00D5VN", "Win 11", "Co", cacLinhKien, "15.6 inches", 3.5f, "Gaming");
+         
         themSanPham(sp1);
         themSanPham(sp2);
         themSanPham(sp3);
         themSanPham(sp4);
         themSanPham(sp5);
         themSanPham(sp6);
+        themSanPham(sp7);
+        themSanPham(sp8);
+        themSanPham(sp9);
     }
 
     public void menu()
     {
         int choiceMenu = 1;
-
         while(choiceMenu != 0)
         {
             System.out.println("1. Nhap danh sach san pham.");
             System.out.println("2. Xuat danh sach san pham.");
-            System.out.println("3. Them moi k san pham.");
-            System.out.println("4. Doc du lieu tu file.");
-            System.out.println("5. Nhap du lieu vao file.");
-            System.out.println("6. Sua phan tu theo ma");
-            System.out.println("7. Xoa phan tu theo ma.");
-            System.out.println("8. Tim kiem san pham.");
+            System.out.println("3. Doc du lieu tu file.");
+            System.out.println("4. Nhap du lieu vao file.");
+            System.out.println("5. Sua phan tu theo ma");
+            System.out.println("6. Xoa phan tu theo ma.");
+            System.out.println("7. Tim kiem san pham.");
             System.out.println("0. Thoat.");
             choiceMenu = Integer.parseInt(sc.nextLine());
 
@@ -79,40 +83,26 @@ public class QLSanPham{
                 case 2:
                     xuatDanhSach();
                     break;
-                    
-                case 3:
-                    themKSanPham();
-                    break;
 
-                case 4:
+                case 3:
                     docTuFile();
                     break;
 
-                case 5:
+                case 4:
                     nhapVaoFile();
-                    // try {
-                    //     String file = "C:\\Đăng\\Study\\Visual Studio Code\\Java\\Đồ Án\\oop_design\\src\\SanPham\\DanhSachSanPham.txt";
-                    //     BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                    //     writer.write("Hello");
-                    //     writer.newLine();
-                    //     writer.write("Hi");
-                    //     writer.close();
-                    // } catch (IOException e) {
-                    //     System.out.println("ok");
-                    // }
                     break;
 
-                case 6:
+                case 5:
                     System.out.println("Nhap ma san pham muon sua: ");
                     suaPhanTuTheoMa(sc.nextLine());
                     break;
 
-                case 7:
+                case 6:
                     System.out.println("Nhap ma san pham muon xoa: ");
                     xoaPhanTuTheoMa(sc.nextLine());
                     break;
 
-                case 8:
+                case 7:
                     System.out.println("Hay nhap ma hoac ten san pham ban muon tim: ");
                     String timSP = sc.nextLine();
                     if(timKiem(timSP) != null)
@@ -260,10 +250,6 @@ public class QLSanPham{
         }
     }
 
-    public void themKSanPham(){
-
-    }
-
     public void docTuFile()
     {
         String file = "C:\\Đăng\\Study\\Visual Studio Code\\Java\\Đồ Án\\oop_design\\src\\SanPham\\DanhSachSanPham.txt";
@@ -271,75 +257,214 @@ public class QLSanPham{
             reader.readLine();
             String line;
             while((line = reader.readLine()) != null){
+                String[] data = line.split(",");
+                if(data.length > 0){
+                    String maSP = data[0];
+                    String tenSP = data[1];
+                    float giaSP = Float.parseFloat(data[2]);
+                    String thoiGianBaoHanhSP = data[3];
+                    float trongLuongSP = Float.parseFloat(data[4]);
+                    String mauSacSP = data[5];
+                    String loaiSP = data[6];
 
+                    if("Desktop".equals(loaiSP)){
+                        String nhaSanXuat = data[7];
+                        String model = data[8];
+                        String heDieuHanh = data[9];
+                        String coCardRoi = data[10];
+                        String casePC = data[11];
+                        String tanNhiet = data[12];
+
+                        String loaiLinhKien1 = data[13];
+                        String nhaSanXuat1 = data[14];
+                        String model1 = data[15];
+                        int soNhan = Integer.parseInt(data[16]);
+                        int soLuongLoi = Integer.parseInt(data[17]);
+                        float tanSoTurBo = Float.parseFloat(data[18]);
+
+                        CPU cpu = new CPU("", "", 0, "", 0, "", loaiLinhKien1, nhaSanXuat1, model1, soLuongLoi, soNhan, tanSoTurBo);
+                        SanPham.soLuongSP--;
+
+                        String loaiLinhKien2 = data[19];
+                        String nhaSanXuat2 = data[20];
+                        String model2 = data[21];
+                        int dungLuongVRAM = Integer.parseInt(data[22]);
+                        String loaiVRAM = data[23];
+                        float tocDoXungNhip = Float.parseFloat(data[24]);
+                        int soNhanCUDA = Integer.parseInt(data[25]);
+                        String rayTracing = data[26];
+
+                        GPU gpu = new GPU("", "", 0, "", 0, mauSacSP, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
+                        SanPham.soLuongSP--;
+        
+                        String loaiLinhKien3 = data[27];
+                        String nhaSanXuat3 = data[28];
+                        String model3 = data[29];
+                        int dungLuongRAM = Integer.parseInt(data[30]);
+                        String loaiRAM = data[31];
+
+                        RAM ram = new RAM("", "", 0, "", 0, mauSacSP, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
+                        SanPham.soLuongSP--;
+
+                        String loaiLinhKien4 = data[32];
+                        String nhaSanXuat4 = data[33];
+                        String model4 = data[34];
+                        int dungLuongBoNho = Integer.parseInt(data[35]);
+                        String loaiBoNho = data[36];
+
+                        BoNho boNho = new BoNho("", "", 0, "", 0, mauSacSP, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
+                        SanPham.soLuongSP--;
+
+                        PhanCung[] cacLinhKien = new PhanCung[4];
+                        cacLinhKien[0] = cpu;
+                        cacLinhKien[1] = gpu;
+                        cacLinhKien[2] = ram;
+                        cacLinhKien[3] = boNho;
+
+                        Desktop desktop = new  Desktop(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP,nhaSanXuat, model, heDieuHanh, coCardRoi, cacLinhKien,casePC,tanNhiet);
+                        themSanPham(desktop);
+                    }
+
+                    else if("Laptop".equals(loaiSP)){
+                        String nhaSanXuat = data[7];
+                        String model = data[8];
+                        String heDieuHanh = data[9];
+                        String coCardRoi = data[10];
+                        String kichThuocManHinh = data[11];
+                        float thoiLuongPin = Float.parseFloat(data[12]);
+                        String loaiLaptop = data[13];
+
+                        String loaiLinhKien1 = data[14];
+                        String nhaSanXuat1 = data[15];
+                        String model1 = data[16];
+                        int soNhan = Integer.parseInt(data[17]);
+                        int soLuongLoi = Integer.parseInt(data[18]);
+                        float tanSoTurBo = Float.parseFloat(data[19]);
+
+                        CPU cpu = new CPU("", "", 0, "", 0, "", loaiLinhKien1, nhaSanXuat1, model1, soLuongLoi, soNhan, tanSoTurBo);
+                        SanPham.soLuongSP--;
+
+                        String loaiLinhKien2 = data[20];
+                        String nhaSanXuat2 = data[21];
+                        String model2 = data[22];
+                        int dungLuongVRAM = Integer.parseInt(data[23]);
+                        String loaiVRAM = data[24];
+                        float tocDoXungNhip = Float.parseFloat(data[25]);
+                        int soNhanCUDA = Integer.parseInt(data[26]);
+                        String rayTracing = data[27];
+
+                        GPU gpu = new GPU("", "", 0, "", 0, mauSacSP, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
+                        SanPham.soLuongSP--;
+        
+                        String loaiLinhKien3 = data[28];
+                        String nhaSanXuat3 = data[29];
+                        String model3 = data[30];
+                        int dungLuongRAM = Integer.parseInt(data[31]);
+                        String loaiRAM = data[32];
+
+                        RAM ram = new RAM("", "", 0, "", 0, mauSacSP, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
+                        SanPham.soLuongSP--;
+
+                        String loaiLinhKien4 = data[33];
+                        String nhaSanXuat4 = data[34];
+                        String model4 = data[35];
+                        int dungLuongBoNho = Integer.parseInt(data[36]);
+                        String loaiBoNho = data[37];
+
+                        BoNho boNho = new BoNho("", "", 0, "", 0, mauSacSP, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
+                        SanPham.soLuongSP--;
+
+                        PhanCung[] cacLinhKien = new PhanCung[4];
+                        cacLinhKien[0] = cpu;
+                        cacLinhKien[1] = gpu;
+                        cacLinhKien[2] = ram;
+                        cacLinhKien[3] = boNho;
+
+                        Laptop laptop = new Laptop(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP,nhaSanXuat, model, heDieuHanh, coCardRoi, cacLinhKien, kichThuocManHinh, thoiLuongPin, loaiLaptop);
+                        themSanPham(laptop);
+                    }
+
+                    else if("CPU".equals(loaiSP)){
+                        String nhaSanXuat = data[7];
+                        String model = data[8];
+                        int soNhan = Integer.parseInt(data[9]);
+                        int soLuongLoi = Integer.parseInt(data[10]);
+                        float tanSoTurBo = Float.parseFloat(data[11]);
+
+                        CPU cpu = new CPU(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, model, soNhan, soLuongLoi, tanSoTurBo);
+                        themSanPham(cpu);
+                    }
+
+                    else if("GPU".equals(loaiSP)){
+                        String nhaSanXuat = data[7];
+                        String model = data[8];
+                        int dungLuongVRAM = Integer.parseInt(data[9]);
+                        String loaiVRAM = data[10];
+                        float tocDoXungNhip = Float.parseFloat(data[11]);
+                        int soNhanCUDA = Integer.parseInt(data[12]);
+                        String rayTracing = data[13];
+                        GPU gpu = new GPU(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, model, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
+                        themSanPham(gpu);
+                    }
+
+                    else if("RAM".equals(loaiSP)){
+                        String nhaSanXuat = data[7];
+                        String model = data[8];
+                        int dungLuongRAM = Integer.parseInt(data[9]);
+                        String loaiRAM = data[10];
+                        RAM ram = new RAM(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, model, dungLuongRAM, loaiRAM);
+                        themSanPham(ram);
+                    }
+
+                    else if("Bo Nho".equals(loaiSP)){
+                        String nhaSanXuat = data[7];
+                        String model = data[8];
+                        int dungLuongBoNho = Integer.parseInt(data[9]);
+                        String loaiBoNho = data[10];
+
+                        BoNho boNho = new BoNho(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, model, dungLuongBoNho, loaiBoNho);
+                        themSanPham(boNho);
+                    }
+
+                    else if("Chuot".equals(loaiSP)){
+                        String nhaSanXuat = data[7];
+                        String phuongThucKetNoi = data[8];
+                        int dPI = Integer.parseInt(data[9]);
+                        String denLED = data[10];
+
+                        Chuot chuot = new Chuot("", tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, phuongThucKetNoi, dPI, denLED);
+                        themSanPham(chuot);
+                    }
+
+                    else if("Man Hinh".equals(loaiSP)){
+                        String nhaSanXuat = data[7];
+                        String phuongThucKetNoi = data[8];
+                        String kieuManHinh = data[9];
+                        String kichThuoc = data[10];
+                        int tanSoQuet = Integer.parseInt(data[11]);
+                        String tamNen = data[12];
+                        String doPhanGiai = data[13];
+
+                        ManHinh manHinh = new ManHinh("", tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, phuongThucKetNoi, kieuManHinh, kichThuoc, tamNen, doPhanGiai, tanSoQuet);
+                        themSanPham(manHinh);
+                    }
+
+                    else if("Ban Phim".equals(loaiSP)){
+                        String nhaSanXuat = data[7];
+                        String phuongThucKetNoi = data[8];
+                        String denLED = data[9];
+                        String switchBP = data[10];
+                        BanPhim banPhim = new BanPhim("", tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, phuongThucKetNoi, denLED, switchBP);
+                        themSanPham(banPhim);
+                    }
+                }
             }
             reader.close();
+            System.out.println("Da doc file.");
         } 
         
         catch(IOException e){
             System.out.println("Khong doc duoc file.");
-        }
-    }
-
-    // public void nhapSanPhamVaoFile(String file, SanPham sp){
-    //     try(BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))){
-    //         writer.write(String.join(",",
-    //         sp.getMaSP(),
-    //         sp.getTenSP(),
-    //         String.valueOf(sp.getGiaSP()),
-    //         String.valueOf(sp.getThoiGianBaoHanhSP()),
-    //         String.valueOf(sp.getTrongLuongSP()),
-    //         sp.getMauSacSP())
-    //         );
-    //         writer.close();
-    //     }
-
-    //     catch(IOException e){
-    //         System.out.println("Khong ghi duoc file1");
-    //     }
-    // }
-
-    public void nhapLinhKienVaoFile(String file, SanPham sp, PhanCung cacLinhKien){
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
-            if(cacLinhKien instanceof CPU cpu){
-                writer.write(String.join(",",
-                String.valueOf(cpu.getSoNhan()),
-                String.valueOf(cpu.getSoLuongLoi()),
-                String.valueOf(cpu.getTanSoTurBo())
-                ));
-                writer.close();
-            }
-
-            else if(cacLinhKien instanceof GPU gpu){
-                writer.write(String.join(",",
-                String.valueOf(gpu.getDungLuongVRAM()),
-                gpu.getLoaiVRAM(),
-                String.valueOf(gpu.getTocDoXungNhip()),
-                String.valueOf(gpu.getSoNhanCUDA()),
-                gpu.getCoRayTracing()
-                ));
-                writer.close();
-            }
-
-            else if(cacLinhKien instanceof RAM ram){
-                writer.write(String.join(",",
-                String.valueOf(ram.getDungLuongRAM()),
-                ram.getLoaiRAM()
-                ));
-                writer.close();
-            }
-
-            else if(cacLinhKien instanceof BoNho boNho){
-                writer.write(String.join(",",
-                String.valueOf(boNho.getDungLuongBoNho()),
-                boNho.getLoaiBoNho()
-                ));
-                writer.close();
-            }
-            writer.close();
-        }
-        catch(IOException e){
-            System.out.println("Khong ghi duoc file1");
         }
     }
 
@@ -358,182 +483,203 @@ public class QLSanPham{
                 ""
                 ));
 
-                if(sp instanceof Desktop desktop){
+                if(sp instanceof MayTinh mayTinh){
                     writer.write(String.join(",",
-                    desktop.getCasePC(),
-                    desktop.getTanNhiet(),
+                    mayTinh.getLoaiMayTinh(),
+                    mayTinh.getNhaSanXuat(),
+                    mayTinh.getModel(),
+                    mayTinh.getHeDieuHanh(),
+                    mayTinh.getCoCardRoi(),
                     ""
                     ));
-                    for(PhanCung i:desktop.cacLinhKien){
-                        writer.write(String.join(",", 
+
+                    if(sp instanceof Desktop desktop){
+                        writer.write(String.join(",",
+                        desktop.getCasePC(),
+                        desktop.getTanNhiet(),
+                        ""
+                        ));
+
+                        for(PhanCung i:desktop.cacLinhKien){
+                            writer.write(String.join(",", 
+                                i.getLoaiLinhKien(),
+                                i.getNhaSanXuat(),
+                                i.getModel(),
+                                ""
+                            ));
+    
+                            if(i instanceof CPU cpu){
+                                writer.write(String.join(",",
+                                String.valueOf(cpu.getSoNhan()),
+                                String.valueOf(cpu.getSoLuongLoi()),
+                                String.valueOf(cpu.getTanSoTurBo()),
+                                ""
+                                ));
+                            }
+                
+                            else if(i instanceof GPU gpu){
+                                writer.write(String.join(",",
+                                String.valueOf(gpu.getDungLuongVRAM()),
+                                gpu.getLoaiVRAM(),
+                                String.valueOf(gpu.getTocDoXungNhip()),
+                                String.valueOf(gpu.getSoNhanCUDA()),
+                                gpu.getCoRayTracing(),
+                                ""
+                                ));
+                            }
+                
+                            else if(i instanceof RAM ram){
+                                writer.write(String.join(",",
+                                String.valueOf(ram.getDungLuongRAM()),
+                                ram.getLoaiRAM(),
+                                ""
+                                ));
+                            }
+                
+                            else if(i instanceof BoNho boNho){
+                                writer.write(String.join(",",
+                                String.valueOf(boNho.getDungLuongBoNho()),
+                                boNho.getLoaiBoNho()
+                                ));
+                            }
+                        }
+                        writer.newLine();
+                        }
+                    
+                    else if(sp instanceof Laptop laptop){
+                        writer.write(String.join(",",
+                        laptop.getKichThuocManHinh(),
+                        String.valueOf(laptop.getThoiLuongPin()),
+                        laptop.getLoaiLaptop(),
+                        ""
+                        ));
+    
+                        for(PhanCung i:laptop.cacLinhKien){
+                            writer.write(String.join(",", 
                             i.getLoaiLinhKien(),
                             i.getNhaSanXuat(),
                             i.getModel(),
                             ""
-                        ));
-
-                        if(i instanceof CPU cpu){
-                            writer.write(String.join(",",
-                            String.valueOf(cpu.getSoNhan()),
-                            String.valueOf(cpu.getSoLuongLoi()),
-                            String.valueOf(cpu.getTanSoTurBo()),
-                            ""
                             ));
+                            if(i instanceof CPU cpu){
+                                writer.write(String.join(",",
+                                String.valueOf(cpu.getSoNhan()),
+                                String.valueOf(cpu.getSoLuongLoi()),
+                                String.valueOf(cpu.getTanSoTurBo()),
+                                ""
+                                ));
+                            }
+                
+                            else if(i instanceof GPU gpu){
+                                writer.write(String.join(",",
+                                String.valueOf(gpu.getDungLuongVRAM()),
+                                gpu.getLoaiVRAM(),
+                                String.valueOf(gpu.getTocDoXungNhip()),
+                                String.valueOf(gpu.getSoNhanCUDA()),
+                                gpu.getCoRayTracing(),
+                                ""
+                                ));
+                            }
+                
+                            else if(i instanceof RAM ram){
+                                writer.write(String.join(",",
+                                String.valueOf(ram.getDungLuongRAM()),
+                                ram.getLoaiRAM(),
+                                ""
+                                ));
+                            }
+                
+                            else if(i instanceof BoNho boNho){
+                                writer.write(String.join(",",
+                                String.valueOf(boNho.getDungLuongBoNho()),
+                                boNho.getLoaiBoNho()
+                                ));
+                            }
                         }
-            
-                        else if(i instanceof GPU gpu){
-                            writer.write(String.join(",",
-                            String.valueOf(gpu.getDungLuongVRAM()),
-                            gpu.getLoaiVRAM(),
-                            String.valueOf(gpu.getTocDoXungNhip()),
-                            String.valueOf(gpu.getSoNhanCUDA()),
-                            gpu.getCoRayTracing(),
-                            ""
-                            ));
-                        }
-            
-                        else if(i instanceof RAM ram){
-                            writer.write(String.join(",",
-                            String.valueOf(ram.getDungLuongRAM()),
-                            ram.getLoaiRAM(),
-                            ""
-                            ));
-                        }
-            
-                        else if(i instanceof BoNho boNho){
-                            writer.write(String.join(",",
-                            String.valueOf(boNho.getDungLuongBoNho()),
-                            boNho.getLoaiBoNho()
-                            ));
-                        }
+                        writer.newLine();
                     }
-                    writer.newLine();
-                }
+                    }
 
-                else if(sp instanceof Laptop laptop){
+                else if(sp instanceof PhanCung phanCung){
                     writer.write(String.join(",",
-                    laptop.getKichThuocManHinh(),
-                    String.valueOf(laptop.getThoiLuongPin()),
-                    laptop.getLoaiLaptop(),
-                    ""
-                    ));
-
-                    for(PhanCung i:laptop.cacLinhKien){
-                        writer.write(String.join(",", 
-                        i.getLoaiLinhKien(),
-                        i.getNhaSanXuat(),
-                        i.getModel(),
+                        phanCung.getLoaiLinhKien(),
+                        phanCung.getNhaSanXuat(),
+                        phanCung.getModel(),
                         ""
+                    ));
+
+                    if(sp instanceof CPU cpu){
+                        writer.write(String.join(",",
+                        String.valueOf(cpu.getSoNhan()),
+                        String.valueOf(cpu.getSoLuongLoi()),
+                        String.valueOf(cpu.getTanSoTurBo())
                         ));
-                        if(i instanceof CPU cpu){
-                            writer.write(String.join(",",
-                            String.valueOf(cpu.getSoNhan()),
-                            String.valueOf(cpu.getSoLuongLoi()),
-                            String.valueOf(cpu.getTanSoTurBo()),
-                            ""
-                            ));
-                        }
-            
-                        else if(i instanceof GPU gpu){
-                            writer.write(String.join(",",
-                            String.valueOf(gpu.getDungLuongVRAM()),
-                            gpu.getLoaiVRAM(),
-                            String.valueOf(gpu.getTocDoXungNhip()),
-                            String.valueOf(gpu.getSoNhanCUDA()),
-                            gpu.getCoRayTracing(),
-                            ""
-                            ));
-                        }
-            
-                        else if(i instanceof RAM ram){
-                            writer.write(String.join(",",
-                            String.valueOf(ram.getDungLuongRAM()),
-                            ram.getLoaiRAM(),
-                            ""
-                            ));
-                        }
-            
-                        else if(i instanceof BoNho boNho){
-                            writer.write(String.join(",",
-                            String.valueOf(boNho.getDungLuongBoNho()),
-                            boNho.getLoaiBoNho()
-                            ));
-                        }
+                        writer.newLine();
                     }
-                    writer.newLine();
+    
+                    else if(sp instanceof GPU gpu){
+                        writer.write(String.join(",",
+                        String.valueOf(gpu.getDungLuongVRAM()),
+                        gpu.getLoaiVRAM(),
+                        String.valueOf(gpu.getTocDoXungNhip()),
+                        String.valueOf(gpu.getSoNhanCUDA()),
+                        gpu.getCoRayTracing()
+                        ));
+                        writer.newLine();
+                    }
+    
+                    else if(sp instanceof RAM ram){
+                        writer.write(String.join(",",
+                        String.valueOf(ram.getDungLuongRAM()),
+                        ram.getLoaiRAM()
+                        ));
+                        writer.newLine();
+                    }
+
+                    else if(sp instanceof BoNho boNho){
+                        writer.write(String.join(",",
+                        String.valueOf(boNho.getDungLuongBoNho()),
+                        boNho.getLoaiBoNho()
+                        ));
+                        writer.newLine();
+                    }
                 }
 
-                else if(sp instanceof CPU cpu){
+                else if(sp instanceof ThietBiNgoaiVi thietBiNgoaiVi){
                     writer.write(String.join(",",
-                    String.valueOf(cpu.getSoNhan()),
-                    String.valueOf(cpu.getSoLuongLoi()),
-                    String.valueOf(cpu.getTanSoTurBo())
+                        thietBiNgoaiVi.getLoaiThietBi(),
+                        thietBiNgoaiVi.getNhaSanXuat(),
+                        thietBiNgoaiVi.getPhuongThucKetNoi(),
+                        ""
                     ));
-                    writer.newLine();
+
+                    if(sp instanceof Chuot chuot){
+                        writer.write(String.join(",",
+                        String.valueOf(chuot.getdPI()),
+                        chuot.getDenLED()
+                        ));
+                        writer.newLine();
+                    }
+    
+                    else if(sp instanceof ManHinh manHinh){
+                        writer.write(String.join(",",
+                        manHinh.getKieuManHinh(),
+                        manHinh.getKichThuoc(),
+                        String.valueOf(manHinh.getTanSoQuet()),
+                        manHinh.getTamNen(),
+                        manHinh.getDoPhanGiai()
+                        ));
+                        writer.newLine();
+                    }
+    
+                    else if(sp instanceof BanPhim banPhim){
+                        writer.write(String.join(",",
+                        banPhim.getDenLED(),
+                        banPhim.getSwitchBP()
+                        ));
+                        writer.newLine();
+                    } 
                 }
-
-                else if(sp instanceof GPU gpu){
-                    writer.write(String.join(",",
-                    String.valueOf(gpu.getDungLuongVRAM()),
-                    gpu.getLoaiVRAM(),
-                    String.valueOf(gpu.getTocDoXungNhip()),
-                    String.valueOf(gpu.getSoNhanCUDA()),
-                    gpu.getCoRayTracing()
-                    ));
-                    writer.newLine();
-
-                }
-
-                else if(sp instanceof RAM ram){
-                    writer.write(String.join(",",
-                    String.valueOf(ram.getDungLuongRAM()),
-                    ram.getLoaiRAM()
-                    ));
-                    writer.newLine();
-
-                }
-
-                else if(sp instanceof BoNho boNho){
-                    writer.write(String.join(",",
-                    String.valueOf(boNho.getDungLuongBoNho()),
-                    boNho.getLoaiBoNho()
-                    ));
-                    writer.newLine();
-
-                }
-
-                else if(sp instanceof Chuot chuot){
-                    writer.write(String.join(",",
-                    String.valueOf(chuot.getdPI()),
-                    String.valueOf(chuot.getSoLanBam()),
-                    chuot.getDenLED(),
-                    chuot.getLoaiChuot()
-                    ));
-                    writer.newLine();
-
-                }
-
-                else if(sp instanceof ManHinh manHinh){
-                    writer.write(String.join(",",
-                    manHinh.getKieuManHinh(),
-                    manHinh.getKichThuoc(),
-                    String.valueOf(manHinh.getTanSoQuet()),
-                    manHinh.getTamNen(),
-                    manHinh.getDoPhanGiai()
-                    ));
-                    writer.newLine();
-
-                }
-
-                else if(sp instanceof BanPhim banPhim){
-                    writer.write(String.join(",",
-                    banPhim.getKichThuoc(),
-                    banPhim.getDenLED(),
-                    banPhim.getSwitchBP()
-                    ));
-                    writer.newLine();
-
-                } 
             }
             writer.close();
             System.out.println("Da nhap vao file.");
@@ -549,6 +695,7 @@ public class QLSanPham{
             if(sp.maSP.equals(maSP)){
                 sp.nhap();
                 sp.maSP = maSP;
+                SanPham.soLuongSP--;
                 System.out.println("Da sua thong tin san pham co ma: " + maSP);
                 return;
                 }

@@ -12,17 +12,9 @@ public class GPU extends PhanCung{
 
     }
 
-    public GPU(int dungLuongVRAM, String loaiVRAM, float tocDoXungNhip, int soNhanCUDA, String rayTracing) {
-        this.dungLuongVRAM = dungLuongVRAM;
-        this.loaiVRAM = loaiVRAM;
-        this.tocDoXungNhip = tocDoXungNhip;
-        this.soNhanCUDA = soNhanCUDA;
-        this.rayTracing = rayTracing;
-    }
-
-    public GPU(int dungLuongVRAM, String loaiVRAM, float tocDoXungNhip, int soNhanCUDA, String rayTracing, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String nhaSanXuat, String loaiLinhKien, String model) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien, model);
+    public GPU(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiLinhKien,
+            String nhaSanXuat, String model, int dungLuongVRAM, String loaiVRAM, float tocDoXungNhip, int soNhanCUDA, String rayTracing){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiLinhKien, nhaSanXuat, model);
         this.dungLuongVRAM = dungLuongVRAM;
         this.loaiVRAM = loaiVRAM;
         this.tocDoXungNhip = tocDoXungNhip;

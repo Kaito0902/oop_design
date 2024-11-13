@@ -3,9 +3,9 @@ package SanPham;
 import java.util.Arrays;
 
 public abstract class MayTinh extends SanPham{
+    protected String loaiMayTinh;
     protected String nhaSanXuat;
     protected String model;
-    protected String loaiMayTinh;
     protected String heDieuHanh;
     protected String coCardRoi;
     protected PhanCung[] cacLinhKien;
@@ -15,8 +15,8 @@ public abstract class MayTinh extends SanPham{
 
     }
 
-    public MayTinh(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi,
+    public MayTinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+            String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi,
             PhanCung[] cacLinhKien) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
         this.nhaSanXuat = nhaSanXuat;

@@ -6,7 +6,7 @@ public abstract class SanPham{
     protected String maSP;
     protected String tenSP;
     protected float giaSP;
-    protected int thoiGianBaoHanhSP;
+    protected String thoiGianBaoHanhSP;
     protected float trongLuongSP;
     protected String mauSacSP;
     static int soLuongSP = 0;
@@ -17,15 +17,15 @@ public abstract class SanPham{
 
     }
     
-    public SanPham(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP,
+    public SanPham(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP,
             String mauSacSP) {
-        soLuongSP++;
-        this.maSP = "#sp" + String.format("%03d", soLuongSP);
+        this.maSP = maSP;
         this.tenSP = tenSP;
         this.giaSP = giaSP;
         this.thoiGianBaoHanhSP = thoiGianBaoHanhSP;
         this.trongLuongSP = trongLuongSP;
         this.mauSacSP = mauSacSP;
+        soLuongSP++;
     }
 
     public String getMaSP() {
@@ -52,11 +52,11 @@ public abstract class SanPham{
         this.giaSP = giaSP;
     }
 
-    public int getThoiGianBaoHanhSP() {
+    public String getThoiGianBaoHanhSP() {
         return thoiGianBaoHanhSP;
     }
 
-    public void setThoiGianBaoHanhSP(int thoiGianBaoHanhSP) {
+    public void setThoiGianBaoHanhSP(String thoiGianBaoHanhSP) {
         this.thoiGianBaoHanhSP = thoiGianBaoHanhSP;
     }
 
@@ -89,7 +89,7 @@ public abstract class SanPham{
         System.out.println("Nhap gia san pham: ");
         setGiaSP(Float.parseFloat(sc.nextLine()));
         System.out.println("Nhap thoi gian bao hanh san pham: ");
-        setThoiGianBaoHanhSP(Integer.parseInt(sc.nextLine()));
+        setThoiGianBaoHanhSP(sc.nextLine());
         System.out.println("Nhap trong luong san pham: ");
         setTrongLuongSP(Float.parseFloat(sc.nextLine()));
         System.out.println("Nhap mau sac san pham: ");
@@ -99,7 +99,7 @@ public abstract class SanPham{
 
     @Override
     public String toString(){
-        return String.format("%-10s %-20s %-15f %-15d %-10f %-10s",
+        return String.format("%-10s %-20s %-15f %-15s %-10f %-10s",
                 maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
     }
 
@@ -108,7 +108,7 @@ public abstract class SanPham{
         System.out.println("Ma san pham: " + maSP);
         System.out.println("Ten san pham: " + tenSP);
         System.out.println("Gia san pham: " + String.format("%.3f", giaSP) + " VND");
-        System.out.println("Thoi gian bao hanh san pham: " + thoiGianBaoHanhSP + " nam");
+        System.out.println("Thoi gian bao hanh san pham: " + thoiGianBaoHanhSP);
         System.out.println("Trong luong san pham: " + trongLuongSP + "kg");
         System.out.println("Mau sac san pham: " + mauSacSP);
     }

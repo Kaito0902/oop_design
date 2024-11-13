@@ -10,8 +10,8 @@ public class Laptop extends MayTinh implements HienThiCauHinh{
 
     }
 
-    public Laptop(String kichThuocManHinh, String loaiLaptop, float thoiLuongPin, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien);
+    public Laptop(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien, String kichThuocManHinh, float thoiLuongPin, String loaiLaptop){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiMayTinh, nhaSanXuat, model, heDieuHanh, coCardRoi, cacLinhKien);
         this.kichThuocManHinh = kichThuocManHinh;
         this.loaiLaptop = loaiLaptop;
         this.thoiLuongPin = thoiLuongPin;

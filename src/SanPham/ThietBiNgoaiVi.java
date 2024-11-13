@@ -1,8 +1,8 @@
 package SanPham;
 
 public abstract class ThietBiNgoaiVi extends SanPham{
-    protected String nhaSanXuat;
     protected String loaiThietBi;
+    protected String nhaSanXuat;
     protected String phuongThucKetNoi;
 
     public ThietBiNgoaiVi()
@@ -10,11 +10,11 @@ public abstract class ThietBiNgoaiVi extends SanPham{
 
     } 
 
-    public ThietBiNgoaiVi(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String loaiThietBi, String phuongThucKetNoi) {
+    public ThietBiNgoaiVi(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP,
+            String mauSacSP, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi){
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
-        this.nhaSanXuat = nhaSanXuat;
         this.loaiThietBi = loaiThietBi;
+        this.nhaSanXuat = nhaSanXuat;
         this.phuongThucKetNoi = phuongThucKetNoi;
     }
 

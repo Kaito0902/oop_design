@@ -2,23 +2,18 @@ package SanPham;
 
 public class Chuot extends ThietBiNgoaiVi{
     private int dPI;
-    private int soLanBam;
     private String denLED;
-    private String loaiChuot;
 
     public Chuot()
     {
 
     }
 
-    public Chuot(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String nhaSanXuat, String loaiThietBi, String phuongThucKetNoi, int dPI, int soLanBam, String denLED,
-            String loaiChuot) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiThietBi, phuongThucKetNoi);
+    public Chuot(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiThietBi,
+            String nhaSanXuat, String phuongThucKetNoi, int dPI, String denLED){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.dPI = dPI;
-        this.soLanBam = soLanBam;
         this.denLED = denLED;
-        this.loaiChuot = loaiChuot;
     }
 
     public int getdPI() {
@@ -29,28 +24,12 @@ public class Chuot extends ThietBiNgoaiVi{
         this.dPI = dPI;
     }
 
-    public int getSoLanBam() {
-        return soLanBam;
-    }
-
-    public void setSoLanBam(int soLanBam) {
-        this.soLanBam = soLanBam;
-    }
-
     public String getDenLED() {
         return denLED;
     }
 
     public void setDenLED(String denLED) {
         this.denLED = denLED;
-    }
-
-    public String getLoaiChuot() {
-        return loaiChuot;
-    }
-
-    public void setLoaiChuot(String loaiChuot) {
-        this.loaiChuot = loaiChuot;
     }
 
     @Override
@@ -64,25 +43,19 @@ public class Chuot extends ThietBiNgoaiVi{
         super.nhap();
         System.out.println("Nhap DPI chuot: ");
         setdPI(Integer.parseInt(sc.nextLine()));
-        System.out.println("Nhap so lan bam chuot: ");
-        setSoLanBam(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap den LED chuot: ");
         setDenLED(sc.nextLine());
-        System.out.println("Nhap loai chuot: ");
-        setLoaiChuot(sc.nextLine());
     }
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10d %-10d %-15s", dPI, soLanBam, loaiChuot);
+        return super.toString() + String.format("%-10d %-10s", dPI, denLED);
     }
 
     @Override
     public void xuat(){
         super.xuat();
         System.out.println("DPI chuot: " + dPI);
-        System.out.println("So lan bam chuot: " + soLanBam + " lan");
         System.out.println("Den LED chuot: " + denLED);
-        System.out.println("Loai chuot: " + loaiChuot);
     }
 }

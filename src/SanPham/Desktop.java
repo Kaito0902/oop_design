@@ -8,8 +8,8 @@ public class Desktop extends MayTinh implements HienThiCauHinh{
 
     }
 
-    public Desktop(String casePC, String tanNhiet, String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien);
+    public Desktop(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien, String casePC, String tanNhiet){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiMayTinh, nhaSanXuat, model, heDieuHanh, coCardRoi, cacLinhKien);
         this.casePC = casePC;
         this.tanNhiet = tanNhiet;
     }

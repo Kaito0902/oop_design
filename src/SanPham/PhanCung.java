@@ -1,8 +1,8 @@
 package SanPham;
 
 public abstract class PhanCung extends SanPham implements NhapCauHinh, HienThiCauHinh{
-    protected String nhaSanXuat;
     protected String loaiLinhKien;
+    protected String nhaSanXuat;
     protected String model;
 
     public PhanCung() 
@@ -10,8 +10,8 @@ public abstract class PhanCung extends SanPham implements NhapCauHinh, HienThiCa
 
     }
 
-    public PhanCung(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String nhaSanXuat, String loaiLinhKien, String model) {
+    public PhanCung(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+                String loaiLinhKien, String nhaSanXuat, String model) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
         this.nhaSanXuat = nhaSanXuat;
         this.loaiLinhKien = loaiLinhKien;
