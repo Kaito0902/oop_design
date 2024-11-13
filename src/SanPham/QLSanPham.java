@@ -432,7 +432,7 @@ public class QLSanPham{
                         int dPI = Integer.parseInt(data[9]);
                         String denLED = data[10];
 
-                        Chuot chuot = new Chuot("", tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, phuongThucKetNoi, dPI, denLED);
+                        Chuot chuot = new Chuot(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, phuongThucKetNoi, dPI, denLED);
                         themSanPham(chuot);
                     }
 
@@ -445,7 +445,7 @@ public class QLSanPham{
                         String tamNen = data[12];
                         String doPhanGiai = data[13];
 
-                        ManHinh manHinh = new ManHinh("", tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, phuongThucKetNoi, kieuManHinh, kichThuoc, tamNen, doPhanGiai, tanSoQuet);
+                        ManHinh manHinh = new ManHinh(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, phuongThucKetNoi, kieuManHinh, kichThuoc, tamNen, doPhanGiai, tanSoQuet);
                         themSanPham(manHinh);
                     }
 
@@ -454,7 +454,7 @@ public class QLSanPham{
                         String phuongThucKetNoi = data[8];
                         String denLED = data[9];
                         String switchBP = data[10];
-                        BanPhim banPhim = new BanPhim("", tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, phuongThucKetNoi, denLED, switchBP);
+                        BanPhim banPhim = new BanPhim(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiSP, nhaSanXuat, phuongThucKetNoi, denLED, switchBP);
                         themSanPham(banPhim);
                     }
                 }
