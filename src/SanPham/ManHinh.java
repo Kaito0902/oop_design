@@ -62,8 +62,14 @@ public class ManHinh extends ThietBiNgoaiVi{
     }
 
     @Override
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
     public float thanhTien(){
-        return 1;
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -95,5 +101,6 @@ public class ManHinh extends ThietBiNgoaiVi{
         System.out.println("Tan so quet man hinh: " + tanSoQuet + "Hz");
         System.out.println("Tam nen man hinh: " + tamNen);
         System.out.println("Nhap do phan giai man hinh: " + doPhanGiai);
+        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
     }
 }

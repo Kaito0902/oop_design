@@ -42,8 +42,14 @@ public class Laptop extends MayTinh implements HienThiCauHinh{
     }
 
     @Override
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
     public float thanhTien(){
-        return 1;
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -71,6 +77,7 @@ public class Laptop extends MayTinh implements HienThiCauHinh{
         System.out.println("Thoi luong pin Laptop: " + thoiLuongPin + "h");
         System.out.println("Loai laptop: " + loaiLaptop);
         hienThiCauHinh();
+        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
     }
 
     @Override

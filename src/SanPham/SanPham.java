@@ -78,8 +78,7 @@ public abstract class SanPham{
 
 
     public abstract float thanhTien();    
-
-
+    public abstract float tinhKhuyenMai();
 
     public void nhap()
     {

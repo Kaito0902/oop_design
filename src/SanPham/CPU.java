@@ -42,8 +42,14 @@ public class CPU extends PhanCung{
     }
 
     @Override
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
     public float thanhTien(){
-        return 1;
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -82,6 +88,7 @@ public class CPU extends PhanCung{
         System.out.println("So nhan CPU: " + soNhan);
         System.out.println("So loi CPU: " + soLuongLoi);
         System.out.println("Tan so turbo CPU: " + tanSoTurBo + "GHz");
+        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
     }
 
     @Override

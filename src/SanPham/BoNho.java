@@ -32,8 +32,14 @@ public class BoNho extends PhanCung{
     }
 
     @Override
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
     public float thanhTien(){
-        return 1;
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -58,6 +64,7 @@ public class BoNho extends PhanCung{
         super.xuat();
         System.out.println("Dung luong bo nho: " + dungLuongBoNho + "GB");
         System.out.println("Loai bo nho: " + loaiBoNho);
+        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
     }
 
     @Override

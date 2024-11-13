@@ -63,8 +63,14 @@ public class GPU extends PhanCung{
     }
 
     @Override
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
     public float thanhTien(){
-        return 1;
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -112,6 +118,7 @@ public class GPU extends PhanCung{
         System.out.println("Nhap toc do xung nhip: " + tocDoXungNhip +"Ghz");
         System.out.println("So nhan CUDA: " + soNhanCUDA);
         System.out.println("GPU " + rayTracing + " RayTracing");
+        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
     }
 
     @Override

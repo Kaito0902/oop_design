@@ -33,8 +33,14 @@ public class Chuot extends ThietBiNgoaiVi{
     }
 
     @Override
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
     public float thanhTien(){
-        return 1;
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -57,5 +63,6 @@ public class Chuot extends ThietBiNgoaiVi{
         super.xuat();
         System.out.println("DPI chuot: " + dPI);
         System.out.println("Den LED chuot: " + denLED);
+        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
     }
 }

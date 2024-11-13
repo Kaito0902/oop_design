@@ -77,7 +77,7 @@ public class QLSanPham{
             switch(choiceMenu) 
             {
                 case 1:
-                    nhapDanhSach1();
+                    nhapDanhSach();
                     break;
 
                 case 2:

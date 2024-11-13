@@ -32,8 +32,14 @@ public class RAM extends PhanCung{
     }
 
     @Override
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
     public float thanhTien(){
-        return 1;
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -65,6 +71,7 @@ public class RAM extends PhanCung{
         super.xuat();
         System.out.println("Dung luong RAM: " + dungLuongRAM + "GB");
         System.out.println("Loai RAM: " + loaiRAM);
+        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
     }
 
     @Override
