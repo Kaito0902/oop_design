@@ -1,0 +1,5 @@
+ncc1,Hoa Thuan,21A Nguyen Trai Quan 5,Thanh pho Ho Chi Minh,Viet Nam,hoathuan18@gmail.com,0312345601,17-10-2010,20000000.0,Laptop
+ncc2,Thien Nhan,26 Vo Van Tan,Thanh pho Ho Chi Minh,Viet Nam,thiennhan12@gmail.com,0312345602,10-10-2010,200000.0,Chuot
+ncc3,Quan Nha,20B Tran Phu,Thanh pho Ho Chi Minh,Viet Nam,quannha18@gmail.com,0312345603,1-10-2008,1800000.0,Ram
+ncc4,Thu Thuy,18 Hai Thuong Lan Ong phuong 3,Thanh pho Da Lat,Viet Nam,thuthuy18@gmail.com,0312345604,16-10-2010,5000000.0,GPU
+ncc5,Thien Nhat,16 Truong Dinh,Thanh pho Da Lat,Viet Nam,thiennhat11@gmail.com,0312345605,11-10-2015,10000000.0,Man hinh

@@ -1,0 +1,5 @@
+ddh1,17-1-2022,18-1-2022,Laptop,20000000.0,1,Hoa Thuan,Chuyen khoan
+ddh2,7-1-2023,18-1-2022,Chuot,400000.0,2,Thien Nhan,Chuyen khoan
+ddh3,1-1-2023,6-2-2023,Ram,1800000.0,1,Quan Nha,Chuyen khoan
+ddh4,1-1-2022,1-2-2024,GPU,5000000.0,1,Thu Thuy,Truc tiep
+ddh5,22-4-2022,1-6-2024,Man hinh,10000000.0,1,Thien Nhat,Chuyen khoan
