@@ -42,7 +42,7 @@ public abstract class KhachHang {
         this.diaChi = diaChi;
         this.sdt = sdt;
         this.email = email;
-        this.maKhachHang = "kh" + String.format("%02d", ++tongKH);
+        this.maKhachHang = maKhachHang;//"kh" + String.format("%02d", ++tongKH)
         this.loaiKhachHang = loaiKhachHang;
         this.tichDiem = tichDiem;
         tongKH++;
@@ -181,7 +181,7 @@ public abstract class KhachHang {
             if ( soluonggiaodich < giaodich.length )
                 giaodich[soluonggiaodich++] = gd;
             else
-                System.out.println("khong the them giao dich:So luong dat toi da!!!");
+                System.out.println("khong the them giao dich:So luong dat toi da!!!");  
 
             qlhd.themHD(gd);
             System.out.println("Ban co muon them giao dich khac khong(Y/N):");

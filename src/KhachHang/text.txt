@@ -1,2 +1,1 @@
-KH001,Nguyen A,Nam,1990-01-01,Ha Noi,0123456789,nguyena@example.com,Uu dai,1000,8.5
-KH002,Tran B,Nữ,1992-02-02,Da Nang,0987654321,tranb@example.com,Than Thiet,2000,5
+kh01,ds,ds,ds,ds,ds,ds,Than Thiet,50,5,0.25,0.0

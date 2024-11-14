@@ -16,8 +16,10 @@ public class CaNhan extends KhachHang {
 
     //tinhdiem thuong
     @Override
-    public int tinhDiemThuong( double tongSoTien ) {
-        return (int) (tongSoTien / 100000);
+    public int tinhDiemThuong( double tongSoTien ) { //can thuoc tinh tong so tiền để viết điều kiện 
+        if ( tongSoTien >= 10000000)
+            return (int) (tongSoTien / 100000 )*5;
+        return (int) (tongSoTien / 100000);             
     }
 
 

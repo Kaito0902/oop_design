@@ -74,6 +74,33 @@ public class QLKhachHang {
                 }
         }
 
+    // cap nhap khach hang len vip
+    public void capNhatLoaiKhachHang(QLHoaDon qlHoaDon) {
+
+        for (int i = 0; i < dskh.length; i++) {
+            KhachHang kh = dskh[i];
+            double tongSoTien = 5000000;//qlHoaDon.getTongSoTien(kh.getMaKhachHang())
+            
+            if (tongSoTien >= 5000000 && kh instanceof CaNhan) {
+
+                KhachHang caNhan = (CaNhan) kh;
+                caNhan.setLoaiKhachHang("Than Thiet"); 
+                caNhan.setTichDiem(caNhan.tinhDiemThuong(tongSoTien));
+                
+                // Nâng cấp lên khách hàng VIP
+                KhachHang vip = new Vip(
+                    caNhan.getHoTen(), caNhan.getGioiTinh(), caNhan.getNgaySinh(), caNhan.getDiaChi(), caNhan.getSdt(),
+                    caNhan.getEmail(), caNhan.getMaKhachHang(), "Than Thiet", caNhan.getTichDiem(), 5
+                );
+                dskh[i] = vip;
+                System.out.println("Khach hang " + kh.getMaKhachHang() + " đã được nâng cấp lên VIP");
+            } else {
+                // Giữ nguyên nếu không đạt điều kiện
+                System.out.println("Khach hang " + kh.getMaKhachHang() + " không đủ điều kiện để lên VIP");
+            }
+        }
+    }
+
     //writetofile
     public void ghiVaoFileDSKH() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Admin\\java1\\KhachHang\\text.txt"))){
@@ -214,6 +241,7 @@ public class QLKhachHang {
             System.out.printf("| %-31s|\n", "8. Sua thongtin khach hang"); 
             System.out.printf("| %-31s|\n", "9. Lay sl khach hang"); 
             System.out.printf("| %-31s|\n", "10. Doc tu file"); 
+            System.out.printf("| %-31s|\n", "11. Cập nhập khách hàng lên vip"); 
             System.out.printf("| %-31s|\n", "0. Thoat chuong trinh");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
@@ -309,6 +337,14 @@ public class QLKhachHang {
                     break;
                 case 10:
                     docTuFileDSKH();
+                    break;
+                case 11:
+                    if ( dskh.length > 0 ){
+                        capNhatLoaiKhachHang(qlhd);
+                    ghiVaoFileDSKH();
+                    }
+                    else
+                        System.out.println("Danh sach rong!!!");
                     break;
                 case 0:
                     System.out.println("Da thoat chuong trinh!!!");
