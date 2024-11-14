@@ -1,8 +1,11 @@
 package KhachHang;
+
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import Doan.Khachhang;
+import HoaDon.QLHoaDon;
+
 public class QLKhachHang {
     private KhachHang dskh[] = new KhachHang[0];
     static Scanner scanner = new Scanner(System.in);
@@ -71,9 +74,131 @@ public class QLKhachHang {
                 }
         }
 
+    //writetofile
+    public void ghiVaoFileDSKH() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Admin\\java1\\KhachHang\\text.txt"))){
+            for ( KhachHang kh : dskh )
+                if ( kh instanceof CaNhan cn ) {
+                    writer.write(String.join(",",
+                    cn.getMaKhachHang(),
+                    cn.getHoTen(),
+                    cn.getGioiTinh(),
+                    cn.getNgaySinh(),
+                    cn.getDiaChi(),
+                    cn.getSdt(),
+                    cn.getEmail(),
+                    cn.getLoaiKhachHang(),
+                    String.valueOf(cn.getTichDiem()),
+                    String.valueOf(cn.tinhUuDai())
+                    ));
+                    writer.newLine();
+                }
+                else if ( kh instanceof SinhVien sv ) {
+                    writer.write(String.join(",",
+                    sv.getMaKhachHang(),
+                    sv.getHoTen(),
+                    sv.getGioiTinh(),
+                    sv.getNgaySinh(),
+                    sv.getDiaChi(),
+                    sv.getSdt(),
+                    sv.getEmail(),
+                    sv.getLoaiKhachHang(),
+                    String.valueOf(sv.getTichDiem()),
+                    String.valueOf(sv.getDiemTB()),
+                    String.valueOf(sv.tinhUuDai())
+                    ));
+                    writer.newLine();
+                }
+                else if ( kh instanceof Vip vip ) {
+                    writer.write(String.join(",",
+                    vip.getMaKhachHang(),
+                    vip.getHoTen(),
+                    vip.getGioiTinh(),
+                    vip.getNgaySinh(),
+                    vip.getDiaChi(),
+                    vip.getSdt(),
+                    vip.getEmail(),
+                    vip.getLoaiKhachHang(),
+                    String.valueOf(vip.getTichDiem()),
+                    String.valueOf(vip.getHeSo()),
+                    String.valueOf(vip.tinhUuDai()),
+                    String.valueOf(vip.laiSuatTraGop())
+                    ));
+                    writer.newLine();
+                }
+                else {
+                    DoiTacDoanhNghiep dt = (DoiTacDoanhNghiep) kh;
+                    writer.write(String.join(",",
+                    dt.getMaKhachHang(),
+                    dt.getHoTen(),
+                    dt.getGioiTinh(),
+                    dt.getNgaySinh(),
+                    dt.getDiaChi(),
+                    dt.getSdt(),
+                    dt.getEmail(),
+                    dt.getLoaiKhachHang(),
+                    String.valueOf(dt.getTichDiem()),
+                    dt.getTenCongTy(),
+                    String.valueOf(dt.tinhUuDai()),
+                    String.valueOf(dt.laiSuatTraGop())
+                    ));
+                    writer.newLine();
+                }
+        } catch (IOException e) {
+            System.out.println("Loi ghi file:" + e.getMessage());
+        }
+    }
+
+    public void docTuFileDSKH() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Admin\\java1\\KhachHang\\text.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+
+                if ( data.length > 0 ) {
+                    String maKhachHang = data[0];
+                    String tenKhachHang = data[1];
+                    String gioiTinh = data[2];
+                    String namSinh = data[3];
+                    String diaChi = data[4];
+                    String soDienThoai = data[5];
+                    String eMail = data[6];
+                    String loaiKhachHang = data[7];
+                    int tichDiem = Integer.parseInt(data[8]);
+
+                    switch (loaiKhachHang) {
+                        case "Binh Thuong" ->{
+                            KhachHang caNhan = new CaNhan(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, tichDiem);
+                            themKH(caNhan);
+                        }
+                        case "Uu dai" -> {
+                            double diemTB = Double.parseDouble(data[9]);
+                            KhachHang sinhVien = new SinhVien(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, tichDiem, diemTB);
+                            themKH(sinhVien);
+                        }
+                        case "Than Thiet" -> {
+                            int heSo = Integer.parseInt(data[9]);
+                            KhachHang vip = new Vip(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, tichDiem, heSo);
+                            themKH(vip);
+                        }
+                        case "Tiem Nang" -> {
+                            String tenCongTy = data[9];
+                            KhachHang dt = new DoiTacDoanhNghiep(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, tichDiem, tenCongTy);
+                            themKH(dt);
+                        }
+                    
+                        default -> System.out.println("Dữ liệu không hợp lệ cho nhân viên: " + line);
+                    }
+
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Lỗi đọc hoặc định dạng số trong dữ liệu: " + e.getMessage());
+        }
+    }
 
     //menu
-    public void menu() {
+    public void menu(QLHoaDon qlhd) {
         int choice;
         do {
             System.out.println("===================================");
@@ -88,6 +213,7 @@ public class QLKhachHang {
             System.out.printf("| %-31s|\n", "7. Tim khach hang mua nhieu tien nhat");
             System.out.printf("| %-31s|\n", "8. Sua thongtin khach hang"); 
             System.out.printf("| %-31s|\n", "9. Lay sl khach hang"); 
+            System.out.printf("| %-31s|\n", "10. Doc tu file"); 
             System.out.printf("| %-31s|\n", "0. Thoat chuong trinh");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
@@ -106,23 +232,27 @@ public class QLKhachHang {
                     switch (chon) {
                         case "a":
                             KhachHang x = new CaNhan();
-                            x.input();
+                            x.input(qlhd);
                             themKH(x);
+                            ghiVaoFileDSKH();
                             break;
                         case "b":
                             KhachHang y = new SinhVien();
-                            y.input();
+                            y.input(qlhd);
                             themKH(y);
+                            ghiVaoFileDSKH();
                             break;
                         case "c":
                             KhachHang z = new DoiTacDoanhNghiep();
-                            z.input();
+                            z.input(qlhd);
                             themKH(z);
+                            ghiVaoFileDSKH();
                             break;
                         case "d":
                             KhachHang w = new Vip();
-                            w.input();
+                            w.input(qlhd);
                             themKH(w);
+                            ghiVaoFileDSKH();
                             break;
                         default:
                             System.out.println("Lua chon khong hop le!!!");
@@ -157,7 +287,7 @@ public class QLKhachHang {
                             if ( kh1 != null)
                                 kh1.output();
                             else 
-                                System.out.println("khong tim thay khach hang co ma:" + ma1);
+                                System.out.println("khong tim thay khach hang co ma: " + ma1);
                             break;
                         case "b":
                             System.out.println("Nhap sdt kh muon tim:");
@@ -166,7 +296,7 @@ public class QLKhachHang {
                             if ( kh2 != null )
                                 kh2.output();
                         else 
-                            System.out.println("Khong tim thay khach hang theo sdt" + ma2);
+                            System.out.println("Khong tim thay khach hang theo sdt: " + ma2);
                             break;
                         default:
                             System.out.println("nhap sai lua chon");
@@ -175,10 +305,16 @@ public class QLKhachHang {
                     break;
                 case 5:
                     sapxep();
-                    System.out.println("Da sap xep danh sach");
+                    System.out.println("Da sap xep danh sach!!!!");
+                    break;
+                case 10:
+                    docTuFileDSKH();
+                    break;
+                case 0:
+                    System.out.println("Da thoat chuong trinh!!!");
                     break;
                 default:
-                    System.out.println("Lua chon khong hop le!!!");
+                    System.out.println("Lua chon khong hop le!!!!");
             } 
         }  while (choice != 0);
     }

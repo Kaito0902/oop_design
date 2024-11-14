@@ -1,6 +1,7 @@
 package KhachHang;
 
 import HoaDon.HoaDon;
+import HoaDon.QLHoaDon;
 
 public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     //attribute
@@ -30,8 +31,10 @@ public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
 
     //input kiem tra co muon tra gop
     @Override
-    public void input() {
-        super.input();
+    public void input(QLHoaDon qlhd) {
+        super.input(qlhd);
+        System.out.println("Nhap ten cong ty:");
+        setTenCongTy(scanner.nextLine());
         System.out.println("Ban co muon thanh toan tra gop?(Y/N):");
         String chon = scanner.nextLine();
         if ( chon.equals("y") || chon.equals("Y"))
@@ -41,8 +44,8 @@ public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     }
 
     @Override
-    public double laiSuatTraGop( double tongSoTien) {
-        return traGop ? (0.03*tongSoTien) : 0;
+    public double laiSuatTraGop() {
+        return traGop ? 0.03:0;
     }
 
     @Override
@@ -58,9 +61,9 @@ public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
     @Override
     public String toString() {
         if (traGop)    
-            return super.toString() + String.format("%-10.2f %-15d %-10.2f",tinhUuDai(),tinhDiemThuong(1000000), laiSuatTraGop(1000000));
+            return super.toString() + String.format("%-10b %-10s %-10.2f %-15d %-10.2f",traGop ,tenCongTy,tinhUuDai(),getTichDiem(), laiSuatTraGop());
         else
-            return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(),tinhDiemThuong(1000000));
+            return super.toString() + String.format("%-10b %-10s %-10.2f %-15d",traGop ,tenCongTy ,tinhUuDai(), getTichDiem());
     }
 
 }

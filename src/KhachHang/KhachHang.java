@@ -21,8 +21,8 @@ public abstract class KhachHang {
     private String[] loai = {"Tiem nang", "Than Thiet", "Uu dai", "Binh Thuong"};  
 
     //các thuộc tính/tính năng thêm cho khách hàng
-    protected HoaDon giaodich[] = new HoaDon[10];//1khách hàng có nhiều hóa đơn mua hàng
-    protected int soluonggiaodich;
+    protected HoaDon giaodich[] = new HoaDon[5];//1khách hàng có nhiều hóa đơn mua hàng
+    protected int soluonggiaodich = 0;
     // protected DonDatHang gioHang[];//1 khách hàng có nhiều đơn đặt hàng
     // protected BaoHanh baoHang[];//1 khách hàng có nhiều loại sản phẩm cần bảo hành
     // protected String khieuNai;//khách hàng có thể góp ý dịch vụ
@@ -99,7 +99,7 @@ public abstract class KhachHang {
 
     public String getMaKhachHang() {
         if ( maKhachHang == null )
-            maKhachHang = "kh" + String.format("%02d", tongKH++);
+            maKhachHang = "kh" + String.format("%02d", tongKH);
         return maKhachHang;
     }
 
@@ -129,11 +129,12 @@ public abstract class KhachHang {
     }
 
     //input
-    public void input() {
+    public void input(QLHoaDon qlhd) {
         tongKH++;
         inputInfo();
         inputType();
-        inputGiaoDich();
+        inputGiaoDich(qlhd);
+        capNhapTichDiem(qlhd);
     }
 
     // nhap thong tin khach hang
@@ -162,11 +163,11 @@ public abstract class KhachHang {
         }
         else if ( this instanceof Vip ){
             setLoaiKhachHang("Than Thiet");
-        }
+        }else 
             setLoaiKhachHang("Tiem Nang");
     }
 
-    public void inputGiaoDich() {
+    public void inputGiaoDich(QLHoaDon qlhd) {
         // giao dich
         boolean themgiaodich;
         System.out.println("Ban co muon them giao dich khong(Y/N):");
@@ -176,8 +177,13 @@ public abstract class KhachHang {
         while (themgiaodich) {
             HoaDon gd = new HoaDon();
             gd.input();
-            giaodich[soluonggiaodich++] = gd;
-    
+
+            if ( soluonggiaodich < giaodich.length )
+                giaodich[soluonggiaodich++] = gd;
+            else
+                System.out.println("khong the them giao dich:So luong dat toi da!!!");
+
+            qlhd.themHD(gd);
             System.out.println("Ban co muon them giao dich khac khong(Y/N):");
             chon = scanner.nextLine();
             themgiaodich = !chon.equalsIgnoreCase("N");
@@ -221,4 +227,11 @@ public abstract class KhachHang {
     public abstract double tinhUuDai();
     //tinh diemThuong
     public abstract int tinhDiemThuong(double tongSoTien);
+
+    // cap nhap tich diem
+    public void  capNhapTichDiem(QLHoaDon qlHoaDon) {
+        double tongSoTien = 1000000;//qlHoaDon.getTongSoTien(maKhachHang)
+        int diemThuong = tinhDiemThuong(tongSoTien);
+        tichDiem = diemThuong;
+    }
 }

@@ -1,6 +1,7 @@
 package KhachHang;
 
 import HoaDon.HoaDon;
+import HoaDon.QLHoaDon;
 
 public class SinhVien extends KhachHang {
     //attributes
@@ -13,7 +14,7 @@ public class SinhVien extends KhachHang {
 
     //parameted constructor
     public SinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
-            String maKhachHang, String loaiKhachHang, String khieuNai, int tichDiem, String maSV, double diemTB) {
+            String maKhachHang, String loaiKhachHang, int tichDiem, double diemTB) {
         super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.diemTB = diemTB;
     }
@@ -27,15 +28,15 @@ public class SinhVien extends KhachHang {
         while (diemTB < 0.0 && diemTB > 10.0 ) {
             System.out.println("diemtb khong duoc duoi 0 ");
             System.out.println("Vui long nhap lai: ");
-            scanner.nextDouble();
+            diemTB = scanner.nextDouble();
         }
         this.diemTB = diemTB;
     }
 
     //input
     @Override
-    public void input() {
-        super.input();
+    public void input(QLHoaDon qlhd) {
+        super.input(qlhd);
         System.out.println("Nhap diem TB:");
         setDiemTB(Double.parseDouble(scanner.nextLine()));
     }
@@ -57,7 +58,7 @@ public class SinhVien extends KhachHang {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10.2f %-10.2f %-15d", diemTB ,tinhUuDai(), tinhDiemThuong(1000000));
+        return super.toString() + String.format("%-10.2f %-10.2f %-15d", diemTB ,tinhUuDai(), getTichDiem());
     }
     
 }
