@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class QLHoaDon {
-    private HoaDon[] dshd = new HoaDon[0];
-    private static final Scanner sc = new Scanner(System.in);
+    HoaDon[] dshd = new HoaDon[0];
+    private static Scanner sc = new Scanner(System.in);
 
     public void themHD(HoaDon hd) {
         HoaDon[] newdshd = Arrays.copyOf(dshd, dshd.length + 1);
@@ -21,7 +21,7 @@ public class QLHoaDon {
         }
     }
 
-    // Phuong thuc tim kiem hoa don theo ten khach hang
+    // Phương thức tìm kiếm hóa đơn theo tên khách hàng
     public void timKiemHoaDon() {
         System.out.print("Nhap ten khach hang can tim: ");
         String tenKhachHang = sc.nextLine();
@@ -40,7 +40,7 @@ public class QLHoaDon {
         }
     }
 
-    // Phuong thuc sap xep danh sach hoa don theo tong tien giam dan
+    // Phương thức sắp xếp danh sách hóa đơn theo tổng tiền giảm dần
     public void sapXep() {
         Arrays.sort(dshd, (hd1, hd2) -> {
             if (hd1 == null) return 1;
@@ -81,6 +81,7 @@ public class QLHoaDon {
         }
     }
 
+    // Phương thức đọc danh sách hóa đơn từ file
     public void docTuFileDSHD() {
         try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ADMIN\\oop_design\\src\\HoaDon\\DanhSachHoaDon.txt"))) {
             String line;
@@ -109,6 +110,18 @@ public class QLHoaDon {
         }
     }
 
+    // Phương thức tính tổng số tiền của khách hàng theo mã khách hàng
+    public double getTongSoTien(String maKhachHang) {
+        double tongSoTien = 0;
+        for (HoaDon hd : dshd) {
+            if (hd != null && hd.getmaKhachHang().equals(maKhachHang)) {
+                tongSoTien += hd.getTongSoTien();
+            }
+        }
+        return tongSoTien;
+    }
+
+    // Menu để sử dụng các chức năng
     public void menu() {
         boolean kt = true;
         int choice;
@@ -123,6 +136,7 @@ public class QLHoaDon {
             System.out.printf("| %-31s|\n", "5. Lay so luong hoa don");
             System.out.printf("| %-31s|\n", "6. Ghi vao file");
             System.out.printf("| %-31s|\n", "7. Doc tu file");
+            System.out.printf("| %-31s|\n", "8. Tinh tong so tien theo ma KH");
             System.out.printf("| %-31s|\n", "0. Thoat chuong trinh");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
@@ -142,6 +156,12 @@ public class QLHoaDon {
                 case 5 -> laySLHoaDon();
                 case 6 -> ghiVaoFileDSHD();
                 case 7 -> docTuFileDSHD();
+                case 8 -> {
+                    System.out.print("Nhap ma khach hang: ");
+                    String maKH = sc.nextLine();
+                    double tongTien = getTongSoTien(maKH);
+                    System.out.println("Tong so tien cua khach hang " + maKH + ": " + tongTien);
+                }
                 case 0 -> {
                     kt = false;
                     System.out.println("Da thoat chuong trinh");
