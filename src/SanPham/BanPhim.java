@@ -63,6 +63,6 @@ public class BanPhim extends ThietBiNgoaiVi{
         super.xuat();
         System.out.println("Nhap den LED ban phim: " + denLED);
         System.out.println("Switch ban phim: " + switchBP);
-        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
+        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
     }
 }

@@ -118,7 +118,7 @@ public class GPU extends PhanCung{
         System.out.println("Nhap toc do xung nhip: " + tocDoXungNhip +"Ghz");
         System.out.println("So nhan CUDA: " + soNhanCUDA);
         System.out.println("GPU " + rayTracing + " RayTracing");
-        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
+        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
     }
 
     @Override
