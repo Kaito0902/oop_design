@@ -61,31 +61,31 @@ public class KhoHang{
         this.sanPhamConLai = sanPhamConLai;
     }
 
-    // Phương thức thêm sản phẩm vào kho
+    // Phuong thuc them san pham vao kho
     public void themSanPham(SanPham sanPham) {
-        // Giả sử kho hàng chỉ lưu một loại sản phẩm, nếu sản phẩm đã tồn tại thì tăng số lượng
+        // Gia su kho hang chi luu mot loai san pham, neu san pham da ton tai thi tang so luong
         if (this.sanPhamConLai != null && this.sanPhamConLai.getMaSanPham().equals(sanPham.getMaSanPham())) {
             int newSoLuong = this.sanPhamConLai.soLuongTon + SanPham.soLuongTon;
             this.sanPhamConLai.setSoLuongTon(newSoLuong);
         } else {
             this.sanPhamConLai = sanPham;
         }
-        System.out.println("Thêm sản phẩm vào kho: " + sanPham);
+        System.out.println("Them san pham vao kho: " + sanPham);
     }
     
 
-    // Phương thức cập nhật số lượng sản phẩm trong kho
+    // Phuong thuc cap nhat so luong san pham trong kho
     public void capNhatSoLuongSanPham(SanPham sanPham, int soLuong) {
         if (this.sanPhamConLai != null && this.sanPhamConLai.getMaSanPham().equals(sanPham.getMaSanPham())) {
             int newSoLuong = this.sanPhamConLai.getSoLuongTon() - soLuong;
             if (newSoLuong < 0) {
-                System.out.println("Số lượng sản phẩm trong kho không đủ để cập nhật!");
+                System.out.println("So luong san pham trong kho khong du de cap nhat!");
             } else {
                 this.sanPhamConLai.setSoLuongTon(newSoLuong);
-                System.out.println("Cập nhật số lượng sản phẩm " + sanPham.getTenSanPham() + " còn lại: " + newSoLuong);
+                System.out.println("Cap nhat so luong san pham " + sanPham.getTenSanPham() + " con lai: " + newSoLuong);
             }
         } else {
-            System.out.println("Sản phẩm không có trong kho!");
+            System.out.println("San pham khong co trong kho!");
         }
     }
 
@@ -93,37 +93,37 @@ public class KhoHang{
     public void input() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Nhập mã kho: ");
+        System.out.print("Nhap ma kho: ");
         maKho = scanner.nextLine();
 
-        System.out.print("Nhập tên kho: ");
+        System.out.print("Nhap ten kho: ");
         tenKho = scanner.nextLine();
 
-        System.out.print("Nhập địa chỉ kho: ");
+        System.out.print("Nhap dia chi kho: ");
         diaChiKho = scanner.nextLine();
 
-        System.out.print("Nhập tên nhân viên quản lý kho: ");
+        System.out.print("Nhap ten nhan vien quan ly kho: ");
         String tenNhanVien = scanner.nextLine();
-        System.out.print("Nhập mã nhân viên quản lý kho: ");
+        System.out.print("Nhap ma nhan vien quan ly kho: ");
         String maNhanVien = scanner.nextLine();
 
         // tenNhanVienQuanLyKho = new NhanVien(maNhanVien, tenNhanVien);
 
-        System.out.print("Nhập mã sản phẩm trong kho: ");
+        System.out.print("Nhap ma san pham trong kho: ");
         String maSanPham = scanner.nextLine();
-        System.out.print("Nhập tên sản phẩm trong kho: ");
+        System.out.print("Nhap ten san pham trong kho: ");
         String tenSanPham = scanner.nextLine();
-        System.out.print("Nhập giá sản phẩm trong kho: ");
+        System.out.print("Nhap gia san pham trong kho: ");
         double giaSanPham = scanner.nextDouble();
-        System.out.print("Nhập số lượng sản phẩm trong kho: ");
+        System.out.print("Nhap so luong san pham trong kho: ");
         int soLuong = scanner.nextInt();
 
         // sanPhamConLai = new SanPham(maSanPham, tenSanPham, giaSanPham, soLuong);
 
-        System.out.println("Nhập thông tin kho hàng thành công!");
+        System.out.println("Nhap thong tin kho hang thanh cong!");
     }
 
-    // Phương thức toString để hiển thị thông tin kho hàng
+    // Phuong thuc toString de hien thi thong tin kho hang
     @Override
     public String toString() {
         return "KhoHang{" +
