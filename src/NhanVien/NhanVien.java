@@ -1,6 +1,7 @@
 package NhanVien;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public abstract class NhanVien {
@@ -8,10 +9,10 @@ public abstract class NhanVien {
     protected String tenNhanVien;
     protected String soDienThoai;
     protected String email;
-    protected int namSinh;
+    protected LocalDate sinhNhat;
     protected String gioiTinh;
     protected String chucVu;
-    protected int namVaoLam;
+    protected LocalDate ngayVaoLam;
     protected double heSoLuong;
     protected int ngayPhepConLai;
     protected double luong;
@@ -20,25 +21,25 @@ public abstract class NhanVien {
     static double luongCoBan = 250;
     static int tongNhanVien = 0;
     static Scanner sc = new Scanner(System.in);
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public NhanVien() {
     }
 
-    public NhanVien(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete) {
+    public NhanVien(String maNhanVien, String tenNhanVien, String soDienThoai, String email, LocalDate namSinh, String gioiTinh, String chucVu, LocalDate ngayVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete) {
         this.maNhanVien = maNhanVien;
         this.tenNhanVien = tenNhanVien;
         this.soDienThoai = soDienThoai;
         this.email = email;
-        this.namSinh = namSinh;
+        this.sinhNhat = namSinh;
         this.gioiTinh = gioiTinh;
         this.chucVu = chucVu;
-        this.namVaoLam = namVaoLam;
+        this.ngayVaoLam = ngayVaoLam;
         this.heSoLuong = heSoLuong;
         this.ngayPhepConLai = ngayPhepConLai;
         this.luong = luong;
         this.matKhau = matKhau;
         this.isdelete = isdelete;
-        tongNhanVien++;
     }
 
     public String getMaNhanVien() {
@@ -57,10 +58,6 @@ public abstract class NhanVien {
         return email;
     }
 
-    public int getNamSinh() {
-        return namSinh;
-    }
-
     public String getGioiTinh() {
         return gioiTinh;
     }
@@ -71,10 +68,6 @@ public abstract class NhanVien {
 
     public int getNgayPhepConLai() {
         return ngayPhepConLai;
-    }
-
-    public int getNamVaoLam() {
-        return namVaoLam;
     }
 
     public String getChucVu() {
@@ -93,8 +86,12 @@ public abstract class NhanVien {
         this.soDienThoai = soDienThoai;
     }
 
-    public void setNamSinh(int namSinh) {
-        this.namSinh = namSinh;
+    public LocalDate getSinhNhat() {
+        return sinhNhat;
+    }
+
+    public void setSinhNhat(LocalDate sinhNhat) {
+        this.sinhNhat = sinhNhat;
     }
 
     public void setGioiTinh(String gioiTinh) {
@@ -105,8 +102,24 @@ public abstract class NhanVien {
         this.email = email;
     }
 
-    public void setNamVaoLam(int namVaoLam) {
-        this.namVaoLam = namVaoLam;
+    public LocalDate getNgayVaoLam() {
+        return ngayVaoLam;
+    }
+
+    public void setNgayVaoLam(LocalDate ngayVaoLam) {
+        this.ngayVaoLam = ngayVaoLam;
+    }
+
+    public void setNgayPhepConLai(int ngayPhepConLai) {
+        this.ngayPhepConLai = ngayPhepConLai;
+    }
+
+    public double getLuong() {
+        return luong;
+    }
+
+    public void setLuong(double luong) {
+        this.luong = luong;
     }
 
     public void setHeSoLuong(double heSoLuong) {
@@ -137,14 +150,18 @@ public abstract class NhanVien {
         System.out.println("Nhap email: ");
         setEmail(sc.nextLine());
 
-        System.out.println("Nhap nam sinh: ");
-        setNamSinh(Integer.parseInt(sc.nextLine()));
+        System.out.println("Nhap ngay sinh (dd/MM/yyyy): ");
+        String ngaySinh = sc.nextLine();
+        LocalDate sinhNhat = LocalDate.parse(ngaySinh, formatter);
+        setSinhNhat(sinhNhat);
 
         System.out.println("Nhap gioi tinh: ");
         setGioiTinh(sc.nextLine());
 
-        System.out.println("Nhap nam vao lam: ");
-        setNamVaoLam(Integer.parseInt(sc.nextLine()));
+        System.out.println("Nhap ngay vao lam (dd/MM/yyyy): ");
+        String ngayBatDauString = sc.nextLine();
+        LocalDate ngayVaoLam = LocalDate.parse(ngayBatDauString, formatter);
+        setNgayVaoLam(ngayVaoLam);
 
         System.out.println("Nhap he so luong: ");
         setHeSoLuong(Double.parseDouble(sc.nextLine()));
@@ -152,19 +169,19 @@ public abstract class NhanVien {
         isdelete = true;
         luong = tinhLuong();
 
-        ngayPhepConLai = (LocalDate.now().getYear() - namVaoLam) >= 1 ? 12 : 6;
+//        ngayPhepConLai = (LocalDate.now().getYear() - this.ngayVaoLam) >= 1 ? 12 : 6;
 
         maNhanVien = "nv" + String.format("%02d", ++tongNhanVien);
-        matKhau = Integer.toString(namSinh);
+        matKhau = String.valueOf(sinhNhat.getYear());
 
         tongNhanVien++;
     }
 
     @Override
     public String toString() {
-        return String.format("%-8s %-20s %-13s %-30s %-8d %-8s %-20s %-8d %-12.5f",
-                maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh,
-                chucVu, namVaoLam, luong);
+        return String.format("%-8s %-20s %-13s %-30s %-8s %-8s %-20s %-8s %-12.5f",
+                maNhanVien, tenNhanVien, soDienThoai, email, sinhNhat, gioiTinh,
+                chucVu, ngayVaoLam, luong);
     }
 
     public void output() {

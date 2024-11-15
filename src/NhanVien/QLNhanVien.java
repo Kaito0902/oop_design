@@ -1,6 +1,8 @@
 package NhanVien;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -38,10 +40,10 @@ public class QLNhanVien {
                             nvbh.getTenNhanVien(),
                             nvbh.getSoDienThoai(),
                             nvbh.getEmail(),
-                            String.valueOf(nvbh.getNamSinh()),
+                            String.valueOf(nvbh.getSinhNhat()),
                             nvbh.getGioiTinh(),
                             nvbh.getChucVu(),
-                            String.valueOf(nvbh.getNamVaoLam()),
+                            String.valueOf(nvbh.getNgayVaoLam()),
                             String.valueOf(nvbh.getHeSoLuong()),
                             String.valueOf(nvbh.getNgayPhepConLai()),
                             String.valueOf(nvbh.luong),
@@ -59,10 +61,10 @@ public class QLNhanVien {
                             nvkt.getTenNhanVien(),
                             nvkt.getSoDienThoai(),
                             nvkt.getEmail(),
-                            String.valueOf(nvkt.getNamSinh()),
+                            String.valueOf(nvkt.getSinhNhat()),
                             nvkt.getGioiTinh(),
                             nvkt.getChucVu(),
-                            String.valueOf(nvkt.getNamVaoLam()),
+                            String.valueOf(nvkt.getNgayVaoLam()),
                             String.valueOf(nvkt.getHeSoLuong()),
                             String.valueOf(nvkt.getNgayPhepConLai()),
                             String.valueOf(nvkt.luong),
@@ -80,10 +82,10 @@ public class QLNhanVien {
                             nvql.getTenNhanVien(),
                             nvql.getSoDienThoai(),
                             nvql.getEmail(),
-                            String.valueOf(nvql.getNamSinh()),
+                            String.valueOf(nvql.getSinhNhat()),
                             nvql.getGioiTinh(),
                             nvql.getChucVu(),
-                            String.valueOf(nvql.getNamVaoLam()),
+                            String.valueOf(nvql.getNgayVaoLam()),
                             String.valueOf(nvql.getHeSoLuong()),
                             String.valueOf(nvql.getNgayPhepConLai()),
                             String.valueOf(nvql.luong),
@@ -110,10 +112,11 @@ public class QLNhanVien {
                     String tenNhanVien = data[1];
                     String soDienThoai = data[2];
                     String email = data[3];
-                    int namSinh = Integer.parseInt(data[4]);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate sinhNhat = LocalDate.parse(data[4], formatter);
                     String gioiTinh = data[5];
                     String chucVu = data[6];
-                    int namVaoLam = Integer.parseInt(data[7]);
+                    LocalDate ngayVaoLam = LocalDate.parse(data[7], formatter);
                     double heSoLuong = Double.parseDouble(data[8]);
                     int ngayPhepConLai = Integer.parseInt(data[9]);
                     double luong = Double.parseDouble(data[10]);
@@ -124,18 +127,18 @@ public class QLNhanVien {
                         case "Nhan vien ban hang" -> {
                             double doanhThu = Double.parseDouble(data[13]);
                             int soLuongGiaoDich = Integer.parseInt(data[14]);
-                            NhanVien nvbh = new NhanVienBanHang(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete, doanhThu, soLuongGiaoDich);
+                            NhanVien nvbh = new NhanVienBanHang(maNhanVien, tenNhanVien, soDienThoai, email, sinhNhat, gioiTinh, chucVu, ngayVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete, doanhThu, soLuongGiaoDich);
                             themNV(nvbh);
                         }
                         case "Nhan vien ky thuat" -> {
                             String[] kyNangChuyenMon = data[13].split(";");
                             int soLuuTruBaoHanh = Integer.parseInt(data[14]);
-                            NhanVien nvkt = new NhanVienKyThuat(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete, kyNangChuyenMon, soLuuTruBaoHanh);
+                            NhanVien nvkt = new NhanVienKyThuat(maNhanVien, tenNhanVien, soDienThoai, email, sinhNhat, gioiTinh, chucVu, ngayVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete, kyNangChuyenMon, soLuuTruBaoHanh);
                             themNV(nvkt);
                         }
                         case "Nhan vien quan ly" -> {
                             double chiSoHieuSuat = Double.parseDouble(data[13]);
-                            NhanVienQuanLy nvql = new NhanVienQuanLy(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete, chiSoHieuSuat);
+                            NhanVienQuanLy nvql = new NhanVienQuanLy(maNhanVien, tenNhanVien, soDienThoai, email, sinhNhat, gioiTinh, chucVu, ngayVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete, chiSoHieuSuat);
                             themNV(nvql);
                         }
                         default -> System.out.println("Dữ liệu không hợp lệ cho nhân viên: " + line);
@@ -199,8 +202,11 @@ public class QLNhanVien {
                             break;
                         }
                         case 4: {
-                            System.out.println("Nhap nam sinh moi: ");
-                            nv.setNamSinh(Integer.parseInt(sc.nextLine()));
+                            System.out.println("Nhap ngay sinh moi: ");
+                            String ngaySinh = sc.nextLine();
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                            LocalDate sinhNhat = LocalDate.parse(ngaySinh, formatter);
+                            nv.setSinhNhat(sinhNhat);
                             System.out.println("Da sua nam sinh.");
                             break;
                         }
@@ -270,6 +276,7 @@ public class QLNhanVien {
             }
         }
     }
+
 
 
 }

@@ -1,7 +1,10 @@
 package NhanVien;
 
+import java.time.LocalDate;
+
 import static ChucNang.ChucNangMenu.*;
 import static main_project.oop_project.qlnp;
+import static main_project.oop_project.qlnv;
 
 public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
     private double chiSoHieuSuat;
@@ -9,8 +12,8 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
     public NhanVienQuanLy() {
     }
 
-    public NhanVienQuanLy(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete, double chiSoHieuSuat) {
-        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete);
+    public NhanVienQuanLy(String maNhanVien, String tenNhanVien, String soDienThoai, String email, LocalDate namSinh, String gioiTinh, String chucVu, LocalDate ngayVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete, double chiSoHieuSuat) {
+        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, ngayVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete);
         this.chiSoHieuSuat = chiSoHieuSuat;
     }
 
@@ -122,6 +125,7 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
                     NghiPhep nghiPhep = new NghiPhep();
                     nghiPhep.input();
                     qlnp.themDonNghiPhep(nghiPhep);
+                    qlnp.ghiVaoFileDSNP();
                     break;
                 }
                 case 10: {
@@ -141,6 +145,7 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
                         System.out.println("Nhap mat khau moi: ");
                         String matKhauMoi = sc.nextLine();
                         doiMatKhau(matKhauMoi);
+                        qlnv.ghiVaoFileDSNV();
                     }
                     else{
                         System.out.println("Khong the doi mat khau vi ban nhap sai nhieu lan.");

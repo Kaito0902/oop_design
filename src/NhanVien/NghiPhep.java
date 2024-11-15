@@ -40,23 +40,28 @@ public class NghiPhep {
     }
 
     public void setSoNgayNghi(int soNgayNghi) {
-        while (soNgayNghi > getNhanVien().getNgayPhepConLai()) {
+        if (soNgayNghi <= getNhanVien().getNgayPhepConLai()) {
+            this.soNgayNghi = soNgayNghi;
+        } else {
             int ngayNghiDu = soNgayNghi - getNhanVien().getNgayPhepConLai();
             System.out.println("Ban khong con ngay nghi phep nam.");
             System.out.println("Neu nghi phep ban se khong nhan duoc luong ngay.");
             System.out.println("So ngay khong nhan luong la " + ngayNghiDu + " ngay.");
             System.out.println("(Y/N): ");
+
             String lc = sc.nextLine();
+            while (!lc.equalsIgnoreCase("y") && !lc.equalsIgnoreCase("n")) {
+                System.out.println("Lua chon khong hop le.");
+                System.out.println("(Y/N): ");
+                lc = sc.nextLine();
+            }
+
             if (lc.equalsIgnoreCase("y")) {
                 this.soNgayNghi = soNgayNghi;
-                break;
-            }
-            else if (lc.equalsIgnoreCase("n")){
+            } else if (lc.equalsIgnoreCase("n")) {
                 System.out.println("Nhap so ngay muon nghi phep: ");
-                this.soNgayNghi = Integer.parseInt(sc.nextLine());
-            }
-            else {
-                System.out.println("Lua chon khong hop le.");
+                int newSoNgayNghi = Integer.parseInt(sc.nextLine());
+                setSoNgayNghi(newSoNgayNghi);
             }
         }
     }
@@ -101,6 +106,7 @@ public class NghiPhep {
         setLyDo(sc.nextLine());
 
         setTrangThaiDon(loaiTrangThai[0]);
+
     }
 
     @Override
@@ -139,8 +145,5 @@ public class NghiPhep {
         LocalDate today = LocalDate.now();
         System.out.println(today.format(formatter));
     }
-
-
-
 
 }

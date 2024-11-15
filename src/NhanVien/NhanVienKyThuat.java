@@ -1,9 +1,11 @@
 package NhanVien;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import static ChucNang.ChucNangMenu.*;
 import static main_project.oop_project.qlnp;
+import static main_project.oop_project.qlnv;
 
 public class NhanVienKyThuat extends NhanVien{
     private String[] kyNangChuyenMon = new String[0];
@@ -12,8 +14,8 @@ public class NhanVienKyThuat extends NhanVien{
     public NhanVienKyThuat() {
     }
 
-    public NhanVienKyThuat(String maNhanVien, String tenNhanVien, String soDienThoai, String email, int namSinh, String gioiTinh, String chucVu, int namVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete, String[] kyNangChuyenMon, int soLuuTruBaoHanh) {
-        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, namVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete);
+    public NhanVienKyThuat(String maNhanVien, String tenNhanVien, String soDienThoai, String email, LocalDate namSinh, String gioiTinh, String chucVu, LocalDate ngayVaoLam, double heSoLuong, int ngayPhepConLai, double luong, String matKhau, boolean isdelete, String[] kyNangChuyenMon, int soLuuTruBaoHanh) {
+        super(maNhanVien, tenNhanVien, soDienThoai, email, namSinh, gioiTinh, chucVu, ngayVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete);
         this.kyNangChuyenMon = kyNangChuyenMon;
         this.soLuuTruBaoHanh = soLuuTruBaoHanh;
     }
@@ -118,6 +120,7 @@ public class NhanVienKyThuat extends NhanVien{
                     NghiPhep nghiPhep = new NghiPhep();
                     nghiPhep.input();
                     qlnp.themDonNghiPhep(nghiPhep);
+                    qlnp.ghiVaoFileDSNP();
                     break;
                 }
                 case 7: {
@@ -137,6 +140,7 @@ public class NhanVienKyThuat extends NhanVien{
                         System.out.println("Nhap mat khau moi: ");
                         String matKhauMoi = sc.nextLine();
                         doiMatKhau(matKhauMoi);
+                        qlnv.ghiVaoFileDSNV();
                     }
                     else{
                         System.out.println("Khong the doi mat khau vi ban nhap sai nhieu lan.");
