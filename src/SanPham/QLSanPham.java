@@ -29,7 +29,6 @@ public class QLSanPham{
         this.ds = newDS;
     }
 
-
     public void nhapDanhSach1(){
         CPU sp1 = new CPU("#sp001", "i9-14900KS", 18500000, "6 thang", 0.5f, "xanh", "CPU", "Intel", "Intel Core i9 14900KS", 32, 24, 6.2f);
         GPU sp2 = new GPU("#sp002", "NVIDIA GeForce RTX 4090", 59990000, "1 nam", 0.5f, "den", "GPU", "Nvidia", "ASUS ROG Strix LC GeForce", 24, "GDDR6X", 2610, 16384, "Co");
@@ -254,7 +253,6 @@ public class QLSanPham{
     {
         String file = "C:\\Đăng\\Study\\Visual Studio Code\\Java\\Đồ Án\\oop_design\\src\\SanPham\\DanhSachSanPham.txt";
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
-            reader.readLine();
             String line;
             while((line = reader.readLine()) != null){
                 String[] data = line.split(",");
