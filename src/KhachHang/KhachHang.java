@@ -1,13 +1,16 @@
 package KhachHang;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
+import ChucNang.ChuanHoaDuLieu;
 import HoaDon.HoaDon;
 import HoaDon.QLHoaDon; 
 
 public abstract class KhachHang {
     static int tongKH = 0;
     static Scanner scanner = new Scanner(System.in);
+    ChuanHoaDuLieu chuanHoa = new ChuanHoaDuLieu();
 
     //atrribute thông tin cá nhân 
     protected String hoTen;
@@ -54,7 +57,7 @@ public abstract class KhachHang {
     }
 
     public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
+        this.hoTen = chuanHoa.chuanHoaTen(hoTen);
     }
 
     public String getGioiTinh() {
@@ -62,7 +65,7 @@ public abstract class KhachHang {
     }
 
     public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh = gioiTinh;
+        this.gioiTinh =  chuanHoa.chuanHoaGioiTinh(gioiTinh);
     }
 
     public String getNgaySinh() {
@@ -70,6 +73,11 @@ public abstract class KhachHang {
     }
 
     public void setNgaySinh(String ngaySinh) {
+        LocalDate date = chuanHoa.chuanHoaNgaySinh(ngaySinh);
+        while (date == null) {
+            ngaySinh = scanner.nextLine();
+            date = chuanHoa.chuanHoaNgaySinh(ngaySinh);
+        }
         this.ngaySinh = ngaySinh;
     }
 
@@ -86,7 +94,7 @@ public abstract class KhachHang {
     }
 
     public void setSdt(String sdt) {
-        this.sdt = sdt;
+        this.sdt = chuanHoa.chuanHoaSoDienThoai(sdt);
     }
 
     public String getEmail() {
@@ -141,11 +149,11 @@ public abstract class KhachHang {
     public void inputInfo() {
         System.out.println("Nhap HoTen:");
         setHoTen(scanner.nextLine());
-        System.out.println("Nhap gioi tinh:");
+        System.out.println("Nhập giới tính (Nam, Nữ, Khác):");
         setGioiTinh(scanner.nextLine());
         System.out.println("Nhap SoDienThoai:");
-        setSdt(scanner.nextLine());
-        System.out.println("Nhap ngay sinh:");
+        setSdt(scanner.nextLine()); 
+        System.out.println("Nhap ngay sinh(định dạng: dd/MM/yyyy):");
         setNgaySinh(scanner.nextLine());
         System.out.println("Nhap email:");
         setEmail(scanner.nextLine());
@@ -154,14 +162,14 @@ public abstract class KhachHang {
     }
 
     public void inputType() {
-        if ( (this instanceof CaNhan)){
+        if ( (this instanceof KhachHangCaNhan)){
             // System.out.println("Nhap loai khach hang (Tiem nang, Than Thiet, Uu dai, Binh Thuong):");
             setLoaiKhachHang("Binh Thuong");
         }
-        else if ( this instanceof SinhVien ) {
+        else if ( this instanceof KhachHangSinhVien ) {
             setLoaiKhachHang("Uu dai");
         }
-        else if ( this instanceof Vip ){
+        else if ( this instanceof KhachHangVip ){
             setLoaiKhachHang("Than Thiet");
         }else 
             setLoaiKhachHang("Tiem Nang");
@@ -169,11 +177,21 @@ public abstract class KhachHang {
 
     public void inputGiaoDich(QLHoaDon qlhd) {
         // giao dich
-        boolean themgiaodich;
-        System.out.println("Ban co muon them giao dich khong(Y/N):");
-        String chon = scanner.nextLine();
-        themgiaodich = !chon.equalsIgnoreCase("N");
-    
+        boolean themgiaodich = false;
+        while (true) {
+            System.out.println("Ban co muon them giao dich khong(Y/N):");
+            String chon = scanner.nextLine().trim().toUpperCase();
+            if (chon.equals("Y")){
+                themgiaodich = true;
+                break;
+            }else if (chon.equals("N")){
+                themgiaodich = false;
+                break;
+            }else{
+                System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
+            }
+        }
+        
         while (themgiaodich) {
             HoaDon gd = new HoaDon();
             gd.input();
@@ -182,12 +200,22 @@ public abstract class KhachHang {
                 giaodich[soluonggiaodich++] = gd;
             else
                 System.out.println("khong the them giao dich:So luong dat toi da!!!");  
-
             qlhd.themHD(gd);
-            System.out.println("Ban co muon them giao dich khac khong(Y/N):");
-            chon = scanner.nextLine();
-            themgiaodich = !chon.equalsIgnoreCase("N");
-            // setGiaoDich[];
+        
+
+            while ( true ) {
+                System.out.println("Ban co muon them giao dich khac khong(Y/N):");
+                String chon = scanner.nextLine().trim().toUpperCase();
+                if (chon.equals("Y")) {
+                    themgiaodich = true;
+                    break;
+                } else if (chon.equals("N")) {
+                    themgiaodich = false;
+                    break;
+                } else {
+                    System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
+                }
+            }
         }
     }
 
@@ -199,7 +227,7 @@ public abstract class KhachHang {
     //toString
     @Override
     public String toString() {
-        return String.format("%-10s %-10s %-10s %-10s %-10s %-10s %-20s",getMaKhachHang(), hoTen, sdt, ngaySinh, email, 
+        return String.format("%-10s %-20s %-10s %-15s %-15s %-15s %-10s %-20s",getMaKhachHang(), hoTen, gioiTinh, sdt, ngaySinh, email, 
         diaChi, loaiKhachHang);
     }
 
@@ -231,7 +259,7 @@ public abstract class KhachHang {
     // cap nhap tich diem
     public void  capNhapTichDiem(QLHoaDon qlHoaDon) {
         double tongSoTien = 1000000;//qlHoaDon.getTongSoTien(maKhachHang)
-        int diemThuong = tinhDiemThuong(tongSoTien);
+        int diemThuong = (int)tinhDiemThuong(tongSoTien);
         tichDiem = diemThuong;
     }
 }

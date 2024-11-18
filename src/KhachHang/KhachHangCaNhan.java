@@ -2,13 +2,13 @@ package KhachHang;
 
 import HoaDon.HoaDon;
 
-public class CaNhan extends KhachHang {
+public class KhachHangCaNhan extends KhachHang {
 
-    public CaNhan () {
+    public KhachHangCaNhan () {
 
     }
 
-    public CaNhan(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
+    public KhachHangCaNhan(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
                 String maKhachHang, String loaiKhachHang, int tichDiem) {
         super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
     }

@@ -3,19 +3,19 @@ package KhachHang;
 import HoaDon.HoaDon;
 import HoaDon.QLHoaDon;
 
-public class Vip extends KhachHang implements TraGop{
+public class KhachHangVip extends KhachHang implements TraGop{
     //atrributes
     private int heSo;
     private boolean traGop;
 
     //non-parameted
-    public Vip() {
+    public KhachHangVip() {
         this.heSo = 5;
         this.loaiKhachHang = "Than thiet";
     }
 
     //parameted
-    public Vip(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email, String maKhachHang,
+    public KhachHangVip(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email, String maKhachHang,
             String loaiKhachHang, int tichDiem, int heSo) {
         super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.heSo = heSo;
@@ -29,11 +29,24 @@ public class Vip extends KhachHang implements TraGop{
     public void setHeSo(int heSo) {
         this.heSo = heSo;
     }
+    
+    public boolean isTraGop() {
+        return traGop;
+    }
 
+    public void setTraGop(boolean traGop) {
+        this.traGop = traGop;
+    }
+    
     //input kiem tra co tra gop khong
     @Override
     public void input(QLHoaDon qlhd) {
         super.input(qlhd);
+        inputThongTinVip();
+    }
+
+    // input thongtin Vip
+    public void inputThongTinVip() {
         System.out.println("Nhap he so:");
         setHeSo(Integer.parseInt(scanner.nextLine()));
 
@@ -65,9 +78,10 @@ public class Vip extends KhachHang implements TraGop{
     @Override
     public String toString() {
         if (traGop)    
-            return super.toString() + String.format("%-10b %-10d %-15.2f %-10d %-10.2f",traGop, getHeSo() ,tinhUuDai() ,getTichDiem(), laiSuatTraGop());
+            return super.toString() + String.format("%-10d %-15.2f %-10d %-10b %-10.2f", getHeSo() ,tinhUuDai() ,getTichDiem(),traGop, laiSuatTraGop());
         else
-            return super.toString() + String.format("%-10b %-10d %-15.2f %-10d",traGop ,getHeSo() ,tinhUuDai() ,getTichDiem());
+            return super.toString() + String.format("%-10d %-15.2f %-10d %-10b",getHeSo() ,tinhUuDai() ,getTichDiem(), traGop );
     }
+
 
 }

@@ -3,18 +3,18 @@ package KhachHang;
 import HoaDon.HoaDon;
 import HoaDon.QLHoaDon;
 
-public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
+public class KhachHangDoiTacDoanhNghiep extends KhachHang implements TraGop{
     //attribute
     private String tenCongTy;
     private boolean traGop;
 
     //non-parameted
-    public DoiTacDoanhNghiep() {
+    public KhachHangDoiTacDoanhNghiep() {
         this.loaiKhachHang = "Tiem nang";
     }
 
     //parameted
-    public DoiTacDoanhNghiep(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
+    public KhachHangDoiTacDoanhNghiep(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
             String maKhachHang, String loaiKhachHang, int tichDiem, String tenCongTy) {
         super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.tenCongTy = tenCongTy;
@@ -27,6 +27,14 @@ public class DoiTacDoanhNghiep extends KhachHang implements TraGop{
 
     public void setTenCongTy(String tenCongTy) {
         this.tenCongTy = tenCongTy;
+    }
+
+    public boolean isTraGop() {
+        return traGop;
+    }
+
+    public void setTraGop(boolean traGop) {
+        this.traGop = traGop;
     }
 
     //input kiem tra co muon tra gop

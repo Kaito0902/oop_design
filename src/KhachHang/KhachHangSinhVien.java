@@ -3,17 +3,17 @@ package KhachHang;
 import HoaDon.HoaDon;
 import HoaDon.QLHoaDon;
 
-public class SinhVien extends KhachHang {
+public class KhachHangSinhVien extends KhachHang {
     //attributes
     private double diemTB;
 
     //non-parameted constructor
-    public SinhVien() {
+    public KhachHangSinhVien() {
         this.loaiKhachHang = "Uu dai";
     }
 
     //parameted constructor
-    public SinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
+    public KhachHangSinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
             String maKhachHang, String loaiKhachHang, int tichDiem, double diemTB) {
         super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.diemTB = diemTB;
