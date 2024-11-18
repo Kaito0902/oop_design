@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 import HoaDon.QLHoaDon;
 
+import static main_project.oop_project.qlhd;
+
 public class QLKhachHang {
-    private KhachHang dskh[] = new KhachHang[0];
+    private KhachHang[] dskh = new KhachHang[0];
     static Scanner scanner = new Scanner(System.in);
 
     //them khach hang
@@ -276,159 +278,37 @@ public class QLKhachHang {
         }
     }
 
-    //menu
-    public void menu(QLHoaDon qlhd) {
-        int choice;
-        do {
-            System.out.println("===================================");
-            System.out.println("|\t        MENU CHINH         \t|");
-            System.out.println("===================================");
-            System.out.printf("| %-31s|\n", "1. Them 1 kh");
-            System.out.printf("| %-31s|\n", "2. Xuat danh sach kh");
-            System.out.printf("| %-31s|\n", "3. Xoa 1 kh");
-            System.out.printf("| %-31s|\n", "4. Tim kiem 1 kh");
-            System.out.printf("| %-31s|\n", "5. Sap xep dskh");
-            System.out.printf("| %-31s|\n", "6. Xuat danh sach khVip");
-            System.out.printf("| %-31s|\n", "7. Tim khach hang mua nhieu tien nhat");
-            System.out.printf("| %-31s|\n", "8. Sua thongtin khach hang"); 
-            System.out.printf("| %-31s|\n", "9. Lay sl khach hang"); 
-            System.out.printf("| %-31s|\n", "10. Doc tu file"); 
-            System.out.printf("| %-31s|\n", "11. Cập nhập khách hàng lên vip"); 
-            System.out.printf("| %-31s|\n", "0. Thoat chuong trinh");
-            System.out.println("===================================");
-            System.out.print("Nhap lua chon: ");
-
-            
-            choice = Integer.parseInt(scanner.nextLine());
-            switch (choice) {
-                case 1:
-                    String chon;
-                    System.out.println("a. Them khcanhan.");
-                    System.out.println("b. Them khsv.");
-                    System.out.println("c. Them khdoitac.");
-                    System.out.println("d. Them khvip.");
-                    System.out.println("Nhap lua chon: ");
-                    chon = scanner.nextLine();
-                    switch (chon) {
-                        case "a":
-                            KhachHang x = new KhachHangCaNhan();
-                            x.input(qlhd);
-                            themKH(x);
-                            ghiVaoFileDSKH();
-                            break;
-                        case "b":
-                            KhachHang y = new KhachHangSinhVien();
-                            y.input(qlhd);
-                            themKH(y);
-                            ghiVaoFileDSKH();
-                            break;
-                        case "c":
-                            KhachHang z = new KhachHangDoiTacDoanhNghiep();
-                            z.input(qlhd);
-                            themKH(z);
-                            ghiVaoFileDSKH();
-                            break;
-                        case "d":
-                            KhachHang w = new KhachHangVip();
-                            w.input(qlhd);
-                            themKH(w);
-                            ghiVaoFileDSKH();
-                            break;
-                        default:
-                            System.out.println("Lua chon khong hop le!!!");
-                    }
-                    break;
-                case 2:
-                    if (dskh.length == 0)
-                        System.out.println("DANH SACH TRONG.");
-                    else {
-                        System.out.println("===================================");
-                        System.out.println("|\t      DANH SACH HOA DON      \t|");
-                        System.out.println("===================================");
-                        xuatdskh();
-                    } 
-                    break;
-                case 3:
-                    System.out.println("Nhap ma kh muon xoa:");
-                    String ma = scanner.nextLine();
-                    xoa1KH(ma);
-                    break;
-                case 4:
-                    String chon1;
-                    System.out.println("a. Tim theo ma.");
-                    System.out.println("b. Tim theo sdt.");
-                    System.out.println("Nhap lua chon: ");
-                    chon1 = scanner.nextLine();
-                    switch (chon1) {
-                        case "a":
-                            System.out.println("Nhap ma kh muon tim:");
-                            String ma1 = scanner.nextLine();
-                            KhachHang kh1 = timkiemKhachHangTheoMa(ma1);
-                            if ( kh1 != null)
-                                kh1.output();
-                            else 
-                                System.out.println("khong tim thay khach hang co ma: " + ma1);
-                            break;
-                        case "b":
-                            System.out.println("Nhap sdt kh muon tim:");
-                            String ma2 = scanner.nextLine();
-                            KhachHang kh2 = timkiemKhachHangTheoSdt(ma2);
-                            if ( kh2 != null )
-                                kh2.output();
-                        else 
-                            System.out.println("Khong tim thay khach hang theo sdt: " + ma2);
-                            break;
-                        default:
-                            System.out.println("nhap sai lua chon");
-                            break;
-                    }   
-                    break;
-                case 5:
-                    sapxep();
-                    System.out.println("Da sap xep danh sach!!!!");
-                    break;
-                case 6:
-                    if ( dskh.length == 0)
-                        System.out.println("DANH SACH TRONG.");
-                    else {
-                        System.out.println("===================================");
-                        System.out.println("|\t      DANH SACH HOA DON VIP      \t|");
-                        System.out.println("===================================");
-                        xuatdskhvip();
-                    }
-                    break;
-                case 7:
-                  //  timkiemKhachHangCoTienCaoNhat(qlhd);
-                    break;
-                case 8:
-                    System.out.println("Nhap sdt kh muon tim:");
-                    String ma2 = scanner.nextLine();
-                    capNhapThongTinKhachHang(ma2, qlhd);
-                    System.out.println("Da cap nhap thong tin!!!");
-                    ghiVaoFileDSKH();
-                    break;
-                case 9:
-                    System.out.println("So luong khach hang hien co la:");
-                    System.out.println(dskh.length);
-                    break;
-                case 10:
-                    docTuFileDSKH();
-                    System.out.println("DA DOC DU LIEU TU FILE!!!");
-                    break;
-                case 11:
-                    if ( dskh.length > 0 ){
-                        capNhatLoaiKhachHang(qlhd);
-                    ghiVaoFileDSKH();
-                    }
-                    else
-                        System.out.println("Danh sach rong!!!");
-                    break;
-                case 0:
-                    System.out.println("Da thoat chuong trinh!!!");
-                    break;
-                default:
-                    System.out.println("Lua chon khong hop le!!!!");
-            } 
-        }  while (choice != 0);
+    public void nhapKhachHang() {
+        String chon;
+        System.out.println("a. Them khcanhan.");
+        System.out.println("b. Them khsv.");
+        System.out.println("c. Them khdoitac.");
+        System.out.println("d. Them khvip.");
+        System.out.println("Nhap lua chon: ");
+        chon = scanner.nextLine();
+        switch (chon) {
+            case "a":
+                KhachHang x = new KhachHangCaNhan();
+                x.input(qlhd);
+                themKH(x);
+                break;
+            case "b":
+                KhachHang y = new KhachHangSinhVien();
+                y.input(qlhd);
+                themKH(y);
+                break;
+            case "c":
+                KhachHang z = new KhachHangDoiTacDoanhNghiep();
+                z.input(qlhd);
+                themKH(z);
+                break;
+            case "d":
+                KhachHang w = new KhachHangVip();
+                w.input(qlhd);
+                themKH(w);
+                break;
+            default:
+                System.out.println("Lua chon khong hop le!!!");
+        }
     }
 }

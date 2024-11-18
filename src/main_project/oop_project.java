@@ -1,7 +1,11 @@
 package main_project;
 
 import BaoHanh.QLBaoHanh;
+import ChuoiCungCap.QLNhaCungCap;
+import DonDatHang.QLDonDatHang;
+import HoaDon.QLHoaDon;
 import KhachHang.QLKhachHang;
+import KhuyenMai.QLKhuyenMai;
 import NhanVien.QLNghiPhep;
 import NhanVien.QLNhanVien;
 import SanPham.QLSanPham;
@@ -14,6 +18,10 @@ public class oop_project {
     public static QLSanPham qlsp = new QLSanPham();
     public static QLBaoHanh qlbh = new QLBaoHanh();
     public static QLKhachHang qlkh = new QLKhachHang();
+    public static QLHoaDon qlhd = new QLHoaDon();
+    public static QLKhuyenMai qlkm = new QLKhuyenMai();
+    public static QLDonDatHang qlddh = new QLDonDatHang();
+    public static QLNhaCungCap qlncc = new QLNhaCungCap();
 
     public static void main(String[] args) {
         menu();
@@ -23,6 +31,8 @@ public class oop_project {
         qlnv.docTuFileDSNV();
         qlsp.docTuFile();
         qlnp.docTuFileDSNP();
+        qlkm.docTuFile();
+//        qlhd.docTuFileDSHD();
         boolean kt = true;
         int lc;
         while (kt) {

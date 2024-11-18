@@ -1,6 +1,10 @@
 package ChucNang;
 
 import BaoHanh.BaoHanhSanPham;
+import HoaDon.HoaDon;
+import HoaDon.HoaDonBanHang;
+import HoaDon.HoaDonDoiTraHang;
+import KhuyenMai.KhuyenMai;
 import NhanVien.NhanVien;
 import NhanVien.NhanVienBanHang;
 import NhanVien.NhanVienKyThuat;
@@ -9,10 +13,7 @@ import SanPham.SanPham;
 
 import java.util.Scanner;
 
-import static main_project.oop_project.qlnv;
-import static main_project.oop_project.qlsp;
-import static main_project.oop_project.qlbh;
-import static main_project.oop_project.qlnp;
+import static main_project.oop_project.*;
 
 public class ChucNangMenu {
 
@@ -103,11 +104,32 @@ public class ChucNangMenu {
                     break;
                 }
                 case 6: {
-                    //tao
+                    System.out.println("1. Tao hoa don ban hang");
+                    System.out.println("2. Tao hoa don doi tra");
+                    System.out.println("Nhap lua chon: ");
+                    int lc = Integer.parseInt(sc.nextLine());
+                    switch (lc) {
+                        case 1: {
+                            HoaDon x = new HoaDonBanHang();
+                            x.input();
+                            qlhd.themHD(x);
+                            break;
+                        }
+                        case 2: {
+                            HoaDon y = new HoaDonDoiTraHang();
+                            y.input();
+                            qlhd.themHD(y);
+                            break;
+                        }
+                        default: {
+                            System.out.println("Lua chon khong hop le.");
+                            System.out.println("Vui long lua chon lai.");
+                        }
+                    }
                     break;
                 }
                 case 7: {
-                    //xuatds
+                    qlhd.xuatdshd();
                     break;
                 }
                 case 8: {
@@ -129,6 +151,66 @@ public class ChucNangMenu {
                 default: {
                     System.out.println("Lua chon khong hop le");
                     System.out.println("Vui long lua chon lai");
+                }
+            }
+        }
+    }
+
+    public static void menuKM() {
+        boolean ktra = true;
+        int chon;
+        while (ktra) {
+            System.out.println("===================================");
+            System.out.println("|\t     MENU KHUYEN MAI       \t|");
+            System.out.println("===================================");
+            System.out.printf("| %-34s|\n", "1. Nhap danh sach khuyen mai moi");
+            System.out.printf("| %-34s|\n", "2. Xuat danh sach khuyen mai");
+            System.out.printf("| %-34s|\n", "3. Sua thong tin khuyen mai theo ma");
+            System.out.printf("| %-34s|\n", "4. Xoa khuyen mai theo ma");
+            System.out.printf("| %-34s|\n", "5. Tim kiem khuyen mai");
+            System.out.printf("| %-34s|\n", "6. Thoat                     ");
+            System.out.println("===================================");
+            System.out.print("Nhap lua chon: ");
+            chon = Integer.parseInt(sc.nextLine());
+            switch (chon) {
+                case 1: {
+                    KhuyenMai x = new KhuyenMai();
+                    x.input();
+                    qlkm.themKhuyenMai(x);
+                    break;
+                }
+                case 2: {
+                    qlkm.hienThiDanhSachKhuyenMai();
+                    break;
+                }
+                case 3: {
+                    System.out.println("Nhap ma khuyen mai can sua: ");
+                    qlkm.suaThongTinKhuyenMai(sc.nextLine());
+                    break;
+                }
+                case 4: {
+                    System.out.println("Nhap ma khuyen ma can xoa: ");
+                    qlkm.xoaKhuyenMai(sc.nextLine());
+                    break;
+                }
+                case 5: {
+                    System.out.println("Nhap ma khuyen mai can tim: ");
+                    KhuyenMai km = qlkm.timKhuyenMai(sc.nextLine());
+                    if (km != null) {
+                        km.xuat();
+                    }
+                    else {
+                        System.out.println("Khong tim thay khuyen mai");
+                    }
+                    break;
+                }
+                case 6: {
+                    ktra = false;
+                    break;
+                }
+                default: {
+                    System.out.println("Lua chon khong hop le.");
+                    System.out.println("Vui long lua chon lai.");
                 }
             }
         }
@@ -356,13 +438,7 @@ public class ChucNangMenu {
                 }
                 case 3: {
                     System.out.println("Nhap ma nhan vien muon sua thong tin: ");
-                    NhanVien nv = qlnv.suaThongTinNV(sc.nextLine());
-                    if (nv != null) {
-                        nv.output();
-                    }
-                    else {
-                        System.out.println("Khong tim thay nhan vien muon sua.");
-                    }
+                    qlnv.suaThongTinNV(sc.nextLine());
                     break;
                 }
                 case 4: {

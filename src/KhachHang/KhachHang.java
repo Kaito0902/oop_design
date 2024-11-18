@@ -21,10 +21,10 @@ public abstract class KhachHang {
     protected String email;
     protected String maKhachHang;
     protected String loaiKhachHang;
-    private String[] loai = {"Tiem nang", "Than Thiet", "Uu dai", "Binh Thuong"};  
+    private final String[] loai = {"Tiem nang", "Than Thiet", "Uu dai", "Binh Thuong"};
 
     //các thuộc tính/tính năng thêm cho khách hàng
-    protected HoaDon giaodich[] = new HoaDon[5];//1khách hàng có nhiều hóa đơn mua hàng
+    protected HoaDon[] giaodich = new HoaDon[5];//1khách hàng có nhiều hóa đơn mua hàng
     protected int soluonggiaodich = 0;
     // protected DonDatHang gioHang[];//1 khách hàng có nhiều đơn đặt hàng
     // protected BaoHanh baoHang[];//1 khách hàng có nhiều loại sản phẩm cần bảo hành
@@ -185,7 +185,6 @@ public abstract class KhachHang {
                 themgiaodich = true;
                 break;
             }else if (chon.equals("N")){
-                themgiaodich = false;
                 break;
             }else{
                 System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
@@ -235,7 +234,7 @@ public abstract class KhachHang {
     public boolean ktra (String loaiKH) {
         for (var i : loai)
             if ( i.equalsIgnoreCase(loaiKH) )
-            return true;
+                return true;
         return false; 
     }
 

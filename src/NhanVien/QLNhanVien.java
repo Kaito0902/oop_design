@@ -168,12 +168,15 @@ public class QLNhanVien {
         }
     }
 
-    public NhanVien suaThongTinNV(String manv) {
+    public void suaThongTinNV(String manv) {
+        boolean timThay = false;
         for (NhanVien nv : dsNhanVien) {
             if (nv.maNhanVien.equals(manv) && nv.isnotdelete) {
                 int lc;
                 boolean ktra = true;
+                timThay = true;
                 while (ktra) {
+                    nv.output();
                     System.out.println("1. Sua ten nhan vien");
                     System.out.println("2. Sua so dien thoai");
                     System.out.println("3. Sua email");
@@ -223,14 +226,14 @@ public class QLNhanVien {
                         default: {
                             System.out.println("Lua chon khong hop le");
                             System.out.println("Vui long lua chon lai");
-                            break;
                         }
                     }
                 }
-                return nv;
             }
         }
-        return null;
+        if (!timThay) {
+            System.out.println("Khong tim thay ma nhan vien voi ma " + manv);
+        }
     }
 
     public void xoa1NV(String manv) {
@@ -238,6 +241,7 @@ public class QLNhanVien {
         for (NhanVien nv : dsNhanVien) {
             if (nv.maNhanVien.equals(manv)) {
                 nv.isnotdelete = false;
+                System.out.println("Da xoa nhan vien");
                 ktra = true;
             }
         }

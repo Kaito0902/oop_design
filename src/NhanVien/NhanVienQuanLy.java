@@ -77,15 +77,16 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
             System.out.println("======================================");
             System.out.printf("| %-34s |\n", "1. Quan ly nhan vien");
             System.out.printf("| %-34s |\n", "2. Quan ly khach hang va hoa don");
-            System.out.printf("| %-34s |\n", "3. Quan ly san pham");
-            System.out.printf("| %-34s |\n", "4. Quan ly don dat hang");
-            System.out.printf("| %-34s |\n", "5. Quan ly bao hanh va sua chua");
-            System.out.printf("| %-34s |\n", "6. Quan ly chuoi cung cap");
-            System.out.printf("| %-34s |\n", "7. Thong ke so lieu");
-            System.out.printf("| %-34s |\n", "8. Xem thong tin ban than");
-            System.out.printf("| %-34s |\n", "9. Xin nghi phep");
-            System.out.printf("| %-34s |\n", "10. Doi mat khau");
-            System.out.printf("| %-34s |\n", "11. Dang xuat");
+            System.out.printf("| %-34s |\n", "3. Quan ly khuyen mai");
+            System.out.printf("| %-34s |\n", "4. Quan ly san pham");
+            System.out.printf("| %-34s |\n", "5. Quan ly don dat hang");
+            System.out.printf("| %-34s |\n", "6. Quan ly bao hanh va sua chua");
+            System.out.printf("| %-34s |\n", "7. Quan ly chuoi cung cap");
+            System.out.printf("| %-34s |\n", "8. Thong ke so lieu");
+            System.out.printf("| %-34s |\n", "9. Xem thong tin ban than");
+            System.out.printf("| %-34s |\n", "10. Xin nghi phep");
+            System.out.printf("| %-34s |\n", "11. Doi mat khau");
+            System.out.printf("| %-34s |\n", "12. Dang xuat");
             System.out.println("======================================");
             System.out.print("Nhap lua chon: ");
             lc = Integer.parseInt(sc.nextLine());
@@ -99,37 +100,40 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
                     break;
                 }
                 case 3: {
+                    menuKM();
+                }
+                case 4: {
                     menuSP();
                     break;
                 }
-                case 4: {
+                case 5: {
                     menuDDH();
                     break;
                 }
-                case 5: {
+                case 6: {
                     menuBH();
                     break;
                 }
-                case 6: {
+                case 7: {
                     menuCCC();
                     break;
                 }
-                case 7: {
+                case 8: {
                     menuTK();
                     break;
                 }
-                case 8: {
+                case 9: {
                     output();
                     break;
                 }
-                case 9: {
+                case 10: {
                     NghiPhep nghiPhep = new NghiPhep();
                     nghiPhep.input();
                     qlnp.themDonNghiPhep(nghiPhep);
                     qlnp.ghiVaoFileDSNP();
                     break;
                 }
-                case 10: {
+                case 11: {
                     System.out.println("Nhap mat khau cu: ");
                     String matKhauCu = sc.nextLine();
                     int dem = 0;
@@ -153,7 +157,7 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
                     }
                     break;
                 }
-                case 11: {
+                case 12: {
                     kt = false;
                     break;
                 }

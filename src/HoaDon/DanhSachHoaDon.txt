@@ -1,5 +1,5 @@
-hd1,17-8-2024,2,28000000.0,Nguyen Van Thanh,km1,dt1,Nguyen Van A,Laptop,800000.0,200000.0,Truc tiep
-hd2,19-8-2024,1,150000.0,Nguyen Thanh Vu,km3,dt3,Nguyen Van B,Chuot,80000.0,15000.0,Truc tiep
-hd3,27-9-2024,3,2000000.0,Nguyen Mai Tran,km2,dt2,Nguyen Van C,GPU,400000.0,200000.0,Chuyen khoan
-hd4,14-10-2024,1,1500000.0,Nguyen Quoc Dai,km4,dt4,Nguyen Van D,Ram,100000.0,200000.0,Chuyen khoan
-hd5,17-10-2024,1,6000000.0,Phan Thanh Thinh,km5,dt5,Nguyen Van E,Man hinh,600000.0,400000.0,Chuyen khoan
+hd1,17/8/2024,2,28000000.0,Nguyen Van Thanh,km1,dt1,Nguyen Van A,Laptop,800000.0,200000.0,Truc tiep
+hd2,19/8/2024,1,150000.0,Nguyen Thanh Vu,km3,dt3,Nguyen Van B,Chuot,80000.0,15000.0,Truc tiep
+hd3,27/9/2024,3,2000000.0,Nguyen Mai Tran,km2,dt2,Nguyen Van C,GPU,400000.0,200000.0,Chuyen khoan
+hd4,14/10/2024,1,1500000.0,Nguyen Quoc Dai,km4,dt4,Nguyen Van D,Ram,100000.0,200000.0,Chuyen khoan
+hd5,17/10/2024,1,6000000.0,Phan Thanh Thinh,km5,dt5,Nguyen Van E,Man hinh,600000.0,400000.0,Chuyen khoan

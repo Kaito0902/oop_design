@@ -132,8 +132,8 @@ public class DonDatHang {
         ngayGiaoHang = LocalDate.parse(ngayGiao, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
         System.out.println("Nhap thong tin san pham:");
-        sanPham = new SanPham();
-        sanPham.input(); // Gia su lop SanPham co phuong thuc nhap()
+//        sanPham = new SanPham();
+//        sanPham.input(); // Gia su lop SanPham co phuong thuc nhap()
 
         System.out.print("Nhap so luong: ");
         soLuong = sc.nextDouble();
