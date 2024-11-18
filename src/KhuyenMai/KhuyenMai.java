@@ -122,9 +122,17 @@ public class KhuyenMai {
                 '}';
     }
 
+    public void xuat(){
+        System.out.println(toString());
+    }
     public static KhuyenMai timKhuyenMai(String maKhuyenMai2) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'timKhuyenMai'");
+    }
+
+    public void fromString(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'fromString'");
     }
     
     
