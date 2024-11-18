@@ -16,32 +16,44 @@ public class HoaDon {
     protected double tongSoTien;
     protected NhanVien nhanVienLapHoaDon;
     protected KhuyenMai khuyenMai;
-    protected DoiTra doiTra;
     protected KhachHang khachHang;
     protected SanPham sanPham;
     protected double tienThue;
     protected double chietKhau;
     protected String phuongThucThanhToan;
-
-    static Scanner scanner = new Scanner(System.in);
-
-   
-
-    public HoaDon(String maHoaDon, LocalDate ngayLapHoaDon, int soLuong, double tongSoTien,
-            NhanVien nhanVienLapHoaDon, KhuyenMai khuyenMai, SanPham sanPham,   double tienThue,
-            double chietKhau, String phuongThucThanhToan) {
-        this.maHoaDon = maHoaDon;
-        this.ngayLapHoaDon = ngayLapHoaDon;
-        this.soLuong = soLuong;
-        this.tongSoTien = tongSoTien;
-        this.nhanVienLapHoaDon = nhanVienLapHoaDon;
-        this.khuyenMai = khuyenMai;
-        this.sanPham = sanPham;
-        this.tienThue = tienThue;
-        this.chietKhau = chietKhau;
-        this.phuongThucThanhToan = phuongThucThanhToan;
-    }
+    protected ChiTietHoaDon[] danhSachChiTiet;
+    protected static int soLuongChiTiet=0; 
     
+    static Scanner scanner = new Scanner(System.in);
+    
+     
+    
+        public HoaDon(String maHoaDon, LocalDate ngayLapHoaDon, int soLuong, double tongSoTien, NhanVien nhanVienLapHoaDon,
+                KhuyenMai khuyenMai, KhachHang khachHang, SanPham sanPham, double tienThue, double chietKhau,
+                String phuongThucThanhToan, ChiTietHoaDon[] danhSachChiTiet) {
+            this.maHoaDon = maHoaDon;
+            this.ngayLapHoaDon = ngayLapHoaDon;
+            this.soLuong = soLuong;
+            this.tongSoTien = tongSoTien;
+            this.nhanVienLapHoaDon = nhanVienLapHoaDon;
+            this.khuyenMai = khuyenMai;
+            this.khachHang = khachHang;
+            this.sanPham = sanPham;
+            this.tienThue = tienThue;
+            this.chietKhau = chietKhau;
+            this.phuongThucThanhToan = phuongThucThanhToan;
+            this.danhSachChiTiet = danhSachChiTiet;
+            this.soLuongChiTiet = 0;
+    }
+
+    public void themChiTietHoaDon(ChiTietHoaDon cthd) {
+        if (soLuongChiTiet < danhSachChiTiet.length) {
+            danhSachChiTiet[soLuongChiTiet] = cthd;
+            soLuongChiTiet++;
+        } else {
+            System.out.println("Khong the them do danh sach da day");
+        }
+    }
     public HoaDon() {
         //TODO Auto-generated constructor stub
     }
@@ -102,16 +114,6 @@ public class HoaDon {
     }
 
 
-    public DoiTra getDoiTra() {
-        return doiTra;
-    }
-
-
-    public void setDoiTra(DoiTra doiTra) {
-        this.doiTra = doiTra;
-    }
-
-
     public void setKhachHang(KhachHang khachHang) {
         this.khachHang = khachHang;
     }
@@ -166,7 +168,7 @@ public class HoaDon {
         HoaDon.scanner = scanner;
     }
 
-
+    
     public void input() {
         System.out.print("Nhap ma hoa don: "); 
         maHoaDon = scanner.nextLine(); 
@@ -208,27 +210,47 @@ public class HoaDon {
             if (khuyenMai == null) {
                 System.out.println("Mã khuyến mãi không tồn tại, bỏ qua khuyến mãi.");
             }
-        }
-
 
         }
-        @Override
-        public String toString() {
-            // TODO Auto-generated method stub
-            return super.toString()+"HoaDon{" +
-                "maHoaDon='" + maHoaDon + '\'' +
-                ", ngayLapHoaDon=" + ngayLapHoaDon +
-                ", soLuong=" + soLuong +
-                ", tongSoTien=" + tongSoTien +
-                ", nhanVienLapHoaDon=" + nhanVienLapHoaDon +
-                ", khuyenMai=" + khuyenMai +
-                ", khachHang='" + khachHang + '\'' +
-                ", sanPham=" + sanPham +
-                ", tienThue=" + tienThue +
-                ", chietKhau=" + chietKhau +
-                ", phuongThucThanhToan='" + phuongThucThanhToan + '\'' +
-                '}';
+
+        int soLuongSanPham = Integer.parseInt(scanner.nextLine());
+        for (int i = 0; i < soLuongSanPham; i++) {
+            System.out.println("Nhap thong tin choi tiet san pham thu " + (i + 1) + ":");
+            ChiTietHoaDon cthd = new ChiTietHoaDon();
+            cthd.input(i);
+            themChiTietHoaDon(cthd);
         }
+        }
+
+@Override
+public String toString() {
+    StringBuilder builder = new StringBuilder();
+    
+    // Thêm thông tin cơ bản của hóa đơn
+    builder.append(super.toString())
+           .append("HoaDon{")
+           .append("maHoaDon='").append(maHoaDon).append('\'')
+           .append(", ngayLapHoaDon=").append(ngayLapHoaDon)
+           .append(", soLuong=").append(soLuong)
+           .append(", tongSoTien=").append(tongSoTien)
+           .append(", nhanVienLapHoaDon=").append(nhanVienLapHoaDon)
+           .append(", khuyenMai=").append(khuyenMai)
+           .append(", khachHang='").append(khachHang).append('\'')
+           .append(", sanPham=").append(sanPham)
+           .append(", tienThue=").append(tienThue)
+           .append(", chietKhau=").append(chietKhau)
+           .append(", phuongThucThanhToan='").append(phuongThucThanhToan).append('\'')
+           .append("}\n");
+
+    // Thêm danh sách chi tiết hóa đơn
+    builder.append("Danh sách chi tiết hóa đơn:\n");
+    for (int i = 0; i < soLuongChiTiet; i++) {
+        builder.append(String.format("\tChi tiết %d: %s\n", i + 1, danhSachChiTiet[i] != null ? danhSachChiTiet[i].toString() : "N/A"));
+    }
+
+    return builder.toString();
+}
+
         public void xuat(){
             System.out.println(toString());
         }
@@ -246,6 +268,11 @@ public class HoaDon {
         public double getTongSoTien() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getTongSoTien'");
+        }
+
+        public void fromString(String string) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'fromString'");
         }
 
      }
