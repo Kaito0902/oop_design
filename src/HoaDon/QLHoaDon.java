@@ -77,7 +77,6 @@ public class QLHoaDon {
         }
     }
 
-    // Đọc danh sách hóa đơn từ file
     public void docTuFileDSHD() {
         try (BufferedReader reader = new BufferedReader(new FileReader("DanhSachHoaDon.txt"))) {
             String line;
@@ -108,8 +107,6 @@ public class QLHoaDon {
                 .mapToDouble(HoaDon::getTongSoTien)
                 .sum();
     }
-
-    // Menu chính
     public void menu() {
         boolean running = true;
         while (running) {

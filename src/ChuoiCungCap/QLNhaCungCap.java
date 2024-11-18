@@ -96,7 +96,7 @@ public class QLNhaCungCap {
                     String tenSanPham =(data[9]); 
                     String ghiChu = data[10];
 
-                    NhaCungCap ncc = new NhaCungCap(maNhaCungCap, tenNhaCungCap, diaChi, thanhPho, quocGia, email, maSoThue, ngayHopTac, chiPhiNhapHang, tenSanPham, ghiChu);
+                    NhaCungCap ncc = new NhaCungCap(maNhaCungCap, tenNhaCungCap, diaChi, thanhPho, quocGia, email, maSoThue, ngayHopTac, chiPhiNhapHang, ghiChu);
                     themNCC(ncc);
                 }
             }

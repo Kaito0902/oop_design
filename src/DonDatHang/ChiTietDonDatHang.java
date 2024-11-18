@@ -46,13 +46,13 @@ public class ChiTietDonDatHang extends DonDatHang{
     }
 
     public void nhap() {
-        System.out.print("Nhập tiền thuế: ");
+        System.out.print("Nhap tien thue: ");
         tienThue = sc.nextDouble();
 
-        System.out.print("Nhập chiết khấu: ");
+        System.out.print("Nhap chiet khau:");
         chietKhau = sc.nextDouble();
 
-        System.out.print("Nhập giá nhập: ");
+        System.out.print("Nhap gia nhap ");
         giaNhap = sc.nextDouble();
     }
 

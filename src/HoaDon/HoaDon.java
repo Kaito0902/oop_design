@@ -16,7 +16,6 @@ public class HoaDon {
     protected double tongSoTien;
     protected NhanVien nhanVienLapHoaDon;
     protected KhuyenMai khuyenMai;
-    protected DoiTra doiTra;
     protected KhachHang khachHang;
     protected SanPham sanPham;
     protected double tienThue;
@@ -30,7 +29,7 @@ public class HoaDon {
      
     
         public HoaDon(String maHoaDon, LocalDate ngayLapHoaDon, int soLuong, double tongSoTien, NhanVien nhanVienLapHoaDon,
-                KhuyenMai khuyenMai, DoiTra doiTra, KhachHang khachHang, SanPham sanPham, double tienThue, double chietKhau,
+                KhuyenMai khuyenMai, KhachHang khachHang, SanPham sanPham, double tienThue, double chietKhau,
                 String phuongThucThanhToan, ChiTietHoaDon[] danhSachChiTiet) {
             this.maHoaDon = maHoaDon;
             this.ngayLapHoaDon = ngayLapHoaDon;
@@ -38,7 +37,6 @@ public class HoaDon {
             this.tongSoTien = tongSoTien;
             this.nhanVienLapHoaDon = nhanVienLapHoaDon;
             this.khuyenMai = khuyenMai;
-            this.doiTra = doiTra;
             this.khachHang = khachHang;
             this.sanPham = sanPham;
             this.tienThue = tienThue;
@@ -113,16 +111,6 @@ public class HoaDon {
 
     public void setKhuyenMai(KhuyenMai khuyenMai) {
         this.khuyenMai = khuyenMai;
-    }
-
-
-    public DoiTra getDoiTra() {
-        return doiTra;
-    }
-
-
-    public void setDoiTra(DoiTra doiTra) {
-        this.doiTra = doiTra;
     }
 
 
