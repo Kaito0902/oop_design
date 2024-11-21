@@ -9,24 +9,16 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class QLSanPham{
-    private SanPham[] ds;
+    private SanPham[] ds = new SanPham[0];
+    private int soLuong = 0;
     static Scanner sc = new Scanner(System.in);
-
-    public QLSanPham()
-    {
-
-    }
-
-    public QLSanPham(SanPham[] ds)
-    {
-        this.ds = ds;
-    }
 
     public void themSanPham(SanPham sp)
     {
-        SanPham[] newDS = Arrays.copyOf(ds, ds.length + 1);
-        newDS[this.ds.length] = sp;
-        this.ds = newDS;
+        SanPham[] newDS = Arrays.copyOf(ds, soLuong + 1);
+        newDS[soLuong] = sp;
+        ds = newDS;
+        soLuong++;
     }
 
     public void nhapDanhSach1(){

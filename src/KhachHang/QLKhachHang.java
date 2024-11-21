@@ -102,22 +102,22 @@ public class QLKhachHang {
                     chon = scanner.nextLine();
                     switch (chon) {
                         case "a":
-                            KhachHang x = new CaNhan();
+                            KhachHang x = new KhachHangCaNhan();
                             x.input();
                             themKH(x);
                             break;
                         case "b":
-                            KhachHang y = new SinhVien();
+                            KhachHang y = new KhachHangSinhVien();
                             y.input();
                             themKH(y);
                             break;
                         case "c":
-                            KhachHang z = new DoiTacDoanhNghiep();
+                            KhachHang z = new KhachHangDoiTacDoanhNghiep();
                             z.input();
                             themKH(z);
                             break;
                         case "d":
-                            KhachHang w = new Vip();
+                            KhachHang w = new KhachHangVip();
                             w.input();
                             themKH(w);
                             break;

@@ -1,18 +1,18 @@
 package KhachHang;
 
-public class SinhVien extends KhachHang {
+public class KhachHangSinhVien extends KhachHang {
     //attributes
     private String maSV;
     private double diemTB;
 
     //non-parameted constructor
-    public SinhVien() {
+    public KhachHangSinhVien() {
         this.loaiKhachHang = "Uu dai";
     }
 
     //parameted constructor
-    public SinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
-                    String maKhachHang, String loaiKhachHang, String khieuNai, int tichDiem, String maSV, double diemTB) {
+    public KhachHangSinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
+                             String maKhachHang, String loaiKhachHang, String khieuNai, int tichDiem, String maSV, double diemTB) {
         super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.maSV = maSV;
         this.diemTB = diemTB;

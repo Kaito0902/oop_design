@@ -1,6 +1,6 @@
 package KhachHang;
 
-public class CaNhan extends KhachHang {
+public class KhachHangCaNhan extends KhachHang {
 
     //tinhdiem thuong
     @Override

@@ -49,7 +49,7 @@ public class QLNhanVien {
                             String.valueOf(nvbh.getNgayPhepConLai()),
                             String.valueOf(nvbh.luong),
                             nvbh.matKhau,
-                            String.valueOf(nvbh.isdelete),
+                            String.valueOf(nvbh.isnotdelete),
                             String.valueOf(nvbh.getDoanhThu()),
                             String.valueOf(nvbh.getSoLuongGiaoDich())
                     ));
@@ -70,7 +70,7 @@ public class QLNhanVien {
                             String.valueOf(nvkt.getNgayPhepConLai()),
                             String.valueOf(nvkt.luong),
                             nvkt.matKhau,
-                            String.valueOf(nvkt.isdelete),
+                            String.valueOf(nvkt.isnotdelete),
                             kyNang,
                             String.valueOf(nvkt.getSoLuuTruBaoHanh())
                     ));
@@ -91,7 +91,7 @@ public class QLNhanVien {
                             String.valueOf(nvql.getNgayPhepConLai()),
                             String.valueOf(nvql.luong),
                             nvql.matKhau,
-                            String.valueOf(nvql.isdelete),
+                            String.valueOf(nvql.isnotdelete),
                             String.valueOf(nvql.getChiSoHieuSuat())
                     ));
                     writer.newLine();
@@ -162,7 +162,7 @@ public class QLNhanVien {
 
     public void xuatDanhSachNV() {
         for (NhanVien ds : dsNhanVien) {
-            if (ds.isdelete) {
+            if (ds.isnotdelete) {
                 ds.output();
             }
         }
@@ -170,15 +170,15 @@ public class QLNhanVien {
 
     public NhanVien suaThongTinNV(String manv) {
         for (NhanVien nv : dsNhanVien) {
-            if (nv.maNhanVien.equals(manv)) {
+            if (nv.maNhanVien.equals(manv) && nv.isnotdelete) {
                 int lc;
                 boolean ktra = true;
                 while (ktra) {
                     System.out.println("1. Sua ten nhan vien");
                     System.out.println("2. Sua so dien thoai");
                     System.out.println("3. Sua email");
-                    System.out.println("4. Sua nam sinh");
-                    System.out.println("5. Sua chuc vu");
+                    System.out.println("4. Sua ngay thang nam sinh");
+                    System.out.println("5. Sua he so luong");
                     System.out.println("6. Thoat");
                     System.out.println("Nhap lua chon muon sua: ");
                     lc = Integer.parseInt(sc.nextLine());
@@ -211,9 +211,9 @@ public class QLNhanVien {
                             break;
                         }
                         case 5: {
-                            System.out.println("Nhap chuc vu moi: ");
-                            nv.setChucVu(sc.nextLine());
-                            System.out.println("Da sua chuc vu.");
+                            System.out.println("Nhap he so luong moi: ");
+                            nv.setHeSoLuong(Double.parseDouble(sc.nextLine()));
+                            System.out.println("Da sua he so luong.");
                             break;
                         }
                         case 6: {
@@ -237,7 +237,7 @@ public class QLNhanVien {
         boolean ktra = false;
         for (NhanVien nv : dsNhanVien) {
             if (nv.maNhanVien.equals(manv)) {
-                nv.isdelete = false;
+                nv.isnotdelete = false;
                 ktra = true;
             }
         }

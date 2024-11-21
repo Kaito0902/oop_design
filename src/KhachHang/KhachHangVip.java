@@ -1,19 +1,19 @@
 package KhachHang;
 
-public class Vip extends KhachHang implements TraGop{
+public class KhachHangVip extends KhachHang implements TraGop{
     //atrributes
     private int heSo;
     private boolean traGop;
 
     //non-parameted
-    public Vip() {
+    public KhachHangVip() {
         this.heSo = 5;
         this.loaiKhachHang = "Than thiet";
     }
 
     //parameted
-    public Vip(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email, String maKhachHang,
-               String loaiKhachHang, String khieuNai, int tichDiem, int heSo) {
+    public KhachHangVip(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email, String maKhachHang,
+                        String loaiKhachHang, String khieuNai, int tichDiem, int heSo) {
         super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
         this.heSo = heSo;
     }

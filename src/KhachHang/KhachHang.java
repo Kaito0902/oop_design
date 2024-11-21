@@ -142,14 +142,14 @@ public abstract class KhachHang {
         setDiaChi(scanner.nextLine());
 
         // chi KH ca nhan moi can ham nhap loai:
-        if ( (this instanceof CaNhan)){
+        if ( (this instanceof KhachHangCaNhan)){
             System.out.println("Nhap loai khach hang (Tiem nang, Than Thiet, Uu dai, Binh Thuong):");
             setLoaiKhachHang(scanner.nextLine());
         }
-        else if ( this instanceof SinhVien ) {
+        else if ( this instanceof KhachHangSinhVien) {
             setLoaiKhachHang("Uu dai");
         }
-        else if ( this instanceof Vip ){
+        else if ( this instanceof KhachHangVip){
             setLoaiKhachHang("Than Thiet");
         }
         setLoaiKhachHang("Tiem Nang");

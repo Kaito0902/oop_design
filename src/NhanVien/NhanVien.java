@@ -17,7 +17,7 @@ public abstract class NhanVien {
     protected int ngayPhepConLai;
     protected double luong;
     protected String matKhau;
-    protected boolean isdelete;
+    protected boolean isnotdelete;
     static double luongCoBan = 250;
     static int tongNhanVien = 0;
     static Scanner sc = new Scanner(System.in);
@@ -39,7 +39,7 @@ public abstract class NhanVien {
         this.ngayPhepConLai = ngayPhepConLai;
         this.luong = luong;
         this.matKhau = matKhau;
-        this.isdelete = isdelete;
+        this.isnotdelete = isdelete;
     }
 
     public String getMaNhanVien() {
@@ -166,7 +166,7 @@ public abstract class NhanVien {
         System.out.println("Nhap he so luong: ");
         setHeSoLuong(Double.parseDouble(sc.nextLine()));
 
-        isdelete = true;
+        isnotdelete = true;
         luong = tinhLuong();
 
 //        ngayPhepConLai = (LocalDate.now().getYear() - this.ngayVaoLam) >= 1 ? 12 : 6;
