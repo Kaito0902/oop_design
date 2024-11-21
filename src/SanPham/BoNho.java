@@ -1,6 +1,6 @@
 package SanPham;
 
-public class BoNho extends PhanCung implements ThanhTien{
+public class BoNho extends PhanCung{
     private int dungLuongBoNho;
     private String loaiBoNho;
 
@@ -9,16 +9,8 @@ public class BoNho extends PhanCung implements ThanhTien{
 
     }
 
-    public BoNho(int dungLuongBoNho, String loaiBoNho) {
-        this.dungLuongBoNho = dungLuongBoNho;
-        this.loaiBoNho = loaiBoNho;
-    }
-
-    public BoNho(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String loaiLinhKien, String model, int dungLuongBoNho,
-            String loaiBoNho) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien,
-                model);
+    public BoNho(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiLinhKien, String nhaSanXuat, String model, int dungLuongBoNho, String loaiBoNho){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiLinhKien, nhaSanXuat, model);
         this.dungLuongBoNho = dungLuongBoNho;
         this.loaiBoNho = loaiBoNho;
     }
@@ -40,8 +32,14 @@ public class BoNho extends PhanCung implements ThanhTien{
     }
 
     @Override
-    public float ThanhTien(){
-        return 1;
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
+    public float thanhTien(){
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -55,9 +53,23 @@ public class BoNho extends PhanCung implements ThanhTien{
     }  
     
     @Override
-    public void nhap1()
+    public String toString() 
     {
-        super.nhap1();
+        return super.toString() + String.format("%-10d %-20s", dungLuongBoNho, loaiBoNho);
+    }
+    
+    @Override
+    public void xuat()
+    {
+        super.xuat();
+        System.out.println("Dung luong bo nho: " + dungLuongBoNho + "GB");
+        System.out.println("Loai bo nho: " + loaiBoNho);
+        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
+    }
+
+    @Override
+    public void nhapCauHinh()
+    {
         System.out.println("Nhap dung luong: ");
         setDungLuongBoNho(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap loai bo nho: ");
@@ -65,27 +77,10 @@ public class BoNho extends PhanCung implements ThanhTien{
     }
 
     @Override
-    public String toString() 
+    public void hienThiCauHinh()
     {
-        return super.toString() + "BoNho [dungLuong=" + dungLuongBoNho + ", loaiBoNho=" + loaiBoNho + "]";
+        super.hienThiCauHinh();
+        System.out.println("Dung luong bo nho: " + dungLuongBoNho + "GB");
+        System.out.println("Loai bo nho: " + loaiBoNho);
     }
-
-    @Override
-    public String toString1() 
-    {
-        return super.toString1() + "BoNho [dungLuong=" + dungLuongBoNho + ", loaiBoNho=" + loaiBoNho + "]";
-    }
-
-    @Override
-    public void xuat()
-    {
-        System.out.println(toString());
-    }
-
-    @Override
-    public void xuat1()
-    {
-        System.out.println(toString1());
-    }
-
 }

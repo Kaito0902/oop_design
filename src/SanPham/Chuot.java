@@ -1,27 +1,19 @@
 package SanPham;
 
-public class Chuot extends ThietBiNgoaiVi implements ThanhTien{
+public class Chuot extends ThietBiNgoaiVi{
     private int dPI;
-    private int soLanBam;
     private String denLED;
-    private String loaiChuot;
 
     public Chuot()
     {
 
     }
 
-    
-
-    public Chuot(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String loaiThietBi, String phuongThucKetNoi, int dPI, int soLanBam,
-            String denLED, String loaiChuot) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiThietBi,
-                phuongThucKetNoi);
+    public Chuot(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiThietBi,
+            String nhaSanXuat, String phuongThucKetNoi, int dPI, String denLED){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.dPI = dPI;
-        this.soLanBam = soLanBam;
         this.denLED = denLED;
-        this.loaiChuot = loaiChuot;
     }
 
     public int getdPI() {
@@ -32,14 +24,6 @@ public class Chuot extends ThietBiNgoaiVi implements ThanhTien{
         this.dPI = dPI;
     }
 
-    public int getSoLanBam() {
-        return soLanBam;
-    }
-
-    public void setSoLanBam(int soLanBam) {
-        this.soLanBam = soLanBam;
-    }
-
     public String getDenLED() {
         return denLED;
     }
@@ -48,17 +32,15 @@ public class Chuot extends ThietBiNgoaiVi implements ThanhTien{
         this.denLED = denLED;
     }
 
-    public String getLoaiChuot() {
-        return loaiChuot;
+    @Override
+    public float tinhKhuyenMai(){
+        return 0;
     }
 
-    public void setLoaiChuot(String loaiChuot) {
-        this.loaiChuot = loaiChuot;
-    }
 
     @Override
-    public float ThanhTien(){
-        return 1;
+    public float thanhTien(){
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -67,22 +49,20 @@ public class Chuot extends ThietBiNgoaiVi implements ThanhTien{
         super.nhap();
         System.out.println("Nhap DPI chuot: ");
         setdPI(Integer.parseInt(sc.nextLine()));
-        System.out.println("Nhap so lan bam chuot: ");
-        setSoLanBam(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap den LED chuot: ");
         setDenLED(sc.nextLine());
-        System.out.println("Nhap loai chuot: ");
-        setLoaiChuot(sc.nextLine());
     }
 
     @Override
     public String toString() {
-        return super.toString() + "Chuot [dPI=" + dPI + ", soLanBam=" + soLanBam + ", denLED=" + denLED + ", loaiChuot=" + loaiChuot + "]";
+        return super.toString() + String.format("%-10d %-10s", dPI, denLED);
     }
 
     @Override
-    public void xuat()
-    {
-        System.out.println(toString());
+    public void xuat(){
+        super.xuat();
+        System.out.println("DPI chuot: " + dPI);
+        System.out.println("Den LED chuot: " + denLED);
+        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
     }
 }

@@ -7,7 +7,7 @@ import static ChucNang.ChucNangMenu.*;
 import static main_project.oop_project.qlnp;
 import static main_project.oop_project.qlnv;
 
-public class NhanVienKyThuat extends NhanVien{
+public class NhanVienKyThuat extends NhanVien {
     private String[] kyNangChuyenMon = new String[0];
     private int soLuuTruBaoHanh;
 

@@ -1,39 +1,31 @@
 package SanPham;
 
+import java.util.Arrays;
+
 public abstract class MayTinh extends SanPham{
+    protected String loaiMayTinh;
     protected String nhaSanXuat;
     protected String model;
-    protected String loaiMayTinh;
     protected String heDieuHanh;
-    protected boolean coCardRoi;
+    protected String coCardRoi;
     protected PhanCung[] cacLinhKien;
-    protected int soLuongLinhKien;
 
     public MayTinh()
     {
 
     }
 
-    
-
-
-
-    public MayTinh(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, boolean coCardRoi,
+    public MayTinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+            String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi,
             PhanCung[] cacLinhKien) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
         this.nhaSanXuat = nhaSanXuat;
         this.model = model;
         this.loaiMayTinh = loaiMayTinh;
         this.heDieuHanh = heDieuHanh;
         this.coCardRoi = coCardRoi;
-        this.cacLinhKien = new PhanCung[4];
-        this.soLuongLinhKien = 0;
-
+        this.cacLinhKien = cacLinhKien;
     }
-
-
-    
 
     public String getNhaSanXuat() {
         return nhaSanXuat;
@@ -67,11 +59,11 @@ public abstract class MayTinh extends SanPham{
         this.heDieuHanh = heDieuHanh;
     }
 
-    public boolean isCoCardRoi() {
+    public String getCoCardRoi() {
         return coCardRoi;
     }
 
-    public void setCoCardRoi(boolean coCardRoi) {
+    public void setCoCardRoi(String coCardRoi) {
         this.coCardRoi = coCardRoi;
     }
 
@@ -83,30 +75,12 @@ public abstract class MayTinh extends SanPham{
         this.cacLinhKien = cacLinhKien;
     }
 
-
-
-
-
-
-
     public void themPhanCung(PhanCung phanCung) 
     {
-        // soLuongLinhKien = 0;
-        // PhanCung[] newCacLinhKien = Arrays.copyOf(cacLinhKien, cacLinhKien.length + 1);
-        // newCacLinhKien[this.cacLinhKien.length] = phanCung;
-        // this.cacLinhKien = newCacLinhKien;
-        // cacLinhKien[soLuongLinhKien] = phanCung;
-        if(soLuongLinhKien <= cacLinhKien.length)
-        {
-            cacLinhKien[soLuongLinhKien] = phanCung;
-            soLuongLinhKien++;
-        }
-
-        else
-            System.out.println("Het cho");
+        PhanCung[] newCacLinhKien = Arrays.copyOf(this.cacLinhKien, this.cacLinhKien.length + 1);
+        newCacLinhKien[this.cacLinhKien.length] = phanCung;
+        this.cacLinhKien = newCacLinhKien;
     }
-
-    
 
     @Override
     public void nhap()
@@ -116,65 +90,42 @@ public abstract class MayTinh extends SanPham{
         setNhaSanXuat(sc.nextLine());
         System.out.println("Nhap model san pham: ");
         setModel(sc.nextLine());
-        System.out.println("Nhap loai may tinh: ");
-        setLoaiMayTinh(sc.nextLine());
         System.out.println("Nhap he dieu hanh: ");
         setHeDieuHanh(sc.nextLine());
         System.out.println("Co card roi khong: ");
-        setCoCardRoi(Boolean.parseBoolean(sc.nextLine()));
+        setCoCardRoi(sc.nextLine());
 
-        System.out.println("Nhap phan cung may tinh: ");
-
-        this.cacLinhKien = new PhanCung[4];
-            
-
+        System.out.println("Nhap cau hinh may tinh: ");
+        this.cacLinhKien = new PhanCung[0];
 
         System.out.println("CPU: ");
         CPU cpu = new CPU();
-        cpu.nhap1();
+        cpu.nhapCauHinh();
         themPhanCung(cpu);
 
         System.out.println("GPU: ");
         GPU gpu = new GPU();
-        gpu.nhap1();
+        gpu.nhapCauHinh();
         themPhanCung(gpu);
 
         System.out.println("RAM: ");
         RAM ram = new RAM();
-        ram.nhap1();
+        ram.nhapCauHinh();
         themPhanCung(ram);
     
         System.out.println("Bo Nho: ");
         BoNho boNho = new BoNho();
-        boNho.nhap1();
+        boNho.nhapCauHinh();
         themPhanCung(boNho);
     }
-    
-
-    
-    @Override
-    public String toString() {
-        String xuat = "";
-        for(var i:cacLinhKien)
-        {
-            xuat += i.toString();
-        }
-        return "MayTinh [nhaSanXuat=" + nhaSanXuat + ", model=" + model + ", loaiMayTinh=" + loaiMayTinh
-                + ", heDieuHanh=" + heDieuHanh + ", coCardRoi=" + coCardRoi + ", cacLinhKien="
-                + xuat + "]";
-    }
-
 
     @Override
-    public void xuat()
-    {
-        System.out.println(toString());
+    public void xuat(){
+        super.xuat();
+        System.out.println("Loai may tinh: " + loaiMayTinh);
+        System.out.println("Nha san xuat may tinh: " + nhaSanXuat);
+        System.out.println("Model may tinh: " + model);
+        System.out.println("He dieu hanh may tinh: " + heDieuHanh);
+        System.out.println("May tinh " + coCardRoi + " card roi");
     }
-
-
-
-
-
-
-
 }

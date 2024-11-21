@@ -111,7 +111,7 @@ public class NghiPhep {
 
     @Override
     public String toString() {
-        return String.format("%-10s %-18s %-10d %-15s %-25s %-15s", nhanVien.maNhanVien, nhanVien.tenNhanVien, soNgayNghi, ngayBatDau.format(formatter), lyDo, trangThaiDon);
+        return String.format("%-10s %-18s %-10d %-15s %-25s %-15s", nhanVien.getMaNhanVien(), nhanVien.getTenNhanVien(), soNgayNghi, ngayBatDau.format(formatter), lyDo, trangThaiDon);
     }
 
     public void output() {
@@ -123,12 +123,12 @@ public class NghiPhep {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         NghiPhep nghiPhep = (NghiPhep) obj;
-        return nhanVien.maNhanVien.equals(nghiPhep.nhanVien.maNhanVien) && ngayBatDau.equals(nghiPhep.ngayBatDau);
+        return nhanVien.getMaNhanVien().equals(nghiPhep.nhanVien.getMaNhanVien()) && ngayBatDau.equals(nghiPhep.ngayBatDau);
     }
 
     @Override
     public int hashCode() {
-        return (nhanVien.maNhanVien + ngayBatDau.toString()).hashCode();
+        return (nhanVien.getMaNhanVien() + ngayBatDau.toString()).hashCode();
     }
 
     public void xuatDonNghiPhep() {

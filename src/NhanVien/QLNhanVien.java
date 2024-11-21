@@ -10,6 +10,7 @@ public class QLNhanVien {
     NhanVien[] dsNhanVien = new NhanVien[0];
     int soLuong = 0;
     static Scanner sc = new Scanner(System.in);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private NhanVien nguoiDangNhap;
 
     public NhanVien dangNhap(String soDienThoai, String maKhau) {
@@ -40,10 +41,10 @@ public class QLNhanVien {
                             nvbh.getTenNhanVien(),
                             nvbh.getSoDienThoai(),
                             nvbh.getEmail(),
-                            String.valueOf(nvbh.getSinhNhat()),
+                            String.valueOf(nvbh.getSinhNhat().format(formatter)),
                             nvbh.getGioiTinh(),
                             nvbh.getChucVu(),
-                            String.valueOf(nvbh.getNgayVaoLam()),
+                            String.valueOf(nvbh.getNgayVaoLam().format(formatter)),
                             String.valueOf(nvbh.getHeSoLuong()),
                             String.valueOf(nvbh.getNgayPhepConLai()),
                             String.valueOf(nvbh.luong),
@@ -61,10 +62,10 @@ public class QLNhanVien {
                             nvkt.getTenNhanVien(),
                             nvkt.getSoDienThoai(),
                             nvkt.getEmail(),
-                            String.valueOf(nvkt.getSinhNhat()),
+                            String.valueOf(nvkt.getSinhNhat().format(formatter)),
                             nvkt.getGioiTinh(),
                             nvkt.getChucVu(),
-                            String.valueOf(nvkt.getNgayVaoLam()),
+                            String.valueOf(nvkt.getNgayVaoLam().format(formatter)),
                             String.valueOf(nvkt.getHeSoLuong()),
                             String.valueOf(nvkt.getNgayPhepConLai()),
                             String.valueOf(nvkt.luong),
@@ -82,10 +83,10 @@ public class QLNhanVien {
                             nvql.getTenNhanVien(),
                             nvql.getSoDienThoai(),
                             nvql.getEmail(),
-                            String.valueOf(nvql.getSinhNhat()),
+                            String.valueOf(nvql.getSinhNhat().format(formatter)),
                             nvql.getGioiTinh(),
                             nvql.getChucVu(),
-                            String.valueOf(nvql.getNgayVaoLam()),
+                            String.valueOf(nvql.getNgayVaoLam().format(formatter)),
                             String.valueOf(nvql.getHeSoLuong()),
                             String.valueOf(nvql.getNgayPhepConLai()),
                             String.valueOf(nvql.luong),
@@ -112,7 +113,6 @@ public class QLNhanVien {
                     String tenNhanVien = data[1];
                     String soDienThoai = data[2];
                     String email = data[3];
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate sinhNhat = LocalDate.parse(data[4], formatter);
                     String gioiTinh = data[5];
                     String chucVu = data[6];
@@ -278,5 +278,66 @@ public class QLNhanVien {
     }
 
 
+    public void thongKeNVBH() {
+        System.out.println("|                                NHAN VIEN BAN HANG                               |");
+        System.out.println("====================================================================================");
+        System.out.printf("%-10s %-20s %-20s %-15s %-15s\n", "Ma NV", "Ten NV", "So luong giao dich", "Doanh thu", "Luong");
+        System.out.println("------------------------------------------------------------------------------------");
+
+        for (NhanVien nv : dsNhanVien) {
+            if (nv instanceof NhanVienBanHang nvbh) {
+                System.out.printf("%-10s %-20s %-20d %-15.2f %-15.2f\n",
+                        nvbh.getMaNhanVien(),
+                        nvbh.getTenNhanVien(),
+                        nvbh.getSoLuongGiaoDich(),
+                        nvbh.getDoanhThu(),
+                        nvbh.tinhLuong()
+                );
+            }
+        }
+
+        System.out.println("====================================================================================");
+    }
+
+    public void thongKeNVKT(){
+        System.out.println("|                         NHAN VIEN KY THUAT                              |");
+        System.out.println("===========================================================================");
+        System.out.printf("%-10s %-20s %-20s %-15s\n","Ma NV","Ten NV", "So luong bao hanh" ,"Luong" );
+        System.out.println("---------------------------------------------------------------------------");
+        for(NhanVien nv : dsNhanVien){
+            if(nv instanceof NhanVienKyThuat nvkt){
+                System.out.printf("%-10s %-20s %-20d %-15.2f\n",
+                        nvkt.getMaNhanVien(),
+                        nvkt.getTenNhanVien(),
+                        nvkt.getSoLuuTruBaoHanh(),
+                        nvkt.tinhLuong()
+                );
+            }
+        }
+        System.out.println("===========================================================================");
+
+    }
+
+    public void thongKeNVQL(){
+        System.out.println("|                         NHAN VIEN QUAN LY                               |");
+        System.out.println("===========================================================================");
+        System.out.printf("%-10s %-20s %-20s %-15s\n","Ma NV","Ten NV", "Chi so hieu suat" ,"Luong" );
+        System.out.println("---------------------------------------------------------------------------");
+        for(NhanVien nv : dsNhanVien){
+            if (nv instanceof NhanVienQuanLy nvql) {
+                System.out.printf("%-10s %-20s %-20.2f %-15.2f\n",
+                        nvql.getMaNhanVien(),
+                        nvql.getTenNhanVien(),
+                        nvql.getChiSoHieuSuat(),
+                        nvql.tinhLuong()
+                );
+            }
+        }
+        System.out.println("===========================================================================");
+    }
+
 
 }
+
+
+

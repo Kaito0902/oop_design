@@ -21,6 +21,7 @@ public class oop_project {
 
     public static void menu() {
         qlnv.docTuFileDSNV();
+        qlsp.docTuFile();
         qlnp.docTuFileDSNP();
         boolean kt = true;
         int lc;

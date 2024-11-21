@@ -82,8 +82,8 @@ public class QLNghiPhep {
             for (NghiPhep ds : dsNghiPhep) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 writer.write(String.join(",",
-                        ds.getNhanVien().maNhanVien,
-                        ds.getNhanVien().tenNhanVien,
+                        ds.getNhanVien().getMaNhanVien(),
+                        ds.getNhanVien().getTenNhanVien(),
                         String.valueOf(ds.getSoNgayNghi()),
                         String.valueOf(ds.getNgayBatDau().format(formatter)),
                         ds.getLyDo(),

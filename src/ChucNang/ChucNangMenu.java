@@ -5,6 +5,7 @@ import NhanVien.NhanVien;
 import NhanVien.NhanVienBanHang;
 import NhanVien.NhanVienKyThuat;
 import NhanVien.NhanVienQuanLy;
+import SanPham.SanPham;
 
 import java.util.Scanner;
 
@@ -36,7 +37,15 @@ public class ChucNangMenu {
                     break;
                 }
                 case 2: {
-                    qlsp.timKiem();
+                    System.out.println("Nhap san pham muon tim kiem: ");
+                    String timKiem = sc.nextLine();
+                    SanPham sp = qlsp.timKiem(timKiem);
+                    if (sp != null) {
+                        sp.xuat();
+                    }
+                    else {
+                        System.out.println("Khong tim thay san pham.");
+                    }
                     break;
                 }
                 case 3: {
@@ -143,7 +152,7 @@ public class ChucNangMenu {
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
                 case 1: {
-                    //nhap
+                    qlsp.nhapDanhSach();
                     break;
                 }
                 case 2: {
@@ -151,15 +160,24 @@ public class ChucNangMenu {
                     break;
                 }
                 case 3: {
-                    qlsp.suaPhanTuTheoMa();
+                    System.out.println("Nhap ma san pham muon sua: ");
+                    qlsp.suaPhanTuTheoMa(sc.nextLine());
                     break;
                 }
                 case 4: {
-                    qlsp.xoaPhanTuTheoMa();
+//                    qlsp.xoaPhanTuTheoMa();
                     break;
                 }
                 case 5: {
-                    qlsp.timKiem();
+                    System.out.println("Nhap san pham muon tim kiem: ");
+                    String timKiem = sc.nextLine();
+                    SanPham sp = qlsp.timKiem(timKiem);
+                    if (sp != null) {
+                        sp.xuat();
+                    }
+                    else {
+                        System.out.println("Khong tim thay san pham.");
+                    }
                     break;
                 }
                 case 6: {
@@ -326,6 +344,7 @@ public class ChucNangMenu {
                             default: {
                                 System.out.println("Lua chon khong hop le.");
                                 System.out.println("Vui long lua chon lai.");
+                                i--;
                             }
                         }
                     }
@@ -442,7 +461,8 @@ public class ChucNangMenu {
             System.out.printf("| %-34s|\n", "1. Xem thong ke doanh thu");
             System.out.printf("| %-34s|\n", "2. Xem thong ke san pham");
             System.out.printf("| %-34s|\n", "3. Xem thong ke kho");
-            System.out.printf("| %-34s|\n", "4. Thoat                     |");
+            System.out.printf("| %-34s|\n", "4. Xem thong nhan vien");
+            System.out.printf("| %-34s|\n", "5. Thoat                     |");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
             chon = Integer.parseInt(sc.nextLine());
@@ -460,6 +480,32 @@ public class ChucNangMenu {
                     break;
                 }
                 case 4: {
+                    System.out.println("1.Thong ke nhan vien ban hang");
+                    System.out.println("2.Thong ke nhan vien ky thuat");
+                    System.out.println("3.Thong ke nhan vien quan ly");
+                    System.out.println("Nhap lua chon: ");
+                    int lc = Integer.parseInt(sc.nextLine());
+                    switch (lc) {
+                        case 1: {
+                            qlnv.thongKeNVBH();
+                            break;
+                        }
+                        case 2: {
+                            qlnv.thongKeNVKT();
+                            break;
+                        }
+                        case 3: {
+                            qlnv.thongKeNVQL();
+                            break;
+                        }
+                        default: {
+                            System.out.println("Lua chon khong hop le");
+                            System.out.println("Vui long lua chon lai");
+                        }
+                    }
+                    break;
+                }
+                case 5: {
                     ktra = false;
                     break;
                 }

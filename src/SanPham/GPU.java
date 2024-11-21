@@ -1,32 +1,25 @@
 package SanPham;
 
-public class GPU extends PhanCung implements ThanhTien{
+public class GPU extends PhanCung{
     private int dungLuongVRAM;
     private String loaiVRAM;
-    private int tocDoXungNhip;
+    private float tocDoXungNhip;
     private int soNhanCUDA;
-    private boolean rayTracing;
+    private String rayTracing;
 
     public GPU() 
     {
 
     }
 
-    public GPU(int dungLuongVRAM, String loaiVRAM, int tocDoXungNhip, int soNhanCUDA, boolean rayTracing) {
+    public GPU(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiLinhKien,
+            String nhaSanXuat, String model, int dungLuongVRAM, String loaiVRAM, float tocDoXungNhip, int soNhanCUDA, String rayTracing){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiLinhKien, nhaSanXuat, model);
         this.dungLuongVRAM = dungLuongVRAM;
         this.loaiVRAM = loaiVRAM;
         this.tocDoXungNhip = tocDoXungNhip;
         this.soNhanCUDA = soNhanCUDA;
         this.rayTracing = rayTracing;
-    }
-
-    public GPU(int dungLuongVRAM, String loaiVRAM, boolean rayTracing, int soNhanCUDA, int tocDoXungNhip, String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String nhaSanXuat, String loaiLinhKien, String model) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, loaiLinhKien, model);
-        this.dungLuongVRAM = dungLuongVRAM;
-        this.loaiVRAM = loaiVRAM;
-        this.rayTracing = rayTracing;
-        this.soNhanCUDA = soNhanCUDA;
-        this.tocDoXungNhip = tocDoXungNhip;
     }
 
     public int getDungLuongVRAM() {
@@ -45,11 +38,11 @@ public class GPU extends PhanCung implements ThanhTien{
         this.loaiVRAM = loaiVRAM;
     }
 
-    public int getTocDoXungNhip() {
+    public float getTocDoXungNhip() {
         return tocDoXungNhip;
     }
 
-    public void setTocDoXungNhip(int tocDoXungNhip) {
+    public void setTocDoXungNhip(float tocDoXungNhip) {
         this.tocDoXungNhip = tocDoXungNhip;
     }
 
@@ -61,17 +54,23 @@ public class GPU extends PhanCung implements ThanhTien{
         this.soNhanCUDA = soNhanCUDA;
     }
 
-    public boolean isRayTracing() {
+    public String getCoRayTracing(){
         return rayTracing;
     }
 
-    public void setRayTracing(boolean rayTracing) {
+    public void setRayTracing(String rayTracing) {
         this.rayTracing = rayTracing;
     }
 
     @Override
-    public float ThanhTien(){
-        return 1;
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
+    public float thanhTien(){
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -83,51 +82,53 @@ public class GPU extends PhanCung implements ThanhTien{
         System.out.println("Nhap loai VRAM: ");
         setLoaiVRAM(sc.nextLine());
         System.out.println("Nhap toc do xung nhip: ");
-        setTocDoXungNhip(Integer.parseInt(sc.nextLine()));
+        setTocDoXungNhip(Float.parseFloat(sc.nextLine()));
         System.out.println("Nhap so nhan CUDA: ");
         setSoNhanCUDA(Integer.parseInt(sc.nextLine()));
         System.out.println("Co Ray Tracing khong: ");
-        System.out.println(Boolean.parseBoolean(sc.nextLine()));
+        System.out.println(sc.nextLine());
     }     
-    
+
     @Override
-    public void nhap1()
+    public void nhapCauHinh()
     {
-        super.nhap1();
         System.out.println("Nhap dung luong VRAM: ");
         setDungLuongVRAM(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap loai VRAM: ");
         setLoaiVRAM(sc.nextLine());
         System.out.println("Nhap toc do xung nhip: ");
-        setTocDoXungNhip(Integer.parseInt(sc.nextLine()));
+        setTocDoXungNhip(Float.parseFloat(sc.nextLine()));
         System.out.println("Nhap so nhan CUDA: ");
         setSoNhanCUDA(Integer.parseInt(sc.nextLine()));
         System.out.println("Co Ray Tracing khong: ");
-        System.out.println(Boolean.parseBoolean(sc.nextLine()));
+        System.out.println(sc.nextLine());
     }
 
     @Override
     public String toString() {
-        return super.toString() + "GPU [dungLuongVRAM=" + dungLuongVRAM + ", loaiVRAM=" + loaiVRAM + ", tocDoXungNhip=" + tocDoXungNhip
-                + ", soNhanCUDA=" + soNhanCUDA + ", rayTracing=" + rayTracing + "]";
-    }
-
-    @Override
-    public String toString1() {
-        return super.toString1() + "GPU [dungLuongVRAM=" + dungLuongVRAM + ", loaiVRAM=" + loaiVRAM + ", tocDoXungNhip=" + tocDoXungNhip
-                + ", soNhanCUDA=" + soNhanCUDA + ", rayTracing=" + rayTracing + "]";
+        return super.toString() + String.format("%-10d %-15s %-10f %-10d %-10s", dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
     }
 
     @Override
     public void xuat()
     {
-        System.out.println(toString());
+        super.xuat();
+        System.out.println("Dung luong VRAM GPU: " + dungLuongVRAM + "GB");
+        System.out.println("Nhap loai VRAM: " + loaiVRAM);
+        System.out.println("Nhap toc do xung nhip: " + tocDoXungNhip +"Ghz");
+        System.out.println("So nhan CUDA: " + soNhanCUDA);
+        System.out.println("GPU " + rayTracing + " RayTracing");
+        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
     }
 
     @Override
-    public void xuat1()
+    public void hienThiCauHinh()
     {
-        System.out.println(toString1());
+        super.hienThiCauHinh();
+        System.out.println("Dung luong VRAM GPU: " + dungLuongVRAM + "GB");
+        System.out.println("Nhap loai VRAM: " + loaiVRAM);
+        System.out.println("Nhap toc do xung nhip: " + tocDoXungNhip +"Ghz");
+        System.out.println("So nhan CUDA: " + soNhanCUDA);
+        System.out.println("GPU " + rayTracing + " RayTracing");
     }
-
 }

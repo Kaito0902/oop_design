@@ -1,6 +1,6 @@
 package SanPham;
 
-public class Laptop extends MayTinh implements ThanhTien{
+public class Laptop extends MayTinh implements HienThiCauHinh{
     private String kichThuocManHinh;
     private float thoiLuongPin;
     private String loaiLaptop;
@@ -10,14 +10,11 @@ public class Laptop extends MayTinh implements ThanhTien{
 
     }
 
-    public Laptop(String maSP, String tenSP, float giaSP, float khuyenMaiSP, int thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, String nhaSanXuat, String model, String loaiMayTinh, String heDieuHanh, boolean coCardRoi,
-            PhanCung[] cacLinhKien, String kichThuocManHinh, float thoiLuongPin, String loaiLaptop) {
-        super(maSP, tenSP, giaSP, khuyenMaiSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, nhaSanXuat, model,
-                loaiMayTinh, heDieuHanh, coCardRoi, cacLinhKien);
+    public Laptop(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien, String kichThuocManHinh, float thoiLuongPin, String loaiLaptop){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiMayTinh, nhaSanXuat, model, heDieuHanh, coCardRoi, cacLinhKien);
         this.kichThuocManHinh = kichThuocManHinh;
-        this.thoiLuongPin = thoiLuongPin;
         this.loaiLaptop = loaiLaptop;
+        this.thoiLuongPin = thoiLuongPin;
     }
 
     public String getKichThuocManHinh() {
@@ -45,8 +42,14 @@ public class Laptop extends MayTinh implements ThanhTien{
     }
 
     @Override
-    public float ThanhTien(){
-        return 1;
+    public float tinhKhuyenMai(){
+        return 0;
+    }
+
+
+    @Override
+    public float thanhTien(){
+        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
     }
 
     @Override
@@ -64,14 +67,25 @@ public class Laptop extends MayTinh implements ThanhTien{
     @Override
     public String toString() 
     {
-        return super.toString() + "Laptop [kichThuocManHinh=" + kichThuocManHinh + ", thoiLuongPin=" + thoiLuongPin + ", loaiLaptop="
-                + loaiLaptop + "]";
+        return super.toString() + String.format("%-20s %-10.2f %-20s", kichThuocManHinh, thoiLuongPin, loaiLaptop);
     }
 
     @Override
-    public void xuat()
-    {
-        System.out.println(toString());
+    public void xuat(){
+        super.xuat();
+        System.out.println("Kich thuoc man hinh Laptop: " + kichThuocManHinh);
+        System.out.println("Thoi luong pin Laptop: " + thoiLuongPin + "h");
+        System.out.println("Loai laptop: " + loaiLaptop);
+        hienThiCauHinh();
+        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
     }
-    
+
+    @Override
+    public void hienThiCauHinh()
+    {
+        System.out.println("Cau hinh may tinh: ");
+        for(PhanCung i:cacLinhKien){
+            i.hienThiCauHinh();
+        }
+    }
 }
