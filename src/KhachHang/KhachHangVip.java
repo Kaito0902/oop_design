@@ -16,8 +16,8 @@ public class KhachHangVip extends KhachHang implements TraGop{
 
     //parameted
     public KhachHangVip(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email, String maKhachHang,
-            String loaiKhachHang, int tichDiem, int heSo) {
-        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
+            String loaiKhachHang,boolean isdelete, int tichDiem, int heSo) {
+        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, isdelete, tichDiem);
         this.heSo = heSo;
     }
 

@@ -21,6 +21,7 @@ public abstract class KhachHang {
     protected String email;
     protected String maKhachHang;
     protected String loaiKhachHang;
+    protected boolean isdelete;
     private String[] loai = {"Tiem nang", "Than Thiet", "Uu dai", "Binh Thuong"};  
 
     //các thuộc tính/tính năng thêm cho khách hàng
@@ -38,19 +39,20 @@ public abstract class KhachHang {
 
     //parameted constructor
     public KhachHang(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
-            String maKhachHang, String loaiKhachHang, int tichDiem) {
+            String maKhachHang, String loaiKhachHang, boolean isdelete, int tichDiem) {
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.sdt = sdt;
         this.email = email;
-        this.maKhachHang = maKhachHang;//"kh" + String.format("%02d", ++tongKH)
+        this.maKhachHang = maKhachHang;
         this.loaiKhachHang = loaiKhachHang;
+        this.isdelete = isdelete;
         this.tichDiem = tichDiem;
         tongKH++;
     }
-    
+
     //getter and setter
     public String getHoTen() {
         return hoTen;
@@ -102,7 +104,7 @@ public abstract class KhachHang {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = chuanHoa.chuanHoaEmail(email);
     }
 
     public String getMaKhachHang() {
@@ -126,6 +128,14 @@ public abstract class KhachHang {
             loaiKhachHang = scanner.nextLine();
         }
         this.loaiKhachHang = loaiKhachHang;
+    }
+
+    public boolean isIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(boolean isdelete) {
+        this.isdelete = isdelete;
     }
 
     public int getTichDiem() {
@@ -159,6 +169,7 @@ public abstract class KhachHang {
         setEmail(scanner.nextLine());
         System.out.println("Nhap dia chi:");
         setDiaChi(scanner.nextLine());
+        isdelete = true;
     }
 
     public void inputType() {

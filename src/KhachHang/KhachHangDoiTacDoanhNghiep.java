@@ -15,8 +15,8 @@ public class KhachHangDoiTacDoanhNghiep extends KhachHang implements TraGop{
 
     //parameted
     public KhachHangDoiTacDoanhNghiep(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
-            String maKhachHang, String loaiKhachHang, int tichDiem, String tenCongTy) {
-        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
+            String maKhachHang, String loaiKhachHang,boolean isdelete, int tichDiem, String tenCongTy) {
+        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang,isdelete, tichDiem);
         this.tenCongTy = tenCongTy;
     }
 

@@ -20,7 +20,8 @@ public class QLKhachHang {
     //xuat khach hang
     public void xuatdskh() {
         for ( var i : dskh )
-            i.output();
+            if (i.isdelete)
+                i.output();
     }
 
     //xuat khach hang vip
@@ -36,23 +37,15 @@ public class QLKhachHang {
     public void xoa1KH(String maKH) {
         boolean ktra = false;
         for (KhachHang kh : dskh) {
-            if (kh.maKhachHang.equals(maKH)) {
+            if (kh.maKhachHang.equalsIgnoreCase(maKH)) {
+                kh.isdelete = false;
                 ktra = true;
+                System.out.println("Da xoa Kh co ma:" + maKH);
                 break;
             }
         }
-        if (ktra) {
-            KhachHang newdskh[] = Arrays.copyOf(this.dskh, this.dskh.length-1);
-            int index = 0;
-            for (int i = 0; i < dskh.length; i++) {
-                if (!dskh[i].maKhachHang.equals(maKH)) {
-                    newdskh[index++] = dskh[i];
-                }
-            }
-            dskh = newdskh;
-            System.out.println("Da xoa khach hang co ma: " + maKH);
-        } else {
-            System.out.println("Khong tim thay khach hang co ma: " + maKH);
+        if (!ktra) {
+            System.out.println("Khong tim thay kh co ma: " + maKH);
         }
     }
 
@@ -103,18 +96,67 @@ public class QLKhachHang {
                 }
         }
 
-    // sua thong tin khach hang
+    // sua thong tin khach hang (cần sửa lại)
     public void capNhapThongTinKhachHang(String sdt, QLHoaDon qlhd) {
         KhachHang kh =timkiemKhachHangTheoSdt(sdt);
         if ( kh != null) {
             System.out.println("Cap nhap thong tin khach hang co sdt: " + sdt);
-            kh.input(qlhd);
+            int choice;
+            do {
+                System.out.println("1. Sua ten khach hang");
+                System.out.println("2. Sua gioi tinh");
+                System.out.println("3. Sua so dien thoai");
+                System.out.println("4. Sua so ngay sinh");
+                System.out.println("5. Sua email");
+                System.out.println("6. Sua dia chi");
+                System.out.println("7. Thoat!");
+                System.out.println("Nhap lua chon muon sua: ");
+
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        System.out.println("Nhap ten moi: ");
+                        kh.setHoTen(scanner.nextLine());
+                        break;
+                    case 2:
+                        System.out.println("Nhap gioi tinh moi: ");
+                        kh.setGioiTinh(scanner.nextLine());
+                        System.out.println("Da sua gioi tinh.");
+                        break;
+                    case 3:
+                        System.out.println("Nhap so dien thoai moi: "); 
+                        kh.setSdt(scanner.nextLine());
+                        System.out.println("Da sua so dien thoai.");
+                        break;
+                    case 4:
+                        System.out.println("Nhap ngay sinh moi: ");
+                        kh.setNgaySinh(scanner.nextLine());
+                        System.out.println("Da sua ngay sinh.");
+                        break;
+                    case 5:
+                        System.out.println("Nhap email moi: ");
+                        kh.setEmail(scanner.nextLine());
+                        System.out.println("Da sua email.");
+                        break;
+                    case 6:
+                        System.out.println("Nhap dia chi moi: ");
+                        kh.setDiaChi(scanner.nextLine());
+                        System.out.println("Da sua dia chi.");
+                        break;
+                    case 7:
+                        break;
+                    default:
+                        System.out.println("Lua chon khong hop le");
+                        System.out.println("Vui long lua chon lai");
+                        break;
+                }
+            } while (choice != 7);
         } else {
             System.out.println("Khong tim thay khach hang voi sdt:" + sdt);
         }
     }
 
-    // cap nhap khach hang len vip
+    // cap nhap khach hang len vip(cần sửa lại)
     public void capNhatLoaiKhachHang(QLHoaDon qlHoaDon) {
 
         for (int i = 0; i < dskh.length; i++) {
@@ -130,7 +172,7 @@ public class QLKhachHang {
                 // Nâng cấp lên khách hàng VIP
                 KhachHang vip = new KhachHangVip(
                     caNhan.getHoTen(), caNhan.getGioiTinh(), caNhan.getNgaySinh(), caNhan.getDiaChi(), caNhan.getSdt(),
-                    caNhan.getEmail(), caNhan.getMaKhachHang(), "Than Thiet", caNhan.getTichDiem(), 5
+                    caNhan.getEmail(), caNhan.getMaKhachHang(), "Than Thiet",caNhan.isIsdelete(), caNhan.getTichDiem(), 5
                 );
 
                 System.out.println("Cập nhật thông tin cho khách hàng " + kh.getMaKhachHang() +" sau khi nâng cấp:");
@@ -161,6 +203,7 @@ public class QLKhachHang {
                     cn.getSdt(),
                     cn.getEmail(),
                     cn.getLoaiKhachHang(),
+                    String.valueOf(cn.isdelete),
                     String.valueOf(cn.getTichDiem()),
                     String.valueOf(cn.tinhUuDai())
                     ));
@@ -176,6 +219,7 @@ public class QLKhachHang {
                     sv.getSdt(),
                     sv.getEmail(),
                     sv.getLoaiKhachHang(),
+                    String.valueOf(sv.isdelete),
                     String.valueOf(sv.getTichDiem()),
                     String.valueOf(sv.getDiemTB()),
                     String.valueOf(sv.tinhUuDai())
@@ -192,6 +236,7 @@ public class QLKhachHang {
                     vip.getSdt(),
                     vip.getEmail(),
                     vip.getLoaiKhachHang(),
+                    String.valueOf(vip.isdelete),
                     String.valueOf(vip.getTichDiem()),
                     String.valueOf(vip.getHeSo()),
                     String.valueOf(vip.tinhUuDai()),
@@ -211,6 +256,7 @@ public class QLKhachHang {
                     dt.getSdt(),
                     dt.getEmail(),
                     dt.getLoaiKhachHang(),
+                    String.valueOf(dt.isdelete),
                     String.valueOf(dt.getTichDiem()),
                     dt.getTenCongTy(),
                     String.valueOf(dt.tinhUuDai()),
@@ -239,29 +285,30 @@ public class QLKhachHang {
                     String soDienThoai = data[5];
                     String eMail = data[6];
                     String loaiKhachHang = data[7];
-                    int tichDiem = Integer.parseInt(data[8]);
+                    boolean isdelete = Boolean.parseBoolean(data[8]);
+                    int tichDiem = Integer.parseInt(data[9]);
 
                     switch (loaiKhachHang) {
                         case "Binh Thuong" ->{
-                            KhachHang caNhan = new KhachHangCaNhan(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, tichDiem);
+                            KhachHang caNhan = new KhachHangCaNhan(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang,isdelete, tichDiem);
                             themKH(caNhan);
                         }
                         case "Uu dai" -> {
-                            double diemTB = Double.parseDouble(data[9]);
-                            KhachHang sinhVien = new KhachHangSinhVien(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, tichDiem, diemTB);
+                            double diemTB = Double.parseDouble(data[10]);
+                            KhachHang sinhVien = new KhachHangSinhVien(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang,isdelete, tichDiem, diemTB);
                             themKH(sinhVien);
                         }
                         case "Than Thiet" -> {
-                            int heSo = Integer.parseInt(data[9]);
-                            boolean traGop = Boolean.parseBoolean(data[11]);
-                            KhachHang vip = new KhachHangVip(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, tichDiem, heSo);
+                            int heSo = Integer.parseInt(data[10]);
+                            boolean traGop = Boolean.parseBoolean(data[12]);
+                            KhachHang vip = new KhachHangVip(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang,isdelete, tichDiem, heSo);
                             ((KhachHangVip) vip).setTraGop(traGop); 
                             themKH(vip);
                         }
                         case "Tiem Nang" -> {
-                            String tenCongTy = data[9];
-                            boolean traGop = Boolean.parseBoolean(data[11]);
-                            KhachHang dt = new KhachHangDoiTacDoanhNghiep(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, tichDiem, tenCongTy);
+                            String tenCongTy = data[10];
+                            boolean traGop = Boolean.parseBoolean(data[12]);
+                            KhachHang dt = new KhachHangDoiTacDoanhNghiep(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang,isdelete, tichDiem, tenCongTy);
                             ((KhachHangDoiTacDoanhNghiep) dt).setTraGop(traGop); 
                             themKH(dt);
                         }
@@ -352,6 +399,7 @@ public class QLKhachHang {
                     System.out.println("Nhap ma kh muon xoa:");
                     String ma = scanner.nextLine();
                     xoa1KH(ma);
+                    ghiVaoFileDSKH();
                     break;
                 case 4:
                     String chon1;
