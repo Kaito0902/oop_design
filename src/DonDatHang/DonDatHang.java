@@ -17,10 +17,9 @@ public class DonDatHang {
     protected NhaCungCap nhaCungCap;
     protected String hinhThucGiaoHang;
     protected double doanhThuDonDatHang;
-    static Scanner sc = new Scanner(System.in);
+    protected boolean isDeleted;  
 
-    public DonDatHang(String maDonDatHang2, LocalDate ngayDatHang2, LocalDate ngayGiaoHang2, String sanPham2, double tongTien2, double soLuong2, String nhaCungCap2, String hinhThucGiaoHang2, Double doanhThuDonDatHang2) {
-    }
+    static Scanner sc = new Scanner(System.in);
 
     public DonDatHang(String maDonDatHang, LocalDate ngayDatHang, LocalDate ngayGiaoHang, SanPham sanPham,
                       double tongTien, double soLuong, NhaCungCap nhaCungCap, String hinhThucGiaoHang,
@@ -34,9 +33,26 @@ public class DonDatHang {
         this.nhaCungCap = nhaCungCap;
         this.hinhThucGiaoHang = hinhThucGiaoHang;
         this.doanhThuDonDatHang = doanhThuDonDatHang;
+        this.isDeleted = false; 
     }
 
     public DonDatHang() {
+        this.isDeleted = false;
+    }
+
+    public DonDatHang(String maDonDatHang2, LocalDate ngayDatHang2, LocalDate ngayGiaoHang2, String sanPham2,
+            double tongTien2, double soLuong2, String nhaCungCap2, String hinhThucGiaoHang2,
+            Double doanhThuDonDatHang2) {
+        //TODO Auto-generated constructor stub
+    }
+
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 
     public String getMaDonDatHang() {
@@ -132,8 +148,7 @@ public class DonDatHang {
         ngayGiaoHang = LocalDate.parse(ngayGiao, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
         System.out.println("Nhap thong tin san pham:");
-        sanPham = new SanPham();
-        sanPham.input(); // Gia su lop SanPham co phuong thuc nhap()
+        sanPham.input(); 
 
         System.out.print("Nhap so luong: ");
         soLuong = sc.nextDouble();
@@ -144,8 +159,7 @@ public class DonDatHang {
         sc.nextLine(); // Xoa bo ky tu xuong dong con lai
 
         System.out.println("Nhap thong tin nha cung cap:");
-        nhaCungCap = new NhaCungCap();
-        nhaCungCap.nhap(); // Gia su lop NhaCungCap co phuong thuc nhap()
+        nhaCungCap.input(); // Gia su lop NhaCungCap co phuong thuc nhap()
 
         System.out.print("Nhap hinh thuc giao hang: ");
         hinhThucGiaoHang = sc.nextLine();
@@ -170,6 +184,10 @@ public class DonDatHang {
     }
 
     public void xuat() {
-        System.out.println(toString());
+        if (!isDeleted) {
+            System.out.println(toString());
+        } else {
+            System.out.println("Don dat hang da bi xoa.");
+        }
     }
 }

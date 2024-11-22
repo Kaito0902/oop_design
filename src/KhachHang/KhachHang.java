@@ -10,5 +10,9 @@ public class KhachHang {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'equalsIgnoreCase'");
     }
+    public Object getMaKhachHang() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getMaKhachHang'");
+    }
 
 }

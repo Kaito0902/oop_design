@@ -14,6 +14,7 @@ public class HoaDon {
     protected KhachHang khachHang; 
 
     static Scanner scanner = new Scanner(System.in);
+
     public HoaDon() {
     }
 
@@ -24,7 +25,7 @@ public class HoaDon {
         this.khachHang = khachHang;
     }
 
-    // Getter và Setter
+    
     public String getMaHoaDon() {
         return maHoaDon;
     }
@@ -66,48 +67,49 @@ public class HoaDon {
         this.ngayLapHoaDon = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE);
 
         System.out.println("Nhap thong tin nhan vien lap hoa don:");
-        this.nhanVienLapHoaDon = new NhanVien();
         this.nhanVienLapHoaDon.input();
 
-        System.out.println("Nhap thong tin khach hang:");
-        this.khachHang = new KhachHang();
-        this.khachHang.input();
+
+
+        // Lấy thông tin khách hàng dựa trên số điện thoại
+        System.out.print("Nhap so dien thoai khach hang: ");
+        String soDienThoai = scanner.nextLine();
+
+        this.khachHang = KhachHang.timKiemKhachHangTheoSdt(soDienThoai);
+        if(khachHang != null)
+            System.out.println("Khach hang da ton tai, da cap nhat thong tin khach hang ");
+        else
+            this.khachHang.input();
+
+            
     }
 
-    // Phương thức xuất thông tin hóa đơn
-    public void xuat() {
-        System.out.println("Ma hoa don: " + maHoaDon);
-        System.out.println("Ngay lap hoa don: " + ngayLapHoaDon.format(DateTimeFormatter.ISO_LOCAL_DATE));
-        System.out.println("Nhan vien lap hoa don:");
-        nhanVienLapHoaDon.xuat();
-        System.out.println("Khach hang:");
-        khachHang.xuat();
+
+
+    public void output() {
+        System.out.println(this.toString());
     }
 
-    // Ghi thông tin ra chuỗi (hỗ trợ ghi file)
     @Override
     public String toString() {
-        return maHoaDon + "," +
-               ngayLapHoaDon.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
-               nhanVienLapHoaDon.toString() + "," +
-               khachHang.toString();
+        return "Ma hoa don: " + maHoaDon + "\n" +
+               "Ngay lap hoa don: " + ngayLapHoaDon.format(DateTimeFormatter.ISO_LOCAL_DATE) + "\n" +
+               "Nhan vien lap hoa don: " + nhanVienLapHoaDon.toString() + "\n" +
+               "Khach hang: " + (khachHang != null ? khachHang.toString() : "Khach hang khong ton tai.");
     }
 
-    // Đọc thông tin từ chuỗi (hỗ trợ đọc file)
-    public void fromString(String data) {
-        String[] parts = data.split(",", 4);
-        this.maHoaDon = parts[0];
-        this.ngayLapHoaDon = LocalDate.parse(parts[1], DateTimeFormatter.ISO_LOCAL_DATE);
 
-        this.nhanVienLapHoaDon = new NhanVien();
-        this.nhanVienLapHoaDon.fromString(parts[2]);
-
-        this.khachHang = new KhachHang();
-        this.khachHang.fromString(parts[3]);
-    }
 
     public double getTongSoTien() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getTongSoTien'");
+    }
+
+    public static Scanner getScanner() {
+        return scanner;
+    }
+
+    public static void setScanner(Scanner scanner) {
+        HoaDon.scanner = scanner;
     }
 }

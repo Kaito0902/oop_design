@@ -1,6 +1,6 @@
 package HoaDon;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import SanPham.SanPham;
 
 public class ChiTietHoaDonDoiTra {
@@ -9,21 +9,21 @@ public class ChiTietHoaDonDoiTra {
     private int soLuong; 
     private String lyDo; 
     private String tinhTrang; 
-    private double thanhTien; // Thành tiền hoàn trả
+    private double thanhTien; // Thanh tien hoan tra
     static Scanner sc = new Scanner(System.in);
+
     public ChiTietHoaDonDoiTra() {
     }
-
     public ChiTietHoaDonDoiTra(int stt, SanPham sanPhamTra, int soLuong, String lyDo, String tinhTrang) {
         this.stt = stt;
         this.sanPhamTra = sanPhamTra;
         this.soLuong = soLuong;
         this.lyDo = lyDo;
         this.tinhTrang = tinhTrang;
-        this.thanhTien = soLuong * sanPhamTra.getGiaBan(); // Tính thành tiền
+        tinhThanhTien();
     }
 
-    // Getter và Setter
+    // Getter va Setter
     public int getStt() {
         return stt;
     }
@@ -70,7 +70,7 @@ public class ChiTietHoaDonDoiTra {
         return thanhTien;
     }
 
-    // Phương thức tính lại thành tiền
+    // Phuong thuc tinh lai thanh tien
     private void tinhThanhTien() {
         if (sanPhamTra != null) {
             this.thanhTien = this.soLuong * sanPhamTra.getGiaBan();
@@ -79,14 +79,19 @@ public class ChiTietHoaDonDoiTra {
         }
     }
 
-    // Nhập dữ liệu
     public void input(int stt) {
         this.stt = stt;
-        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Nhap thong tin san pham tra:");
-        this.sanPhamTra = new SanPham();
-        this.sanPhamTra.input();
+        System.out.print("Nhap ma san pham tra: ");
+        String maSanPham = sc.nextLine();
+
+        // Lay thong tin san pham tra
+        this.sanPhamTra = SanPham.timKiemSanPhamTheoMa(maSanPham);
+
+        if (sanPhamTra == null) {
+            System.out.println("San pham khong ton tai!");
+            return;
+        }
 
         System.out.print("Nhap so luong tra: ");
         this.soLuong = Integer.parseInt(sc.nextLine());
@@ -100,13 +105,21 @@ public class ChiTietHoaDonDoiTra {
         tinhThanhTien();
     }
 
-    public void xuat() {
-        System.out.printf("%-5d %-20s %-10d %-20s %-20s %-15.2f\n", 
-                          stt, sanPhamTra.getTenSanPham(), soLuong, lyDo, tinhTrang, thanhTien);
+    public void output() {
+       System.out.println(toString());
     }
 
+    // Chuyen doi thanh chuoi
     @Override
     public String toString() {
-        return stt + "," + sanPhamTra.toString() + "," + soLuong + "," + lyDo + "," + tinhTrang + "," + thanhTien;
+        return String.format(
+            "STT: %d\nSan pham: %s\nSo luong: %d\nLy do: %s\nTinh trang: %s\nThanh tien: %.2f",
+            stt,
+            sanPhamTra != null ? sanPhamTra.toString() : "Khong co san pham",
+            soLuong,
+            lyDo,
+            tinhTrang,
+            thanhTien
+        );
     }
 }

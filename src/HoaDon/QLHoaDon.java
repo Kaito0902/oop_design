@@ -1,21 +1,25 @@
 package HoaDon;
 
+
 import java.io.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import KhachHang.KhachHang;
+import KhuyenMai.KhuyenMai;
+import NhanVien.NhanVien;
+
 public class QLHoaDon {
-    private HoaDon[] dshd = new HoaDon[0];
+    HoaDon[] dshd = new HoaDon[0];
     private static final Scanner sc = new Scanner(System.in);
 
-    // Thêm hóa đơn mới
     public void themHD(HoaDon hd) {
         dshd = Arrays.copyOf(dshd, dshd.length + 1);
         dshd[dshd.length - 1] = hd;
     }
 
-    // Xuất danh sách hóa đơn
     public void xuatdshd() {
         if (dshd.length == 0) {
             System.out.println("Danh sach hoa don trong!");
@@ -24,20 +28,36 @@ public class QLHoaDon {
         for (HoaDon hd : dshd) {
             if (hd != null) {
                 System.out.println(hd instanceof HoaDonBanHang ? "Loai hoa don: HoaDonBanHang" : "Loai hoa don: HoaDonDoiTraHang");
-                hd.xuat();
+                hd.output();
             }
         }
     }
 
-    // Tìm kiếm hóa đơn theo tên khách hàng
-    public void timKiemHoaDon() {
+    public void timKiemHoaDonTheoMa() {
+        System.out.print("Nhap ma hoa don can tim: ");
+        String maHoaDon = sc.nextLine();
+        boolean found = false;
+        for (HoaDon hd : dshd) {
+            if (hd != null && hd.getMaHoaDon().equals(maHoaDon)) {
+                System.out.println("Hoa don tim thay:");
+                hd.output();
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Khong tim thay hoa don co ma: " + maHoaDon);
+        }
+    }
+
+    public void timKiemHoaDonTheoTen() {
         System.out.print("Nhap ten khach hang can tim: ");
         String tenKhachHang = sc.nextLine();
         boolean found = false;
         for (HoaDon hd : dshd) {
-            if (hd != null && hd.getKhachHang().equalsIgnoreCase(tenKhachHang)) {
+            if (hd != null && hd.getKhachHang().gettenKhachHang().equalsIgnoreCase(tenKhachHang)) {
                 System.out.println("Hoa don tim thay:");
-                hd.xuat();
+                hd.output();
                 found = true;
             }
         }
@@ -45,8 +65,7 @@ public class QLHoaDon {
             System.out.println("Khong tim thay hoa don cua khach hang: " + tenKhachHang);
         }
     }
-
-    // Sắp xếp danh sách hóa đơn theo tổng tiền giảm dần
+    // sap xep theo tong tien hoadon
     public void sapXep() {
         Arrays.sort(dshd, (hd1, hd2) -> {
             if (hd1 == null) return 1;
@@ -56,57 +75,108 @@ public class QLHoaDon {
         System.out.println("Danh sach hoa don da sap xep theo tong tien (giam dan).");
     }
 
-    // Lấy số lượng hóa đơn hiện tại
     public void laySLHoaDon() {
         System.out.println("So luong hoa don hien tai: " + dshd.length);
     }
 
-    // Ghi danh sách hóa đơn vào file
-    public void ghiVaoFileDSHD() {
+    public void ghiVaoFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("DanhSachHoaDon.txt"))) {
-            for (HoaDon hd : dshd) {
-                if (hd != null) {
-                    writer.write(hd instanceof HoaDonBanHang ? "HoaDonBanHang," : "HoaDonDoiTraHang,");
-                    writer.write(hd.toString());
+            for (HoaDon hoaDon : dshd) {
+                DateTimeFormatter formatter;
+                if (hoaDon instanceof HoaDonBanHang) {
+                    HoaDonBanHang hdbh = (HoaDonBanHang) hoaDon;
+                    writer.write("HoaDonBanHang,");
+                    writer.write(String.join(",",
+                            hdbh.getMaHoaDon(),
+                            hdbh.getNgayLapHoaDon().format(formatter),
+                            hdbh.getNhanVienLapHoaDon().toString(),
+                            hdbh.getKhachHang().toString(),
+                            hdbh.getKhuyenMai().toString(),
+                            String.valueOf(hdbh.getTienThue()),
+                            String.valueOf(hdbh.getChietKhau()),
+                            hdbh.getPhuongThucThanhToan(),
+                            String.valueOf(hdbh.getTongTien())
+                    ));
+                    writer.newLine();
+                } else if (hoaDon instanceof HoaDonDoiTraHang) {
+                    HoaDonDoiTraHang hddt = (HoaDonDoiTraHang) hoaDon;
+                    writer.write("HoaDonDoiTra,");
+                    writer.write(String.join(",",
+                            hddt.getMaHoaDon(),
+                            hddt.getNgayLapHoaDon().format(formatter),
+                            hddt.getNhanVienLapHoaDon().toString(),
+                            hddt.getKhachHang().toString(),
+                            hddt.getHoaDonGoc().getMaHoaDon(),
+                            String.valueOf(hddt.getTongGiaTri()),
+                            hddt.getGhiChu(),
+                            String.valueOf(hddt.getTienHoanTra()),
+                            String.valueOf(hddt.getTiLeTru())
+                    ));
                     writer.newLine();
                 }
             }
             System.out.println("Ghi file thanh cong!");
         } catch (IOException e) {
-            System.err.println("Loi khi ghi file: " + e.getMessage());
+            System.err.println("Loi ghi file: " + e.getMessage());
         }
     }
 
-    public void docTuFileDSHD() {
+    public void docTuFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader("DanhSachHoaDon.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",", 2);
-                HoaDon hd;
-                if (parts[0].equals("HoaDonBanHang")) {
-                    hd = new HoaDonBanHang();
-                } else if (parts[0].equals("HoaDonDoiTraHang")) {
-                    hd = new HoaDonDoiTraHang();
-                } else {
-                    System.err.println("Loai hoa don khong hop le: " + parts[0]);
-                    continue;
+                String[] data = line.split(",");
+                DateTimeFormatter formatter;
+                if (data[0].equals("HoaDonBanHang")) {
+                    String maHoaDon = data[1];
+                    LocalDate ngayLap = LocalDate.parse(data[2], formatter);
+                    NhanVien nhanVien = NhanVien.fromString(data[3]);
+                    KhachHang khachHang = KhachHang.fromString(data[4]); 
+                    KhuyenMai khuyenMai = KhuyenMai.fromString(data[5]); 
+                    double tienThue = Double.parseDouble(data[6]);
+                    double chietKhau = Double.parseDouble(data[7]);
+                    String phuongThucThanhToan = data[8];
+                    double tongTien = Double.parseDouble(data[9]);
+
+                    HoaDonBanHang hdbh = new HoaDonBanHang(maHoaDon, ngayLap, nhanVien, khachHang, khuyenMai, tienThue, chietKhau, phuongThucThanhToan, tongTien);
+                    themHD(hdbh);
+                } else if (data[0].equals("HoaDonDoiTra")) {
+                    String maHoaDon = data[1];
+                    LocalDate ngayLap = LocalDate.parse(data[2], formatter);
+                    NhanVien nhanVien = NhanVien.fromString(data[3]);
+                    KhachHang khachHang = KhachHang.fromString(data[4]);
+                    HoaDon hoaDonGoc = HoaDon(data[5]); 
+                    double tongGiaTri = Double.parseDouble(data[6]);
+                    String ghiChu = data[7];
+                    double tienHoanTra = Double.parseDouble(data[8]);
+                    double tiLeTru = Double.parseDouble(data[9]);
+
+                    HoaDonDoiTraHang hddt = new HoaDonDoiTraHang(maHoaDon, ngayLap, nhanVien, khachHang, hoaDonGoc, tongGiaTri, ghiChu, tienHoanTra, tiLeTru);
+                    themHD(hddt);
                 }
-                hd.fromString(parts[1]); // Phương thức fromString trong mỗi lớp hóa đơn
-                themHD(hd);
             }
             System.out.println("Doc file thanh cong!");
         } catch (IOException e) {
-            System.err.println("Loi khi doc file: " + e.getMessage());
+            System.err.println("Loi doc file: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.err.println("Loi dinh dang du lieu: " + e.getMessage());
         }
     }
 
-    // Tính tổng số tiền của khách hàng theo mã
     public double getTongSoTien(String maKhachHang) {
-        return Arrays.stream(dshd)
-                .filter(hd -> hd != null && hd.getmaKhachHang().equals(maKhachHang))
-                .mapToDouble(HoaDon::getTongSoTien)
-                .sum();
+        double tongSoTien = 0;
+        for (HoaDon hd : dshd) {
+            if (hd != null && hd.getKhachHang().getMaKhachHang().equals(maKhachHang)) {
+                tongSoTien += hd.getTongSoTien();
+            }
+        }
+        return tongSoTien;
     }
+
+
+
+
+    
     public void menu() {
         boolean running = true;
         while (running) {
@@ -115,12 +185,13 @@ public class QLHoaDon {
             System.out.println("===================================");
             System.out.println("1. Them hoa don");
             System.out.println("2. Xuat danh sach hoa don");
-            System.out.println("3. Tim kiem hoa don");
-            System.out.println("4. Sap xep danh sach hoa don");
-            System.out.println("5. Lay so luong hoa don");
-            System.out.println("6. Ghi vao file");
-            System.out.println("7. Doc tu file");
-            System.out.println("8. Tinh tong so tien theo ma KH");
+            System.out.println("3. Tim kiem hoa don theo ma");
+            System.out.println("4. Tim kiem hoa don theo ten khach hang");
+            System.out.println("5. Sap xep danh sach hoa don");
+            System.out.println("6. Lay so luong hoa don");
+            System.out.println("7. Ghi danh sach vao file");
+            System.out.println("8. Doc danh sach tu file");
+            System.out.println("9. Tinh tong so tien theo ma khach hang");
             System.out.println("0. Thoat chuong trinh");
             System.out.print("Nhap lua chon: ");
             int choice = Integer.parseInt(sc.nextLine());
@@ -137,12 +208,13 @@ public class QLHoaDon {
                     }
                 }
                 case 2 -> xuatdshd();
-                case 3 -> timKiemHoaDon();
-                case 4 -> sapXep();
-                case 5 -> laySLHoaDon();
-                case 6 -> ghiVaoFileDSHD();
-                case 7 -> docTuFileDSHD();
-                case 8 -> {
+                case 3 -> timKiemHoaDonTheoMa();
+                case 4 -> timKiemHoaDonTheoTen();
+                case 5 -> sapXep();
+                case 6 -> laySLHoaDon();
+                case 7 -> ghiVaoFile();
+                case 8 -> docTuFile();
+                case 9 -> {
                     System.out.print("Nhap ma khach hang: ");
                     String maKH = sc.nextLine();
                     System.out.println("Tong so tien: " + getTongSoTien(maKH));
