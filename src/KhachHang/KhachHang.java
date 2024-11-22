@@ -8,6 +8,7 @@ import HoaDon.HoaDon;
 import HoaDon.QLHoaDon; 
 
 public abstract class KhachHang {
+    private static QLKhachHang qlkhGlobal; //123
     static int tongKH = 0;
     static Scanner scanner = new Scanner(System.in);
     ChuanHoaDuLieu chuanHoa = new ChuanHoaDuLieu();
@@ -95,8 +96,12 @@ public abstract class KhachHang {
         return sdt;
     }
 
+    public static void setQLKhachHang(QLKhachHang qlkh) {//123
+        qlkhGlobal = qlkh;
+    }
+
     public void setSdt(String sdt) {
-        this.sdt = chuanHoa.chuanHoaSoDienThoai(sdt);
+            this.sdt = chuanHoa.chuanHoaSoDienThoai(sdt,qlkhGlobal);//123
     }
 
     public String getEmail() {
@@ -238,8 +243,8 @@ public abstract class KhachHang {
     //toString
     @Override
     public String toString() {
-        return String.format("%-10s %-20s %-10s %-15s %-15s %-15s %-10s %-20s",getMaKhachHang(), hoTen, gioiTinh, sdt, ngaySinh, email, 
-        diaChi, loaiKhachHang);
+        return String.format("%-10s %-20s %-10s %-15s %-15s %-15s %-10s %-20s %-10b",getMaKhachHang(), hoTen, gioiTinh, sdt, ngaySinh, email, 
+        diaChi, loaiKhachHang, isdelete);
     }
 
     // ktra
@@ -273,4 +278,5 @@ public abstract class KhachHang {
         int diemThuong = (int)tinhDiemThuong(tongSoTien);
         tichDiem = diemThuong;
     }
+
 }

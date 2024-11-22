@@ -43,12 +43,19 @@ public class KhachHangDoiTacDoanhNghiep extends KhachHang implements TraGop{
         super.input(qlhd);
         System.out.println("Nhap ten cong ty:");
         setTenCongTy(scanner.nextLine());
-        System.out.println("Ban co muon thanh toan tra gop?(Y/N):");
-        String chon = scanner.nextLine();
-        if ( chon.equals("y") || chon.equals("Y"))
-            traGop = true;
-        else
-            traGop = false;
+        while (true) {
+            System.out.println("Ban co muon thanh toan tra gop?(Y/N):");
+            String chon = scanner.nextLine().trim().toUpperCase();
+            if ( chon.equals("Y")){
+                traGop = true;
+                break;
+            }else if (chon.equals("N")){
+                traGop = false;
+                break;
+            }else {
+                System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
+            }
+        }
     }
 
     @Override
