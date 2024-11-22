@@ -8,6 +8,7 @@ public class SanPham implements Comparable<SanPham> {
     private String thuongHieu;
     private double giaBan;
     public static int soLuongTon;
+    public static int giaSP;
 
     public SanPham(String maSanPham, String tenSanPham, DanhMuc danhMuc, String thuongHieu, double giaBan, int soLuongTon) {
         this.maSanPham = maSanPham;
@@ -82,5 +83,10 @@ public class SanPham implements Comparable<SanPham> {
     @Override
     public int compareTo(SanPham o) {
         return 0;
+    }
+
+    public void input() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'input'");
     }
 }
