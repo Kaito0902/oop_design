@@ -49,6 +49,10 @@ public abstract class SanPham{
     }
 
     public void setGiaSP(float giaSP) {
+        while(giaSP <= 0){
+            System.out.println("Gia san pham lon hon 0!");
+            giaSP = Float.parseFloat(sc.nextLine());
+        }
         this.giaSP = giaSP;
     }
 
@@ -65,6 +69,10 @@ public abstract class SanPham{
     }
 
     public void setTrongLuongSP(float trongLuongSP) {
+        while(trongLuongSP <= 0){
+            System.out.println("Trong luong san pham lon hon 0");
+            trongLuongSP = Float.parseFloat(sc.nextLine());
+        }
         this.trongLuongSP = trongLuongSP;
     }
 
@@ -76,9 +84,7 @@ public abstract class SanPham{
         this.mauSacSP = mauSacSP;
     }
 
-
     public abstract float thanhTien();    
-    public abstract float tinhKhuyenMai();
 
     public void nhap()
     {

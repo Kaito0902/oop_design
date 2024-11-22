@@ -20,6 +20,10 @@ public class BoNho extends PhanCung{
     }
 
     public void setDungLuongBoNho(int dungLuongBoNho) {
+        while(dungLuongBoNho < 128){
+            System.out.println("Dung luong Bo Nho lon hon hoac bang 128!");
+            dungLuongBoNho = Integer.parseInt(sc.nextLine());
+        }
         this.dungLuongBoNho = dungLuongBoNho;
     }
 
@@ -32,14 +36,8 @@ public class BoNho extends PhanCung{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.15f);
     }
 
     @Override
@@ -70,6 +68,8 @@ public class BoNho extends PhanCung{
     @Override
     public void nhapCauHinh()
     {
+        super.nhapCauHinh();
+        super.loaiLinhKien = "Bo Nho";
         System.out.println("Nhap dung luong: ");
         setDungLuongBoNho(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap loai bo nho: ");

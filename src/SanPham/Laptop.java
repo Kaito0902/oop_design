@@ -30,6 +30,10 @@ public class Laptop extends MayTinh implements HienThiCauHinh{
     }
 
     public void setThoiLuongPin(float thoiLuongPin) {
+        while(thoiLuongPin < 3){
+            System.out.println("Thoi luong pin laptop lon hon hoac bang 3!");
+            thoiLuongPin = Float.parseFloat(sc.nextLine());
+        }
         this.thoiLuongPin = thoiLuongPin;
     }
 
@@ -42,14 +46,8 @@ public class Laptop extends MayTinh implements HienThiCauHinh{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.11f);
     }
 
     @Override

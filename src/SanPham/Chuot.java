@@ -21,6 +21,10 @@ public class Chuot extends ThietBiNgoaiVi{
     }
 
     public void setdPI(int dPI) {
+        while(dPI <= 0){
+            System.out.println("DPI Chuot lon hon 0!");
+            dPI = Integer.parseInt(sc.nextLine());
+        }
         this.dPI = dPI;
     }
 
@@ -33,14 +37,8 @@ public class Chuot extends ThietBiNgoaiVi{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.45f);
     }
 
     @Override

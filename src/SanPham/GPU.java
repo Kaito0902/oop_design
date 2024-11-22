@@ -27,6 +27,10 @@ public class GPU extends PhanCung{
     }
 
     public void setDungLuongVRAM(int dungLuongVRAM) {
+        while(dungLuongVRAM <= 0){
+            System.out.println("Dung luong VRAM GPU lon hon 0!");
+            dungLuongVRAM = Integer.parseInt(sc.nextLine());
+        }
         this.dungLuongVRAM = dungLuongVRAM;
     }
 
@@ -43,6 +47,10 @@ public class GPU extends PhanCung{
     }
 
     public void setTocDoXungNhip(float tocDoXungNhip) {
+        while(tocDoXungNhip <= 0){
+            System.out.println("Toc do xung nhip GPU lon hon 0!");
+            tocDoXungNhip = Float.parseFloat(sc.nextLine());
+        }
         this.tocDoXungNhip = tocDoXungNhip;
     }
 
@@ -51,6 +59,10 @@ public class GPU extends PhanCung{
     }
 
     public void setSoNhanCUDA(int soNhanCUDA) {
+        while(soNhanCUDA <= 0){
+            System.out.println("So nhan CUDA GPU lon hon 0!");
+            soNhanCUDA = Integer.parseInt(sc.nextLine());
+        }
         this.soNhanCUDA = soNhanCUDA;
     }
 
@@ -63,14 +75,8 @@ public class GPU extends PhanCung{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.25f);
     }
 
     @Override
@@ -92,6 +98,8 @@ public class GPU extends PhanCung{
     @Override
     public void nhapCauHinh()
     {
+        super.nhapCauHinh();
+        super.loaiLinhKien = "GPU";
         System.out.println("Nhap dung luong VRAM: ");
         setDungLuongVRAM(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap loai VRAM: ");

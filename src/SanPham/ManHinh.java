@@ -42,6 +42,10 @@ public class ManHinh extends ThietBiNgoaiVi{
     }
 
     public void setTanSoQuet(int tanSoQuet) {
+        while(tanSoQuet < 60){
+            System.out.println("Tan so quet Man Hinh lon hon hoac bang 60!");
+            tanSoQuet = Integer.parseInt(sc.nextLine());
+        }
         this.tanSoQuet = tanSoQuet;
     }
 
@@ -62,14 +66,8 @@ public class ManHinh extends ThietBiNgoaiVi{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.15f);
     }
 
     @Override

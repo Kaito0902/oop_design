@@ -20,6 +20,10 @@ public class RAM extends PhanCung{
     }
 
     public void setDungLuongRAM(int dungLuongRAM) {
+        while(dungLuongRAM < 4){
+            System.out.println("Dung luong RAM lon hon hoac bang 4!");
+            dungLuongRAM = Integer.parseInt(sc.nextLine());
+        }
         this.dungLuongRAM = dungLuongRAM;
     }
 
@@ -32,14 +36,8 @@ public class RAM extends PhanCung{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.2f);
     }
 
     @Override
@@ -55,6 +53,8 @@ public class RAM extends PhanCung{
     @Override
     public void nhapCauHinh()
     {
+        super.nhapCauHinh();
+        super.loaiLinhKien = "RAM";
         System.out.println("Nhap dung luong RAM: ");
         setDungLuongRAM(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap loai RAM: ");
