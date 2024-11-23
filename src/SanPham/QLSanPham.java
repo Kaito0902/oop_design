@@ -76,7 +76,7 @@ public class QLSanPham{
             switch(choiceMenu) 
             {
                 case 1:
-                    nhapDanhSach1();
+                    nhapDanhSach();
                     break;
 
                 case 2:
@@ -681,7 +681,7 @@ public class QLSanPham{
     public void xoaPhanTuTheoMa(String maSP)
     {
         for(SanPham sp:ds)
-            if(sp.maSP.equals(maSP)){
+            if(sp.maSP.equals(maSP) && sp.isNotDeleted == true){
                 sp.isNotDeleted = false;
                 System.out.println("Da xoa san phan co ma: " + maSP);
                 return;

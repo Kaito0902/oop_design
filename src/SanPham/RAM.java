@@ -20,8 +20,8 @@ public class RAM extends PhanCung{
     }
 
     public void setDungLuongRAM(int dungLuongRAM) {
-        while(dungLuongRAM < 4){
-            System.out.println("Dung luong RAM lon hon hoac bang 4!");
+        while(!(dungLuongRAM <= 64 && dungLuongRAM % 4 == 0)){
+            System.out.println("Dung luong RAM phai theo don vi RAM tieu chuan");
             dungLuongRAM = Integer.parseInt(sc.nextLine());
         }
         this.dungLuongRAM = dungLuongRAM;

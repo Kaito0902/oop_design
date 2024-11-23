@@ -109,7 +109,7 @@ public abstract class SanPham{
         setTrongLuongSP(Float.parseFloat(sc.nextLine()));
         System.out.println("Nhap mau sac san pham: ");
         setMauSacSP(sc.nextLine());
-        soLuongSP++;
+        isNotDeleted = true;
     }
 
     @Override

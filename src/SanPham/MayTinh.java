@@ -128,4 +128,9 @@ public abstract class MayTinh extends SanPham{
         System.out.println("He dieu hanh may tinh: " + heDieuHanh);
         System.out.println("May tinh " + coCardRoi + " card roi");
     }
+
+    @Override
+    public String toString(){
+        return super.toString() + String.format("%-15s %-20s %15s %10s &10s", nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi);
+    }
 }

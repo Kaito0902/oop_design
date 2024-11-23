@@ -88,7 +88,7 @@ public class ManHinh extends ThietBiNgoaiVi{
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10s %-20s %-10d %-10s %-20s",kieuManHinh, kichThuoc, tanSoQuet, tamNen, doPhanGiai);
+        return super.toString() + String.format("%-10s %-20s %-10d %-10s %-20s", kieuManHinh, kichThuoc, tanSoQuet, tamNen, doPhanGiai);
     }
 
     @Override

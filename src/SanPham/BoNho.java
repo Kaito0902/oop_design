@@ -20,8 +20,8 @@ public class BoNho extends PhanCung{
     }
 
     public void setDungLuongBoNho(int dungLuongBoNho) {
-        while(dungLuongBoNho < 128){
-            System.out.println("Dung luong Bo Nho lon hon hoac bang 128!");
+        while(!(dungLuongBoNho <= 1024 && dungLuongBoNho % 128 == 0)){
+            System.out.println("Dung luong Bo Nho phai theo don vi Bo Nho tieu chuan");
             dungLuongBoNho = Integer.parseInt(sc.nextLine());
         }
         this.dungLuongBoNho = dungLuongBoNho;
