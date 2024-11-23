@@ -11,8 +11,8 @@ public abstract class PhanCung extends SanPham implements NhapCauHinh, HienThiCa
     }
 
     public PhanCung(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-                String loaiLinhKien, String nhaSanXuat, String model) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
+                boolean isNotDeleted, String loaiLinhKien, String nhaSanXuat, String model) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted);
         this.nhaSanXuat = nhaSanXuat;
         this.loaiLinhKien = loaiLinhKien;
         this.model = model;

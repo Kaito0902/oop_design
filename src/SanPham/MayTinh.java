@@ -16,9 +16,9 @@ public abstract class MayTinh extends SanPham{
     }
 
     public MayTinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi,
+            boolean isNotDeleted, String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi,
             PhanCung[] cacLinhKien) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted);
         this.nhaSanXuat = nhaSanXuat;
         this.model = model;
         this.loaiMayTinh = loaiMayTinh;

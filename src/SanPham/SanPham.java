@@ -9,6 +9,7 @@ public abstract class SanPham{
     protected String thoiGianBaoHanhSP;
     protected float trongLuongSP;
     protected String mauSacSP;
+    protected boolean isNotDeleted;
     static int soLuongSP = 0;
     static Scanner sc = new Scanner(System.in);
 
@@ -18,13 +19,14 @@ public abstract class SanPham{
     }
     
     public SanPham(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP) {
+            String mauSacSP, boolean isNotDeleted) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.giaSP = giaSP;
         this.thoiGianBaoHanhSP = thoiGianBaoHanhSP;
         this.trongLuongSP = trongLuongSP;
         this.mauSacSP = mauSacSP;
+        this.isNotDeleted = isNotDeleted;
         soLuongSP++;
     }
 
@@ -82,6 +84,14 @@ public abstract class SanPham{
 
     public void setMauSacSP(String mauSacSP) {
         this.mauSacSP = mauSacSP;
+    }
+
+    public boolean isNotDeleted() {
+        return isNotDeleted;
+    }
+
+    public void setNotDeleted(boolean isNotDeleted) {
+        this.isNotDeleted = isNotDeleted;
     }
 
     public abstract float thanhTien();    
