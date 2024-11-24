@@ -55,7 +55,7 @@ public class QLHoaDon {
         String tenKhachHang = sc.nextLine();
         boolean found = false;
         for (HoaDon hd : dshd) {
-            if (hd != null && hd.getKhachHang().gettenKhachHang().equalsIgnoreCase(tenKhachHang)) {
+            if (hd != null && hd.getKhachHang().getTenKhachHang().equalsIgnoreCase(tenKhachHang)) {
                 System.out.println("Hoa don tim thay:");
                 hd.output();
                 found = true;

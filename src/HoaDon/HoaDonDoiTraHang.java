@@ -87,9 +87,7 @@ public class HoaDonDoiTraHang extends HoaDon{
     }
 
     public void input() {
-        System.out.println("Nhap thong tin hoa don goc:");
-        this.hoaDonGoc = new HoaDon();
-        hoaDonGoc.input();
+        setHoaDonGoc(hoaDonGoc);
 
         System.out.print("Nhap so luong chi tiet doi tra: ");
         int soLuongChiTiet = Integer.parseInt(scanner.nextLine());
@@ -102,10 +100,10 @@ public class HoaDonDoiTraHang extends HoaDon{
         }
 
         System.out.print("Nhap ty le tru (%): ");
-        this.tiLeTru = Double.parseDouble(scanner.nextLine());
+        setTiLeTru(scanner.nextDouble());
 
         System.out.print("Nhap ghi chu: ");
-        this.ghiChu = scanner.nextLine();
+        setGhiChu(scanner.nextLine());
 
      
         // Tính tổng giá trị hoàn trả và số tiền sau khi trừ

@@ -20,7 +20,7 @@ public class QLDonDatHang {
     public void xuatDDH() {
         for (DonDatHang i : dsddh) {
             if (!i.isDeleted()) { // Only display non-deleted orders
-                i.xuat();
+                i.output();
             }
         }
     }
@@ -28,7 +28,7 @@ public class QLDonDatHang {
     public void xoaDonDatHang(String maDonDatHang) {
         boolean found = false;
         for (DonDatHang ddh : dsddh) {
-            if (ddh.maDonDatHang.equals(maDonDatHang)) {
+            if (ddh.getMaDonDatHang().equals(maDonDatHang)) {
                 ddh.setDeleted(true); // Mark as deleted instead of removing
                 found = true;
                 System.out.println("Don dat hang da bi xoa (Mark as deleted): " + maDonDatHang);
@@ -43,7 +43,7 @@ public class QLDonDatHang {
     public void timKiemDonDatHangTongTien(double tongTien) {
         boolean found = false;
         for (DonDatHang ddh : dsddh) {
-            if (!ddh.isDeleted() && ddh.tongTien == tongTien) { // Check if not deleted
+            if (!ddh.isDeleted() && ddh.getTongTien() == tongTien) { // Check if not deleted
                 System.out.println(ddh);
                 found = true;
             }
@@ -56,7 +56,7 @@ public class QLDonDatHang {
     public void sapXepDonDatHangTheoGia() {
         Arrays.sort(dsddh, (a, b) -> {
             if (!a.isDeleted() && !b.isDeleted()) { // Only compare non-deleted
-                return Double.compare(a.tongTien, b.tongTien);
+                return Double.compare(a.getTongTien(), b.getTongTien());
             }
             return 0;
         });
@@ -135,7 +135,7 @@ public class QLDonDatHang {
             switch (choice) {
                 case 1 -> {
                     DonDatHang ddh = new DonDatHang();
-                    ddh.nhap();
+                    ddh.input();
                     themDDH(ddh);
                 }
                 case 2 -> xuatDDH();

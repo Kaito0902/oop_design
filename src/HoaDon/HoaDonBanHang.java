@@ -5,15 +5,16 @@ import java.util.Scanner;
 
 import KhachHang.KhachHang;
 import KhuyenMai.KhuyenMai;
+import KhuyenMai.QLKhuyenMai;
 import NhanVien.NhanVien;
 
 public class HoaDonBanHang extends HoaDon {
     private ChiTietHoaDon[] chiTietHoaDonList; // Danh sách chi tiết hóa đơn
-    private KhuyenMai khuyenMai; // Chương trình khuyến mãi
+    private KhuyenMai khuyenMai;
     private double tienThue;
     private double chietKhau;
     private String phuongThucThanhToan; 
-    private double tongTien; // Tổng tiền của hóa đơn
+    private double tongTien;
 
     private static final int MAX_CHI_TIET = 100; // Giới hạn số lượng chi tiết hóa đơn
     private static final Scanner scanner = new Scanner(System.in);
@@ -101,18 +102,29 @@ public class HoaDonBanHang extends HoaDon {
             chiTietHoaDonList[i] = chiTiet;
         }
 
-        System.out.print("Nhap tien thue (theo %): ");
-        tienThue = Double.parseDouble(scanner.nextLine());
+        System.out.println("Nhap tien thue (theo %): ");
+        setTienThue(scanner.nextDouble());
+        
+        System.out.println("Nhap chiet khau (theo %): ");
+        setChietKhau(scanner.nextDouble());
 
-        System.out.print("Nhap chiet khau (theo %): ");
-        chietKhau = Double.parseDouble(scanner.nextLine());
-
-        System.out.print("Nhap phuong thuc thanh toan: ");
-        phuongThucThanhToan = scanner.nextLine();
+        System.out.println("Nhap phuong thuc thanh toan: ");
+        setPhuongThucThanhToan(scanner.next());
 
 
-        System.out.println("Nhap thong tin khuyen mai:");
-        khuyenMai.input();
+        System.out.println("Nhap ma khuyen mai");
+        String maKhuyenMai = scanner.nextLine();
+
+        this.khuyenMai = QLKhuyenMai.timKhuyenMai(maKhuyenMai);
+        if(khuyenMai !=null){
+            setKhuyenMai(khuyenMai);
+        }
+        else
+            System.out.println("Khong co khuyen mai nay them khuyen mai, nhap lai khuyen mai moi");
+            QLKhuyenMai.themKhuyenMai(khuyenMai);
+
+
+
 
         // Tính tổng tiền
         tinhTongTien(soLuong);
@@ -120,7 +132,6 @@ public class HoaDonBanHang extends HoaDon {
 
 
 
-     // Phương thức tính tổng tiền hóa đơn
      private void tinhTongTien(int soLuongChiTiet) {
         tongTien = 0;
         for (int i = 0; i < soLuongChiTiet; i++) {
@@ -135,25 +146,24 @@ public class HoaDonBanHang extends HoaDon {
 
 
     @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder(super.toString());
-        builder.append("\nChi tiet hoa don:\n")
-               .append(String.format("%-10s %-20s %-10s %-15s %-15s\n", "STT", "Ten SP", "So luong", "Don gia", "Thanh tien"));
+public String toString() {
+    String result = String.format("%s\nChi tiet hoa don:\n", super.toString());
+    result += String.format("%-10s %-20s %-10s %-15s %-15s\n", "STT", "Ten SP", "So luong", "Don gia", "Thanh tien");
 
-        for (ChiTietHoaDon chiTiet : chiTietHoaDonList) {
-            if (chiTiet != null) {
-                builder.append(chiTiet.toString()).append("\n");
-            }
+    for (ChiTietHoaDon chiTiet : chiTietHoaDonList) {
+        if (chiTiet != null) {
+            result += String.format("%s\n", chiTiet.toString());
         }
-
-        builder.append(String.format("Tien thue: %.2f%%\n", tienThue))
-               .append(String.format("Chiet khau: %.2f%%\n", chietKhau))
-               .append(String.format("Phuong thuc thanh toan: %s\n", phuongThucThanhToan))
-               .append(String.format("Tong tien: %.2f\n", tongTien))
-               .append("Khuyen mai:\n")
-               .append(khuyenMai.toString());
-        return builder.toString();
     }
+
+    result += String.format("Tien thue: %.2f%%\n", tienThue);
+    result += String.format("Chiet khau: %.2f%%\n", chietKhau);
+    result += String.format("Phuong thuc thanh toan: %s\n", phuongThucThanhToan);
+    result += String.format("Tong tien: %.2f\n", tongTien);
+    result += "Khuyen mai:\n" + khuyenMai.toString();
+
+    return result;
+}
 
    
 }

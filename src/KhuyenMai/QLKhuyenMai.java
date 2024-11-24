@@ -2,13 +2,14 @@ package KhuyenMai;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class QLKhuyenMai {
-    private KhuyenMai[] danhSachKhuyenMai;
+    KhuyenMai[] danhSachKhuyenMai;
     private int soLuongKhuyenMai;
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    // Constructor
     public QLKhuyenMai(int kichThuocBanDau) {
         danhSachKhuyenMai = new KhuyenMai[kichThuocBanDau];
         soLuongKhuyenMai = 0;
@@ -30,7 +31,7 @@ public class QLKhuyenMai {
         danhSachKhuyenMai = mangMoi;
     }
 
-    //tim theo mã
+    // Tìm khuyến mãi theo mã
     public KhuyenMai timKhuyenMai(String maKhuyenMai) {
         for (int i = 0; i < soLuongKhuyenMai; i++) {
             if (danhSachKhuyenMai[i].getMaKhuyenMai().equals(maKhuyenMai)) {
@@ -57,10 +58,10 @@ public class QLKhuyenMai {
         String maKhuyenMai = sc.nextLine();
         System.out.print("Nhap ten khuyen mai: ");
         String tenKhuyenMai = sc.nextLine();
-        System.out.print("Nhap ngay bat dau (YYYY-MM-DD): ");
-        LocalDate ngayBatDau = LocalDate.parse(sc.nextLine());
-        System.out.print("Nhap ngay ket thuc (YYYY-MM-DD): ");
-        LocalDate ngayKetThuc = LocalDate.parse(sc.nextLine());
+        System.out.print("Nhap ngay bat dau (dd/MM/yyyy): ");
+        LocalDate ngayBatDau = LocalDate.parse(sc.nextLine(), DATE_FORMATTER);
+        System.out.print("Nhap ngay ket thuc (dd/MM/yyyy): ");
+        LocalDate ngayKetThuc = LocalDate.parse(sc.nextLine(), DATE_FORMATTER);
         System.out.print("Nhap dieu kien ap dung: ");
         String dieuKienApDung = sc.nextLine();
         System.out.print("Nhap san pham ap dung: ");
@@ -80,8 +81,8 @@ public class QLKhuyenMai {
                 writer.write(String.join(",",
                         km.getMaKhuyenMai(),
                         km.getTenKhuyenMai(),
-                        km.getNgayBatDau().toString(),
-                        km.getNgayKetThuc().toString(),
+                        km.getNgayBatDau().format(DATE_FORMATTER),
+                        km.getNgayKetThuc().format(DATE_FORMATTER),
                         km.getDieuKienApDung(),
                         km.getSanPhamApDung(),
                         String.valueOf(km.getTongKhuyenMai())
@@ -102,8 +103,8 @@ public class QLKhuyenMai {
                 if (data.length == 7) {
                     String maKhuyenMai = data[0];
                     String tenKhuyenMai = data[1];
-                    LocalDate ngayBatDau = LocalDate.parse(data[2]);
-                    LocalDate ngayKetThuc = LocalDate.parse(data[3]);
+                    LocalDate ngayBatDau = LocalDate.parse(data[2], DATE_FORMATTER);
+                    LocalDate ngayKetThuc = LocalDate.parse(data[3], DATE_FORMATTER);
                     String dieuKienApDung = data[4];
                     String sanPhamApDung = data[5];
                     double tongKhuyenMai = Double.parseDouble(data[6]);

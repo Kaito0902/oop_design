@@ -12,8 +12,9 @@ public class HoaDon {
     protected LocalDate ngayLapHoaDon; 
     protected NhanVien nhanVienLapHoaDon;
     protected KhachHang khachHang; 
-
+    static int tongHoaDon = 0; 
     static Scanner scanner = new Scanner(System.in);
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public HoaDon() {
     }
@@ -25,7 +26,6 @@ public class HoaDon {
         this.khachHang = khachHang;
     }
 
-    
     public String getMaHoaDon() {
         return maHoaDon;
     }
@@ -58,47 +58,42 @@ public class HoaDon {
         this.khachHang = khachHang;
     }
 
-    // Phương thức nhập thông tin hóa đơn
     public void input() {
-        System.out.print("Nhap ma hoa don: ");
-        this.maHoaDon = scanner.nextLine();
-
-        System.out.print("Nhap ngay lap hoa don (yyyy-MM-dd): ");
-        this.ngayLapHoaDon = LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE);
+        System.out.print("Nhap ngay lap hoa don (dd/MM/yyyy): ");
+        this.ngayLapHoaDon = LocalDate.parse(scanner.nextLine(), DATE_FORMATTER);
 
         System.out.println("Nhap thong tin nhan vien lap hoa don:");
-        this.nhanVienLapHoaDon.input();
-
-
+        setNhanVienLapHoaDon(nhanVienLapHoaDon);
 
         // Lấy thông tin khách hàng dựa trên số điện thoại
-        System.out.print("Nhap so dien thoai khach hang: ");
+        System.out.println("Nhap so dien thoai khach hang: ");
         String soDienThoai = scanner.nextLine();
 
         this.khachHang = KhachHang.timKiemKhachHangTheoSdt(soDienThoai);
-        if(khachHang != null)
-            System.out.println("Khach hang da ton tai, da cap nhat thong tin khach hang ");
-        else
-            this.khachHang.input();
+        if (khachHang != null) {
+            System.out.println("Khach hang da ton tai, da cap nhat thong tin khach hang.");
+            setKhachHang(khachHang);
+        } else {
+            KhachHang.khachHang.input();
+        }
 
-            
+
+        
+        maHoaDon = "hd" + String.format("%02d", ++tongHoaDon);
+        tongHoaDon++;
     }
 
-
-
     public void output() {
-        System.out.println(this.toString());
+        System.out.println(toString());
     }
 
     @Override
     public String toString() {
         return "Ma hoa don: " + maHoaDon + "\n" +
-               "Ngay lap hoa don: " + ngayLapHoaDon.format(DateTimeFormatter.ISO_LOCAL_DATE) + "\n" +
-               "Nhan vien lap hoa don: " + nhanVienLapHoaDon.toString() + "\n" +
+               "Ngay lap hoa don: " + ngayLapHoaDon.format(DATE_FORMATTER) + "\n" +
+               "Nhan vien lap hoa don: " + (nhanVienLapHoaDon != null ? nhanVienLapHoaDon.toString() : "Chua nhap nhan vien") + "\n" +
                "Khach hang: " + (khachHang != null ? khachHang.toString() : "Khach hang khong ton tai.");
     }
-
-
 
     public double getTongSoTien() {
         // TODO Auto-generated method stub

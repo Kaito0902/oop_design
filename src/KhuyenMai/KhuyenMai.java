@@ -13,7 +13,7 @@ public class KhuyenMai {
     private String sanPhamApDung;
     private double tongKhuyenMai;
 
-    public KhuyenMai(){}
+    public KhuyenMai() {}
 
     public KhuyenMai(String maKhuyenMai, String tenKhuyenMai, LocalDate ngayBatDau, LocalDate ngayKetThuc,
             String dieuKienApDung, String sanPhamApDung, double tongKhuyenMai) {
@@ -24,8 +24,8 @@ public class KhuyenMai {
         this.dieuKienApDung = dieuKienApDung;
         this.sanPhamApDung = sanPhamApDung;
         this.tongKhuyenMai = tongKhuyenMai;
-    };
-    
+    }
+
     public String getMaKhuyenMai() {
         return maKhuyenMai;
     }
@@ -84,47 +84,48 @@ public class KhuyenMai {
 
     public void input() {
         Scanner scanner = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Cập nhật định dạng ngày mới
 
-        System.out.print("Nhập mã khuyến mãi: ");
+        System.out.print("Nhap ma khuyen mai: ");
         maKhuyenMai = scanner.nextLine();
 
-        System.out.print("Nhập tên khuyến mãi: ");
+        System.out.print("Nhap ten khuyen mai: ");
         tenKhuyenMai = scanner.nextLine();
 
-        System.out.print("Nhập ngày bắt đầu (yyyy-MM-dd): ");
+        System.out.print("Nhap ngay bat dau (dd/MM/yyyy): ");
         ngayBatDau = LocalDate.parse(scanner.nextLine(), formatter);
 
-        System.out.print("Nhập ngày kết thúc (yyyy-MM-dd): ");
+        System.out.print("Nhap ngay ket thuc (dd/MM/yyyy): ");
         ngayKetThuc = LocalDate.parse(scanner.nextLine(), formatter);
 
-        System.out.print("Nhập điều kiện áp dụng: ");
+        System.out.print("Nhap dieu kien ap dung: ");
         dieuKienApDung = scanner.nextLine();
 
-        System.out.print("Nhập sản phẩm áp dụng: ");
+        System.out.print("Nhap san pham ap dung: ");
         sanPhamApDung = scanner.nextLine();
 
-        System.out.print("Nhập tổng khuyến mãi: ");
+        System.out.print("Nhap tong khuyen mai: ");
         tongKhuyenMai = scanner.nextDouble();
     }
 
-    // Phương thức toString để hiển thị thông tin khuyến mãi
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
         return "KhuyenMai{" +
                 "maKhuyenMai='" + maKhuyenMai + '\'' +
                 ", tenKhuyenMai='" + tenKhuyenMai + '\'' +
-                ", ngayBatDau=" + ngayBatDau +
-                ", ngayKetThuc=" + ngayKetThuc +
+                ", ngayBatDau=" + ngayBatDau.format(formatter) + // Đổi định dạng hiển thị
+                ", ngayKetThuc=" + ngayKetThuc.format(formatter) +
                 ", dieuKienApDung='" + dieuKienApDung + '\'' +
                 ", sanPhamApDung='" + sanPhamApDung + '\'' +
                 ", tongKhuyenMai=" + tongKhuyenMai +
                 '}';
     }
 
-    public void xuat(){
+    public void output() {
         System.out.println(toString());
     }
+
     public static KhuyenMai timKhuyenMai(String maKhuyenMai2) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'timKhuyenMai'");
@@ -134,6 +135,4 @@ public class KhuyenMai {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'fromString'");
     }
-    
-    
 }

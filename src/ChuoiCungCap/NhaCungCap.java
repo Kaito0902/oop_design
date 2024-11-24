@@ -149,10 +149,10 @@ public class NhaCungCap {
         email = sc.nextLine();
         System.out.print("Nhap ma so thue: ");
         maSoThue = sc.nextLine();
-        System.out.print("Nhap ngay hop tac (dinh dang yyyy-MM-dd): ");
+        System.out.print("Nhap ngay hop tac (dinh dang dd/MM/yyyy): ");
         String ngayHopTacStr = sc.nextLine();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         ngayHopTac = LocalDate.parse(ngayHopTacStr, formatter);
 
         System.out.print("Nhap chi phi nhap hang: ");
@@ -162,14 +162,12 @@ public class NhaCungCap {
         System.out.print("Nhap ghi chu: ");
         ghiChu = sc.nextLine();
 
-
-
         isDelete = false;
     }
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return "NhaCungCap {" +
                 "Ma nha cung cap: '" + maNhaCungCap + '\'' +
                 ", Ten nha cung cap: '" + tenNhaCungCap + '\'' +
@@ -185,7 +183,7 @@ public class NhaCungCap {
                 '}';
     }
 
-    public void output(){
+    public void output() {
         System.out.println(toString());
     }
 }

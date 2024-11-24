@@ -23,11 +23,19 @@ public class ChiTietHoaDonDoiTra {
         tinhThanhTien();
     }
 
-    // Getter va Setter
     public int getStt() {
         return stt;
     }
-
+    
+    public void setThanhTien(double thanhTien) {
+        this.thanhTien = thanhTien;
+    }
+    public static Scanner getSc() {
+        return sc;
+    }
+    public static void setSc(Scanner sc) {
+        ChiTietHoaDonDoiTra.sc = sc;
+    }
     public void setStt(int stt) {
         this.stt = stt;
     }
@@ -84,22 +92,23 @@ public class ChiTietHoaDonDoiTra {
 
         System.out.print("Nhap ma san pham tra: ");
         String maSanPham = sc.nextLine();
-
         // Lay thong tin san pham tra
         this.sanPhamTra = SanPham.timKiemSanPhamTheoMa(maSanPham);
-
         if (sanPhamTra == null) {
             System.out.println("San pham khong ton tai!");
             return;
         }
+        else
+            setSanPhamTra(sanPhamTra);
 
-        System.out.print("Nhap so luong tra: ");
+
+        System.out.println("Nhap so luong tra: ");
         this.soLuong = Integer.parseInt(sc.nextLine());
 
-        System.out.print("Nhap ly do tra: ");
+        System.out.println("Nhap ly do tra: ");
         this.lyDo = sc.nextLine();
 
-        System.out.print("Nhap tinh trang san pham tra: ");
+        System.out.println("Nhap tinh trang san pham tra: ");
         this.tinhTrang = sc.nextLine();
 
         tinhThanhTien();
@@ -113,7 +122,7 @@ public class ChiTietHoaDonDoiTra {
     @Override
     public String toString() {
         return String.format(
-            "STT: %d\nSan pham: %s\nSo luong: %d\nLy do: %s\nTinh trang: %s\nThanh tien: %.2f",
+            "STT: %d\nSan pham tra: %s\nSo luong: %d\nLy do: %s\nTinh trang: %s\nThanh tien: %.2f",
             stt,
             sanPhamTra != null ? sanPhamTra.toString() : "Khong co san pham",
             soLuong,

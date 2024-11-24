@@ -84,10 +84,8 @@ public class ChiTietHoaDon {
         System.out.print("Nhap ma san pham: ");
         String maSanPham = sc.nextLine();
 
-
-
         // Lay thong tin san pham tu lop SanPham
-        this.sanPham = SanPham.timKiem(maSanPham);
+        this.sanPham = SanPham.timKiemSanPhamTheoMa(maSanPham);
         if (sanPham != null) {
             this.tenSanPham = sanPham.getTenSanPham();
         } else {
@@ -118,7 +116,7 @@ public class ChiTietHoaDon {
             soLuong,
             sanPham != null ? sanPham.giaSP : 0,
             thanhTien,
-            sanPham != null ? sanPham.toString() : "Khong co thong tin san pham"
+            sanPham != null ? tenSanPham.toString() : "Khong co thong tin san pham"
         );
     }
 }
