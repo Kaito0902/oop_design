@@ -5,7 +5,7 @@ import HoaDon.HoaDon;
 public class KhachHangCaNhan extends KhachHang {
 
     public KhachHangCaNhan () {
-
+        this.loaiKhachHang = "Binh thuong";
     }
 
     public KhachHangCaNhan(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
