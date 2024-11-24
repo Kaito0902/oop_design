@@ -78,9 +78,9 @@ public class ChuanHoaDuLieu {
             
             if (gioiTinh.equals("nam")) {
                 return "Nam";
-            } else if (gioiTinh.equals("nu") || gioiTinh.equals("nữ")) {
+            } else if (gioiTinh.equals("nu")) {
                 return "Nu";
-            } else if (gioiTinh.equals("khac") || gioiTinh.equals("khác")) {
+            } else if (gioiTinh.equals("khac")) {
                 return "Khac";
             } else {
                 System.out.println("Giới tính không hợp lệ! Vui lòng nhập lại:");
