@@ -1,3 +1,0 @@
-kh01,Nguyen Hong Duy,Nam,19/07/2005,dwadwd,0982870931,duynguyen19087@gmail.com,Than Thiet,true,50,4,0.2,false,0.0
-kh02,Nguyen Hong Tam,Nam,19/07/2005,dawdad,0988570276,tamnguyen@gmail.com,Binh Thuong,true,10,0.0
-kh03,Nguyen Hong Kha,Nam,20/10/2013,dawda,0335591458,hongkha123@gmail.com,Than Thiet,true,50,2,0.1,false,0.0

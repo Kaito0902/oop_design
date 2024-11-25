@@ -26,8 +26,8 @@ public abstract class KhachHang {
     private String[] loai = {"Tiem nang", "Than Thiet", "Uu dai", "Binh Thuong"};  
 
     //các thuộc tính/tính năng thêm cho khách hàng
-    protected HoaDon giaodich[] = new HoaDon[5];//1khách hàng có nhiều hóa đơn mua hàng
-    protected int soluonggiaodich = 0;
+    // protected HoaDon giaodich[] = new HoaDon[5];//1khách hàng có nhiều hóa đơn mua hàng
+    // protected int soluonggiaodich = 0;
     // protected DonDatHang gioHang[];//1 khách hàng có nhiều đơn đặt hàng
     // protected BaoHanh baoHang[];//1 khách hàng có nhiều loại sản phẩm cần bảo hành
     // protected String khieuNai;//khách hàng có thể góp ý dịch vụ
@@ -76,10 +76,10 @@ public abstract class KhachHang {
     }
 
     public void setNgaySinh(String ngaySinh) {
-        LocalDate date = chuanHoa.chuanHoaNgaySinh(ngaySinh);
+        LocalDate date = chuanHoa.chuanHoaNgayThangNam(ngaySinh);
         while (date == null) {
             ngaySinh = scanner.nextLine();
-            date = chuanHoa.chuanHoaNgaySinh(ngaySinh);
+            date = chuanHoa.chuanHoaNgayThangNam(ngaySinh);
         }
         this.ngaySinh = ngaySinh;
     }
@@ -156,7 +156,7 @@ public abstract class KhachHang {
         tongKH++;
         inputInfo();
         inputType();
-        inputGiaoDich(qlhd);
+        // inputGiaoDich(qlhd);
         capNhapTichDiem(qlhd);
     }
 
@@ -191,49 +191,49 @@ public abstract class KhachHang {
             setLoaiKhachHang("Tiem Nang");
     }
 
-    public void inputGiaoDich(QLHoaDon qlhd) {
-        // giao dich
-        boolean themgiaodich = false;
-        while (true) {
-            System.out.println("Ban co muon them giao dich khong(Y/N):");
-            String chon = scanner.nextLine().trim().toUpperCase();
-            if (chon.equals("Y")){
-                themgiaodich = true;
-                break;
-            }else if (chon.equals("N")){
-                themgiaodich = false;
-                break;
-            }else{
-                System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
-            }
-        }
+    // public void inputGiaoDich(QLHoaDon qlhd) {
+    //     // giao dich
+    //     boolean themgiaodich = false;
+    //     while (true) {
+    //         System.out.println("Ban co muon them giao dich khong(Y/N):");
+    //         String chon = scanner.nextLine().trim().toUpperCase();
+    //         if (chon.equals("Y")){
+    //             themgiaodich = true;
+    //             break;
+    //         }else if (chon.equals("N")){
+    //             themgiaodich = false;
+    //             break;
+    //         }else{
+    //             System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
+    //         }
+    //     }
         
-        while (themgiaodich) {
-            HoaDon gd = new HoaDon();
-            gd.input();
+    //     while (themgiaodich) {
+    //         HoaDon gd = new HoaDon();
+    //         gd.input();
 
-            if ( soluonggiaodich < giaodich.length )
-                giaodich[soluonggiaodich++] = gd;
-            else
-                System.out.println("khong the them giao dich:So luong dat toi da!!!");  
-            qlhd.themHD(gd);
+    //         if ( soluonggiaodich < giaodich.length )
+    //             giaodich[soluonggiaodich++] = gd;
+    //         else
+    //             System.out.println("khong the them giao dich:So luong dat toi da!!!");  
+    //         qlhd.themHD(gd);
         
 
-            while ( true ) {
-                System.out.println("Ban co muon them giao dich khac khong(Y/N):");
-                String chon = scanner.nextLine().trim().toUpperCase();
-                if (chon.equals("Y")) {
-                    themgiaodich = true;
-                    break;
-                } else if (chon.equals("N")) {
-                    themgiaodich = false;
-                    break;
-                } else {
-                    System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
-                }
-            }
-        }
-    }
+    //         while ( true ) {
+    //             System.out.println("Ban co muon them giao dich khac khong(Y/N):");
+    //             String chon = scanner.nextLine().trim().toUpperCase();
+    //             if (chon.equals("Y")) {
+    //                 themgiaodich = true;
+    //                 break;
+    //             } else if (chon.equals("N")) {
+    //                 themgiaodich = false;
+    //                 break;
+    //             } else {
+    //                 System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
+    //             }
+    //         }
+    //     }
+    // }
 
     //output 
     public void output() {
@@ -243,8 +243,8 @@ public abstract class KhachHang {
     //toString
     @Override
     public String toString() {
-        return String.format("%-10s %-20s %-10s %-15s %-15s %-15s %-10s %-20s %-10b",getMaKhachHang(), hoTen, gioiTinh, sdt, ngaySinh, email, 
-        diaChi, loaiKhachHang, isdelete);
+        return String.format("%-10s %-20s %-10s %-15s %-15s %-15s %-10s %-20s",getMaKhachHang(), hoTen, gioiTinh, sdt, ngaySinh, email, 
+        diaChi, loaiKhachHang);
     }
 
     // ktra
