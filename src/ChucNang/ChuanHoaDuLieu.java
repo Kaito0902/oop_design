@@ -90,7 +90,7 @@ public class ChuanHoaDuLieu {
     }
 
     //chuan hoa ngaySinh localdate
-    public LocalDate chuanHoaNgaySinh(String ngaySinh) {
+    public LocalDate chuanHoaNgayThangNam(String ngaySinh) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
             return LocalDate.parse(ngaySinh, formatter);
