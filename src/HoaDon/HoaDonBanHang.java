@@ -123,9 +123,6 @@ public class HoaDonBanHang extends HoaDon {
             System.out.println("Khong co khuyen mai nay them khuyen mai, nhap lai khuyen mai moi");
             QLKhuyenMai.themKhuyenMai(khuyenMai);
 
-
-
-
         // Tính tổng tiền
         tinhTongTien(soLuong);
     }
@@ -143,27 +140,10 @@ public class HoaDonBanHang extends HoaDon {
     }
     
 
-
-
     @Override
-public String toString() {
-    String result = String.format("%s\nChi tiet hoa don:\n", super.toString());
-    result += String.format("%-10s %-20s %-10s %-15s %-15s\n", "STT", "Ten SP", "So luong", "Don gia", "Thanh tien");
-
-    for (ChiTietHoaDon chiTiet : chiTietHoaDonList) {
-        if (chiTiet != null) {
-            result += String.format("%s\n", chiTiet.toString());
-        }
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString()+String.format("%-10s %-10.2f %-10.2f %-10f %-10.2f",getTenKhuyenMai, tienThue,chietKhau,phuongThucThanhToan, tongTien );
     }
-
-    result += String.format("Tien thue: %.2f%%\n", tienThue);
-    result += String.format("Chiet khau: %.2f%%\n", chietKhau);
-    result += String.format("Phuong thuc thanh toan: %s\n", phuongThucThanhToan);
-    result += String.format("Tong tien: %.2f\n", tongTien);
-    result += "Khuyen mai:\n" + khuyenMai.toString();
-
-    return result;
-}
-
    
 }

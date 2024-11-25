@@ -89,22 +89,8 @@ public class HoaDon {
 
     @Override
     public String toString() {
-        return "Ma hoa don: " + maHoaDon + "\n" +
-               "Ngay lap hoa don: " + ngayLapHoaDon.format(DATE_FORMATTER) + "\n" +
-               "Nhan vien lap hoa don: " + (nhanVienLapHoaDon != null ? nhanVienLapHoaDon.toString() : "Chua nhap nhan vien") + "\n" +
-               "Khach hang: " + (khachHang != null ? khachHang.toString() : "Khach hang khong ton tai.");
+        return String.format("%-5s %-10s %-15s %-15s ", maHoaDon, ngayLapHoaDon,getTenNhanVienBanHang,getTenKhachHang);
     }
 
-    public double getTongSoTien() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTongSoTien'");
-    }
-
-    public static Scanner getScanner() {
-        return scanner;
-    }
-
-    public static void setScanner(Scanner scanner) {
-        HoaDon.scanner = scanner;
-    }
+   
 }

@@ -116,23 +116,9 @@ public class HoaDonDoiTraHang extends HoaDon{
 
 
 
-
     @Override
     public String toString() {
-        StringBuilder chiTietStr = new StringBuilder();
-
-        for (int i = 0; i < dsChiTiet.length && dsChiTiet[i] != null; i++) {
-            chiTietStr.append(dsChiTiet[i].toString()).append("\n");
-        }
-
-        return String.format(
-            "Hoa Don Doi Tra:\nHoa Don Goc:\n%s\nDanh Sach Chi Tiet:\n%sTong Gia Tri: %.2f\nTi Le Tru: %.2f%%\nTien Hoan Tra: %.2f\nGhi Chu: %s",
-            hoaDonGoc != null ? hoaDonGoc.toString() : "Khong co hoa don goc",
-            chiTietStr.toString(),
-            tongGiaTri,
-            tiLeTru,
-            tienHoanTra,
-            ghiChu
-        );
+        // TODO Auto-generated method stub
+        return super.toString()+String.format("%-20s %-10.2f %-10s %-15.2f %-5.2f",hoaDonGoc,tongGiaTri,ghiChu,tienHoanTra,getTiLeTru());
     }
 }
