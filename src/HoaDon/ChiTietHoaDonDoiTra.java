@@ -78,10 +78,9 @@ public class ChiTietHoaDonDoiTra {
         }
     }
 
-//    public void xuat() {
-//        System.out.printf("%-5d %-20s %-10d %-20s %-20s %-15.2f\n",
-//                          stt, sanPhamTra.getTenSanPham(), soLuong, lyDo, tinhTrang, thanhTien);
-//    }
+    public void xuat() {
+        System.out.println(toString());
+    }
 
     @Override
     public String toString() {

@@ -73,10 +73,10 @@ public abstract class KhachHang {
     }
 
     public void setNgaySinh(String ngaySinh) {
-        LocalDate date = chuanHoa.chuanHoaNgaySinh(ngaySinh);
+        LocalDate date = chuanHoa.chuanHoaNgayThangNam(ngaySinh);
         while (date == null) {
             ngaySinh = scanner.nextLine();
-            date = chuanHoa.chuanHoaNgaySinh(ngaySinh);
+            date = chuanHoa.chuanHoaNgayThangNam(ngaySinh);
         }
         this.ngaySinh = ngaySinh;
     }

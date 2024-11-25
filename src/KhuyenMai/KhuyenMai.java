@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
+
 public class KhuyenMai {
     private String maKhuyenMai;
     private String tenKhuyenMai;
@@ -48,16 +50,16 @@ public class KhuyenMai {
         return ngayBatDau;
     }
 
-    public void setNgayBatDau(LocalDate ngayBatDau) {
-        this.ngayBatDau = ngayBatDau;
+    public void setNgayBatDau(String ngayBatDau) {
+        this.ngayBatDau = chuanHoaNgayThangNam(ngayBatDau);
     }
 
     public LocalDate getNgayKetThuc() {
         return ngayKetThuc;
     }
 
-    public void setNgayKetThuc(LocalDate ngayKetThuc) {
-        this.ngayKetThuc = ngayKetThuc;
+    public void setNgayKetThuc(String ngayKetThuc) {
+        this.ngayKetThuc = chuanHoaNgayThangNam(ngayKetThuc);
     }
 
     public String getDieuKienApDung() {
@@ -73,6 +75,11 @@ public class KhuyenMai {
     }
 
     public void setTongKhuyenMai(double tongKhuyenMai) {
+        while (tongKhuyenMai <= 0) {
+            System.out.println("Tong khuyen mai khong <= 0");
+            System.out.println("Nhap lai tong khuyen mai: ");
+            tongKhuyenMai = Double.parseDouble(sc.nextLine());
+        }
         this.tongKhuyenMai = tongKhuyenMai;
     }
 
@@ -87,11 +94,12 @@ public class KhuyenMai {
     public void input() {
         System.out.print("Nhap ten khuyen mai: ");
         setTenKhuyenMai(sc.nextLine());
+
         System.out.print("Nhap ngay bat dau (dd/MM/yyyy): ");
-        setNgayBatDau(LocalDate.parse(sc.nextLine(), formatter));
+        setNgayBatDau(sc.nextLine());
 
         System.out.print("Nhap ngay ket thuc (dd/MM/yyyy): ");
-        setNgayKetThuc(LocalDate.parse(sc.nextLine(), formatter));
+        setNgayKetThuc(sc.nextLine());
 
         System.out.print("Nhap dieu kien ap dung: ");
         setDieuKienApDung(sc.nextLine());

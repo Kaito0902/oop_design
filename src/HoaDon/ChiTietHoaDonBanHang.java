@@ -18,8 +18,6 @@ public class ChiTietHoaDonBanHang {
     }
 
     // Constructor với tham số
-
-
     public ChiTietHoaDonBanHang(int stt, SanPham sanPham, int soLuong, double thanhTien) {
         this.stt = stt;
         this.sanPham = sanPham;

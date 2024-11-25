@@ -207,9 +207,7 @@ public class QLNhanVien {
                         case 4: {
                             System.out.println("Nhap ngay sinh moi: ");
                             String ngaySinh = sc.nextLine();
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                            LocalDate sinhNhat = LocalDate.parse(ngaySinh, formatter);
-                            nv.setSinhNhat(sinhNhat);
+                            nv.setSinhNhat(ngaySinh);
                             System.out.println("Da sua nam sinh.");
                             break;
                         }

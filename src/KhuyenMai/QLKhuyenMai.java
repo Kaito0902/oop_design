@@ -81,13 +81,13 @@ public class QLKhuyenMai {
                         }
                         case 2: {
                             System.out.println("Nhap ngay bat dau moi: ");
-                            ds.setNgayBatDau(LocalDate.parse(sc.nextLine()));
+                            ds.setNgayBatDau(sc.nextLine());
                             System.out.println("Da sua ngay bat dau.");
                             break;
                         }
                         case 3: {
                             System.out.println("Nhap ngay ket thuc moi: ");
-                            ds.setNgayKetThuc(LocalDate.parse(sc.nextLine()));
+                            ds.setNgayKetThuc(sc.nextLine());
                             System.out.println("Da sua ngay ket thuc.");
                             break;
                         }

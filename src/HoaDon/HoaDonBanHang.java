@@ -7,6 +7,8 @@ import KhachHang.KhachHang;
 import KhuyenMai.KhuyenMai;
 import NhanVien.NhanVien;
 
+import static main_project.oop_project.qlkm;
+
 public class HoaDonBanHang extends HoaDon {
     private ChiTietHoaDonBanHang[] chiTietHoaDonBanHangList = new ChiTietHoaDonBanHang[0]; // Danh sách chi tiết hóa đơn
     private int soLuongChiTiet = 0;
@@ -122,9 +124,8 @@ public class HoaDonBanHang extends HoaDon {
         System.out.print("Nhap phuong thuc thanh toan: ");
         setPhuongThucThanhToan(scanner.nextLine());
 
-        System.out.println("Nhap thong tin khuyen mai:");
-//        khuyenMai = new KhuyenMai();
-//        khuyenMai.input();
+        System.out.println("Nhap ma khuyen mai:");
+        qlkm.timKhuyenMai(scanner.nextLine());
 
         tinhTongTien(); // Tính tổng tiền hóa đơn
     }
@@ -158,29 +159,11 @@ public class HoaDonBanHang extends HoaDon {
         tongTien -= khuyenMai.getTongKhuyenMai(); // Trừ khuyến mãi
     }
 
-    // Ghi thông tin ra chuỗi (hỗ trợ ghi file)
+//     Ghi thông tin ra chuỗi (hỗ trợ ghi file)
 //    @Override
 //    public String toString() {
 //        String.format("")
 //    }
 
-    // Đọc thông tin từ chuỗi (hỗ trợ đọc file)
-//    @Override
-//    public void fromString(String data) {
-//        String[] parts = data.split(",", 5);
-//        super.fromString(data); // Đọc thông tin cơ bản từ lớp cha
-//        this.tienThue = Double.parseDouble(parts[0]);
-//        this.chietKhau = Double.parseDouble(parts[1]);
-//        this.phuongThucThanhToan = parts[2];
-//        this.tongTien = Double.parseDouble(parts[3]);
-//
-//        khuyenMai = new KhuyenMai();
-//        khuyenMai.fromString(parts[4]);
-//
-//        for (int i = 5; i < parts.length; i++) {
-//            ChiTietHoaDonBanHang chiTiet = new ChiTietHoaDonBanHang();
-//      //      chiTiet.fromString(parts[i]);
-//            chiTietHoaDonBanHangList[soLuongChiTiet++] = chiTiet;
-//        }
-//    }
+
 }

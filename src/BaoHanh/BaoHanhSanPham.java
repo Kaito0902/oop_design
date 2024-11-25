@@ -3,29 +3,31 @@ package BaoHanh;
 import KhachHang.KhachHang;
 import NhanVien.NhanVien;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
 import static main_project.oop_project.qlkh;
+import static main_project.oop_project.qlnv;
 
 public class BaoHanhSanPham {
     private String maBaoHanh;
     private KhachHang khachHang;
     private NhanVien nhanVienPhuTrach;
     private String lyDo;
-    private Date ngayNhan;
+    private LocalDate ngayNhan;
     private String trangThai;
     private String[] lichSuYeuCau;
     static String[] loaiTrangThai = {"Dang xu ly bao hanh", "Da xu ly bao hanh", "Tu choi bao hanh, Da huy"};
+    static int tongBaoHanh = 0;
     static Scanner sc = new Scanner(System.in);
 
     public BaoHanhSanPham() {
     }
 
-    public BaoHanhSanPham(String maBaoHanh, KhachHang khachHang, NhanVien nhanVienPhuTrach, String lyDo, Date ngayNhan, String trangThai, String[] lichSuYeuCau) {
+    public BaoHanhSanPham(String maBaoHanh, KhachHang khachHang, NhanVien nhanVienPhuTrach, String lyDo, LocalDate ngayNhan, String trangThai, String[] lichSuYeuCau) {
         this.maBaoHanh = maBaoHanh;
         this.khachHang = khachHang;
         this.nhanVienPhuTrach = nhanVienPhuTrach;
@@ -59,12 +61,12 @@ public class BaoHanhSanPham {
         this.lyDo = lyDo;
     }
 
-    public Date getNgayNhan() {
+    public LocalDate getNgayNhan() {
         return ngayNhan;
     }
 
-    public void setNgayNhan(Date ngayNhan) {
-        this.ngayNhan = ngayNhan;
+    public void setNgayNhan(String ngayNhan) {
+        this.ngayNhan = chuanHoaNgayThangNam(ngayNhan);
     }
 
     public String[] getLichSuYeuCau() {
@@ -93,18 +95,20 @@ public class BaoHanhSanPham {
 
     public void input() {
         System.out.println("Nhap so dien thoai: ");
-        qlkh.timkiemKhachHangTheoSdt(sc.nextLine());
+        setKhachHang(qlkh.timkiemKhachHangTheoSdt(sc.nextLine()));
+
+        setNhanVienPhuTrach(qlnv.nguoiDangNhap());
+
         System.out.println("Nhap ly do bao hanh: ");
         setLyDo(sc.nextLine());
-        System.out.println("Nhap ngay nhan (dd/MM/yyy): ");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy");
-        try {
-            setNgayNhan(dateFormat.parse(sc.nextLine()));
-        } catch (ParseException e) {
-            System.out.println("Ngay nhan khong hop le.");
-        }
+
+        System.out.println("Nhap ngay nhan (dd/MM/yyyy): ");
+        setNgayNhan(sc.nextLine());
+
         setTrangThai(loaiTrangThai[0]);
         capNhatLichSu(trangThai);
+
+        maBaoHanh = "bh" + String.format("%02d", ++tongBaoHanh);
     }
 
     private void capNhatLichSu(String trangThaiMoi) {

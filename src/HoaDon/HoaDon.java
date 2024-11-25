@@ -92,46 +92,22 @@ public class HoaDon {
 
     // Phương thức xuất thông tin hóa đơn
     public void xuat() {
-        System.out.printf("%-15s %-20s %-15s %-20s %-20s %-15s %-30s",
+        System.out.println(toString());
+    }
+
+    // Ghi thông tin ra chuỗi (hỗ trợ ghi file)
+    @Override
+    public String toString() {
+        return String.format(
+                "%-15s %-20s %-15s %-20s %-20s %-15s %-30s",
                 maHoaDon, // Mã hóa đơn
                 ngayLapHoaDon, // Ngày lập hóa đơn
                 nhanVienLapHoaDon.getMaNhanVien(), // Mã nhân viên
                 nhanVienLapHoaDon.getTenNhanVien(), // Tên nhân viên
-                khachHang.getHoTen(),  // Họ tên khách hàng
+                khachHang.getHoTen(), // Họ tên khách hàng
                 khachHang.getSdt(), // Số điện thoại khách hàng
-                khachHang.getDiaChi() ); // Địa chỉ khách hàng
+                khachHang.getDiaChi() // Địa chỉ khách hàng
+        );
     }
 
-    // Ghi thông tin ra chuỗi (hỗ trợ ghi file)
-//    @Override
-//    public String toString() {
-//        return String.format(
-//                "%-15s %-20s %-15s %-20s %-20s %-15s %-30s",
-//                maHoaDon, // Mã hóa đơn
-//                ngayLapHoaDon, // Ngày lập hóa đơn
-//                nhanVienLapHoaDon.getMaNhanVien(), // Mã nhân viên
-//                nhanVienLapHoaDon.getTenNhanVien(), // Tên nhân viên
-//                khachHang.getHoTen(), // Họ tên khách hàng
-//                khachHang.getSdt(), // Số điện thoại khách hàng
-//                khachHang.getDiaChi() // Địa chỉ khách hàng
-//        );
-//    }
-
-    // Đọc thông tin từ chuỗi (hỗ trợ đọc file)
-    public void fromString(String data) {
-        String[] parts = data.split(",", 4);
-        this.maHoaDon = parts[0];
-        this.ngayLapHoaDon = LocalDate.parse(parts[1], DateTimeFormatter.ISO_LOCAL_DATE);
-
-//        this.nhanVienLapHoaDon = new NhanVien();
-//        this.nhanVienLapHoaDon.fromString(parts[2]);
-
-//        this.khachHang = new KhachHang();
-//        this.khachHang.fromString(parts[3]);
-    }
-
-    public double getTongSoTien() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTongSoTien'");
-    }
 }

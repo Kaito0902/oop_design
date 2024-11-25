@@ -340,7 +340,8 @@ public class ChucNangMenu {
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
                 case 1: {
-                    //tk
+                    System.out.println("Nhap so dien thoai khach hang: ");
+                    qlkh.timkiemKhachHangTheoSdt(sc.nextLine());
                     break;
                 }
                 case 2: {

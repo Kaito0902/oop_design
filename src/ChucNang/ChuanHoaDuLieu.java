@@ -9,7 +9,7 @@ import KhachHang.QLKhachHang;
 public class ChuanHoaDuLieu {
     static Scanner scanner = new Scanner(System.in);
     // chuan hoa ten(chu cai viet hoa dau moi tu)
-    public String chuanHoaTen(String ten) {
+    public static String chuanHoaTen(String ten) {
         ten = ten.trim().replace("\\s+", " ");
         String[] words = ten.split(" ");
         StringBuilder chuanHoa = new StringBuilder();
@@ -20,7 +20,7 @@ public class ChuanHoaDuLieu {
         return chuanHoa.toString().trim();
     }
 
-    public String chuanHoaEmail(String email) {
+    public static String chuanHoaEmail(String email) {
         while (true) {
             email = email.trim().replaceAll("\\s+", "");
             if (!email.contains(" ") // Không có dấu cách
@@ -37,7 +37,7 @@ public class ChuanHoaDuLieu {
     }
 
     // chuan hoa so dien thoai theo dinh dang (0xxxxxxxxx)
-    public String chuanHoaSoDienThoai (String sdt) {
+    public static String chuanHoaSoDienThoai (String sdt) {
         while (true) {
             sdt = sdt.replaceAll("\\D", "");
             if (sdt.length() == 10 && sdt.charAt(0) == '0') {
@@ -50,7 +50,7 @@ public class ChuanHoaDuLieu {
     }
 
     // chuan hoa so dien thoai danh cho khach hang
-    public String chuanHoaSoDienThoai(String sdt, QLKhachHang qlkh) {
+    public static String chuanHoaSoDienThoai(String sdt, QLKhachHang qlkh) {
         while (true) {
             // Loại bỏ tất cả ký tự không phải số
             sdt = sdt.replaceAll("\\D", "");
@@ -72,7 +72,7 @@ public class ChuanHoaDuLieu {
     }
 
     // chuan hoa gioi tinh (Nam,Nu,Khac)
-    public String chuanHoaGioiTinh (String gioiTinh) {
+    public static String chuanHoaGioiTinh (String gioiTinh) {
         while (true) {
             gioiTinh = gioiTinh.trim().toLowerCase();
 
@@ -90,10 +90,10 @@ public class ChuanHoaDuLieu {
     }
 
     //chuan hoa ngaySinh localdate
-    public LocalDate chuanHoaNgaySinh(String ngaySinh) {
+    public static LocalDate chuanHoaNgayThangNam(String ngay) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
-            return LocalDate.parse(ngaySinh, formatter);
+            return LocalDate.parse(ngay, formatter);
         } catch (Exception e) {
             System.out.println("Ngày sinh không hợp lệ! Vui lòng nhập lại (định dạng: dd/MM/yyyy):");
             return null;
