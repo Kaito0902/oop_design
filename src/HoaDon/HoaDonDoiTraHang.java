@@ -123,6 +123,7 @@ public class HoaDonDoiTraHang extends HoaDon {
                 i--; // Nhập lại sản phẩm
                 continue;
             }
+
             ChiTietHoaDonBanHang ctGoc = hdGoc.getChiTietHoaDonBanHangList()[stt - 1];
             SanPham spDoiTra = ctGoc.getSanPham();
 

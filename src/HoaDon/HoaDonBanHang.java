@@ -149,7 +149,7 @@ public class HoaDonBanHang extends HoaDon {
     }
 
     // Phương thức tính tổng tiền hóa đơn
-    private void tinhTongTien() {
+    public void tinhTongTien() {
         tongTien = 0;
         for (int i = 0; i < soLuongChiTiet; i++) {
             tongTien += chiTietHoaDonBanHangList[i].getThanhTien();
