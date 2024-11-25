@@ -35,6 +35,10 @@ public abstract class SanPham{
     }
 
     public void setMaSP(String maSP) {
+        while(!maSP.startsWith("#sp")){
+            System.out.println("Ma san pham bat dau bang: #sp ");
+            maSP = sc.nextLine();
+        }
         this.maSP = maSP;
     }
 
