@@ -8,23 +8,20 @@ import ChuoiCungCap.NhaCungCap;
 import SanPham.SanPham;
 
 public class DonDatHang {
-    private String maDonDatHang;
-    private LocalDate ngayDatHang;
-    private LocalDate ngayGiaoHang;
-    private SanPham sanPham;
-    private double tongTien;
-    private double soLuong;
-    private NhaCungCap nhaCungCap;
-    private String hinhThucGiaoHang;
-    private double doanhThuDonDatHang;
-    private boolean isDeleted; // Cờ xóa đơn hàng
-
+    protected String maDonDatHang;
+    protected LocalDate ngayDatHang;
+    protected LocalDate ngayGiaoHang;
+    protected SanPham sanPham;
+    protected double tongTien;
+    protected double soLuong;
+    protected NhaCungCap nhaCungCap;
+    protected String hinhThucGiaoHang;
+    protected double doanhThuDonDatHang;
     static Scanner sc = new Scanner(System.in);
 
-    // Định dạng ngày dd/MM/yyyy
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public DonDatHang(String maDonDatHang2, LocalDate ngayDatHang2, LocalDate ngayGiaoHang2, String sanPham2, double tongTien2, double soLuong2, String nhaCungCap2, String hinhThucGiaoHang2, Double doanhThuDonDatHang2) {
+    }
 
-    // Constructor đầy đủ
     public DonDatHang(String maDonDatHang, LocalDate ngayDatHang, LocalDate ngayGiaoHang, SanPham sanPham,
                       double tongTien, double soLuong, NhaCungCap nhaCungCap, String hinhThucGiaoHang,
                       double doanhThuDonDatHang) {
@@ -37,21 +34,11 @@ public class DonDatHang {
         this.nhaCungCap = nhaCungCap;
         this.hinhThucGiaoHang = hinhThucGiaoHang;
         this.doanhThuDonDatHang = doanhThuDonDatHang;
-        this.isDeleted = false; // Mặc định chưa bị xóa
     }
 
-    // Constructor mặc định
     public DonDatHang() {
-        this.isDeleted = false; // Mặc định chưa bị xóa
     }
 
-    public DonDatHang(String maDonDatHang2, LocalDate ngayDatHang2, LocalDate ngayGiaoHang2, String sanPham2,
-            double tongTien2, double soLuong2, String nhaCungCap2, String hinhThucGiaoHang2,
-            Double doanhThuDonDatHang2) {
-        //TODO Auto-generated constructor stub
-    }
-
-    // Getter và Setter
     public String getMaDonDatHang() {
         return maDonDatHang;
     }
@@ -104,18 +91,6 @@ public class DonDatHang {
         return nhaCungCap;
     }
 
-    public static Scanner getSc() {
-        return sc;
-    }
-
-    public static void setSc(Scanner sc) {
-        DonDatHang.sc = sc;
-    }
-
-    public static DateTimeFormatter getDateFormatter() {
-        return DATE_FORMATTER;
-    }
-
     public void setNhaCungCap(NhaCungCap nhaCungCap) {
         this.nhaCungCap = nhaCungCap;
     }
@@ -136,27 +111,29 @@ public class DonDatHang {
         this.doanhThuDonDatHang = doanhThuDonDatHang;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
+    public static Scanner getSc() {
+        return sc;
     }
 
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
+    public static void setSc(Scanner sc) {
+        DonDatHang.sc = sc;
     }
 
-    // Phương thức nhập thông tin đơn đặt hàng
-    public void input() {
+    public void nhap() {
         System.out.print("Nhap ma don dat hang: ");
         maDonDatHang = sc.nextLine();
 
-        System.out.print("Nhap ngay dat hang (dd/MM/yyyy): ");
-        ngayDatHang = LocalDate.parse(sc.nextLine(), DATE_FORMATTER);
+        System.out.print("Nhap ngay dat hang: ");
+        String ngayDat = sc.nextLine();
+        ngayDatHang = LocalDate.parse(ngayDat, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-        System.out.print("Nhap ngay giao hang (dd/MM/yyyy): ");
-        ngayGiaoHang = LocalDate.parse(sc.nextLine(), DATE_FORMATTER);
+        System.out.print("Nhap ngay giao hang: ");
+        String ngayGiao = sc.nextLine();
+        ngayGiaoHang = LocalDate.parse(ngayGiao, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
         System.out.println("Nhap thong tin san pham:");
-        sanPham.input(); // Giả sử lớp SanPham có phương thức nhập dữ liệu
+//        sanPham = new SanPham();
+//        sanPham.input(); // Gia su lop SanPham co phuong thuc nhap()
 
         System.out.print("Nhap so luong: ");
         soLuong = sc.nextDouble();
@@ -164,10 +141,11 @@ public class DonDatHang {
         System.out.print("Nhap tong tien: ");
         tongTien = sc.nextDouble();
 
-        sc.nextLine(); // Xóa bỏ ký tự xuống dòng còn lại
+        sc.nextLine(); // Xoa bo ky tu xuong dong con lai
 
         System.out.println("Nhap thong tin nha cung cap:");
-        nhaCungCap.input(); // Giả sử lớp NhaCungCap có phương thức nhập dữ liệu
+        nhaCungCap = new NhaCungCap();
+        nhaCungCap.nhap(); // Gia su lop NhaCungCap co phuong thuc nhap()
 
         System.out.print("Nhap hinh thuc giao hang: ");
         hinhThucGiaoHang = sc.nextLine();
@@ -176,13 +154,12 @@ public class DonDatHang {
         doanhThuDonDatHang = sc.nextDouble();
     }
 
-    // Phương thức hiển thị thông tin đơn đặt hàng
     @Override
     public String toString() {
         return "DonDatHang{" +
                 "maDonDatHang='" + maDonDatHang + '\'' +
-                ", ngayDatHang=" + ngayDatHang.format(DATE_FORMATTER) +
-                ", ngayGiaoHang=" + ngayGiaoHang.format(DATE_FORMATTER) +
+                ", ngayDatHang=" + ngayDatHang +
+                ", ngayGiaoHang=" + ngayGiaoHang +
                 ", sanPham=" + sanPham +
                 ", tongTien=" + tongTien +
                 ", soLuong=" + soLuong +
@@ -192,11 +169,7 @@ public class DonDatHang {
                 '}';
     }
 
-    public void output() {
-        if (!isDeleted) {
-            System.out.println(toString());
-        } else {
-            System.out.println("Don dat hang da bi xoa.");
-        }
+    public void xuat() {
+        System.out.println(toString());
     }
 }

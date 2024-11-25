@@ -7,15 +7,17 @@ import java.util.Scanner;
 import KhachHang.KhachHang;
 import NhanVien.NhanVien;
 
+import static main_project.oop_project.qlkh;
+import static main_project.oop_project.qlnv;
+
 public class HoaDon {
     protected String maHoaDon; 
     protected LocalDate ngayLapHoaDon; 
     protected NhanVien nhanVienLapHoaDon;
-    protected KhachHang khachHang; 
-    static int tongHoaDon = 0; 
+    protected KhachHang khachHang;
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static int tongHoaDon = 0;
     static Scanner scanner = new Scanner(System.in);
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
     public HoaDon() {
     }
 
@@ -26,6 +28,7 @@ public class HoaDon {
         this.khachHang = khachHang;
     }
 
+    // Getter và Setter
     public String getMaHoaDon() {
         return maHoaDon;
     }
@@ -58,39 +61,53 @@ public class HoaDon {
         this.khachHang = khachHang;
     }
 
+    // Phương thức nhập thông tin hóa đơn
     public void input() {
+        System.out.print("Nhap ma hoa don: ");
+        setMaHoaDon(scanner.nextLine());
+
         System.out.print("Nhap ngay lap hoa don (dd/MM/yyyy): ");
-        this.ngayLapHoaDon = LocalDate.parse(scanner.nextLine(), DATE_FORMATTER);
+        String ngayLap = scanner.nextLine();
+        LocalDate ngayLapHoaDon = LocalDate.parse(ngayLap, formatter);
+        setNgayLapHoaDon(ngayLapHoaDon);
 
-        System.out.println("Nhap thong tin nhan vien lap hoa don:");
-        setNhanVienLapHoaDon(nhanVienLapHoaDon);
+        NhanVien nv = qlnv.nguoiDangNhap();
+        setNhanVienLapHoaDon(nv);
 
-        // Lấy thông tin khách hàng dựa trên số điện thoại
-        System.out.println("Nhap so dien thoai khach hang: ");
-        String soDienThoai = scanner.nextLine();
-
-        this.khachHang = KhachHang.timKiemKhachHangTheoSdt(soDienThoai);
-        if (khachHang != null) {
-            System.out.println("Khach hang da ton tai, da cap nhat thong tin khach hang.");
-            setKhachHang(khachHang);
-        } else {
-            KhachHang.khachHang.input();
+        System.out.println("Nhap so dien thoai khach hang:");
+        String sdt = scanner.nextLine();
+        KhachHang kh = qlkh.timkiemKhachHangTheoSdt(sdt);
+        if (kh != null) {
+            setKhachHang(kh);
+        }
+        else {
+            qlkh.nhapKhachHang();
+            setKhachHang(qlkh.timkiemKhachHangTheoSdt(sdt));
         }
 
-
-        
         maHoaDon = "hd" + String.format("%02d", ++tongHoaDon);
         tongHoaDon++;
+
     }
 
-    public void output() {
+    // Phương thức xuất thông tin hóa đơn
+    public void xuat() {
         System.out.println(toString());
     }
 
+    // Ghi thông tin ra chuỗi (hỗ trợ ghi file)
     @Override
     public String toString() {
-        return String.format("%-5s %-10s %-15s %-15s ", maHoaDon, ngayLapHoaDon,getTenNhanVienBanHang,getTenKhachHang);
+        return String.format(
+                "%-15s %-20s %-15s %-20s %-20s %-15s %-30s",
+                maHoaDon, // Mã hóa đơn
+                ngayLapHoaDon, // Ngày lập hóa đơn
+                nhanVienLapHoaDon.getMaNhanVien(), // Mã nhân viên
+                nhanVienLapHoaDon.getTenNhanVien(), // Tên nhân viên
+                khachHang.getHoTen(), // Họ tên khách hàng
+                khachHang.getSdt(), // Số điện thoại khách hàng
+                khachHang.getDiaChi() // Địa chỉ khách hàng
+        );
     }
 
-   
 }

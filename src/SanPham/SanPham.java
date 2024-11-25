@@ -1,92 +1,114 @@
 package SanPham;
 
-public class SanPham implements Comparable<SanPham> {
-    public final String sanPham = null;
-    private String maSanPham;
-    private String tenSanPham;
-    private DanhMuc danhMuc;
-    private String thuongHieu;
-    private double giaBan;
-    public static int soLuongTon;
-    public static int giaSP;
+import java.util.Scanner;
 
-    public SanPham(String maSanPham, String tenSanPham, DanhMuc danhMuc, String thuongHieu, double giaBan, int soLuongTon) {
-        this.maSanPham = maSanPham;
-        this.tenSanPham = tenSanPham;
-        this.danhMuc = danhMuc;
-        this.thuongHieu = thuongHieu;
-        this.giaBan = giaBan;
-        this.soLuongTon = soLuongTon;
+public abstract class SanPham{      
+    protected String maSP;
+    protected String tenSP;
+    protected float giaSP;
+    protected String thoiGianBaoHanhSP;
+    protected float trongLuongSP;
+    protected String mauSacSP;
+    static int soLuongSP = 0;
+    static Scanner sc = new Scanner(System.in);
+
+    public SanPham()
+    {
+
+    }
+    
+    public SanPham(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP,
+            String mauSacSP) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.giaSP = giaSP;
+        this.thoiGianBaoHanhSP = thoiGianBaoHanhSP;
+        this.trongLuongSP = trongLuongSP;
+        this.mauSacSP = mauSacSP;
+        soLuongSP++;
     }
 
-    public String getMaSanPham() {
-        return maSanPham;
+    public String getMaSP() {
+        return maSP;
     }
 
-    public String getTenSanPham() {
-        return tenSanPham;
+    public void setMaSP(String maSP) {
+        this.maSP = maSP;
     }
 
-    public DanhMuc getDanhMuc() {
-        return danhMuc;
+    public String getTenSP() {
+        return tenSP;
     }
 
-    public String getThuongHieu() {
-        return thuongHieu;
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
     }
 
-    public double getGiaBan() {
-        return giaBan;
+    public float getGiaSP() {
+        return giaSP;
     }
 
-    public int getSoLuongTon() {
-        return soLuongTon;
+    public void setGiaSP(float giaSP) {
+        this.giaSP = giaSP;
     }
 
-    public void setMaSanPham(String maSanPham) {
-        this.maSanPham = maSanPham;
+    public String getThoiGianBaoHanhSP() {
+        return thoiGianBaoHanhSP;
     }
 
-    public void setTenSanPham(String tenSanPham) {
-        this.tenSanPham = tenSanPham;
+    public void setThoiGianBaoHanhSP(String thoiGianBaoHanhSP) {
+        this.thoiGianBaoHanhSP = thoiGianBaoHanhSP;
     }
 
-    public void setDanhMuc(DanhMuc danhMuc) {
-        this.danhMuc = danhMuc;
+    public float getTrongLuongSP() {
+        return trongLuongSP;
     }
 
-    public void setThuongHieu(String thuongHieu) {
-        this.thuongHieu = thuongHieu;
+    public void setTrongLuongSP(float trongLuongSP) {
+        this.trongLuongSP = trongLuongSP;
     }
 
-    public void setGiaBan(double giaBan) {
-        this.giaBan = giaBan;
+    public String getMauSacSP() {
+        return mauSacSP;
     }
 
-    public void setSoLuongTon(int soLuongTon) {
-        this.soLuongTon = soLuongTon;
+    public void setMauSacSP(String mauSacSP) {
+        this.mauSacSP = mauSacSP;
+    }
+
+
+    public abstract float thanhTien();    
+    public abstract float tinhKhuyenMai();
+
+    public void nhap()
+    {
+        maSP = "#sp" + String.format("%03d", ++soLuongSP);
+        System.out.println("Nhap ten san pham: ");
+        setTenSP(sc.nextLine());
+        System.out.println("Nhap gia san pham: ");
+        setGiaSP(Float.parseFloat(sc.nextLine()));
+        System.out.println("Nhap thoi gian bao hanh san pham: ");
+        setThoiGianBaoHanhSP(sc.nextLine());
+        System.out.println("Nhap trong luong san pham: ");
+        setTrongLuongSP(Float.parseFloat(sc.nextLine()));
+        System.out.println("Nhap mau sac san pham: ");
+        setMauSacSP(sc.nextLine());
+        soLuongSP++;
     }
 
     @Override
-    public String toString() {
-        return "SanPham{" +
-                "maSanPham='" + maSanPham + '\'' +
-                ", tenSanPham='" + tenSanPham + '\'' +
-                ", danhMuc='" + danhMuc + '\'' +
-                ", thuongHieu='" + thuongHieu + '\'' +
-                ", giaBan=" + giaBan +
-                ", soLuongTon=" + soLuongTon +
-                '}';
+    public String toString(){
+        return String.format("%-10s %-20s %-15f %-15s %-10f %-10s",
+                maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
     }
 
-
-    @Override
-    public int compareTo(SanPham o) {
-        return 0;
-    }
-
-    public void input() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'input'");
+    public void xuat()
+    {
+        System.out.println("Ma san pham: " + maSP);
+        System.out.println("Ten san pham: " + tenSP);
+        System.out.println("Gia san pham: " + String.format("%.3f", giaSP) + " VND");
+        System.out.println("Thoi gian bao hanh san pham: " + thoiGianBaoHanhSP);
+        System.out.println("Trong luong san pham: " + trongLuongSP + "kg");
+        System.out.println("Mau sac san pham: " + mauSacSP);
     }
 }

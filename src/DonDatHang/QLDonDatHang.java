@@ -4,6 +4,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
+
 import SanPham.SanPham;
 
 public class QLDonDatHang {
@@ -19,19 +20,21 @@ public class QLDonDatHang {
 
     public void xuatDDH() {
         for (DonDatHang i : dsddh) {
-            if (!i.isDeleted()) { // Only display non-deleted orders
-                i.output();
-            }
+            i.xuat();
         }
     }
 
     public void xoaDonDatHang(String maDonDatHang) {
         boolean found = false;
-        for (DonDatHang ddh : dsddh) {
-            if (ddh.getMaDonDatHang().equals(maDonDatHang)) {
-                ddh.setDeleted(true); // Mark as deleted instead of removing
+        for (int i = 0; i < dsddh.length; i++) {
+            if (dsddh[i].maDonDatHang.equals(maDonDatHang)) {
+                for (int j = i; j < dsddh.length - 1; j++) {
+                    dsddh[j] = dsddh[j + 1];
+                }
+                dsddh = Arrays.copyOf(dsddh, dsddh.length - 1);
+                soLuongDonHang--;
                 found = true;
-                System.out.println("Don dat hang da bi xoa (Mark as deleted): " + maDonDatHang);
+                System.out.println("Da xoa don dat hang co ma: " + maDonDatHang);
                 break;
             }
         }
@@ -43,7 +46,7 @@ public class QLDonDatHang {
     public void timKiemDonDatHangTongTien(double tongTien) {
         boolean found = false;
         for (DonDatHang ddh : dsddh) {
-            if (!ddh.isDeleted() && ddh.getTongTien() == tongTien) { // Check if not deleted
+            if (ddh.tongTien == tongTien) {
                 System.out.println(ddh);
                 found = true;
             }
@@ -54,25 +57,15 @@ public class QLDonDatHang {
     }
 
     public void sapXepDonDatHangTheoGia() {
-        Arrays.sort(dsddh, (a, b) -> {
-            if (!a.isDeleted() && !b.isDeleted()) { // Only compare non-deleted
-                return Double.compare(a.getTongTien(), b.getTongTien());
-            }
-            return 0;
-        });
+        Arrays.sort(dsddh, (a, b) -> Double.compare(a.tongTien, b.tongTien));
         System.out.println("Danh sach don dat hang da duoc sap xep theo gia.");
     }
 
     public void laySoLuongDonDatHang() {
-        int count = 0;
-        for (DonDatHang ddh : dsddh) {
-            if (!ddh.isDeleted()) { // Count only non-deleted
-                count++;
-            }
-        }
-        System.out.println("So luong hoa don hien tai: " + count);
+        System.out.println("So luong hoa don hien tai: " + dsddh.length);
     }
 
+    // Phuong thuc ghi danh sach don dat hang vao file
     public void ghiVaoFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ADMIN\\oop_design\\src\\DonDatHang\\danhSachDonDatHang.txt"))) {
             for (DonDatHang ddh : dsddh) {
@@ -135,7 +128,7 @@ public class QLDonDatHang {
             switch (choice) {
                 case 1 -> {
                     DonDatHang ddh = new DonDatHang();
-                    ddh.input();
+                    ddh.nhap();
                     themDDH(ddh);
                 }
                 case 2 -> xuatDDH();

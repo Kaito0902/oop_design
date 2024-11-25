@@ -4,26 +4,30 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
+
 public class KhuyenMai {
     private String maKhuyenMai;
     private String tenKhuyenMai;
     private LocalDate ngayBatDau;
     private LocalDate ngayKetThuc;
-    private String dieuKienApDung;
-    private String sanPhamApDung;
     private double tongKhuyenMai;
+    private String dieuKienApDung;
+    private boolean isdelete;
+    static int soLuongKhuyenMai = 0;
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static Scanner sc = new Scanner(System.in);
 
-    public KhuyenMai() {}
+    public KhuyenMai(){}
 
-    public KhuyenMai(String maKhuyenMai, String tenKhuyenMai, LocalDate ngayBatDau, LocalDate ngayKetThuc,
-            String dieuKienApDung, String sanPhamApDung, double tongKhuyenMai) {
+    public KhuyenMai(String maKhuyenMai, String tenKhuyenMai, LocalDate ngayBatDau, LocalDate ngayKetThuc, double tongKhuyenMai, String dieuKienApDung, boolean isdelete) {
         this.maKhuyenMai = maKhuyenMai;
         this.tenKhuyenMai = tenKhuyenMai;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
-        this.dieuKienApDung = dieuKienApDung;
-        this.sanPhamApDung = sanPhamApDung;
         this.tongKhuyenMai = tongKhuyenMai;
+        this.dieuKienApDung = dieuKienApDung;
+        this.isdelete = isdelete;
     }
 
     public String getMaKhuyenMai() {
@@ -46,16 +50,16 @@ public class KhuyenMai {
         return ngayBatDau;
     }
 
-    public void setNgayBatDau(LocalDate ngayBatDau) {
-        this.ngayBatDau = ngayBatDau;
+    public void setNgayBatDau(String ngayBatDau) {
+        this.ngayBatDau = chuanHoaNgayThangNam(ngayBatDau);
     }
 
     public LocalDate getNgayKetThuc() {
         return ngayKetThuc;
     }
 
-    public void setNgayKetThuc(LocalDate ngayKetThuc) {
-        this.ngayKetThuc = ngayKetThuc;
+    public void setNgayKetThuc(String ngayKetThuc) {
+        this.ngayKetThuc = chuanHoaNgayThangNam(ngayKetThuc);
     }
 
     public String getDieuKienApDung() {
@@ -66,73 +70,56 @@ public class KhuyenMai {
         this.dieuKienApDung = dieuKienApDung;
     }
 
-    public String getSanPhamApDung() {
-        return sanPhamApDung;
-    }
-
-    public void setSanPhamApDung(String sanPhamApDung) {
-        this.sanPhamApDung = sanPhamApDung;
-    }
-
     public double getTongKhuyenMai() {
         return tongKhuyenMai;
     }
 
     public void setTongKhuyenMai(double tongKhuyenMai) {
+        while (tongKhuyenMai <= 0) {
+            System.out.println("Tong khuyen mai khong <= 0");
+            System.out.println("Nhap lai tong khuyen mai: ");
+            tongKhuyenMai = Double.parseDouble(sc.nextLine());
+        }
         this.tongKhuyenMai = tongKhuyenMai;
     }
 
+    public boolean isIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(boolean isdelete) {
+        this.isdelete = isdelete;
+    }
+
     public void input() {
-        Scanner scanner = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Cập nhật định dạng ngày mới
-
-        System.out.print("Nhap ma khuyen mai: ");
-        maKhuyenMai = scanner.nextLine();
-
         System.out.print("Nhap ten khuyen mai: ");
-        tenKhuyenMai = scanner.nextLine();
+        setTenKhuyenMai(sc.nextLine());
 
         System.out.print("Nhap ngay bat dau (dd/MM/yyyy): ");
-        ngayBatDau = LocalDate.parse(scanner.nextLine(), formatter);
+        setNgayBatDau(sc.nextLine());
 
         System.out.print("Nhap ngay ket thuc (dd/MM/yyyy): ");
-        ngayKetThuc = LocalDate.parse(scanner.nextLine(), formatter);
+        setNgayKetThuc(sc.nextLine());
 
         System.out.print("Nhap dieu kien ap dung: ");
-        dieuKienApDung = scanner.nextLine();
-
-        System.out.print("Nhap san pham ap dung: ");
-        sanPhamApDung = scanner.nextLine();
+        setDieuKienApDung(sc.nextLine());
 
         System.out.print("Nhap tong khuyen mai: ");
-        tongKhuyenMai = scanner.nextDouble();
+        setTongKhuyenMai(Double.parseDouble(sc.nextLine()));
+
+        isdelete = false;
+        maKhuyenMai = "km" + String.format("%02d", ++soLuongKhuyenMai);
     }
 
+    // Phương thức toString để hiển thị thông tin khuyến mãi
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-        return "KhuyenMai{" +
-                "maKhuyenMai='" + maKhuyenMai + '\'' +
-                ", tenKhuyenMai='" + tenKhuyenMai + '\'' +
-                ", ngayBatDau=" + ngayBatDau.format(formatter) + // Đổi định dạng hiển thị
-                ", ngayKetThuc=" + ngayKetThuc.format(formatter) +
-                ", dieuKienApDung='" + dieuKienApDung + '\'' +
-                ", sanPhamApDung='" + sanPhamApDung + '\'' +
-                ", tongKhuyenMai=" + tongKhuyenMai +
-                '}';
+        return String.format("%-5s %-20s %-15s %-15s %-10.2f %-20s", maKhuyenMai, tenKhuyenMai, ngayBatDau, ngayKetThuc, tongKhuyenMai, dieuKienApDung);
     }
 
-    public void output() {
+    public void xuat(){
         System.out.println(toString());
     }
-
-    public static KhuyenMai timKhuyenMai(String maKhuyenMai2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'timKhuyenMai'");
-    }
-
-    public void fromString(String string) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fromString'");
-    }
+    
+    
 }

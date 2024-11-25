@@ -1,30 +1,45 @@
 package HoaDon;
 
 import java.time.LocalDate;
-import java.util.Scanner;
+import java.util.Arrays;
 
 import KhachHang.KhachHang;
 import KhuyenMai.KhuyenMai;
-import KhuyenMai.QLKhuyenMai;
 import NhanVien.NhanVien;
 
+import static main_project.oop_project.qlkm;
+
 public class HoaDonBanHang extends HoaDon {
-    private ChiTietHoaDon[] chiTietHoaDonList; // Danh sách chi tiết hóa đơn
-    private KhuyenMai khuyenMai;
+    private ChiTietHoaDonBanHang[] chiTietHoaDonBanHangList = new ChiTietHoaDonBanHang[0]; // Danh sách chi tiết hóa đơn
+    private int soLuongChiTiet = 0;
+    private KhuyenMai khuyenMai; // Chương trình khuyến mãi
     private double tienThue;
     private double chietKhau;
     private String phuongThucThanhToan; 
-    private double tongTien;
+    private double tongTien; // Tổng tiền của hóa đơn
 
-    private static final int MAX_CHI_TIET = 100; // Giới hạn số lượng chi tiết hóa đơn
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public ChiTietHoaDon[] getChiTietHoaDonList() {
-        return chiTietHoaDonList;
+    // Constructor mặc định
+    public HoaDonBanHang() {
     }
 
-    public void setChiTietHoaDonList(ChiTietHoaDon[] chiTietHoaDonList) {
-        this.chiTietHoaDonList = chiTietHoaDonList;
+    // constructor day du tham so
+    public HoaDonBanHang(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang, ChiTietHoaDonBanHang[] chiTietHoaDonList, int soLuongChiTiet, KhuyenMai khuyenMai, double tienThue, double chietKhau, String phuongThucThanhToan, double tongTien) {
+        super(maHoaDon, ngayLapHoaDon, nhanVienLapHoaDon, khachHang);
+        this.chiTietHoaDonBanHangList = chiTietHoaDonList;
+        this.soLuongChiTiet = soLuongChiTiet;
+        this.khuyenMai = khuyenMai;
+        this.tienThue = tienThue;
+        this.chietKhau = chietKhau;
+        this.phuongThucThanhToan = phuongThucThanhToan;
+        this.tongTien = tongTien;
+    }
+
+    public ChiTietHoaDonBanHang[] getChiTietHoaDonBanHangList() {
+        return chiTietHoaDonBanHangList;
+    }
+
+    public int getSoLuongChiTiet() {
+        return soLuongChiTiet;
     }
 
     public KhuyenMai getKhuyenMai() {
@@ -32,6 +47,10 @@ public class HoaDonBanHang extends HoaDon {
     }
 
     public void setKhuyenMai(KhuyenMai khuyenMai) {
+        while (khuyenMai == null) {
+            System.out.println("Nhap lai ma khuyen mai:");
+            khuyenMai = qlkm.timKhuyenMai(scanner.nextLine());
+        }
         this.khuyenMai = khuyenMai;
     }
 
@@ -63,87 +82,86 @@ public class HoaDonBanHang extends HoaDon {
         return tongTien;
     }
 
+    public void setChiTietHoaDonBanHangList(ChiTietHoaDonBanHang[] chiTietHoaDonBanHangList) {
+        this.chiTietHoaDonBanHangList = chiTietHoaDonBanHangList;
+    }
+
+    public void setSoLuongChiTiet(int soLuongChiTiet) {
+        this.soLuongChiTiet = soLuongChiTiet;
+    }
+
+//    public void setKhuyenMai(KhuyenMai khuyenMai) {
+//        this.khuyenMai = khuyenMai;
+//    }
+
     public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
     }
 
-    public static int getMaxChiTiet() {
-        return MAX_CHI_TIET;
-    }
-
-    public static Scanner getScanner() {
-        return scanner;
-    }
-
-    public HoaDonBanHang(String maHoaDon, LocalDate ngayLap, NhanVien nhanVien, KhachHang khachHang, KhuyenMai khuyenMai2, double tienThue2, double chietKhau2, String phuongThucThanhToan2, double tongTien2) {
-        super();
-        this.chiTietHoaDonList = new ChiTietHoaDon[MAX_CHI_TIET];
-        this.tienThue = 0;
-        this.chietKhau = 0;
-        this.tongTien = 0;
-        this.phuongThucThanhToan = "Tiền mặt";
-    }
-
-    public HoaDonBanHang() {
-        //TODO Auto-generated constructor stub
+    public void themChiTietHoaDonBanHang(ChiTietHoaDonBanHang chiTietHoaDonBanHang) {
+        ChiTietHoaDonBanHang[] newdsChiTietHoaDonBanHang = Arrays.copyOf(chiTietHoaDonBanHangList, soLuongChiTiet + 1);
+        newdsChiTietHoaDonBanHang[soLuongChiTiet] = chiTietHoaDonBanHang;
+        chiTietHoaDonBanHangList = newdsChiTietHoaDonBanHang;
+        soLuongChiTiet++;
     }
 
     @Override
     public void input() {
-        super.input();
+        super.input(); // Nhập thông tin cơ bản từ lớp cha
 
         System.out.print("Nhap so luong chi tiet hoa don: ");
         int soLuong = Integer.parseInt(scanner.nextLine());
 
-        for (int i = 0; i < soLuong && i < MAX_CHI_TIET; i++) {
+        for (int i = 0; i < soLuong; i++) {
             System.out.println("Nhap chi tiet hoa don thu " + (i + 1) + ":");
-            ChiTietHoaDon chiTiet = new ChiTietHoaDon();
-            chiTiet.input(i + 1); // STT bắt đầu từ 1
-            chiTietHoaDonList[i] = chiTiet;
+            ChiTietHoaDonBanHang chiTiet = new ChiTietHoaDonBanHang();
+            chiTiet.input();
+            themChiTietHoaDonBanHang(chiTiet);
         }
 
-        System.out.println("Nhap tien thue (theo %): ");
-        setTienThue(scanner.nextDouble());
+        System.out.print("Nhap tien thue (theo %): ");
+        setTienThue(Double.parseDouble(scanner.nextLine()));
+
+        System.out.print("Nhap chiet khau (theo %): ");
+        setChietKhau(Double.parseDouble(scanner.nextLine()));
+
+        System.out.print("Nhap phuong thuc thanh toan: ");
+        setPhuongThucThanhToan(scanner.nextLine());
+
+        //muon nhap km hay ko
         
-        System.out.println("Nhap chiet khau (theo %): ");
-        setChietKhau(scanner.nextDouble());
+        System.out.println("Nhap ma khuyen mai:");
 
-        System.out.println("Nhap phuong thuc thanh toan: ");
-        setPhuongThucThanhToan(scanner.next());
+        setKhuyenMai(qlkm.timKhuyenMai(scanner.nextLine()));
 
-
-        System.out.println("Nhap ma khuyen mai");
-        String maKhuyenMai = scanner.nextLine();
-
-        this.khuyenMai = QLKhuyenMai.timKhuyenMai(maKhuyenMai);
-        if(khuyenMai !=null){
-            setKhuyenMai(khuyenMai);
-        }
-        else
-            System.out.println("Khong co khuyen mai nay them khuyen mai, nhap lai khuyen mai moi");
-            QLKhuyenMai.themKhuyenMai(khuyenMai);
-
-        // Tính tổng tiền
-        tinhTongTien(soLuong);
+        tinhTongTien(); // Tính tổng tiền hóa đơn
     }
 
 
-
-     private void tinhTongTien(int soLuongChiTiet) {
+    // Phương thức tính tổng tiền hóa đơn
+    private void tinhTongTien() {
         tongTien = 0;
         for (int i = 0; i < soLuongChiTiet; i++) {
-            tongTien += chiTietHoaDonList[i].getThanhTien();
+            tongTien += chiTietHoaDonBanHangList[i].getThanhTien();
         }
         tongTien += tongTien * (tienThue / 100); // Thêm thuế
         tongTien -= tongTien * (chietKhau / 100); // Trừ chiết khấu
-        tongTien -= khuyenMai.getTongKhuyenMai(); // Trừ khuyến mãi
+        tongTien -= tongTien * (khuyenMai.getTongKhuyenMai()/100); // Trừ khuyến mãi
     }
-    
 
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString()+String.format("%-10s %-10.2f %-10.2f %-10f %-10.2f",getTenKhuyenMai, tienThue,chietKhau,phuongThucThanhToan, tongTien );
-    }
-   
+//     Ghi thông tin ra chuỗi (hỗ trợ ghi file)
+//    @Override
+//    public String toString() {
+//        String.format("")
+//    }
+
+// private ChiTietHoaDonBanHang[] chiTietHoaDonBanHangList = new ChiTietHoaDonBanHang[0]; // Danh sách chi tiết hóa đơn
+
+
+@Override
+public String toString() {
+    return super.toString()+String.format("%-5d %-10s %-10.2f %-5.2f %-10s %-10.2f" ,soLuongChiTiet,khuyenMai.getTenKhuyenMai(),tienThue,chietKhau, phuongThucThanhToan,tongTien );
+}
+
+
 }

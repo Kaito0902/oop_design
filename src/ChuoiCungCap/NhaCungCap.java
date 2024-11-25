@@ -15,13 +15,12 @@ public class NhaCungCap {
     protected LocalDate ngayHopTac;
     protected double chiPhiNhapHang; 
     protected String ghiChu;
-    protected boolean isDelete; 
 
     static Scanner sc = new Scanner(System.in);
   
     public NhaCungCap(String maNhaCungCap, String tenNhaCungCap, String diaChi, String thanhPho, String quocGia,
             String email, String maSoThue, LocalDate ngayHopTac, double chiPhiNhapHang,
-            String ghiChu, boolean isDelete) {
+            String ghiChu) {
         this.maNhaCungCap = maNhaCungCap;
         this.tenNhaCungCap = tenNhaCungCap;
         this.diaChi = diaChi;
@@ -32,18 +31,10 @@ public class NhaCungCap {
         this.ngayHopTac = ngayHopTac;
         this.chiPhiNhapHang = chiPhiNhapHang;
         this.ghiChu = ghiChu;
-        this.isDelete = isDelete;
     }
 
     public NhaCungCap() {
-    }
-
-    public boolean isDelete() {
-        return isDelete;
-    }
-
-    public void setDelete(boolean isDelete) {
-        this.isDelete = isDelete;
+        // TODO Auto-generated constructor stub
     }
 
     public String getMaNhaCungCap() {
@@ -134,40 +125,44 @@ public class NhaCungCap {
         NhaCungCap.sc = sc;
     }
 
-    public void input() {
+    public void nhap() {
         System.out.print("Nhap ma nha cung cap: ");
         maNhaCungCap = sc.nextLine();
+
         System.out.print("Nhap ten nha cung cap: ");
         tenNhaCungCap = sc.nextLine();
+
         System.out.print("Nhap dia chi: ");
         diaChi = sc.nextLine();
+
         System.out.print("Nhap thanh pho: ");
         thanhPho = sc.nextLine();
+
         System.out.print("Nhap quoc gia: ");
         quocGia = sc.nextLine();
+
         System.out.print("Nhap email: ");
         email = sc.nextLine();
+
         System.out.print("Nhap ma so thue: ");
         maSoThue = sc.nextLine();
-        System.out.print("Nhap ngay hop tac (dinh dang dd/MM/yyyy): ");
-        String ngayHopTacStr = sc.nextLine();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.print("Nhap ngay hop tac (dinh dang yyyy-MM-dd): ");
+        String ngayHopTacStr = sc.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         ngayHopTac = LocalDate.parse(ngayHopTacStr, formatter);
 
         System.out.print("Nhap chi phi nhap hang: ");
         chiPhiNhapHang = sc.nextDouble();
-        sc.nextLine(); 
+        sc.nextLine();  
 
         System.out.print("Nhap ghi chu: ");
         ghiChu = sc.nextLine();
-
-        isDelete = false;
     }
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return "NhaCungCap {" +
                 "Ma nha cung cap: '" + maNhaCungCap + '\'' +
                 ", Ten nha cung cap: '" + tenNhaCungCap + '\'' +
@@ -179,11 +174,10 @@ public class NhaCungCap {
                 ", Ngay hop tac: " + ngayHopTac.format(formatter) +
                 ", Chi phi nhap hang: " + chiPhiNhapHang +
                 ", Ghi chu: '" + ghiChu + '\'' +
-                ", isDelete: " + isDelete +
                 '}';
     }
 
-    public void output() {
+    public void xuat(){
         System.out.println(toString());
     }
 }

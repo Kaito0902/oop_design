@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import SanPham.SanPham;
+
 public class QLNhaCungCap {
     NhaCungCap[] dsncc = new NhaCungCap[0];
     static Scanner sc = new Scanner(System.in);
@@ -17,17 +19,19 @@ public class QLNhaCungCap {
 
     public void xuatNCC() {
         for (NhaCungCap ncc : dsncc) {
-            if (!ncc.isDelete) {  // Chỉ hiển thị những nhà cung cấp chưa bị xóa
-                ncc.output();
-            }
+            ncc.xuat();
         }
     }
 
+    // Phương thức xóa nhà cung cấp theo mã
     public void xoaNhaCungCap(String maNCC) {
         boolean found = false;
-        for (NhaCungCap ncc : dsncc) {
-            if (ncc.maNhaCungCap.equals(maNCC)) {
-                ncc.isDelete = true;  // Đánh dấu là bị xóa
+        for (int i = 0; i < dsncc.length; i++) {
+            if (dsncc[i].maNhaCungCap.equals(maNCC)) {
+                for (int j = i; j < dsncc.length - 1; j++) {
+                    dsncc[j] = dsncc[j + 1];
+                }
+                dsncc = Arrays.copyOf(dsncc, dsncc.length - 1);
                 found = true;
                 System.out.println("Da xoa nha cung cap co ma: " + maNCC);
                 break;
@@ -38,10 +42,11 @@ public class QLNhaCungCap {
         }
     }
 
+    // Phương thức tìm kiếm nhà cung cấp theo chi phí nhập hàng
     public void timKiemNhaCungCapTheoChiPhi(double chiPhi) {
         boolean found = false;
         for (NhaCungCap ncc : dsncc) {
-            if (!ncc.isDelete && ncc.chiPhiNhapHang == chiPhi) {  // Kiểm tra isDelete
+            if (ncc.chiPhiNhapHang == chiPhi) {
                 System.out.println(ncc);
                 found = true;
             }
@@ -52,35 +57,19 @@ public class QLNhaCungCap {
     }
 
     public void sapXepNhaCungCapTheoChiPhi() {
-        Arrays.sort(dsncc, (a, b) -> {
-            if (!a.isDelete && !b.isDelete) {
-                return Double.compare(a.chiPhiNhapHang, b.chiPhiNhapHang);
-            } else if (a.isDelete) {
-                return 1; // Nếu a bị xóa, sắp xếp sau
-            } else {
-                return -1; // Nếu b bị xóa, sắp xếp sau
-            }
-        });
+        Arrays.sort(dsncc, (a, b) -> Double.compare(a.chiPhiNhapHang, b.chiPhiNhapHang));
         System.out.println("Danh sach nha cung cap da duoc sap xep theo chi phi nhap hang.");
     }
 
     public void laySoLuongNhaCungCap() {
-        int count = 0;
-        for (NhaCungCap ncc : dsncc) {
-            if (!ncc.isDelete) {
-                count++;
-            }
-        }
-        System.out.println("So luong nha cung cap: " + count);
+        System.out.println("So luong nha cung cap: " + dsncc.length);
     }
 
     public void ghiVaoFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ADMIN\\oop_design\\src\\ChuoiCungCap\\danhSachNhaCungCap.txt"))) {
             for (NhaCungCap ncc : dsncc) {
-                if (!ncc.isDelete) { 
-                    writer.write(ncc.toString());
-                    writer.newLine();
-                }
+                writer.write(ncc.toString());
+                writer.newLine();
             }
             System.out.println("Ghi file thanh cong!");
         } catch (IOException e) {
@@ -103,9 +92,11 @@ public class QLNhaCungCap {
                     String maSoThue = data[6];
                     LocalDate ngayHopTac = LocalDate.parse(data[7]);
                     double chiPhiNhapHang = Double.parseDouble(data[8]);
+
+                    String tenSanPham =(data[9]); 
                     String ghiChu = data[10];
 
-                    NhaCungCap ncc = new NhaCungCap(maNhaCungCap, tenNhaCungCap, diaChi, thanhPho, quocGia, email, maSoThue, ngayHopTac, chiPhiNhapHang, ghiChu, false);
+                    NhaCungCap ncc = new NhaCungCap(maNhaCungCap, tenNhaCungCap, diaChi, thanhPho, quocGia, email, maSoThue, ngayHopTac, chiPhiNhapHang, ghiChu);
                     themNCC(ncc);
                 }
             }
@@ -117,8 +108,7 @@ public class QLNhaCungCap {
         }
     }
 
-
-
+    // Phương thức hiển thị menu
     public void menu() {
         int choice;
         do {
@@ -139,7 +129,7 @@ public class QLNhaCungCap {
             switch (choice) {
                 case 1 -> {
                     NhaCungCap ncc = new NhaCungCap();
-                    ncc.input();
+                    ncc.nhap();
                     themNCC(ncc);
                 }
                 case 2 -> xuatNCC();

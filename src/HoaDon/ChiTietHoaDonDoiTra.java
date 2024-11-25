@@ -1,6 +1,6 @@
 package HoaDon;
-
 import java.util.Scanner;
+
 import SanPham.SanPham;
 
 public class ChiTietHoaDonDoiTra {
@@ -9,33 +9,24 @@ public class ChiTietHoaDonDoiTra {
     private int soLuong; 
     private String lyDo; 
     private String tinhTrang; 
-    private double thanhTien; // Thanh tien hoan tra
+    private double thanhTien; // Thành tiền hoàn trả
     static Scanner sc = new Scanner(System.in);
-
     public ChiTietHoaDonDoiTra() {
     }
-    public ChiTietHoaDonDoiTra(int stt, SanPham sanPhamTra, int soLuong, String lyDo, String tinhTrang) {
-        this.stt = stt;
+
+    public ChiTietHoaDonDoiTra(SanPham sanPhamTra, int soLuong, String lyDo, String tinhTrang) {
         this.sanPhamTra = sanPhamTra;
         this.soLuong = soLuong;
         this.lyDo = lyDo;
         this.tinhTrang = tinhTrang;
-        tinhThanhTien();
+        this.thanhTien = soLuong * sanPhamTra.getGiaSP(); // Tính thành tiền
     }
 
+    // Getter và Setter
     public int getStt() {
         return stt;
     }
-    
-    public void setThanhTien(double thanhTien) {
-        this.thanhTien = thanhTien;
-    }
-    public static Scanner getSc() {
-        return sc;
-    }
-    public static void setSc(Scanner sc) {
-        ChiTietHoaDonDoiTra.sc = sc;
-    }
+
     public void setStt(int stt) {
         this.stt = stt;
     }
@@ -78,57 +69,21 @@ public class ChiTietHoaDonDoiTra {
         return thanhTien;
     }
 
-    // Phuong thuc tinh lai thanh tien
+    // Phương thức tính lại thành tiền
     private void tinhThanhTien() {
         if (sanPhamTra != null) {
-            this.thanhTien = this.soLuong * sanPhamTra.getGiaBan();
+            this.thanhTien = this.soLuong * sanPhamTra.getGiaSP();
         } else {
             this.thanhTien = 0;
         }
     }
 
-    public void input(int stt) {
-        this.stt = stt;
-
-        System.out.print("Nhap ma san pham tra: ");
-        String maSanPham = sc.nextLine();
-        // Lay thong tin san pham tra
-        this.sanPhamTra = SanPham.timKiemSanPhamTheoMa(maSanPham);
-        if (sanPhamTra == null) {
-            System.out.println("San pham khong ton tai!");
-            return;
-        }
-        else
-            setSanPhamTra(sanPhamTra);
-
-
-        System.out.println("Nhap so luong tra: ");
-        this.soLuong = Integer.parseInt(sc.nextLine());
-
-        System.out.println("Nhap ly do tra: ");
-        this.lyDo = sc.nextLine();
-
-        System.out.println("Nhap tinh trang san pham tra: ");
-        this.tinhTrang = sc.nextLine();
-
-        tinhThanhTien();
+    public void xuat() {
+        System.out.println(toString());
     }
 
-    public void output() {
-       System.out.println(toString());
-    }
-
-    // Chuyen doi thanh chuoi
     @Override
     public String toString() {
-        return String.format(
-            "STT: %d\nSan pham tra: %s\nSo luong: %d\nLy do: %s\nTinh trang: %s\nThanh tien: %.2f",
-            stt,
-            sanPhamTra != null ? sanPhamTra.toString() : "Khong co san pham",
-            soLuong,
-            lyDo,
-            tinhTrang,
-            thanhTien
-        );
+        return stt + "," + sanPhamTra.toString() + "," + soLuong + "," + lyDo + "," + tinhTrang + "," + thanhTien;
     }
 }

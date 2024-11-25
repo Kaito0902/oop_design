@@ -1,0 +1,2 @@
+kh01,Nam,Nam,19/07/2005,dasd,0123456789,dsada,Than Thiet,50,5,0.25,false,0.0
+kh02,Duy,Nam,19/07/2005,dsdsd,0982870931,dsdsds,Than Thiet,50,4,0.2,false,0.0

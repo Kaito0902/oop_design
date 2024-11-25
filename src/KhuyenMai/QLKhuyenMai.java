@@ -3,39 +3,28 @@ package KhuyenMai;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class QLKhuyenMai {
-    KhuyenMai[] danhSachKhuyenMai;
-    private int soLuongKhuyenMai;
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-    public QLKhuyenMai(int kichThuocBanDau) {
-        danhSachKhuyenMai = new KhuyenMai[kichThuocBanDau];
-        soLuongKhuyenMai = 0;
-    }
+    KhuyenMai[] danhSachKhuyenMai = new KhuyenMai[0];
+    int soLuongKhuyenMai = 0;
+    static Scanner sc = new Scanner(System.in);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // Phương thức thêm khuyến mãi
     public void themKhuyenMai(KhuyenMai km) {
-        if (soLuongKhuyenMai == danhSachKhuyenMai.length) {
-            tangKichThuocMang();
-        }
-        danhSachKhuyenMai[soLuongKhuyenMai] = km;
+        KhuyenMai[] newdsKhuyenMai = Arrays.copyOf(danhSachKhuyenMai, soLuongKhuyenMai + 1);
+        newdsKhuyenMai[soLuongKhuyenMai] = km;
+        danhSachKhuyenMai = newdsKhuyenMai;
         soLuongKhuyenMai++;
     }
 
-    private void tangKichThuocMang() {
-        int kichThuocMoi = danhSachKhuyenMai.length * 2;
-        KhuyenMai[] mangMoi = new KhuyenMai[kichThuocMoi];
-        System.arraycopy(danhSachKhuyenMai, 0, mangMoi, 0, danhSachKhuyenMai.length);
-        danhSachKhuyenMai = mangMoi;
-    }
-
-    // Tìm khuyến mãi theo mã
+    //tim theo mã
     public KhuyenMai timKhuyenMai(String maKhuyenMai) {
-        for (int i = 0; i < soLuongKhuyenMai; i++) {
-            if (danhSachKhuyenMai[i].getMaKhuyenMai().equals(maKhuyenMai)) {
-                return danhSachKhuyenMai[i];
+        for (KhuyenMai ds : danhSachKhuyenMai) {
+            if (ds.getMaKhuyenMai().equals(maKhuyenMai)) {
+                return ds;
             }
         }
         return null; // Không tìm thấy khuyến mãi với mã này
@@ -45,47 +34,104 @@ public class QLKhuyenMai {
         if (soLuongKhuyenMai == 0) {
             System.out.println("Khong co khuyen mai nao trong danh sach.");
         } else {
-            for (int i = 0; i < soLuongKhuyenMai; i++) {
-                System.out.println(danhSachKhuyenMai[i]);
+            for (KhuyenMai ds : danhSachKhuyenMai) {
+                if (!ds.isIsdelete())
+                    ds.xuat();
             }
         }
     }
 
-    public void nhapKhuyenMaiMoi() {
-        Scanner sc = new Scanner(System.in);
+    public void xoaKhuyenMai(String ma) {
+        boolean ktra = false;
+        for (KhuyenMai ds : danhSachKhuyenMai) {
+            if (ds.getMaKhuyenMai().equals(ma)) {
+                ds.setIsdelete(true);
+                System.out.println("Da xoa khuyen mai");
+                ktra = true;
+            }
+        }
+        if (!ktra) {
+            System.out.println("Khong tim thay khuyen mai co ma " + ma);
+        }
+    }
 
-        System.out.print("Nhap ma khuyen mai: ");
-        String maKhuyenMai = sc.nextLine();
-        System.out.print("Nhap ten khuyen mai: ");
-        String tenKhuyenMai = sc.nextLine();
-        System.out.print("Nhap ngay bat dau (dd/MM/yyyy): ");
-        LocalDate ngayBatDau = LocalDate.parse(sc.nextLine(), DATE_FORMATTER);
-        System.out.print("Nhap ngay ket thuc (dd/MM/yyyy): ");
-        LocalDate ngayKetThuc = LocalDate.parse(sc.nextLine(), DATE_FORMATTER);
-        System.out.print("Nhap dieu kien ap dung: ");
-        String dieuKienApDung = sc.nextLine();
-        System.out.print("Nhap san pham ap dung: ");
-        String sanPhamApDung = sc.nextLine();
-        System.out.print("Nhap tong khuyen mai (%): ");
-        double tongKhuyenMai = sc.nextDouble();
-
-        KhuyenMai km = new KhuyenMai(maKhuyenMai, tenKhuyenMai, ngayBatDau, ngayKetThuc, dieuKienApDung, sanPhamApDung, tongKhuyenMai);
-        themKhuyenMai(km);
-        System.out.println("Them khuyen mai thanh cong.");
+    public void suaThongTinKhuyenMai(String ma) {
+        boolean timThay = false;
+        for (KhuyenMai ds : danhSachKhuyenMai) {
+            if (ds.getMaKhuyenMai().equals(ma)) {
+                int lc;
+                boolean ktra = true;
+                timThay = true;
+                while (ktra) {
+                    ds.xuat();
+                    System.out.println("1. Sua ten khuyen mai");
+                    System.out.println("2. Sua ngay bat dau");
+                    System.out.println("3. Sua ngay ket thuc");
+                    System.out.println("4. Sua tong khuyen mai");
+                    System.out.println("5. Sua dieu kien ap dung");
+                    System.out.println("6. Thoat");
+                    System.out.println("Nhap lua chon: ");
+                    lc = Integer.parseInt(sc.nextLine());
+                    switch (lc) {
+                        case 1: {
+                            System.out.println("Nhap ten khuyen mai moi: ");
+                            ds.setTenKhuyenMai(sc.nextLine());
+                            System.out.println("Da sua ten.");
+                            break;
+                        }
+                        case 2: {
+                            System.out.println("Nhap ngay bat dau moi: ");
+                            ds.setNgayBatDau(sc.nextLine());
+                            System.out.println("Da sua ngay bat dau.");
+                            break;
+                        }
+                        case 3: {
+                            System.out.println("Nhap ngay ket thuc moi: ");
+                            ds.setNgayKetThuc(sc.nextLine());
+                            System.out.println("Da sua ngay ket thuc.");
+                            break;
+                        }
+                        case 4: {
+                            System.out.println("Nhap tong khuyen mai moi: ");
+                            ds.setTongKhuyenMai(Double.parseDouble(sc.nextLine()));
+                            System.out.println("Da sua tong khuyen mai.");
+                            break;
+                        }
+                        case 5: {
+                            System.out.println("Nhap dieu kien ap dung moi: ");
+                            ds.setDieuKienApDung(sc.nextLine());
+                            System.out.println("Da sua dieu kien ap dung.");
+                            break;
+                        }
+                        case 6: {
+                            ktra = false;
+                            break;
+                        }
+                        default: {
+                            System.out.println("Lua chon khong hop le.");
+                            System.out.println("Vui long lua chon lai.");
+                        }
+                    }
+                }
+            }
+        }
+        if (!timThay) {
+            System.out.println("Khong tim thay khuyen mai co ma " + ma);
+        }
     }
 
     public void ghiVaoFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ADMIN\\oop_design\\src\\KhuyenMai\\danhSachKhuyenMai.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\KhuyenMai\\DanhSachKhuyenMai.txt"))) {
             for (int i = 0; i < soLuongKhuyenMai; i++) {
                 KhuyenMai km = danhSachKhuyenMai[i];
                 writer.write(String.join(",",
                         km.getMaKhuyenMai(),
                         km.getTenKhuyenMai(),
-                        km.getNgayBatDau().format(DATE_FORMATTER),
-                        km.getNgayKetThuc().format(DATE_FORMATTER),
+                        String.valueOf(km.getNgayBatDau().format(formatter)),
+                        String.valueOf(km.getNgayKetThuc().format(formatter)),
+                        String.valueOf(km.getTongKhuyenMai()),
                         km.getDieuKienApDung(),
-                        km.getSanPhamApDung(),
-                        String.valueOf(km.getTongKhuyenMai())
+                        String.valueOf(km.isIsdelete())
                 ));
                 writer.newLine();
             }
@@ -96,21 +142,25 @@ public class QLKhuyenMai {
     }
 
     public void docTuFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ADMIN\\oop_design\\src\\KhuyenMai\\danhSachKhuyenMai.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\KhuyenMai\\DanhSachKhuyenMai.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length == 7) {
+                if (data.length >= 7) {
+
                     String maKhuyenMai = data[0];
                     String tenKhuyenMai = data[1];
-                    LocalDate ngayBatDau = LocalDate.parse(data[2], DATE_FORMATTER);
-                    LocalDate ngayKetThuc = LocalDate.parse(data[3], DATE_FORMATTER);
-                    String dieuKienApDung = data[4];
-                    String sanPhamApDung = data[5];
-                    double tongKhuyenMai = Double.parseDouble(data[6]);
+                    LocalDate ngayBatDau = LocalDate.parse(data[2], formatter);
+                    LocalDate ngayKetThuc = LocalDate.parse(data[3], formatter);
+                    double tongKhuyenMai = Double.parseDouble(data[4]);
+                    String dieuKienApDung = data[5];
+                    boolean isdelete = Boolean.parseBoolean(data[6]);
 
-                    KhuyenMai km = new KhuyenMai(maKhuyenMai, tenKhuyenMai, ngayBatDau, ngayKetThuc, dieuKienApDung, sanPhamApDung, tongKhuyenMai);
+                    KhuyenMai km = new KhuyenMai(maKhuyenMai, tenKhuyenMai, ngayBatDau, ngayKetThuc, tongKhuyenMai, dieuKienApDung, isdelete);
                     themKhuyenMai(km);
+                }
+                else {
+                    System.out.println("Du lieu khong hop le trong dong: " + line);
                 }
             }
             System.out.println("Doc file thanh cong!");
@@ -121,43 +171,5 @@ public class QLKhuyenMai {
         }
     }
 
-    // Phương thức hiển thị menu
-    public void menu() {
-        Scanner sc = new Scanner(System.in);
-        boolean kt = true;
-        while (kt) {
-            System.out.println("==== Menu Quan Ly Khuyen Mai ====");
-            System.out.println("1. Them khuyen mai moi");
-            System.out.println("2. Hien thi danh sach khuyen mai");
-            System.out.println("3. Tim khuyen mai theo ma");
-            System.out.println("4. Ghi danh sach vao file");
-            System.out.println("5. Doc danh sach tu file");
-            System.out.println("0. Thoat");
-            System.out.print("Nhap lua chon: ");
-            int chon = sc.nextInt();
-            sc.nextLine(); // Đọc bỏ dòng mới
 
-            switch (chon) {
-                case 1 -> nhapKhuyenMaiMoi();
-                case 2 -> hienThiDanhSachKhuyenMai();
-                case 3 -> {
-                    System.out.print("Nhap ma khuyen mai can tim: ");
-                    String maKM = sc.nextLine();
-                    KhuyenMai km = timKhuyenMai(maKM);
-                    if (km != null) {
-                        System.out.println("Tim thay khuyen mai: " + km);
-                    } else {
-                        System.out.println("Khong tim thay khuyen mai voi ma: " + maKM);
-                    }
-                }
-                case 4 -> ghiVaoFile();
-                case 5 -> docTuFile();
-                case 0 -> {
-                    kt = false;
-                    System.out.println("Da thoat chuong trinh.");
-                }
-                default -> System.out.println("Lua chon khong hop le!");
-            }
-        }
-    }
 }

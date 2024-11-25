@@ -1,12 +1,12 @@
 package main_project;
 
-// import BaoHanh.QLBaoHanh;
+import BaoHanh.QLBaoHanh;
 import ChuoiCungCap.QLNhaCungCap;
 import DonDatHang.QLDonDatHang;
 import HoaDon.QLHoaDon;
 import KhachHang.QLKhachHang;
 import KhuyenMai.QLKhuyenMai;
-// import NhanVien.QLNghiPhep;
+import NhanVien.QLNghiPhep;
 import NhanVien.QLNhanVien;
 import SanPham.QLSanPham;
 
@@ -14,12 +14,12 @@ import java.util.Scanner;
 
 public class oop_project {
     public static QLNhanVien qlnv = new QLNhanVien();
-    // public static QLNghiPhep qlnp = new QLNghiPhep();
+    public static QLNghiPhep qlnp = new QLNghiPhep();
     public static QLSanPham qlsp = new QLSanPham();
-    // public static QLBaoHanh qlbh = new QLBaoHanh();
+    public static QLBaoHanh qlbh = new QLBaoHanh();
     public static QLKhachHang qlkh = new QLKhachHang();
     public static QLHoaDon qlhd = new QLHoaDon();
-    // public static QLKhuyenMai qlkm = new QLKhuyenMai();
+    public static QLKhuyenMai qlkm = new QLKhuyenMai();
     public static QLDonDatHang qlddh = new QLDonDatHang();
     public static QLNhaCungCap qlncc = new QLNhaCungCap();
 
@@ -28,10 +28,10 @@ public class oop_project {
     }
 
     public static void menu() {
-        // qlnv.docTuFileDSNV();
-        // qlsp.docTuFile();
-        // qlnp.docTuFileDSNP();
-        // qlkm.docTuFile();
+        qlnv.docTuFileDSNV();
+        qlsp.docTuFile();
+        qlnp.docTuFileDSNP();
+        qlkm.docTuFile();
 //        qlhd.docTuFileDSHD();
         boolean kt = true;
         int lc;
@@ -52,14 +52,14 @@ public class oop_project {
                     String soDienThoai = new Scanner(System.in).nextLine();
                     System.out.println("Nhap mat khau: ");
                     String matKhau = new Scanner(System.in).nextLine();
-                    // if (qlnv.dangNhap(soDienThoai, matKhau) != null) {
+                    if (qlnv.dangNhap(soDienThoai, matKhau) != null) {
                         System.out.println("Dang nhap thanh cong");
-                    //     qlnv.menuTheoNhanVien(qlnv.dangNhap(soDienThoai, matKhau));
-                    // } else {
-                    //     System.out.println("Dang nhap that bai");
-                    //     System.out.println("Vui long dang nhap lai");
-                    //     break;
-                    // }
+                        qlnv.menuTheoNhanVien(qlnv.dangNhap(soDienThoai, matKhau));
+                    } else {
+                        System.out.println("Dang nhap that bai");
+                        System.out.println("Vui long dang nhap lai");
+                        break;
+                    }
                     break;
                 }
                 case 2: {
