@@ -719,4 +719,12 @@ public class QLSanPham{
         }
         return null;
     }
+
+    public void capNhatSoLuongSP(String maSP, int soLuong){
+        for(SanPham sp:ds){
+            if(sp.maSP.equals(maSP) && sp.isNotDeleted == true){
+                SanPham.soLuongSP -= soLuong;
+            }
+        }
+    }
 }
