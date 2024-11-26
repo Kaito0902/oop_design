@@ -2,7 +2,6 @@ package ChuoiCungCap;
 
 import ChucNang.ChuanHoaDuLieu;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class NhaCungCap {
@@ -15,7 +14,7 @@ public class NhaCungCap {
     protected boolean isNotDeleted; 
     static int soLuongNCC;
     static Scanner sc = new Scanner(System.in);
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+    //static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
     
     ChuanHoaDuLieu chuanHoa = new ChuanHoaDuLieu();
 
@@ -80,8 +79,14 @@ public class NhaCungCap {
         return ngayHopTac;
     }
 
-    public void setNgayHopTac(LocalDate ngayHopTac) {
-        this.ngayHopTac = ngayHopTac;
+    public void setNgayHopTac(String ngayHopTac) {
+        LocalDate date = chuanHoa.chuanHoaNgayThangNam(ngayHopTac);
+        while (date == null) {
+            System.out.println("Nhap ngay hop tac theo quy chuan dd/mm/yyyy");
+            ngayHopTac = sc.nextLine();
+            date = chuanHoa.chuanHoaNgayThangNam(ngayHopTac);
+        }
+        this.ngayHopTac = chuanHoa.chuanHoaNgayThangNam(ngayHopTac);
     }
 
     public boolean isNotDeleted() {
@@ -103,30 +108,15 @@ public class NhaCungCap {
         System.out.print("Nhap ma so thue: ");
         maSoThue = sc.nextLine();
         System.out.print("Nhap ngay hop tac (dinh dang dd/mm/yyyy): ");
-
-        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        // ngayHopTac = LocalDate.parse(ngayHopTacStr, formatter);
-
-        String ngayHopTacStr = sc.nextLine();
-        LocalDate ngayHopTac = LocalDate.parse(ngayHopTacStr, formatter);
-        setNgayHopTac(ngayHopTac);
+        setNgayHopTac(sc.nextLine());
         isNotDeleted = true;
-        soLuongNCC++;
     }
 
-    // @Override
-    // public String toString() {
-    //     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    //     return "NhaCungCap {" +
-    //             "Ma nha cung cap: '" + maNCC + '\'' +
-    //             ", Ten nha cung cap: '" + tenNCC + '\'' +
-    //             ", Dia chi: '" + diaChi + '\'' +
-    //             ", Email: '" + email + '\'' +
-    //             ", Ma so thue: '" + maSoThue + '\'' +
-    //             ", Ngay hop tac: " + ngayHopTac.format(formatter) +
-    //             ", isDelete: " + isNotDelete +
-    //             '}';
-    // }
+    @Override
+    public String toString(){
+        return String.format("%-10s %-15s %-15s %-15s %-15s %-15s",
+        maNCC, tenNCC, diaChi, email, maSoThue, ngayHopTac);
+    }
 
     public void xuat() {
         System.out.println("Ma nha cung cap: " + maNCC);

@@ -48,8 +48,26 @@ public class ChuanHoaDuLieu {
         }
     }
 
+    // chuan hoa gioi tinh (Nam,Nu,Khac)
+    public String chuanHoaGioiTinh (String gioiTinh) {
+        while (true) {
+            gioiTinh = gioiTinh.trim().toLowerCase();
+            
+            if (gioiTinh.equals("nam")) {
+                return "Nam";
+            } else if (gioiTinh.equals("nu")) {
+                return "Nu";
+            } else if (gioiTinh.equals("khac")) {
+                return "Khac";
+            } else {
+                System.out.println("Giới tính không hợp lệ! Vui lòng nhập lại:");
+                gioiTinh = scanner.nextLine();
+            }
+        }
+    }
+
     //chuan hoa ngaySinh localdate
-    public LocalDate chuanHoaNgaySinh(String ngaySinh) {
+    public LocalDate chuanHoaNgayThangNam(String ngaySinh) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         try {
             return LocalDate.parse(ngaySinh, formatter);

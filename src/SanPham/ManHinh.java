@@ -12,8 +12,8 @@ public class ManHinh extends ThietBiNgoaiVi{
     
     }
 
-    public ManHinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String kieuManHinh, String kichThuoc, String tamNen, String doPhanGiai, int tanSoQuet){
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
+    public ManHinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String kieuManHinh, String kichThuoc, String tamNen, String doPhanGiai, int tanSoQuet){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.doPhanGiai = doPhanGiai;
         this.kichThuoc = kichThuoc;
         this.kieuManHinh = kieuManHinh;

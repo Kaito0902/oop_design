@@ -30,13 +30,13 @@ public class QLSanPham{
     }
 
     public void nhapDanhSach1(){
-        CPU sp1 = new CPU("#sp001", "i9-14900KS", 18500000, "6 thang", 0.5f, "xanh", true, "CPU", "Intel", "Intel Core i9 14900KS", 32, 24, 6.2f);
-        GPU sp2 = new GPU("#sp002", "NVIDIA GeForce RTX 4090", 59990000, "1 nam", 0.5f, "den", true, "GPU", "Nvidia", "ASUS ROG Strix LC GeForce", 24, "GDDR6X", 2610, 16384, "Co");
-        RAM sp3 = new RAM("#sp003", "T-Group T-Force Delta", 1190000, "6 thang", 0.2f, "den", true, "RAM", "TeamGroup", "T-Group T-Force Delta 1x16GB 3600", 16, "DDR4-3600");
-        BoNho sp4 = new BoNho("#sp004", "SamSung 980 Pro", 1990000, "6 thang", 1.2f, "den", true, "Bo Nho", "SamSung", "MZ-V8P500BW", 512, "SSD");
-        Chuot sp5 = new Chuot("#sp005", "Logitech G502 X Plus", 3290000, "2 nam", 0.1f, "trang", true, "Chuot", "Logitech", "Khong Day", 25000, "RGB Light Sync");
-        BanPhim sp6 = new BanPhim("#sp006", "Razer Huntsman V3 Pro TKL", 5345000, "2 nam", 0.5f, "den", true, "Ban Phim", "Razer", "Co Day", "Razer Chroma™ RGB", "Razer Analog Optical Switch Gen-2");
-        ManHinh sp7 = new ManHinh("#sp007", "ASUS ProArt PA24US", 2000000, "2 nam", 3, "hong", true, "Man Hinh", "Acer", "Day", "Phang", "15.6 inches", "OLED", "4K", 144);
+        CPU sp1 = new CPU("#sp001", "i9-14900KS", 18500000, "6 thang", 0.5f, "xanh", 10, true, "CPU", "Intel", "Intel Core i9 14900KS", 32, 24, 6.2f);
+        GPU sp2 = new GPU("#sp002", "NVIDIA GeForce RTX 4090", 59990000, "1 nam", 0.5f, "den", 10, true, "GPU", "Nvidia", "ASUS ROG Strix LC GeForce", 24, "GDDR6X", 2610, 16384, "Co");
+        RAM sp3 = new RAM("#sp003", "T-Group T-Force Delta", 1190000, "6 thang", 0.2f, "den", 10, true, "RAM", "TeamGroup", "T-Group T-Force Delta 1x16GB 3600", 16, "DDR4-3600");
+        BoNho sp4 = new BoNho("#sp004", "SamSung 980 Pro", 1990000, "6 thang", 1.2f, "den", 10, true, "Bo Nho", "SamSung", "MZ-V8P500BW", 512, "SSD");
+        Chuot sp5 = new Chuot("#sp005", "Logitech G502 X Plus", 3290000, "2 nam", 0.1f, "trang", 10, true, "Chuot", "Logitech", "Khong Day", 25000, "RGB Light Sync");
+        BanPhim sp6 = new BanPhim("#sp006", "Razer Huntsman V3 Pro TKL", 5345000, "2 nam", 0.5f, "den", 10, true, "Ban Phim", "Razer", "Co Day", "Razer Chroma™ RGB", "Razer Analog Optical Switch Gen-2");
+        ManHinh sp7 = new ManHinh("#sp007", "ASUS ProArt PA24US", 2000000, "2 nam", 3, "hong", 10, true, "Man Hinh", "Acer", "Day", "Phang", "15.6 inches", "OLED", "4K", 144);
         
         PhanCung[] cacLinhKien = new PhanCung[4];
         cacLinhKien[0] = sp1;
@@ -44,8 +44,8 @@ public class QLSanPham{
         cacLinhKien[2] = sp3;
         cacLinhKien[3] = sp4;
 
-        Desktop sp8 = new Desktop("#sp008", "GVN x ASUS Advanced Ai", 140000000, "3 nam", 10, "den", true, "Desktop", "Asus", "GVN x ASUS Advanced Ai", "Win 11", "Co", cacLinhKien, "ASUS ROG Hyperion GR701", "ASUS ROG STRIX LC III 360 ARGB LCD");
-        Laptop sp9 = new Laptop("#sp009", "Lenovo LOQ", 28990000, "2 nam", 2.4f, "xam", true, "Laptop", "Lenovo", "Lenovo LOQ 15IRX9 83DV00D5VN", "Win 11", "Co", cacLinhKien, "15.6 inches", 3.5f, "Gaming");
+        Desktop sp8 = new Desktop("#sp008", "GVN x ASUS Advanced Ai", 140000000, "3 nam", 10, "den", 10, true, "Desktop", "Asus", "GVN x ASUS Advanced Ai", "Win 11", "Co", cacLinhKien, "ASUS ROG Hyperion GR701", "ASUS ROG STRIX LC III 360 ARGB LCD");
+        Laptop sp9 = new Laptop("#sp009", "Lenovo LOQ", 28990000, "2 nam", 2.4f, "xam", 10, true, "Laptop", "Lenovo", "Lenovo LOQ 15IRX9 83DV00D5VN", "Win 11", "Co", cacLinhKien, "15.6 inches", 3.5f, "Gaming");
          
         themSanPham(sp1);
         themSanPham(sp2);
@@ -238,75 +238,17 @@ public class QLSanPham{
                     String thoiGianBaoHanhSP = data[3];
                     float trongLuongSP = Float.parseFloat(data[4]);
                     String mauSacSP = data[5];
-                    boolean isNotDeleted = Boolean.parseBoolean(data[6]);
-                    String loaiSP = data[7];
+                    int soLuongNhap = Integer.parseInt(data[6]);
+                    boolean isNotDeleted = Boolean.parseBoolean(data[7]);
+                    String loaiSP = data[8];
 
                     if("Desktop".equals(loaiSP)){
-                        String nhaSanXuat = data[8];
-                        String model = data[9];
-                        String heDieuHanh = data[10];
-                        String coCardRoi = data[11];
-                        String casePC = data[12];
-                        String tanNhiet = data[13];
-
-                        String loaiLinhKien1 = data[14];
-                        String nhaSanXuat1 = data[15];
-                        String model1 = data[16];
-                        int soNhan = Integer.parseInt(data[17]);
-                        int soLuongLoi = Integer.parseInt(data[18]);
-                        float tanSoTurBo = Float.parseFloat(data[19]);
-
-                        CPU cpu = new CPU("", "", 0, "", 0, "", true,loaiLinhKien1, nhaSanXuat1, model1, soLuongLoi, soNhan, tanSoTurBo);
-                        SanPham.soLuongSP--;
-
-                        String loaiLinhKien2 = data[20];
-                        String nhaSanXuat2 = data[21];
-                        String model2 = data[22];
-                        int dungLuongVRAM = Integer.parseInt(data[23]);
-                        String loaiVRAM = data[24];
-                        float tocDoXungNhip = Float.parseFloat(data[25]);
-                        int soNhanCUDA = Integer.parseInt(data[26]);
-                        String rayTracing = data[27];
-
-                        GPU gpu = new GPU("", "", 0, "", 0, "", true, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
-                        SanPham.soLuongSP--;
-        
-                        String loaiLinhKien3 = data[28];
-                        String nhaSanXuat3 = data[29];
-                        String model3 = data[30];
-                        int dungLuongRAM = Integer.parseInt(data[31]);
-                        String loaiRAM = data[32];
-
-                        RAM ram = new RAM("", "", 0, "", 0, "", true, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
-                        SanPham.soLuongSP--;
-
-                        String loaiLinhKien4 = data[33];
-                        String nhaSanXuat4 = data[34];
-                        String model4 = data[35];
-                        int dungLuongBoNho = Integer.parseInt(data[36]);
-                        String loaiBoNho = data[37];
-
-                        BoNho boNho = new BoNho("", "", 0, "", 0, "", true, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
-                        SanPham.soLuongSP--;
-
-                        PhanCung[] cacLinhKien = new PhanCung[4];
-                        cacLinhKien[0] = cpu;
-                        cacLinhKien[1] = gpu;
-                        cacLinhKien[2] = ram;
-                        cacLinhKien[3] = boNho;
-
-                        Desktop desktop = new  Desktop(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted , loaiSP, nhaSanXuat, model, heDieuHanh, coCardRoi, cacLinhKien,casePC,tanNhiet);
-                        themSanPham(desktop);
-                    }
-
-                    else if("Laptop".equals(loaiSP)){
-                        String nhaSanXuat = data[8];
-                        String model = data[9];
-                        String heDieuHanh = data[10];
-                        String coCardRoi = data[11];
-                        String kichThuocManHinh = data[12];
-                        float thoiLuongPin = Float.parseFloat(data[13]);
-                        String loaiLaptop = data[14];
+                        String nhaSanXuat = data[9];
+                        String model = data[10];
+                        String heDieuHanh = data[11];
+                        String coCardRoi = data[12];
+                        String casePC = data[13];
+                        String tanNhiet = data[14];
 
                         String loaiLinhKien1 = data[15];
                         String nhaSanXuat1 = data[16];
@@ -315,7 +257,7 @@ public class QLSanPham{
                         int soLuongLoi = Integer.parseInt(data[19]);
                         float tanSoTurBo = Float.parseFloat(data[20]);
 
-                        CPU cpu = new CPU("", "", 0, "", 0, "", true,loaiLinhKien1, nhaSanXuat1, model1, soLuongLoi, soNhan, tanSoTurBo);
+                        CPU cpu = new CPU("", "", 0, "", 0, "", 0, true, loaiLinhKien1, nhaSanXuat1, model1, soLuongLoi, soNhan, tanSoTurBo);
                         SanPham.soLuongSP--;
 
                         String loaiLinhKien2 = data[21];
@@ -327,7 +269,7 @@ public class QLSanPham{
                         int soNhanCUDA = Integer.parseInt(data[27]);
                         String rayTracing = data[28];
 
-                        GPU gpu = new GPU("", "", 0, "", 0, "", true, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
+                        GPU gpu = new GPU("", "", 0, "", 0, "", 0, true, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
                         SanPham.soLuongSP--;
         
                         String loaiLinhKien3 = data[29];
@@ -336,7 +278,7 @@ public class QLSanPham{
                         int dungLuongRAM = Integer.parseInt(data[32]);
                         String loaiRAM = data[33];
 
-                        RAM ram = new RAM("", "", 0, "", 0, "", true, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
+                        RAM ram = new RAM("", "", 0, "", 0, "", 0, true, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
                         SanPham.soLuongSP--;
 
                         String loaiLinhKien4 = data[34];
@@ -345,7 +287,7 @@ public class QLSanPham{
                         int dungLuongBoNho = Integer.parseInt(data[37]);
                         String loaiBoNho = data[38];
 
-                        BoNho boNho = new BoNho("", "", 0, "", 0, "", true, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
+                        BoNho boNho = new BoNho("", "", 0, "", 0, "", 0, true, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
                         SanPham.soLuongSP--;
 
                         PhanCung[] cacLinhKien = new PhanCung[4];
@@ -354,81 +296,140 @@ public class QLSanPham{
                         cacLinhKien[2] = ram;
                         cacLinhKien[3] = boNho;
 
-                        Laptop laptop = new Laptop(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted, loaiSP,nhaSanXuat, model, heDieuHanh, coCardRoi, cacLinhKien, kichThuocManHinh, thoiLuongPin, loaiLaptop);
+                        Desktop desktop = new  Desktop(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted , loaiSP, nhaSanXuat, model, heDieuHanh, coCardRoi, cacLinhKien,casePC,tanNhiet);
+                        themSanPham(desktop);
+                    }
+
+                    else if("Laptop".equals(loaiSP)){
+                        String nhaSanXuat = data[9];
+                        String model = data[10];
+                        String heDieuHanh = data[11];
+                        String coCardRoi = data[12];
+                        String kichThuocManHinh = data[13];
+                        float thoiLuongPin = Float.parseFloat(data[14]);
+                        String loaiLaptop = data[15];
+
+                        String loaiLinhKien1 = data[16];
+                        String nhaSanXuat1 = data[17];
+                        String model1 = data[18];
+                        int soNhan = Integer.parseInt(data[19]);
+                        int soLuongLoi = Integer.parseInt(data[20]);
+                        float tanSoTurBo = Float.parseFloat(data[21]);
+
+                        CPU cpu = new CPU("", "", 0, "", 0, "", 0, true, loaiLinhKien1, nhaSanXuat1, model1, soLuongLoi, soNhan, tanSoTurBo);
+                        SanPham.soLuongSP--;
+
+                        String loaiLinhKien2 = data[22];
+                        String nhaSanXuat2 = data[23];
+                        String model2 = data[24];
+                        int dungLuongVRAM = Integer.parseInt(data[25]);
+                        String loaiVRAM = data[26];
+                        float tocDoXungNhip = Float.parseFloat(data[27]);
+                        int soNhanCUDA = Integer.parseInt(data[28]);
+                        String rayTracing = data[29];
+
+                        GPU gpu = new GPU("", "", 0, "", 0, "", 0, true, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
+                        SanPham.soLuongSP--;
+        
+                        String loaiLinhKien3 = data[30];
+                        String nhaSanXuat3 = data[31];
+                        String model3 = data[32];
+                        int dungLuongRAM = Integer.parseInt(data[33]);
+                        String loaiRAM = data[34];
+
+                        RAM ram = new RAM("", "", 0, "", 0, "", 0, true, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
+                        SanPham.soLuongSP--;
+
+                        String loaiLinhKien4 = data[35];
+                        String nhaSanXuat4 = data[36];
+                        String model4 = data[37];
+                        int dungLuongBoNho = Integer.parseInt(data[38]);
+                        String loaiBoNho = data[39];
+
+                        BoNho boNho = new BoNho("", "", 0, "", 0, "", 0, true, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
+                        SanPham.soLuongSP--;
+
+                        PhanCung[] cacLinhKien = new PhanCung[4];
+                        cacLinhKien[0] = cpu;
+                        cacLinhKien[1] = gpu;
+                        cacLinhKien[2] = ram;
+                        cacLinhKien[3] = boNho;
+
+                        Laptop laptop = new Laptop(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiSP, nhaSanXuat, model, heDieuHanh, coCardRoi, cacLinhKien, kichThuocManHinh, thoiLuongPin, loaiLaptop);
                         themSanPham(laptop);
                     }
 
                     else if("CPU".equals(loaiSP)){
-                        String nhaSanXuat = data[8];
-                        String model = data[9];
-                        int soNhan = Integer.parseInt(data[10]);
-                        int soLuongLoi = Integer.parseInt(data[11]);
-                        float tanSoTurBo = Float.parseFloat(data[12]);
+                        String nhaSanXuat = data[9];
+                        String model = data[10];
+                        int soNhan = Integer.parseInt(data[11]);
+                        int soLuongLoi = Integer.parseInt(data[12]);
+                        float tanSoTurBo = Float.parseFloat(data[13]);
 
-                        CPU cpu = new CPU(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted,loaiSP, nhaSanXuat, model, soNhan, soLuongLoi, tanSoTurBo);
+                        CPU cpu = new CPU(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted,loaiSP, nhaSanXuat, model, soNhan, soLuongLoi, tanSoTurBo);
                         themSanPham(cpu);
                     }
 
                     else if("GPU".equals(loaiSP)){
-                        String nhaSanXuat = data[8];
-                        String model = data[9];
-                        int dungLuongVRAM = Integer.parseInt(data[10]);
-                        String loaiVRAM = data[11];
-                        float tocDoXungNhip = Float.parseFloat(data[12]);
-                        int soNhanCUDA = Integer.parseInt(data[13]);
-                        String rayTracing = data[14];
-                        GPU gpu = new GPU(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted, loaiSP, nhaSanXuat, model, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
+                        String nhaSanXuat = data[9];
+                        String model = data[10];
+                        int dungLuongVRAM = Integer.parseInt(data[11]);
+                        String loaiVRAM = data[12];
+                        float tocDoXungNhip = Float.parseFloat(data[13]);
+                        int soNhanCUDA = Integer.parseInt(data[14]);
+                        String rayTracing = data[15];
+                        GPU gpu = new GPU(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiSP, nhaSanXuat, model, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
                         themSanPham(gpu);
                     }
 
                     else if("RAM".equals(loaiSP)){
-                        String nhaSanXuat = data[8];
-                        String model = data[9];
-                        int dungLuongRAM = Integer.parseInt(data[10]);
-                        String loaiRAM = data[11];
-                        RAM ram = new RAM(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted, loaiSP, nhaSanXuat, model, dungLuongRAM, loaiRAM);
+                        String nhaSanXuat = data[9];
+                        String model = data[10];
+                        int dungLuongRAM = Integer.parseInt(data[11]);
+                        String loaiRAM = data[12];
+                        RAM ram = new RAM(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiSP, nhaSanXuat, model, dungLuongRAM, loaiRAM);
                         themSanPham(ram);
                     }
 
                     else if("Bo Nho".equals(loaiSP)){
-                        String nhaSanXuat = data[8];
-                        String model = data[9];
-                        int dungLuongBoNho = Integer.parseInt(data[10]);
-                        String loaiBoNho = data[11];
+                        String nhaSanXuat = data[9];
+                        String model = data[10];
+                        int dungLuongBoNho = Integer.parseInt(data[11]);
+                        String loaiBoNho = data[12];
 
-                        BoNho boNho = new BoNho(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted, loaiSP, nhaSanXuat, model, dungLuongBoNho, loaiBoNho);
+                        BoNho boNho = new BoNho(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiSP, nhaSanXuat, model, dungLuongBoNho, loaiBoNho);
                         themSanPham(boNho);
                     }
 
                     else if("Chuot".equals(loaiSP)){
-                        String nhaSanXuat = data[8];
-                        String phuongThucKetNoi = data[9];
-                        int dPI = Integer.parseInt(data[10]);
-                        String denLED = data[11];
+                        String nhaSanXuat = data[9];
+                        String phuongThucKetNoi = data[10];
+                        int dPI = Integer.parseInt(data[11]);
+                        String denLED = data[12];
 
-                        Chuot chuot = new Chuot(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted, loaiSP, nhaSanXuat, phuongThucKetNoi, dPI, denLED);
+                        Chuot chuot = new Chuot(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiSP, nhaSanXuat, phuongThucKetNoi, dPI, denLED);
                         themSanPham(chuot);
                     }
 
                     else if("Man Hinh".equals(loaiSP)){
-                        String nhaSanXuat = data[8];
-                        String phuongThucKetNoi = data[9];
-                        String kieuManHinh = data[10];
-                        String kichThuoc = data[11];
-                        int tanSoQuet = Integer.parseInt(data[12]);
-                        String tamNen = data[13];
-                        String doPhanGiai = data[14];
+                        String nhaSanXuat = data[9];
+                        String phuongThucKetNoi = data[10];
+                        String kieuManHinh = data[11];
+                        String kichThuoc = data[12];
+                        int tanSoQuet = Integer.parseInt(data[13]);
+                        String tamNen = data[14];
+                        String doPhanGiai = data[15];
 
-                        ManHinh manHinh = new ManHinh(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted, loaiSP, nhaSanXuat, phuongThucKetNoi, kieuManHinh, kichThuoc, tamNen, doPhanGiai, tanSoQuet);
+                        ManHinh manHinh = new ManHinh(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiSP, nhaSanXuat, phuongThucKetNoi, kieuManHinh, kichThuoc, tamNen, doPhanGiai, tanSoQuet);
                         themSanPham(manHinh);
                     }
 
                     else if("Ban Phim".equals(loaiSP)){
-                        String nhaSanXuat = data[8];
-                        String phuongThucKetNoi = data[9];
-                        String denLED = data[10];
-                        String switchBP = data[11];
-                        BanPhim banPhim = new BanPhim(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, isNotDeleted, loaiSP, nhaSanXuat, phuongThucKetNoi, denLED, switchBP);
+                        String nhaSanXuat = data[9];
+                        String phuongThucKetNoi = data[10];
+                        String denLED = data[11];
+                        String switchBP = data[12];
+                        BanPhim banPhim = new BanPhim(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiSP, nhaSanXuat, phuongThucKetNoi, denLED, switchBP);
                         themSanPham(banPhim);
                     }
                 }
@@ -454,6 +455,7 @@ public class QLSanPham{
                 String.valueOf(sp.getThoiGianBaoHanhSP()),
                 String.valueOf(sp.getTrongLuongSP()),
                 sp.getMauSacSP(),
+                String.valueOf(sp.getSoLuongNhap()),
                 String.valueOf(sp.isNotDeleted()),
                 ""
                 ));
