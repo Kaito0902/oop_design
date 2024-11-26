@@ -5,6 +5,7 @@ import NhanVien.NhanVien;
 import SanPham.SanPham;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import static main_project.oop_project.qlhd;
@@ -51,6 +52,11 @@ public class HoaDonDoiTraHang extends HoaDon {
     }
 
     public void setSoLuongChiTiet(int soLuongChiTiet) {
+        while (soLuongChiTiet > hoaDonGoc.getSoLuongChiTiet()) {
+            System.out.println("So luong da lon hon hoa don goc.");
+            System.out.println("Nhap lai so luong chi tiet: ");
+            soLuongChiTiet = Integer.parseInt(scanner.nextLine());
+        }
         this.soLuongChiTiet = soLuongChiTiet;
     }
 
@@ -87,12 +93,14 @@ public class HoaDonDoiTraHang extends HoaDon {
     }
 
     public void setHoaDonGoc(HoaDonBanHang hoaDonGoc) {
+        while (hoaDonGoc == null) {
+            System.out.println("Khong tim thay hoa don goc.");
+            System.out.println("Nhap lai ma hoa don goc: ");
+            HoaDon hd = qlhd.timKiemHoaDonTheoMa(scanner.nextLine());
+            hoaDonGoc = (HoaDonBanHang) hd;
+        }
         this.hoaDonGoc = hoaDonGoc;
     }
-
-//    public void setDsChiTiet(ChiTietHoaDonDoiTra[] dsChiTiet) {
-//        this.dsChiTiet = dsChiTiet;
-//    }
 
     // Nhập thông tin hóa đơn đổi trả
     @Override
@@ -111,10 +119,9 @@ public class HoaDonDoiTraHang extends HoaDon {
         }
 
         System.out.print("Nhap so luong chi tiet doi tra: ");
-        int soLuongDoiTra = Integer.parseInt(scanner.nextLine());
-        dsChiTiet = new ChiTietHoaDonDoiTra[soLuongDoiTra]; // Khởi tạo mảng
+        setSoLuongChiTiet(scanner.nextInt());
 
-        for (int i = 0; i < soLuongDoiTra; i++) {
+        for (int i = 0; i < soLuongChiTiet; i++) {
             System.out.print("Chon san pham doi tra (nhap so thu tu): ");
             int stt = Integer.parseInt(scanner.nextLine());
 
@@ -123,6 +130,7 @@ public class HoaDonDoiTraHang extends HoaDon {
                 i--; // Nhập lại sản phẩm
                 continue;
             }
+
             ChiTietHoaDonBanHang ctGoc = hdGoc.getChiTietHoaDonBanHangList()[stt - 1];
             SanPham spDoiTra = ctGoc.getSanPham();
 
@@ -141,15 +149,10 @@ public class HoaDonDoiTraHang extends HoaDon {
             System.out.print("Nhap tinh trang san pham (Moi/Cu/Hong): ");
             String tinhTrang = scanner.nextLine();
 
-            ChiTietHoaDonDoiTra chiTietDoiTra = new ChiTietHoaDonDoiTra(spDoiTra, soLuong, lyDo, tinhTrang);
-            dsChiTiet[i] = chiTietDoiTra;
-            soLuongChiTiet++;
-
-            // Cập nhật số lượng sản phẩm trong chi tiết hóa đơn gốc
+            ChiTietHoaDonDoiTra chiTietDoiTra = new ChiTietHoaDonDoiTra(i + 1,spDoiTra, soLuong, lyDo, tinhTrang);
+            themChiTiet(chiTietDoiTra);
 
         }
-
-
 
         System.out.print("Nhap ty le tru (%): ");
         this.tiLeTru = Double.parseDouble(scanner.nextLine());
@@ -158,6 +161,13 @@ public class HoaDonDoiTraHang extends HoaDon {
         this.ghiChu = scanner.nextLine();
         tinhTongGiaTri();
 
+    }
+
+    public void themChiTiet(ChiTietHoaDonDoiTra chiTietHoaDonDoiTra) {
+        ChiTietHoaDonDoiTra[] newdsChiTiet = Arrays.copyOf(dsChiTiet, soLuongChiTiet + 1);
+        newdsChiTiet[soLuongChiTiet] = chiTietHoaDonDoiTra;
+        dsChiTiet = newdsChiTiet;
+        soLuongChiTiet++;
     }
 
     // Tính tổng giá trị hoàn trả và áp dụng tỷ lệ trừ
@@ -169,25 +179,11 @@ public class HoaDonDoiTraHang extends HoaDon {
         this.tienHoanTra = this.tongGiaTri * (1 - tiLeTru / 100);
     }
 
-  
 
-    // @Override
-    // public String toString() {
-    //     StringBuilder builder = new StringBuilder(super.toString());
-    //     builder.append(",").append(hoaDonGoc.toString());
-    //     for (int i = 0; i < soLuongChiTiet; i++) {
-    //         builder.append(",").append(dsChiTiet[i].toString());
-    //     }
-    //     builder.append(",").append(tongGiaTri)
-    //            .append(",").append(tiLeTru)
-    //            .append(",").append(tienHoanTra)
-    //            .append(",").append(ghiChu);
-    //     return builder.toString();
-    // }
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString()+String.format("%-5d %-10.2f %-15s %-10.2f %-8.2f",soLuongChiTiet,tongGiaTri,ghiChu, tienHoanTra, tiLeTru);
+    }
 
-    // @Override
-    // public String toString() {
-    //     // TODO Auto-generated method stub
-    //     return super.toString()
-    // }
 }

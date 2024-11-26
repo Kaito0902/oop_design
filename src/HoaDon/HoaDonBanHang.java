@@ -90,10 +90,6 @@ public class HoaDonBanHang extends HoaDon {
         this.soLuongChiTiet = soLuongChiTiet;
     }
 
-//    public void setKhuyenMai(KhuyenMai khuyenMai) {
-//        this.khuyenMai = khuyenMai;
-//    }
-
     public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
     }
@@ -112,10 +108,10 @@ public class HoaDonBanHang extends HoaDon {
         System.out.print("Nhap so luong chi tiet hoa don: ");
         int soLuong = Integer.parseInt(scanner.nextLine());
 
-        for (int i = 0; i < soLuong; i++) {
+        for (int i = 1; i <= soLuong; i++) {
             System.out.println("Nhap chi tiet hoa don thu " + (i + 1) + ":");
             ChiTietHoaDonBanHang chiTiet = new ChiTietHoaDonBanHang();
-            chiTiet.input();
+            chiTiet.input(1);
             themChiTietHoaDonBanHang(chiTiet);
         }
 
@@ -139,7 +135,7 @@ public class HoaDonBanHang extends HoaDon {
 
 
     // Phương thức tính tổng tiền hóa đơn
-    private void tinhTongTien() {
+    public void tinhTongTien() {
         tongTien = 0;
         for (int i = 0; i < soLuongChiTiet; i++) {
             tongTien += chiTietHoaDonBanHangList[i].getThanhTien();
@@ -160,8 +156,10 @@ public class HoaDonBanHang extends HoaDon {
 
 @Override
 public String toString() {
-    return super.toString()+String.format("%-5d %-10s %-10.2f %-5.2f %-10s %-10.2f" ,soLuongChiTiet,khuyenMai.getTenKhuyenMai(),tienThue,chietKhau, phuongThucThanhToan,tongTien );
+    // TODO Auto-generated method stub
+    return super.toString()+String.format( "%-10d %-20s %-10.2f %-10.2f %-20s %-10.2f",soLuongChiTiet,khuyenMai.getTenKhuyenMai(),tienThue,chietKhau,phuongThucThanhToan,tongTien );
+}
 }
 
 
-}
+

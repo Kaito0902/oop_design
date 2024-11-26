@@ -1,42 +1,41 @@
 package DonDatHang;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import ChuoiCungCap.NhaCungCap;
-import SanPham.SanPham;
+
+import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
+import static main_project.oop_project.qlncc;
 
 public class DonDatHang {
-    protected String maDonDatHang;
-    protected LocalDate ngayDatHang;
-    protected LocalDate ngayGiaoHang;
-    protected SanPham sanPham;
-    protected double tongTien;
-    protected double soLuong;
-    protected NhaCungCap nhaCungCap;
-    protected String hinhThucGiaoHang;
-    protected double doanhThuDonDatHang;
+    private String maDonDatHang;
+    private LocalDate ngayDatHang;
+    private LocalDate ngayNhanHang;
+    private NhaCungCap nhaCungCap;
+    private ChiTietDonDatHang[] dschiTietDonDatHang = new ChiTietDonDatHang[0];
+    private int soLuongChiTiet = 0;
+    private double tongTien;
+    private String hinhThucGiaoHang;
+    private String trangThai;
+    static String[] loaiTrangThai = {"Dang xu ly", "Da hoan thanh", "Da huy"};
     static Scanner sc = new Scanner(System.in);
 
-    public DonDatHang(String maDonDatHang2, LocalDate ngayDatHang2, LocalDate ngayGiaoHang2, String sanPham2, double tongTien2, double soLuong2, String nhaCungCap2, String hinhThucGiaoHang2, Double doanhThuDonDatHang2) {
-    }
-
-    public DonDatHang(String maDonDatHang, LocalDate ngayDatHang, LocalDate ngayGiaoHang, SanPham sanPham,
-                      double tongTien, double soLuong, NhaCungCap nhaCungCap, String hinhThucGiaoHang,
-                      double doanhThuDonDatHang) {
-        this.maDonDatHang = maDonDatHang;
-        this.ngayDatHang = ngayDatHang;
-        this.ngayGiaoHang = ngayGiaoHang;
-        this.sanPham = sanPham;
-        this.tongTien = tongTien;
-        this.soLuong = soLuong;
-        this.nhaCungCap = nhaCungCap;
-        this.hinhThucGiaoHang = hinhThucGiaoHang;
-        this.doanhThuDonDatHang = doanhThuDonDatHang;
-    }
 
     public DonDatHang() {
+    }
+
+    public DonDatHang(String maDonDatHang, LocalDate ngayDatHang, LocalDate ngayNhanHang, NhaCungCap nhaCungCap, ChiTietDonDatHang[] dschiTietDonDatHang, int soLuongChiTiet, double tongTien, String hinhThucGiaoHang, String trangThai) {
+        this.maDonDatHang = maDonDatHang;
+        this.ngayDatHang = ngayDatHang;
+        this.ngayNhanHang = ngayNhanHang;
+        this.nhaCungCap = nhaCungCap;
+        this.dschiTietDonDatHang = dschiTietDonDatHang;
+        this.soLuongChiTiet = soLuongChiTiet;
+        this.tongTien = tongTien;
+        this.hinhThucGiaoHang = hinhThucGiaoHang;
+        this.trangThai = trangThai;
     }
 
     public String getMaDonDatHang() {
@@ -51,24 +50,16 @@ public class DonDatHang {
         return ngayDatHang;
     }
 
-    public void setNgayDatHang(LocalDate ngayDatHang) {
-        this.ngayDatHang = ngayDatHang;
+    public void setNgayDatHang(String ngayDatHang) {
+        this.ngayDatHang = chuanHoaNgayThangNam(ngayDatHang);
     }
 
-    public LocalDate getNgayGiaoHang() {
-        return ngayGiaoHang;
+    public LocalDate getNgayNhanHang() {
+        return ngayNhanHang;
     }
 
-    public void setNgayGiaoHang(LocalDate ngayGiaoHang) {
-        this.ngayGiaoHang = ngayGiaoHang;
-    }
-
-    public SanPham getSanPham() {
-        return sanPham;
-    }
-
-    public void setSanPham(SanPham sanPham) {
-        this.sanPham = sanPham;
+    public void setNgayNhanHang(String ngayNhanHang) {
+        this.ngayNhanHang = chuanHoaNgayThangNam(ngayNhanHang);
     }
 
     public double getTongTien() {
@@ -77,14 +68,6 @@ public class DonDatHang {
 
     public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
-    }
-
-    public double getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(double soLuong) {
-        this.soLuong = soLuong;
     }
 
     public NhaCungCap getNhaCungCap() {
@@ -103,71 +86,65 @@ public class DonDatHang {
         this.hinhThucGiaoHang = hinhThucGiaoHang;
     }
 
-    public double getDoanhThuDonDatHang() {
-        return doanhThuDonDatHang;
+    public ChiTietDonDatHang[] getDschiTietDonDatHang() {
+        return dschiTietDonDatHang;
     }
 
-    public void setDoanhThuDonDatHang(double doanhThuDonDatHang) {
-        this.doanhThuDonDatHang = doanhThuDonDatHang;
+    public void setDschiTietDonDatHang(ChiTietDonDatHang[] dschiTietDonDatHang) {
+        this.dschiTietDonDatHang = dschiTietDonDatHang;
     }
 
-    public static Scanner getSc() {
-        return sc;
+    public int getSoLuongChiTiet() {
+        return soLuongChiTiet;
     }
 
-    public static void setSc(Scanner sc) {
-        DonDatHang.sc = sc;
+    public void setSoLuongChiTiet(int soLuongChiTiet) {
+        this.soLuongChiTiet = soLuongChiTiet;
+    }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
 
     public void nhap() {
-        System.out.print("Nhap ma don dat hang: ");
-        maDonDatHang = sc.nextLine();
-
         System.out.print("Nhap ngay dat hang: ");
-        String ngayDat = sc.nextLine();
-        ngayDatHang = LocalDate.parse(ngayDat, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        setNgayDatHang(sc.nextLine());
 
-        System.out.print("Nhap ngay giao hang: ");
-        String ngayGiao = sc.nextLine();
-        ngayGiaoHang = LocalDate.parse(ngayGiao, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        System.out.print("Nhap ngay nhan hang: ");
+        setNgayNhanHang(sc.nextLine());
 
-        System.out.println("Nhap thong tin san pham:");
-//        sanPham = new SanPham();
-//        sanPham.input(); // Gia su lop SanPham co phuong thuc nhap()
+        System.out.println("Nhap ma nha cung cap:");
+//        qlncc.
 
-        System.out.print("Nhap so luong: ");
-        soLuong = sc.nextDouble();
-
-        System.out.print("Nhap tong tien: ");
-        tongTien = sc.nextDouble();
-
-        sc.nextLine(); // Xoa bo ky tu xuong dong con lai
-
-        System.out.println("Nhap thong tin nha cung cap:");
-        nhaCungCap = new NhaCungCap();
-        nhaCungCap.nhap(); // Gia su lop NhaCungCap co phuong thuc nhap()
+        System.out.println("Nhap so luong chi tiet don hang: ");
+        int soLuong = Integer.parseInt(sc.nextLine());
+        for (int i = 1; i <= soLuong; i++) {
+            ChiTietDonDatHang x = new ChiTietDonDatHang();
+            x.input(i);
+            themChiTiet(x);
+        }
 
         System.out.print("Nhap hinh thuc giao hang: ");
-        hinhThucGiaoHang = sc.nextLine();
+        setHinhThucGiaoHang(sc.nextLine());
 
-        System.out.print("Nhap doanh thu don dat hang: ");
-        doanhThuDonDatHang = sc.nextDouble();
+        setTrangThai(loaiTrangThai[0]);
     }
 
-    @Override
-    public String toString() {
-        return "DonDatHang{" +
-                "maDonDatHang='" + maDonDatHang + '\'' +
-                ", ngayDatHang=" + ngayDatHang +
-                ", ngayGiaoHang=" + ngayGiaoHang +
-                ", sanPham=" + sanPham +
-                ", tongTien=" + tongTien +
-                ", soLuong=" + soLuong +
-                ", nhaCungCap=" + nhaCungCap +
-                ", hinhThucGiaoHang='" + hinhThucGiaoHang + '\'' +
-                ", doanhThuDonDatHang=" + doanhThuDonDatHang +
-                '}';
+    public void themChiTiet(ChiTietDonDatHang chiTietDonDatHang) {
+        ChiTietDonDatHang[] newdsChiTiet = Arrays.copyOf(dschiTietDonDatHang, soLuongChiTiet + 1);
+        newdsChiTiet[soLuongChiTiet] = chiTietDonDatHang;
+        dschiTietDonDatHang = newdsChiTiet;
+        soLuongChiTiet++;
     }
+
+//    @Override
+//    public String toString() {
+//        return ;
+//    }
 
     public void xuat() {
         System.out.println(toString());

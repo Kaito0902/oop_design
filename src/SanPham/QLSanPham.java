@@ -723,4 +723,103 @@ public class QLSanPham{
         }
         return null;
     }
+
+
+    public SanPham nhapSanPham() {
+        while (true) {
+            System.out.println("Ban muon nhap loai san pham nao: ");
+            System.out.println("May Tinh - Phan Cung - Thiet Bi Ngoai Vi");
+            String choiceSP = sc.nextLine();
+
+            if (choiceSP.equalsIgnoreCase("May Tinh")) {
+                while (true) {
+                    System.out.println("Ban muon nhap loai may tinh nao: ");
+                    System.out.println("Desktop - Laptop");
+                    String choiceMT = sc.nextLine();
+
+                    if (choiceMT.equalsIgnoreCase("Desktop")) {
+                        Desktop desktop = new Desktop();
+                        desktop.loaiMayTinh = "Desktop";
+                        desktop.nhap();
+                        themSanPham(desktop);
+                        return desktop;
+                    } else if (choiceMT.equalsIgnoreCase("Laptop")) {
+                        Laptop laptop = new Laptop();
+                        laptop.loaiMayTinh = "Laptop";
+                        laptop.nhap();
+                        themSanPham(laptop);
+                        return laptop;
+                    } else {
+                        System.out.println("Loai may tinh khong ton tai. Vui long nhap lai.");
+                    }
+                }
+            } else if (choiceSP.equalsIgnoreCase("Phan Cung")) {
+                while (true) {
+                    System.out.println("Ban muon nhap loai linh kien nao: ");
+                    System.out.println("CPU - GPU - RAM - Bo Nho");
+                    String choicePC = sc.nextLine();
+
+                    if (choicePC.equalsIgnoreCase("CPU")) {
+                        CPU cpu = new CPU();
+                        cpu.loaiLinhKien = "CPU";
+                        cpu.nhap();
+                        themSanPham(cpu);
+                        return cpu;
+                    } else if (choicePC.equalsIgnoreCase("GPU")) {
+                        GPU gpu = new GPU();
+                        gpu.loaiLinhKien = "GPU";
+                        gpu.nhap();
+                        themSanPham(gpu);
+                        return gpu;
+                    } else if (choicePC.equalsIgnoreCase("RAM")) {
+                        RAM ram = new RAM();
+                        ram.loaiLinhKien = "RAM";
+                        ram.nhap();
+                        themSanPham(ram);
+                        return ram;
+                    } else if (choicePC.equalsIgnoreCase("Bo Nho")) {
+                        BoNho boNho = new BoNho();
+                        boNho.loaiLinhKien = "Bo Nho";
+                        boNho.nhap();
+                        themSanPham(boNho);
+                        return boNho;
+                    } else {
+                        System.out.println("Loai linh kien khong ton tai. Vui long nhap lai.");
+                    }
+                }
+            } else if (choiceSP.equalsIgnoreCase("Thiet Bi Ngoai Vi")) {
+                while (true) {
+                    System.out.println("Ban muon nhap thiet bi nao: ");
+                    System.out.println("Chuot - Man Hinh - Ban Phim");
+                    String choiceTB = sc.nextLine();
+
+                    if (choiceTB.equalsIgnoreCase("Chuot")) {
+                        Chuot chuot = new Chuot();
+                        chuot.loaiThietBi = "Chuot";
+                        chuot.nhap();
+                        themSanPham(chuot);
+                        return chuot;
+                    } else if (choiceTB.equalsIgnoreCase("Man Hinh")) {
+                        ManHinh manHinh = new ManHinh();
+                        manHinh.loaiThietBi = "Man Hinh";
+                        manHinh.nhap();
+                        themSanPham(manHinh);
+                        return manHinh;
+                    } else if (choiceTB.equalsIgnoreCase("Ban Phim")) {
+                        BanPhim banPhim = new BanPhim();
+                        banPhim.loaiThietBi = "Ban Phim";
+                        banPhim.nhap();
+                        themSanPham(banPhim);
+                        return banPhim;
+                    } else {
+                        System.out.println("Loai thiet bi khong ton tai. Vui long nhap lai.");
+                    }
+                }
+            } else {
+                System.out.println("Loai san pham khong ton tai. Vui long nhap lai.");
+            }
+        }
+    }
+
+
 }

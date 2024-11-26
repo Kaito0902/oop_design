@@ -57,14 +57,14 @@ public class QLHoaDon {
 //    }
 
     // Sắp xếp danh sách hóa đơn theo tổng tiền giảm dần
-    // public void sapXep() {
-    //     Arrays.sort(dshd, (hd1, hd2) -> {
-    //         if (hd1 == null) return 1;
-    //         if (hd2 == null) return -1;
-    //         return Double.compare(hd2.getTongSoTien(), hd1.getTongSoTien());
-    //     });
-    //     System.out.println("Danh sach hoa don da sap xep theo tong tien (giam dan).");
-    // }
+//    public void sapXep() {
+//        Arrays.sort(dshd, (hd1, hd2) -> {
+//            if (hd1 == null) return 1;
+//            if (hd2 == null) return -1;
+//            return Double.compare(hd2.getTongSoTien(), hd1.getTongSoTien());
+//        });
+//        System.out.println("Danh sach hoa don da sap xep theo tong tien (giam dan).");
+//    }
 
     // Lấy số lượng hóa đơn hiện tại
     public void laySLHoaDon() {
@@ -101,12 +101,19 @@ public class QLHoaDon {
                     System.err.println("Loai hoa don khong hop le: " + parts[0]);
                     continue;
                 }
-                // hd.fromString(parts[1]); // Phương thức fromString trong mỗi lớp hóa đơn
                 themHD(hd);
             }
             System.out.println("Doc file thanh cong!");
         } catch (IOException e) {
             System.err.println("Loi khi doc file: " + e.getMessage());
+        }
+    }
+
+    public void tinhTongTien() {
+        for (HoaDon ds : dshd) {
+            if (ds instanceof HoaDonBanHang) {
+
+            }
         }
     }
 
