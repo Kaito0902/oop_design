@@ -5,6 +5,7 @@ import NhanVien.NhanVien;
 import SanPham.SanPham;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import static main_project.oop_project.qlhd;
@@ -51,6 +52,11 @@ public class HoaDonDoiTraHang extends HoaDon {
     }
 
     public void setSoLuongChiTiet(int soLuongChiTiet) {
+        while (soLuongChiTiet > hoaDonGoc.getSoLuongChiTiet()) {
+            System.out.println("So luong da lon hon hoa don goc.");
+            System.out.println("Nhap lai so luong chi tiet: ");
+            soLuongChiTiet = Integer.parseInt(scanner.nextLine());
+        }
         this.soLuongChiTiet = soLuongChiTiet;
     }
 
@@ -87,12 +93,14 @@ public class HoaDonDoiTraHang extends HoaDon {
     }
 
     public void setHoaDonGoc(HoaDonBanHang hoaDonGoc) {
+        while (hoaDonGoc == null) {
+            System.out.println("Khong tim thay hoa don goc.");
+            System.out.println("Nhap lai ma hoa don goc: ");
+            HoaDon hd = qlhd.timKiemHoaDonTheoMa(scanner.nextLine());
+            hoaDonGoc = (HoaDonBanHang) hd;
+        }
         this.hoaDonGoc = hoaDonGoc;
     }
-
-//    public void setDsChiTiet(ChiTietHoaDonDoiTra[] dsChiTiet) {
-//        this.dsChiTiet = dsChiTiet;
-//    }
 
     // Nhập thông tin hóa đơn đổi trả
     @Override
@@ -111,10 +119,9 @@ public class HoaDonDoiTraHang extends HoaDon {
         }
 
         System.out.print("Nhap so luong chi tiet doi tra: ");
-        int soLuongDoiTra = Integer.parseInt(scanner.nextLine());
-        dsChiTiet = new ChiTietHoaDonDoiTra[soLuongDoiTra]; // Khởi tạo mảng
+        setSoLuongChiTiet(scanner.nextInt());
 
-        for (int i = 0; i < soLuongDoiTra; i++) {
+        for (int i = 0; i < soLuongChiTiet; i++) {
             System.out.print("Chon san pham doi tra (nhap so thu tu): ");
             int stt = Integer.parseInt(scanner.nextLine());
 
@@ -142,15 +149,10 @@ public class HoaDonDoiTraHang extends HoaDon {
             System.out.print("Nhap tinh trang san pham (Moi/Cu/Hong): ");
             String tinhTrang = scanner.nextLine();
 
-            ChiTietHoaDonDoiTra chiTietDoiTra = new ChiTietHoaDonDoiTra(spDoiTra, soLuong, lyDo, tinhTrang);
-            dsChiTiet[i] = chiTietDoiTra;
-            soLuongChiTiet++;
-
-            // Cập nhật số lượng sản phẩm trong chi tiết hóa đơn gốc
+            ChiTietHoaDonDoiTra chiTietDoiTra = new ChiTietHoaDonDoiTra(i + 1,spDoiTra, soLuong, lyDo, tinhTrang);
+            themChiTiet(chiTietDoiTra);
 
         }
-
-
 
         System.out.print("Nhap ty le tru (%): ");
         this.tiLeTru = Double.parseDouble(scanner.nextLine());
@@ -161,6 +163,13 @@ public class HoaDonDoiTraHang extends HoaDon {
 
     }
 
+    public void themChiTiet(ChiTietHoaDonDoiTra chiTietHoaDonDoiTra) {
+        ChiTietHoaDonDoiTra[] newdsChiTiet = Arrays.copyOf(dsChiTiet, soLuongChiTiet + 1);
+        newdsChiTiet[soLuongChiTiet] = chiTietHoaDonDoiTra;
+        dsChiTiet = newdsChiTiet;
+        soLuongChiTiet++;
+    }
+
     // Tính tổng giá trị hoàn trả và áp dụng tỷ lệ trừ
     private void tinhTongGiaTri() {
         this.tongGiaTri = 0;
@@ -168,25 +177,6 @@ public class HoaDonDoiTraHang extends HoaDon {
             this.tongGiaTri += dsChiTiet[i].getThanhTien();
         }
         this.tienHoanTra = this.tongGiaTri * (1 - tiLeTru / 100);
-    }
-
-    @Override
-    public void xuat() {
-        super.xuat();
-        System.out.println("Hoa don goc:");
-        hoaDonGoc.xuat();
-
-        System.out.println("Danh sach chi tiet doi tra:");
-        System.out.printf("%-5s %-20s %-10s %-20s %-20s %-15s\n", 
-                          "STT", "Ten SP", "So luong", "Ly do", "Tinh trang", "Thanh tien");
-        for (int i = 0; i < soLuongChiTiet; i++) {
-//            dsChiTiet[i].xuat();
-        }
-
-        System.out.printf("Tong gia tri truoc khi tru: %.2f\n", tongGiaTri);
-        System.out.printf("Ty le tru: %.2f%%\n", tiLeTru);
-        System.out.printf("Tien hoan tra sau khi tru: %.2f\n", tienHoanTra);
-        System.out.println("Ghi chu: " + ghiChu);
     }
 
     @Override

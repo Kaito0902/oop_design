@@ -14,7 +14,8 @@ public class ChiTietHoaDonDoiTra {
     public ChiTietHoaDonDoiTra() {
     }
 
-    public ChiTietHoaDonDoiTra(SanPham sanPhamTra, int soLuong, String lyDo, String tinhTrang) {
+    public ChiTietHoaDonDoiTra(int stt, SanPham sanPhamTra, int soLuong, String lyDo, String tinhTrang) {
+        this.stt = stt;
         this.sanPhamTra = sanPhamTra;
         this.soLuong = soLuong;
         this.lyDo = lyDo;

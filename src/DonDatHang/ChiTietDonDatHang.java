@@ -1,72 +1,81 @@
 package DonDatHang;
 
-import java.time.LocalDate;
-
-import ChuoiCungCap.NhaCungCap;
 import SanPham.SanPham;
 
-public class ChiTietDonDatHang extends DonDatHang{
-    private double tienThue;
-    private double chietKhau;
-    private double giaNhap;
-    
+import java.util.Scanner;
+
+import static main_project.oop_project.qlsp;
+
+public class ChiTietDonDatHang{
+    private int soThuTu;
+    private SanPham sanPham;
+    private int soLuong;
+    private double thanhTien;
+    static Scanner sc = new Scanner(System.in);
+
     public ChiTietDonDatHang(){        
     }
-    public ChiTietDonDatHang(String maDonDatHang, LocalDate ngayDatHang, LocalDate ngayGiaoHang, SanPham sanPham,
-            double tongTien, double soLuong, NhaCungCap nhaCungCap, String hinhThucGiaoHang, double doanhThuDonDatHang,
-            double tienThue, double chietKhau, double giaNhap) {
-        super(maDonDatHang, ngayDatHang, ngayGiaoHang, sanPham, tongTien, soLuong, nhaCungCap, hinhThucGiaoHang,
-                doanhThuDonDatHang);
-        this.tienThue = tienThue;
-        this.chietKhau = chietKhau;
-        this.giaNhap = giaNhap;
-    }
-    public ChiTietDonDatHang(double tienThue, double chietKhau, double giaNhap) {
-        this.tienThue = tienThue;
-        this.chietKhau = chietKhau;
-        this.giaNhap = giaNhap;
-    }
-    public double getTienThue() {
-        return tienThue;
-    }
-    public void setTienThue(double tienThue) {
-        this.tienThue = tienThue;
-    }
-    public double getChietKhau() {
-        return chietKhau;
-    }
-    public void setChietKhau(double chietKhau) {
-        this.chietKhau = chietKhau;
-    }
-    public double getGiaNhap() {
-        return giaNhap;
-    }
-    public void setGiaNhap(double giaNhap) {
-        this.giaNhap = giaNhap;
+
+    public ChiTietDonDatHang(int soThuTu, SanPham sanPham, int soLuong, double thanhTien) {
+        this.soThuTu = soThuTu;
+        this.sanPham = sanPham;
+        this.soLuong = soLuong;
+        this.thanhTien = thanhTien;
     }
 
-    public void nhap() {
-        System.out.print("Nhap tien thue: ");
-        tienThue = sc.nextDouble();
-
-        System.out.print("Nhap chiet khau:");
-        chietKhau = sc.nextDouble();
-
-        System.out.print("Nhap gia nhap ");
-        giaNhap = sc.nextDouble();
+    public int getSoThuTu() {
+        return soThuTu;
     }
 
-    // Phương thức toString để hiển thị thông tin
-    @Override
-    public String toString() {
-        return "DonDatHang{" +
-                "tienThue=" + tienThue +
-                ", chietKhau=" + chietKhau +
-                ", giaNhap=" + giaNhap +
-                '}';
+    public void setSoThuTu(int soThuTu) {
+        this.soThuTu = soThuTu;
     }
 
-    
+    public SanPham getSanPham() {
+        return sanPham;
+    }
 
+    public void setSanPham(SanPham sanPham) {
+        this.sanPham = sanPham;
+    }
+
+    public double getThanhTien() {
+        return thanhTien;
+    }
+
+    public void setThanhTien(double thanhTien) {
+        this.thanhTien = thanhTien;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    public void input(int stt) {
+
+        setSoThuTu(stt);
+
+        System.out.println("Nhap ma san pham can nhap: ");
+        SanPham sp = qlsp.timKiem(sc.nextLine());
+        if (sp != null) {
+            setSanPham(sp);
+            System.out.println("Nhap so luong nhap: ");
+            setSoLuong(Integer.parseInt(sc.nextLine()));
+            //thanh tien
+        }
+        else {
+            setSanPham(qlsp.nhapSanPham());
+//            setSoLuong(sanPham.getSoLuongNhap());
+//            thanh tien
+        }
+    }
+
+//    public double tinhThanhTien() {
+//        return sanPham.getGiaSP()*sanPha
+//    }
 
 }

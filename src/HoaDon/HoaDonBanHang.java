@@ -86,10 +86,6 @@ public class HoaDonBanHang extends HoaDon {
         this.soLuongChiTiet = soLuongChiTiet;
     }
 
-//    public void setKhuyenMai(KhuyenMai khuyenMai) {
-//        this.khuyenMai = khuyenMai;
-//    }
-
     public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
     }
@@ -108,10 +104,10 @@ public class HoaDonBanHang extends HoaDon {
         System.out.print("Nhap so luong chi tiet hoa don: ");
         int soLuong = Integer.parseInt(scanner.nextLine());
 
-        for (int i = 0; i < soLuong; i++) {
+        for (int i = 1; i <= soLuong; i++) {
             System.out.println("Nhap chi tiet hoa don thu " + (i + 1) + ":");
             ChiTietHoaDonBanHang chiTiet = new ChiTietHoaDonBanHang();
-            chiTiet.input();
+            chiTiet.input(1);
             themChiTietHoaDonBanHang(chiTiet);
         }
 
@@ -128,24 +124,6 @@ public class HoaDonBanHang extends HoaDon {
         qlkm.timKhuyenMai(scanner.nextLine());
 
         tinhTongTien(); // Tính tổng tiền hóa đơn
-    }
-
-    @Override
-    public void xuat() {
-        super.xuat();
-        System.out.println("Chi tiet hoa don:");
-        System.out.printf("%-10s %-20s %-10s %-15s %-15s\n", "STT", "Ten SP", "So luong", "Don gia", "Thanh tien");
-
-        for (int i = 0; i < soLuongChiTiet; i++) {
-            chiTietHoaDonBanHangList[i].xuat();
-        }
-
-        System.out.println("Tien thue: " + tienThue + "%");
-        System.out.println("Chiet khau: " + chietKhau + "%");
-        System.out.println("Phuong thuc thanh toan: " + phuongThucThanhToan);
-        System.out.println("Tong tien: " + tongTien);
-        System.out.println("Khuyen mai:");
-        khuyenMai.xuat();
     }
 
     // Phương thức tính tổng tiền hóa đơn

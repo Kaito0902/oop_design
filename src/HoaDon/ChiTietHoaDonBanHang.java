@@ -39,8 +39,10 @@ public class ChiTietHoaDonBanHang {
     }
 
     public void setSoLuong(int soLuong) {
-        if (soLuong < 0) {
-            throw new IllegalArgumentException("So luong khong the am!");
+        while (soLuong < 0) {
+            System.out.println("So luong khong the am.");
+            System.out.println("Nhap lai so luong: ");
+            soLuong = Integer.parseInt(sc.nextLine());
         }
         this.soLuong = soLuong;
     }
@@ -54,6 +56,11 @@ public class ChiTietHoaDonBanHang {
     }
 
     public void setSanPham(SanPham sanPham) {
+        while (sanPham == null) {
+            System.out.println("Khong tim thay san pham.");
+            System.out.println("Nhap lai ma hoac ten san pham: ");
+            sanPham = qlsp.timKiem(sc.nextLine());
+        }
         this.sanPham = sanPham;
     }
 
@@ -63,9 +70,9 @@ public class ChiTietHoaDonBanHang {
     }
 
     // Phương thức nhập thông tin chi tiết hóa đơn
-    public void input() {
+    public void input(int stt) {
 
-        setStt(Integer.parseInt(sc.nextLine()));
+        setStt(stt);
 
         System.out.print("Nhap ma hoac ten san pham: ");
         SanPham sp = qlsp.timKiem(sc.nextLine());
@@ -74,38 +81,14 @@ public class ChiTietHoaDonBanHang {
         System.out.print("Nhap so luong: ");
         setSoLuong(Integer.parseInt(sc.nextLine()));
 
-        tinhThanhTien(); // Tính thành tiền sau khi nhập
+        tinhThanhTien(); // Tính thành ti0ền sau khi nhập
     }
 
-    // Phương thức xuất thông tin chi tiết hóa đơn
-    public void xuat() {
-        System.out.printf("%-5d %-20s %-10d %-15.2f\n",
+    @Override
+    public String toString() {
+        return String.format("%-5d %-20s %-10d %-15.2f\n",
                           stt, sanPham.getTenSP(), soLuong, thanhTien);
     }
 
-    // Phương thức chuyển đổi thành chuỗi
-//    @Override
-//    public String toString() {
-//        String sanPhamStr = sanPham != null ? sanPham.toString() : "null";
-//        return stt + "," + tenSanPham + "," + soLuong + "," + thanhTien + "," + sanPhamStr;
-//    }
 
-    // Phương thức đọc thông tin từ chuỗi
-//    public void fromString(String data) {
-//        String[] parts = data.split(",");
-//        if (parts.length < 6) {
-//            throw new IllegalArgumentException("Du lieu khong hop le!");
-//        }
-//        this.stt = Integer.parseInt(parts[0]);
-//        this.tenSanPham = parts[1];
-//        this.soLuong = Integer.parseInt(parts[2]);
-//        this.thanhTien = Double.parseDouble(parts[4]);
-//
-//        if (!parts[5].equals("null")) {
-//            this.sanPham = new SanPham();
-//            this.sanPham.fromString(parts[5]);
-//        } else {
-//            this.sanPham = null;
-//        }
-//    }
 }
