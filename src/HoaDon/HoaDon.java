@@ -15,28 +15,32 @@ public class HoaDon {
     protected LocalDate ngayLapHoaDon; 
     protected NhanVien nhanVienLapHoaDon;
     protected KhachHang khachHang;
+    protected String loaiHoaDon;
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     static int tongHoaDon = 0;
     static Scanner scanner = new Scanner(System.in);
+
+
     public HoaDon() {
     }
 
-    public HoaDon(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang) {
+    public HoaDon(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang, String loaiHoaDon) {
         this.maHoaDon = maHoaDon;
         this.ngayLapHoaDon = ngayLapHoaDon;
         this.nhanVienLapHoaDon = nhanVienLapHoaDon;
         this.khachHang = khachHang;
+        this.loaiHoaDon = loaiHoaDon;
     }
 
-    // Getter và Setter
     public String getMaHoaDon() {
         return maHoaDon;
     }
-
+    
     public void setMaHoaDon(String maHoaDon) {
         this.maHoaDon = maHoaDon;
     }
-
+    
+   
     public LocalDate getNgayLapHoaDon() {
         return ngayLapHoaDon;
     }
@@ -60,6 +64,23 @@ public class HoaDon {
     public void setKhachHang(KhachHang khachHang) {
         this.khachHang = khachHang;
     }
+    
+    public static DateTimeFormatter getFormatter() {
+        return formatter;
+    }
+
+    public static void setFormatter(DateTimeFormatter formatter) {
+        HoaDon.formatter = formatter;
+    }
+
+    public static int getTongHoaDon() {
+        return tongHoaDon;
+    }
+
+    public static void setTongHoaDon(int tongHoaDon) {
+        HoaDon.tongHoaDon = tongHoaDon;
+    }
+
 
     // Phương thức nhập thông tin hóa đơn
     public void input() {
@@ -108,6 +129,14 @@ public class HoaDon {
                 khachHang.getSdt(), // Số điện thoại khách hàng
                 khachHang.getDiaChi() // Địa chỉ khách hàng
         );
+    }
+
+    public String getLoaiHoaDon() {
+        return loaiHoaDon;
+    }
+
+    public void setLoaiHoaDon(String loaiHoaDon) {
+        this.loaiHoaDon = loaiHoaDon;
     }
 
 }

@@ -23,8 +23,8 @@ public class HoaDonDoiTraHang extends HoaDon {
     public HoaDonDoiTraHang() {
     }
 
-    public HoaDonDoiTraHang(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang, HoaDonBanHang hoaDonGoc, ChiTietHoaDonDoiTra[] dsChiTiet, int soLuongChiTiet, double tongGiaTri, String ghiChu, double tienHoanTra, double tiLeTru) {
-        super(maHoaDon, ngayLapHoaDon, nhanVienLapHoaDon, khachHang);
+    public HoaDonDoiTraHang(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang,String loaiHoaDon, HoaDonBanHang hoaDonGoc, ChiTietHoaDonDoiTra[] dsChiTiet, int soLuongChiTiet, double tongGiaTri, String ghiChu, double tienHoanTra, double tiLeTru) {
+        super(maHoaDon, ngayLapHoaDon, nhanVienLapHoaDon, khachHang, loaiHoaDon);
         this.hoaDonGoc = hoaDonGoc;
         this.dsChiTiet = dsChiTiet;
         this.soLuongChiTiet = soLuongChiTiet;
@@ -106,6 +106,8 @@ public class HoaDonDoiTraHang extends HoaDon {
     @Override
     public void input() {
         super.input();
+        loaiHoaDon = "Hoa don doi tra hang";
+        
 
         System.out.println("Nhap ma hoa don goc: ");
         HoaDon hd = qlhd.timKiemHoaDonTheoMa(scanner.nextLine());

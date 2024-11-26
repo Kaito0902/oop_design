@@ -23,8 +23,8 @@ public class HoaDonBanHang extends HoaDon {
     }
 
     // constructor day du tham so
-    public HoaDonBanHang(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang, ChiTietHoaDonBanHang[] chiTietHoaDonList, int soLuongChiTiet, KhuyenMai khuyenMai, double tienThue, double chietKhau, String phuongThucThanhToan, double tongTien) {
-        super(maHoaDon, ngayLapHoaDon, nhanVienLapHoaDon, khachHang);
+    public HoaDonBanHang(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang,String loaiHoaDon, ChiTietHoaDonBanHang[] chiTietHoaDonList, int soLuongChiTiet, KhuyenMai khuyenMai, double tienThue, double chietKhau, String phuongThucThanhToan, double tongTien) {
+        super(maHoaDon, ngayLapHoaDon, nhanVienLapHoaDon, khachHang, loaiHoaDon);
         this.chiTietHoaDonBanHangList = chiTietHoaDonList;
         this.soLuongChiTiet = soLuongChiTiet;
         this.khuyenMai = khuyenMai;
@@ -103,7 +103,8 @@ public class HoaDonBanHang extends HoaDon {
 
     @Override
     public void input() {
-        super.input(); // Nhập thông tin cơ bản từ lớp cha
+        super.input(); 
+        loaiHoaDon = "Hoa don ban hang";
 
         System.out.print("Nhap so luong chi tiet hoa don: ");
         int soLuong = Integer.parseInt(scanner.nextLine());
