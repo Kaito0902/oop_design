@@ -9,8 +9,8 @@ public class RAM extends PhanCung{
 
     }
 
-    public RAM(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiLinhKien, String nhaSanXuat, String model, int dungLuongRAM, String loaiRAM){
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiLinhKien, nhaSanXuat, model);
+    public RAM(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, boolean isNotDeleted, String loaiLinhKien, String nhaSanXuat, String model, int dungLuongRAM, String loaiRAM){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiLinhKien, nhaSanXuat, model);
         this.dungLuongRAM = dungLuongRAM;
         this.loaiRAM = loaiRAM;
     }
@@ -20,6 +20,10 @@ public class RAM extends PhanCung{
     }
 
     public void setDungLuongRAM(int dungLuongRAM) {
+        while(!(dungLuongRAM <= 64 && dungLuongRAM % 4 == 0)){
+            System.out.println("Dung luong RAM phai theo don vi RAM tieu chuan");
+            dungLuongRAM = Integer.parseInt(sc.nextLine());
+        }
         this.dungLuongRAM = dungLuongRAM;
     }
 
@@ -32,14 +36,8 @@ public class RAM extends PhanCung{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.2f);
     }
 
     @Override
@@ -55,6 +53,8 @@ public class RAM extends PhanCung{
     @Override
     public void nhapCauHinh()
     {
+        super.nhapCauHinh();
+        super.loaiLinhKien = "RAM";
         System.out.println("Nhap dung luong RAM: ");
         setDungLuongRAM(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap loai RAM: ");

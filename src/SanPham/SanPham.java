@@ -9,6 +9,10 @@ public abstract class SanPham{
     protected String thoiGianBaoHanhSP;
     protected float trongLuongSP;
     protected String mauSacSP;
+    protected int soLuongNhap;
+    protected int soLuongXuat;
+    protected int soLuongTonKho;
+    protected boolean isNotDeleted;
     static int soLuongSP = 0;
     static Scanner sc = new Scanner(System.in);
 
@@ -18,13 +22,15 @@ public abstract class SanPham{
     }
     
     public SanPham(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP) {
+            String mauSacSP, int soLuongNhap, boolean isNotDeleted) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.giaSP = giaSP;
         this.thoiGianBaoHanhSP = thoiGianBaoHanhSP;
         this.trongLuongSP = trongLuongSP;
         this.mauSacSP = mauSacSP;
+        this.soLuongNhap = soLuongNhap;
+        this.isNotDeleted = isNotDeleted;
         soLuongSP++;
     }
 
@@ -33,6 +39,10 @@ public abstract class SanPham{
     }
 
     public void setMaSP(String maSP) {
+        while(!maSP.startsWith("#sp")){
+            System.out.println("Ma san pham bat dau bang: #sp ");
+            maSP = sc.nextLine();
+        }
         this.maSP = maSP;
     }
 
@@ -49,6 +59,10 @@ public abstract class SanPham{
     }
 
     public void setGiaSP(float giaSP) {
+        while(giaSP <= 0){
+            System.out.println("Gia san pham lon hon 0!");
+            giaSP = Float.parseFloat(sc.nextLine());
+        }
         this.giaSP = giaSP;
     }
 
@@ -65,6 +79,10 @@ public abstract class SanPham{
     }
 
     public void setTrongLuongSP(float trongLuongSP) {
+        while(trongLuongSP <= 0){
+            System.out.println("Trong luong san pham lon hon 0");
+            trongLuongSP = Float.parseFloat(sc.nextLine());
+        }
         this.trongLuongSP = trongLuongSP;
     }
 
@@ -76,9 +94,27 @@ public abstract class SanPham{
         this.mauSacSP = mauSacSP;
     }
 
+    public int getSoLuongNhap() {
+        return soLuongNhap;
+    }
+
+    public void setSoLuongNhap(int soLuongNhap) {
+        while(soLuongNhap <= 0){
+            System.out.println("So luong nhap hang lon hon 0");
+            soLuongNhap = Integer.parseInt(sc.nextLine());
+        }
+        this.soLuongNhap = soLuongNhap;
+    }
+
+    public boolean isNotDeleted() {
+        return isNotDeleted;
+    }
+
+    public void setNotDeleted(boolean isNotDeleted) {
+        this.isNotDeleted = isNotDeleted;
+    }
 
     public abstract float thanhTien();    
-    public abstract float tinhKhuyenMai();
 
     public void nhap()
     {
@@ -93,13 +129,15 @@ public abstract class SanPham{
         setTrongLuongSP(Float.parseFloat(sc.nextLine()));
         System.out.println("Nhap mau sac san pham: ");
         setMauSacSP(sc.nextLine());
-        soLuongSP++;
+        System.out.println("Nhap so luong san pham nhap hang: ");
+        setSoLuongNhap(Integer.parseInt(sc.nextLine()));
+        isNotDeleted = true;
     }
 
     @Override
     public String toString(){
-        return String.format("%-10s %-20s %-15f %-15s %-10f %-10s",
-                maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
+        return String.format("%-10s %-20s %-15f %-15s %-10f %-10s %-10d",
+                maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap);
     }
 
     public void xuat()
@@ -110,5 +148,6 @@ public abstract class SanPham{
         System.out.println("Thoi gian bao hanh san pham: " + thoiGianBaoHanhSP);
         System.out.println("Trong luong san pham: " + trongLuongSP + "kg");
         System.out.println("Mau sac san pham: " + mauSacSP);
+        System.out.println("So luong san pham nhap: " + soLuongNhap);
     }
 }

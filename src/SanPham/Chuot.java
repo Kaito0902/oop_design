@@ -9,9 +9,9 @@ public class Chuot extends ThietBiNgoaiVi{
 
     }
 
-    public Chuot(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiThietBi,
+    public Chuot(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, boolean isNotDeleted, String loaiThietBi,
             String nhaSanXuat, String phuongThucKetNoi, int dPI, String denLED){
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.dPI = dPI;
         this.denLED = denLED;
     }
@@ -21,6 +21,10 @@ public class Chuot extends ThietBiNgoaiVi{
     }
 
     public void setdPI(int dPI) {
+        while(dPI <= 0){
+            System.out.println("DPI Chuot lon hon 0!");
+            dPI = Integer.parseInt(sc.nextLine());
+        }
         this.dPI = dPI;
     }
 
@@ -33,14 +37,8 @@ public class Chuot extends ThietBiNgoaiVi{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.45f);
     }
 
     @Override

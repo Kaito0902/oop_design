@@ -15,10 +15,10 @@ public abstract class MayTinh extends SanPham{
 
     }
 
-    public MayTinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-            String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi,
+    public MayTinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap,
+            boolean isNotDeleted, String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi,
             PhanCung[] cacLinhKien) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP);
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted);
         this.nhaSanXuat = nhaSanXuat;
         this.model = model;
         this.loaiMayTinh = loaiMayTinh;
@@ -127,5 +127,10 @@ public abstract class MayTinh extends SanPham{
         System.out.println("Model may tinh: " + model);
         System.out.println("He dieu hanh may tinh: " + heDieuHanh);
         System.out.println("May tinh " + coCardRoi + " card roi");
+    }
+
+    @Override
+    public String toString(){
+        return super.toString() + String.format("%-15s %-20s %15s %10s &10s", nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi);
     }
 }

@@ -9,8 +9,8 @@ public class BoNho extends PhanCung{
 
     }
 
-    public BoNho(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiLinhKien, String nhaSanXuat, String model, int dungLuongBoNho, String loaiBoNho){
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiLinhKien, nhaSanXuat, model);
+    public BoNho(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, boolean isNotDeleted, String loaiLinhKien, String nhaSanXuat, String model, int dungLuongBoNho, String loaiBoNho){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiLinhKien, nhaSanXuat, model);
         this.dungLuongBoNho = dungLuongBoNho;
         this.loaiBoNho = loaiBoNho;
     }
@@ -20,6 +20,10 @@ public class BoNho extends PhanCung{
     }
 
     public void setDungLuongBoNho(int dungLuongBoNho) {
+        while(!(dungLuongBoNho <= 1024 && dungLuongBoNho % 128 == 0)){
+            System.out.println("Dung luong Bo Nho phai theo don vi Bo Nho tieu chuan");
+            dungLuongBoNho = Integer.parseInt(sc.nextLine());
+        }
         this.dungLuongBoNho = dungLuongBoNho;
     }
 
@@ -32,14 +36,8 @@ public class BoNho extends PhanCung{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.15f);
     }
 
     @Override
@@ -70,6 +68,8 @@ public class BoNho extends PhanCung{
     @Override
     public void nhapCauHinh()
     {
+        super.nhapCauHinh();
+        super.loaiLinhKien = "Bo Nho";
         System.out.println("Nhap dung luong: ");
         setDungLuongBoNho(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap loai bo nho: ");

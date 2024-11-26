@@ -10,8 +10,8 @@ public class CPU extends PhanCung{
 
     }     
 
-    public CPU(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiLinhKien, String nhaSanXuat, String model, int soNhan, int soLuongLoi, float tanSoTurBo){
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiLinhKien, nhaSanXuat, model);
+    public CPU(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, boolean isNotDeleted, String loaiLinhKien, String nhaSanXuat, String model, int soNhan, int soLuongLoi, float tanSoTurBo){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiLinhKien, nhaSanXuat, model);
         this.soNhan = soNhan;
         this.soLuongLoi = soLuongLoi;
         this.tanSoTurBo = tanSoTurBo;
@@ -22,6 +22,10 @@ public class CPU extends PhanCung{
     }
 
     public void setSoNhan(int soNhan) {
+        while(soNhan <= 0){
+            System.out.println("So nhan CPU lon hon 0!");
+            soNhan = Integer.parseInt(sc.nextLine());
+        }
         this.soNhan = soNhan;
     }
 
@@ -30,6 +34,10 @@ public class CPU extends PhanCung{
     }
 
     public void setSoLuongLoi(int soLuongLoi) {
+        while(soLuongLoi <= 0){
+            System.out.println("So loi CPU lon hon 0!");
+            soLuongLoi = Integer.parseInt(sc.nextLine());
+        }
         this.soLuongLoi = soLuongLoi;
     }
 
@@ -38,18 +46,16 @@ public class CPU extends PhanCung{
     }
 
     public void setTanSoTurBo(float tanSoTurBo) {
+        while(tanSoTurBo <= 0){
+            System.out.println("Tan so turbo CPU lon hon 0!");
+            tanSoTurBo = Float.parseFloat(sc.nextLine());
+        }
         this.tanSoTurBo = tanSoTurBo;
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.1f);
     }
 
     @Override
@@ -67,6 +73,8 @@ public class CPU extends PhanCung{
     @Override
     public void nhapCauHinh()
     {
+        super.nhapCauHinh();
+        super.loaiLinhKien = "CPU";
         System.out.println("Nhap so nhan: ");
         setSoNhan(Integer.parseInt(sc.nextLine()));
         System.out.println("Nhap so luong loi: ");

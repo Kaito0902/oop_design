@@ -12,8 +12,8 @@ public class ManHinh extends ThietBiNgoaiVi{
     
     }
 
-    public ManHinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String kieuManHinh, String kichThuoc, String tamNen, String doPhanGiai, int tanSoQuet){
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
+    public ManHinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String kieuManHinh, String kichThuoc, String tamNen, String doPhanGiai, int tanSoQuet){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.doPhanGiai = doPhanGiai;
         this.kichThuoc = kichThuoc;
         this.kieuManHinh = kieuManHinh;
@@ -42,6 +42,10 @@ public class ManHinh extends ThietBiNgoaiVi{
     }
 
     public void setTanSoQuet(int tanSoQuet) {
+        while(tanSoQuet < 60){
+            System.out.println("Tan so quet Man Hinh lon hon hoac bang 60!");
+            tanSoQuet = Integer.parseInt(sc.nextLine());
+        }
         this.tanSoQuet = tanSoQuet;
     }
 
@@ -62,14 +66,8 @@ public class ManHinh extends ThietBiNgoaiVi{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.15f);
     }
 
     @Override
@@ -90,7 +88,7 @@ public class ManHinh extends ThietBiNgoaiVi{
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10s %-20s %-10d %-10s %-20s",kieuManHinh, kichThuoc, tanSoQuet, tamNen, doPhanGiai);
+        return super.toString() + String.format("%-10s %-20s %-10d %-10s %-20s", kieuManHinh, kichThuoc, tanSoQuet, tamNen, doPhanGiai);
     }
 
     @Override

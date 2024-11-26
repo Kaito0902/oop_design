@@ -9,9 +9,9 @@ public class BanPhim extends ThietBiNgoaiVi{
 
     }
 
-    public BanPhim(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
-                String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String denLED, String switchBP){
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
+    public BanPhim(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap,
+                boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String denLED, String switchBP){
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.denLED = denLED;
         this.switchBP = switchBP;
     }
@@ -33,14 +33,8 @@ public class BanPhim extends ThietBiNgoaiVi{
     }
 
     @Override
-    public float tinhKhuyenMai(){
-        return 0;
-    }
-
-
-    @Override
     public float thanhTien(){
-        return (float)(giaSP - (giaSP * tinhKhuyenMai()));
+        return (float)(giaSP * 1.40f);
     }
 
     @Override
