@@ -18,9 +18,9 @@ public class ChiTietHoaDonBanHang {
     }
 
     // Constructor với tham số
-    public ChiTietHoaDonBanHang(int stt, SanPham sanPham, int soLuong, double thanhTien) {
+    public ChiTietHoaDonBanHang(int stt, String sanPham, int soLuong, double thanhTien) {
         this.stt = stt;
-        this.sanPham = sanPham;
+        this.sanPham = qlsp.timKiem(sanPham);
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
     }

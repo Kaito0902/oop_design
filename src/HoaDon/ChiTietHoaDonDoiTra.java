@@ -1,4 +1,6 @@
 package HoaDon;
+import static main_project.oop_project.qlsp;
+
 import java.util.Scanner;
 
 import SanPham.SanPham;
@@ -14,9 +16,9 @@ public class ChiTietHoaDonDoiTra {
     public ChiTietHoaDonDoiTra() {
     }
 
-    public ChiTietHoaDonDoiTra(int stt, SanPham sanPhamTra, int soLuong, String lyDo, String tinhTrang) {
+    public ChiTietHoaDonDoiTra(int stt, String sanPhamTra, int soLuong, String lyDo, String tinhTrang, double thanhTien) {
         this.stt = stt;
-        this.sanPhamTra = sanPhamTra;
+        this.sanPhamTra = qlsp.timKiem(sanPhamTra);
         this.soLuong = soLuong;
         this.lyDo = lyDo;
         this.tinhTrang = tinhTrang;

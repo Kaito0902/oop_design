@@ -104,7 +104,7 @@ public class HoaDonBanHang extends HoaDon {
     @Override
     public void input() {
         super.input(); 
-        loaiHoaDon = "Hoa don ban hang";
+        loaiHoaDon = "HoaDonBanHang";
 
         System.out.print("Nhap so luong chi tiet hoa don: ");
         int soLuong = Integer.parseInt(scanner.nextLine());
@@ -160,6 +160,8 @@ public String toString() {
     // TODO Auto-generated method stub
     return super.toString()+String.format( "%-10d %-20s %-10.2f %-10.2f %-20s %-10.2f",soLuongChiTiet,khuyenMai.getTenKhuyenMai(),tienThue,chietKhau,phuongThucThanhToan,tongTien );
 }
+
+
 }
 
 

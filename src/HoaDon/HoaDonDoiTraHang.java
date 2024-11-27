@@ -106,7 +106,7 @@ public class HoaDonDoiTraHang extends HoaDon {
     @Override
     public void input() {
         super.input();
-        loaiHoaDon = "Hoa don doi tra hang";
+        loaiHoaDon = "HoaDonDoiTraHang";
         
 
         System.out.println("Nhap ma hoa don goc: ");
@@ -188,4 +188,5 @@ public class HoaDonDoiTraHang extends HoaDon {
         return super.toString()+String.format("%-5d %-10.2f %-15s %-10.2f %-8.2f",soLuongChiTiet,tongGiaTri,ghiChu, tienHoanTra, tiLeTru);
     }
 
+    
 }
