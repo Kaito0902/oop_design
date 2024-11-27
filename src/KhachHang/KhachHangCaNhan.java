@@ -5,12 +5,12 @@ import HoaDon.HoaDon;
 public class KhachHangCaNhan extends KhachHang {
 
     public KhachHangCaNhan () {
-
+        this.loaiKhachHang = "Binh thuong";
     }
 
     public KhachHangCaNhan(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
-                String maKhachHang, String loaiKhachHang, int tichDiem) {
-        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
+                String maKhachHang, String loaiKhachHang, boolean isdelete,int tichDiem) {
+        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, isdelete, tichDiem);
     }
 
 

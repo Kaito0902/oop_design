@@ -16,8 +16,8 @@ public class KhachHangVip extends KhachHang implements TraGop{
 
     //parameted
     public KhachHangVip(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email, String maKhachHang,
-            String loaiKhachHang, int tichDiem, int heSo) {
-        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
+            String loaiKhachHang,boolean isdelete, int tichDiem, int heSo) {
+        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, isdelete, tichDiem);
         this.heSo = heSo;
     }
 
@@ -49,13 +49,19 @@ public class KhachHangVip extends KhachHang implements TraGop{
     public void inputThongTinVip() {
         System.out.println("Nhap he so:");
         setHeSo(Integer.parseInt(scanner.nextLine()));
-
-        System.out.println("Ban co muon thanh toan tra gop?(Y/N):");
-        String chon = scanner.nextLine();
-        if ( chon.equals("y") || chon.equals("Y"))
-            traGop = true;
-        else
-            traGop = false;
+        while (true) {
+            System.out.println("Ban co muon thanh toan tra gop?(Y/N):");
+            String chon = scanner.nextLine().trim().toUpperCase();
+            if ( chon.equals("Y")){
+                traGop = true;
+                break;
+            }else if (chon.equals("N")){
+                traGop = false;
+                break;
+            }else {
+                System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
+            }
+        }
     }
 
     //tinhdiem thuong, dua vao tong so tien da mua

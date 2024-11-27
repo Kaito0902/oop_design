@@ -14,8 +14,8 @@ public class KhachHangSinhVien extends KhachHang {
 
     //parameted constructor
     public KhachHangSinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
-            String maKhachHang, String loaiKhachHang, int tichDiem, double diemTB) {
-        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang, tichDiem);
+            String maKhachHang, String loaiKhachHang,boolean isdelete, int tichDiem, double diemTB) {
+        super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang,isdelete, tichDiem);
         this.diemTB = diemTB;
     }
 
