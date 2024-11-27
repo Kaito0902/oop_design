@@ -9,8 +9,8 @@ public class BoNho extends PhanCung{
 
     }
 
-    public BoNho(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, boolean isNotDeleted, String loaiLinhKien, String nhaSanXuat, String model, int dungLuongBoNho, String loaiBoNho){
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted, loaiLinhKien, nhaSanXuat, model);
+    public BoNho(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted, String loaiLinhKien, String nhaSanXuat, String model, int dungLuongBoNho, String loaiBoNho) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, soLuongXuat, soLuongTonKho, isNotDeleted, loaiLinhKien, nhaSanXuat, model);
         this.dungLuongBoNho = dungLuongBoNho;
         this.loaiBoNho = loaiBoNho;
     }

@@ -1,6 +1,7 @@
 package DonDatHang;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -19,18 +20,20 @@ public class DonDatHang {
     private double tongTien;
     private String hinhThucGiaoHang;
     private String trangThai;
-    static String[] loaiTrangThai = {"Dang xu ly", "Da hoan thanh", "Da huy"};
+    static String[] loaiTrangThai = {"Dang xu ly", "Da hoan thanh", "Da huy", "Giao som", "Giao muon"};
+    static int soLuongDDH = 0;
     static Scanner sc = new Scanner(System.in);
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 
     public DonDatHang() {
     }
 
-    public DonDatHang(String maDonDatHang, LocalDate ngayDatHang, LocalDate ngayNhanHang, NhaCungCap nhaCungCap, ChiTietDonDatHang[] dschiTietDonDatHang, int soLuongChiTiet, double tongTien, String hinhThucGiaoHang, String trangThai) {
+    public DonDatHang(String maDonDatHang, LocalDate ngayDatHang, LocalDate ngayNhanHang, String maNhaCungCap, ChiTietDonDatHang[] dschiTietDonDatHang, int soLuongChiTiet, double tongTien, String hinhThucGiaoHang, String trangThai) {
         this.maDonDatHang = maDonDatHang;
         this.ngayDatHang = ngayDatHang;
         this.ngayNhanHang = ngayNhanHang;
-        this.nhaCungCap = nhaCungCap;
+        this.nhaCungCap = qlncc.timKiem(maNhaCungCap);
         this.dschiTietDonDatHang = dschiTietDonDatHang;
         this.soLuongChiTiet = soLuongChiTiet;
         this.tongTien = tongTien;
@@ -75,6 +78,11 @@ public class DonDatHang {
     }
 
     public void setNhaCungCap(NhaCungCap nhaCungCap) {
+        while (nhaCungCap == null) {
+            System.out.println("Khong tim thay nha cung cap da hop tac.");
+            System.out.println("Nhap lai ma nha cung cap: ");
+            nhaCungCap = qlncc.timKiem(sc.nextLine());
+        }
         this.nhaCungCap = nhaCungCap;
     }
 
@@ -111,6 +119,9 @@ public class DonDatHang {
     }
 
     public void nhap() {
+
+        maDonDatHang = "DDH" + String.format("%03d", ++soLuongDDH);
+
         System.out.print("Nhap ngay dat hang: ");
         setNgayDatHang(sc.nextLine());
 
@@ -118,7 +129,7 @@ public class DonDatHang {
         setNgayNhanHang(sc.nextLine());
 
         System.out.println("Nhap ma nha cung cap:");
-//        qlncc.
+        setNhaCungCap(qlncc.timKiem(sc.nextLine()));
 
         System.out.println("Nhap so luong chi tiet don hang: ");
         int soLuong = Integer.parseInt(sc.nextLine());
@@ -127,6 +138,8 @@ public class DonDatHang {
             x.input(i);
             themChiTiet(x);
         }
+
+        setTongTien(tinhTongTien());
 
         System.out.print("Nhap hinh thuc giao hang: ");
         setHinhThucGiaoHang(sc.nextLine());
@@ -141,12 +154,23 @@ public class DonDatHang {
         soLuongChiTiet++;
     }
 
-//    @Override
-//    public String toString() {
-//        return ;
-//    }
+    @Override
+    public String toString() {
+        return String.format("%-5s %-15s %-15s %-5s %-15s %-10.2f %-10s %-10s", maDonDatHang, ngayDatHang.format(formatter), ngayNhanHang.format(formatter), nhaCungCap.getMaNCC(), nhaCungCap.getTenNCC(), tongTien, hinhThucGiaoHang, trangThai);
+    }
 
     public void xuat() {
         System.out.println(toString());
+        for (ChiTietDonDatHang ds : dschiTietDonDatHang) {
+            ds.ouput();
+        }
+    }
+
+    public double tinhTongTien() {
+        double sum = 0;
+        for (ChiTietDonDatHang ds : dschiTietDonDatHang) {
+            sum += ds.getThanhTien();
+        }
+        return sum;
     }
 }

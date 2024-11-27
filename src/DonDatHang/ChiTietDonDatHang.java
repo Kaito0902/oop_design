@@ -16,9 +16,9 @@ public class ChiTietDonDatHang{
     public ChiTietDonDatHang(){        
     }
 
-    public ChiTietDonDatHang(int soThuTu, SanPham sanPham, int soLuong, double thanhTien) {
+    public ChiTietDonDatHang(int soThuTu, String maSanPham, int soLuong, double thanhTien) {
         this.soThuTu = soThuTu;
-        this.sanPham = sanPham;
+        this.sanPham = qlsp.timKiem(maSanPham);
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
     }
@@ -65,17 +65,25 @@ public class ChiTietDonDatHang{
             setSanPham(sp);
             System.out.println("Nhap so luong nhap: ");
             setSoLuong(Integer.parseInt(sc.nextLine()));
-            //thanh tien
         }
         else {
             setSanPham(qlsp.nhapSanPham());
-//            setSoLuong(sanPham.getSoLuongNhap());
-//            thanh tien
+            setSoLuong(getSanPham().getSoLuongNhap());
         }
+
+        setThanhTien(tinhThanhTien());
     }
 
-//    public double tinhThanhTien() {
-//        return sanPham.getGiaSP()*sanPha
-//    }
+    public double tinhThanhTien() {
+        return getSanPham().getGiaSP()*getSoLuong();
+    }
 
+    @Override
+    public String toString() {
+        return String.format("%-3s %-5s %-12s %-8d %-10.2f", soThuTu, sanPham.getMaSP(), sanPham.getTenSP(), soLuong, thanhTien);
+    }
+
+    public void ouput() {
+        System.out.println(toString());
+    }
 }

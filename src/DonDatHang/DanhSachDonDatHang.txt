@@ -1,5 +1,6 @@
-ddh1,17-1-2022,18-1-2022,Laptop,20000000.0,1,Hoa Thuan,Chuyen khoan
-ddh2,7-1-2023,18-1-2022,Chuot,400000.0,2,Thien Nhan,Chuyen khoan
-ddh3,1-1-2023,6-2-2023,Ram,1800000.0,1,Quan Nha,Chuyen khoan
-ddh4,1-1-2022,1-2-2024,GPU,5000000.0,1,Thu Thuy,Truc tiep
-ddh5,22-4-2022,1-6-2024,Man hinh,10000000.0,1,Thien Nhat,Chuyen khoan
+DDH001,01/11/2024,05/11/2024,#ncc01,Nha Cung Cap A,5000,Hoa Don,Da Giao
+ChiTietDonDatHang,1,#sp001,Intel Core i9 14900KS,10,2000.0
+ChiTietDonDatHang,2,#sp002,NVIDIA GeForce RTX 4090,5,3000.0
+DDH002,03/11/2024,07/11/2024,#ncc02,Nha Cung Cap B,8000,Cod,Chua Giao
+ChiTietDonDatHang,1,#sp003,T-Group T-Force Delta 1x16GB 3600,3,1500.0
+ChiTietDonDatHang,2,#sp004,SamSung MZ-V8P500BW,8,6500.0

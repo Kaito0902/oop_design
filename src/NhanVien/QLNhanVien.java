@@ -98,7 +98,7 @@ public class QLNhanVien {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Lỗi ghi file: " + e.getMessage());
+            System.out.println("Loi ghi file: " + e.getMessage());
         }
     }
 

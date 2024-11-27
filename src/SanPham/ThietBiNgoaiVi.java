@@ -8,17 +8,16 @@ public abstract class ThietBiNgoaiVi extends SanPham{
     public ThietBiNgoaiVi()
     {
 
-    } 
+    }
 
-    public ThietBiNgoaiVi(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, int soLuongNhap, boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi){
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted);
+    public ThietBiNgoaiVi(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, soLuongXuat, soLuongTonKho, isNotDeleted);
         this.loaiThietBi = loaiThietBi;
         this.nhaSanXuat = nhaSanXuat;
         this.phuongThucKetNoi = phuongThucKetNoi;
     }
 
-    public String getLoaiThietBi() 
+    public String getLoaiThietBi()
     {
         return loaiThietBi;
     }

@@ -1,6 +1,7 @@
 package ChucNang;
 
 import BaoHanh.BaoHanhSanPham;
+import DonDatHang.DonDatHang;
 import HoaDon.HoaDon;
 import HoaDon.HoaDonBanHang;
 import HoaDon.HoaDonDoiTraHang;
@@ -292,11 +293,13 @@ public class ChucNangMenu {
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
                 case 1: {
-                    //nhap
+                    DonDatHang x = new DonDatHang();
+                    x.nhap();
+                    qlddh.themDDH(x);
                     break;
                 }
                 case 2: {
-                    //xuat
+                    qlddh.xuatDDH();
                     break;
                 }
                 case 3: {

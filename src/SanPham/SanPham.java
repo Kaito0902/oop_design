@@ -20,9 +20,9 @@ public abstract class SanPham{
     {
 
     }
-    
-    public SanPham(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP,
-            String mauSacSP, int soLuongNhap, boolean isNotDeleted) {
+
+    public SanPham(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP,
+                   int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.giaSP = giaSP;
@@ -30,8 +30,10 @@ public abstract class SanPham{
         this.trongLuongSP = trongLuongSP;
         this.mauSacSP = mauSacSP;
         this.soLuongNhap = soLuongNhap;
+        this.soLuongXuat = soLuongXuat;
+        this.soLuongTonKho = soLuongTonKho;
         this.isNotDeleted = isNotDeleted;
-        soLuongSP++;
+        ++soLuongSP;
     }
 
     public String getMaSP() {
@@ -104,6 +106,22 @@ public abstract class SanPham{
             soLuongNhap = Integer.parseInt(sc.nextLine());
         }
         this.soLuongNhap = soLuongNhap;
+    }
+
+    public int getSoLuongXuat() {
+        return soLuongXuat;
+    }
+
+    public void setSoLuongXuat(int soLuongXuat) {
+        this.soLuongXuat = soLuongXuat;
+    }
+
+    public int getSoLuongTonKho() {
+        return soLuongTonKho;
+    }
+
+    public void setSoLuongTonKho(int soLuongTonKho) {
+        this.soLuongTonKho = soLuongTonKho;
     }
 
     public boolean isNotDeleted() {

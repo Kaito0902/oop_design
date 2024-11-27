@@ -15,13 +15,11 @@ public abstract class MayTinh extends SanPham{
 
     }
 
-    public MayTinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap,
-            boolean isNotDeleted, String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi,
-            PhanCung[] cacLinhKien) {
-        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, isNotDeleted);
+    public MayTinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted, String loaiMayTinh, String nhaSanXuat, String model, String heDieuHanh, String coCardRoi, PhanCung[] cacLinhKien) {
+        super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, soLuongXuat, soLuongTonKho, isNotDeleted);
+        this.loaiMayTinh = loaiMayTinh;
         this.nhaSanXuat = nhaSanXuat;
         this.model = model;
-        this.loaiMayTinh = loaiMayTinh;
         this.heDieuHanh = heDieuHanh;
         this.coCardRoi = coCardRoi;
         this.cacLinhKien = cacLinhKien;
@@ -131,6 +129,6 @@ public abstract class MayTinh extends SanPham{
 
     @Override
     public String toString(){
-        return super.toString() + String.format("%-15s %-20s %15s %10s &10s", nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi);
+        return super.toString() + String.format("%-15s %-20s %15s %10s %10s", nhaSanXuat, model, loaiMayTinh, heDieuHanh, coCardRoi);
     }
 }

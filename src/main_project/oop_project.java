@@ -22,6 +22,7 @@ public class oop_project {
     public static QLKhuyenMai qlkm = new QLKhuyenMai();
     public static QLDonDatHang qlddh = new QLDonDatHang();
     public static QLNhaCungCap qlncc = new QLNhaCungCap();
+    static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         menu();
@@ -34,6 +35,7 @@ public class oop_project {
         qlkm.docTuFile();
 //        qlhd.docTuFileDSHD();
         qlncc.docTuFile();
+        qlddh.docTuFileDSDDH();
         boolean kt = true;
         int lc;
         while (kt) {
@@ -46,39 +48,43 @@ public class oop_project {
             System.out.println("| 4. Thoat                 \t|");
             System.out.println("=============================");
             System.out.println("Nhap lua chon: ");
-            lc = new Scanner(System.in).nextInt();
-            switch (lc) {
-                case 1: {
-                    System.out.println("Nhap so dien thoai: ");
-                    String soDienThoai = new Scanner(System.in).nextLine();
-                    System.out.println("Nhap mat khau: ");
-                    String matKhau = new Scanner(System.in).nextLine();
-                    if (qlnv.dangNhap(soDienThoai, matKhau) != null) {
-                        System.out.println("Dang nhap thanh cong");
-                        qlnv.menuTheoNhanVien(qlnv.dangNhap(soDienThoai, matKhau));
-                    } else {
-                        System.out.println("Dang nhap that bai");
-                        System.out.println("Vui long dang nhap lai");
+            try {
+                lc = Integer.parseInt(sc.nextLine());
+                switch (lc) {
+                    case 1: {
+                        System.out.println("Nhap so dien thoai: ");
+                        String soDienThoai = new Scanner(System.in).nextLine();
+                        System.out.println("Nhap mat khau: ");
+                        String matKhau = new Scanner(System.in).nextLine();
+                        if (qlnv.dangNhap(soDienThoai, matKhau) != null) {
+                            System.out.println("Dang nhap thanh cong");
+                            qlnv.menuTheoNhanVien(qlnv.dangNhap(soDienThoai, matKhau));
+                        } else {
+                            System.out.println("Dang nhap that bai");
+                            System.out.println("Vui long dang nhap lai");
+                            break;
+                        }
                         break;
                     }
-                    break;
+                    case 2: {
+                        //tra cuu bang so dien thoai
+                        break;
+                    }
+                    case 3: {
+                        //xem san pham
+                        break;
+                    }
+                    case 4: {
+                        kt = false;
+                        break;
+                    }
+                    default: {
+                        System.out.println("Lua chon khong phu hop");
+                        break;
+                    }
                 }
-                case 2: {
-                    //tra cuu bang so dien thoai
-                    break;
-                }
-                case 3: {
-                    //xem san pham
-                    break;
-                }
-                case 4: {
-                    kt = false;
-                    break;
-                }
-                default: {
-                    System.out.println("Lua chon khong phu hop");
-                    break;
-                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so nguyen.");
             }
         }
     }
