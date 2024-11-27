@@ -248,7 +248,8 @@ public class ChucNangMenu {
                     break;
                 }
                 case 4: {
-//                    qlsp.xoaPhanTuTheoMa();
+                    System.out.println("Nhap ma san pham muon xoa: ");
+                    qlsp.xoaPhanTuTheoMa(sc.nextLine());
                     break;
                 }
                 case 5: {
@@ -285,7 +286,7 @@ public class ChucNangMenu {
             System.out.printf("| %-40s|\n", "1. Nhap danh sach don dat hang moi");
             System.out.printf("| %-40s|\n", "2. Xuat danh sach don dat hang");
             System.out.printf("| %-40s|\n", "3. Sua don nhap theo ma");
-            System.out.printf("| %-40s|\n", "4. Xoa don nhap theo ma");
+            System.out.printf("| %-40s|\n", "4. Cap nhat trang thai don dat hang");
             System.out.printf("| %-40s|\n", "5. Tim kiem don nhap theo ma");
             System.out.printf("| %-40s|\n", "6. Thoat");
             System.out.println("==========================================");
@@ -303,15 +304,24 @@ public class ChucNangMenu {
                     break;
                 }
                 case 3: {
-                    //sua
+                    System.out.println("Nhap ma don dat hang muon sua thong tin: ");
+                    qlddh.suaThongTinDonDatHang(sc.nextLine());
                     break;
                 }
                 case 4: {
-                    //xoa
+                    System.out.println("Nhap ma don dat hang can cap nhat.");
+                    qlddh.capNhatTrangThaiDonDatHang(sc.nextLine());
                     break;
                 }
                 case 5: {
-                    //tk
+                    System.out.println("Nhap ma don dat hang can tim.");
+                    DonDatHang donDatHang = qlddh.timDonDatHang(sc.nextLine());
+                    if (donDatHang != null) {
+                        donDatHang.xuat();
+                    }
+                    else {
+                        System.out.println("Khong tim thay don dat hang.");
+                    }
                     break;
                 }
                 case 6: {

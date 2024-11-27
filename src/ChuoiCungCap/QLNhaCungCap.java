@@ -148,8 +148,6 @@ public class QLNhaCungCap {
                 ));
                 writer.newLine();
             }
-            writer.close();
-            System.out.println("Da nhap vao file.");
         }
         catch (IOException e){
             System.out.println("Khong nhap duoc file.");
@@ -176,8 +174,6 @@ public class QLNhaCungCap {
                     themNCC(ncc);
                 }
             }
-            reader.close();
-            System.out.println("Da doc file.");
         }
         catch(IOException e){
             System.out.println("Khong doc duoc file.");

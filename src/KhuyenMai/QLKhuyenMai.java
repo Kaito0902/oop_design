@@ -135,7 +135,6 @@ public class QLKhuyenMai {
                 ));
                 writer.newLine();
             }
-            System.out.println("Ghi file thanh cong!");
         } catch (IOException e) {
             System.out.println("Loi ghi file: " + e.getMessage());
         }
@@ -163,7 +162,6 @@ public class QLKhuyenMai {
                     System.out.println("Du lieu khong hop le trong dong: " + line);
                 }
             }
-            System.out.println("Doc file thanh cong!");
         } catch (IOException e) {
             System.out.println("Loi doc file: " + e.getMessage());
         } catch (NumberFormatException e) {

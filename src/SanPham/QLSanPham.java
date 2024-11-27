@@ -339,9 +339,7 @@ public class QLSanPham{
                     }
                 }
             }
-            reader.close();
-            System.out.println("Da doc file.");
-        } 
+        }
         
         catch(IOException e){
             System.out.println("Khong doc duoc file.");

@@ -53,8 +53,8 @@ public class DonDatHang {
         return ngayDatHang;
     }
 
-    public void setNgayDatHang(String ngayDatHang) {
-        this.ngayDatHang = chuanHoaNgayThangNam(ngayDatHang);
+    public void setNgayDatHang(LocalDate ngayDatHang) {
+        this.ngayDatHang = ngayDatHang;
     }
 
     public LocalDate getNgayNhanHang() {
@@ -62,7 +62,15 @@ public class DonDatHang {
     }
 
     public void setNgayNhanHang(String ngayNhanHang) {
-        this.ngayNhanHang = chuanHoaNgayThangNam(ngayNhanHang);
+        LocalDate nhanHang = chuanHoaNgayThangNam(ngayNhanHang);
+
+        while (nhanHang.isBefore(getNgayDatHang())) {
+            System.out.println("Ngay nhan hang phai sau hoac bang ngay hien tai. Vui long nhap lai (dd/MM/yyyy): ");
+            ngayNhanHang = sc.nextLine();
+            nhanHang = chuanHoaNgayThangNam(ngayNhanHang);
+        }
+
+        this.ngayNhanHang = nhanHang;
     }
 
     public double getTongTien() {
@@ -122,8 +130,7 @@ public class DonDatHang {
 
         maDonDatHang = "DDH" + String.format("%03d", ++soLuongDDH);
 
-        System.out.print("Nhap ngay dat hang: ");
-        setNgayDatHang(sc.nextLine());
+        setNgayDatHang(LocalDate.now());
 
         System.out.print("Nhap ngay nhan hang: ");
         setNgayNhanHang(sc.nextLine());

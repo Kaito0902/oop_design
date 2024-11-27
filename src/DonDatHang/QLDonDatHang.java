@@ -1,12 +1,17 @@
 package DonDatHang;
 
+import SanPham.SanPham;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static DonDatHang.DonDatHang.loaiTrangThai;
+import static main_project.oop_project.qlncc;
+import static main_project.oop_project.qlsp;
 
 public class QLDonDatHang {
     DonDatHang[] dsddh = new DonDatHang[0];
@@ -60,6 +65,17 @@ public class QLDonDatHang {
                                 ds.setTrangThai(loaiTrangThai[4]);
                                 System.out.println("Giao muon.");
                             }
+
+                            for (ChiTietDonDatHang ct : ds.getDschiTietDonDatHang()) {
+                                SanPham timSP = qlsp.timKiem(ct.getSanPham().getMaSP());
+
+                                if (timSP != null){
+                                    qlsp.nhapSanPhamTuDonDatHang(ct.getSanPham().getMaSP(), ct.getSoLuong());
+                                } else {
+                                    qlsp.themSanPham(ct.getSanPham());
+                                }
+                            }
+
                             ktra = false;
                             break;
                         }
@@ -76,12 +92,160 @@ public class QLDonDatHang {
                 }
             }
         }
+
         if (!timThay) {
             System.out.println("Khong tim thay don dat hang co ma " + maDonDatHang);
         }
     }
 
 
+    public void suaThongTinDonDatHang(String maDonDatHang) {
+        for (DonDatHang ds : dsddh) {
+            if (ds.getMaDonDatHang().equals(maDonDatHang) && ds.getTrangThai().equals(loaiTrangThai[0])) {
+                int lc;
+                boolean ktra = true;
+                while (ktra) {
+                    ds.xuat();
+                    System.out.println("1. Sua ngay nhan hang");
+                    System.out.println("2. Sua nha cung cap");
+                    System.out.println("3. Sua hinh thuc giao hang");
+                    System.out.println("4. Sua chi tiet don dat hang");
+                    System.out.println("5. Them chi tiet don dat hang");
+                    System.out.println("Nhap lua chon: ");
+                    lc = Integer.parseInt(sc.nextLine());
+                    switch (lc) {
+                        case 1: {
+                            System.out.println("Nhap ngay nhan hang moi (dd/MM/yyyy): ");
+                            ds.setNgayNhanHang(sc.nextLine());
+                            System.out.println("Da sua ngay nhan hang.");
+                            break;
+                        }
+                        case 2: {
+                            System.out.println("Nhap ma nha cung cap moi: ");
+                            ds.setNhaCungCap(qlncc.timKiem(sc.nextLine()));
+                            System.out.println("Da sua nha cung cap.");
+                            break;
+                        }
+                        case 3: {
+                            System.out.println("Nhap hinh thuc giao hang moi: ");
+                            ds.setHinhThucGiaoHang(sc.nextLine());
+                            System.out.println("Da sua hinh thuc giao hang.");
+                            break;
+                        }
+                        case 4: {
+                            System.out.println("Chon stt chi tiet dat hang muon sua: ");
+                            int stt = Integer.parseInt(sc.nextLine());
+
+                            if (stt > 0 && stt <= ds.getSoLuongChiTiet()) {
+                                ChiTietDonDatHang chiTiet = ds.getDschiTietDonDatHang()[stt - 1];
+                                suaChiTietDonDatHang(chiTiet);
+                                ds.setTongTien(ds.tinhTongTien());
+                            } else {
+                                System.out.println("STT khong hop le!");
+                            }
+                            break;
+                        }
+                        case 5: {
+                            System.out.print("Nhap so luong chi tiet muon them: ");
+                            int soLuongThem = Integer.parseInt(sc.nextLine());
+                            if (soLuongThem > 0) {
+                                for (int i = 0; i < soLuongThem; i++) {
+                                    System.out.println("Nhap thong tin chi tiet moi thu " + (i + 1) + ":");
+                                    ChiTietDonDatHang chiTietMoi = new ChiTietDonDatHang();
+                                    chiTietMoi.input(ds.getSoLuongChiTiet() + i + 1);
+                                    ds.themChiTiet(chiTietMoi);
+                                    ds.setTongTien(ds.tinhTongTien());
+                                }
+                                System.out.println("Da them " + soLuongThem + " chi tiet don dat hang.");
+                            } else {
+                                System.out.println("So luong phai lon hon 0.");
+                            }
+                            break;
+                        }
+                        case 0: {
+                            ktra = false;
+                            break;
+                        }
+                        default: {
+                            System.out.println("Lua chon khong hop le.");
+                            System.out.println("Vui long lua chon lai.");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void suaChiTietDonDatHang(ChiTietDonDatHang chiTiet) {
+        int lc;
+        boolean ktra = true;
+        while (ktra) {
+            chiTiet.ouput();
+            System.out.println("1. Sửa sản phẩm");
+            System.out.println("2. Sửa số lượng");
+            System.out.println("0. Thoát");
+            System.out.print("Nhập lựa chọn: ");
+            try {
+                lc = Integer.parseInt(sc.nextLine());
+                switch (lc) {
+                    case 1: {
+                        while (true) {
+                            System.out.println("Bạn muốn chọn sản phẩm có sẵn hay nhập sản phẩm mới?");
+                            System.out.println("1. Chọn sản phẩm có sẵn.");
+                            System.out.println("2. Nhập sản phẩm mới.");
+                            System.out.print("Nhập lựa chọn: ");
+
+                            try {
+                                int luaChonSP = Integer.parseInt(sc.nextLine());
+                                if (luaChonSP == 1) {
+                                    System.out.print("Nhap ma san pham moi: ");
+                                    SanPham spMoi = qlsp.timKiem(sc.nextLine());
+                                    if (spMoi != null) {
+                                        chiTiet.setSanPham(spMoi);
+                                        chiTiet.setThanhTien(chiTiet.tinhThanhTien());
+                                        System.out.println("Da sua san pham.");
+                                        break;
+                                    } else {
+                                        System.out.println("Khong tim thay san pham");
+                                    }
+                                } else if (luaChonSP == 2) {
+                                    chiTiet.setSanPham(qlsp.nhapSanPham());
+                                    chiTiet.setSoLuong(chiTiet.getSanPham().getSoLuongNhap());
+                                    System.out.println("Da sua san pham thanh mot san pham moi.");
+                                    break;
+                                } else {
+                                    System.out.println("Lua chon khong hop le!");
+                                }
+                            } catch (InputMismatchException | NumberFormatException e) {
+                                System.out.println("Lua chon khong hop le! Vui long nhap lua chon la so.");
+                                sc.nextLine();
+                            }
+                        }
+                        break;
+                    }
+                    case 2: {
+                        System.out.print("Nhap so luong moi: ");
+                        chiTiet.setSoLuong(Integer.parseInt(sc.nextLine()));
+                        chiTiet.setThanhTien(chiTiet.tinhThanhTien());
+                        System.out.println("Da sua so luong san pham.");
+                        break;
+
+                    }
+                    case 0: {
+                        ktra = false;
+                        break;
+                    }
+                    default: {
+                        System.out.println("Lua chon khong hop le!");
+                        System.out.println("Vui long nhap lai.");
+                    }
+                }
+            } catch (InputMismatchException | NumberFormatException e) {
+                System.out.println("Lua chon khong hop le! Vui long nhap lua chon la so nguyen.");
+                sc.nextLine();
+            }
+        }
+    }
 
 
     public void ghiVaoFileDSDDH() {
@@ -148,7 +312,7 @@ public class QLDonDatHang {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Lỗi đọc file: " + e.getMessage());
+            System.out.println("Loi doc file: " + e.getMessage());
         }
     }
 
