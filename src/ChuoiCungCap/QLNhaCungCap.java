@@ -2,154 +2,186 @@ package ChuoiCungCap;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import SanPham.SanPham;
-
 public class QLNhaCungCap {
-    NhaCungCap[] dsncc = new NhaCungCap[0];
+    private NhaCungCap[] ds = new NhaCungCap[0];
+    private int soLuong;
     static Scanner sc = new Scanner(System.in);
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public void themNCC(NhaCungCap ncc) {
-        NhaCungCap[] newdsncc = Arrays.copyOf(dsncc, dsncc.length + 1);
-        newdsncc[dsncc.length] = ncc;
-        dsncc = newdsncc;
+        NhaCungCap[] newDs = Arrays.copyOf(ds, soLuong + 1);
+        newDs[soLuong] = ncc;
+        this.ds = newDs;
+        soLuong++;
     }
 
-    public void xuatNCC() {
-        for (NhaCungCap ncc : dsncc) {
-            ncc.xuat();
+    public void nhapDanhSach()
+    {
+        System.out.println("Nhap so luong nha cung cap: ");
+        int n = Integer.parseInt(sc.nextLine());
+        for(int i = 0; i < n; i++){
+            NhaCungCap ncc = new NhaCungCap();
+            ncc.nhap();
+            themNCC(ncc);
         }
     }
 
-    // Phương thức xóa nhà cung cấp theo mã
-    public void xoaNhaCungCap(String maNCC) {
-        boolean found = false;
-        for (int i = 0; i < dsncc.length; i++) {
-            if (dsncc[i].maNhaCungCap.equals(maNCC)) {
-                for (int j = i; j < dsncc.length - 1; j++) {
-                    dsncc[j] = dsncc[j + 1];
+    public void xuatDanhSach()
+    {
+        for(NhaCungCap i : ds)
+            if(i.isNotDeleted){
+                i.xuat();
+                System.out.println();
+            }
+    }
+
+    public void suaPhanTuTheoMa(String maNCC)
+    {
+        boolean timThay = false;
+        for (NhaCungCap ncc : ds) {
+            if (ncc.getMaNCC().equals(maNCC) && ncc.isNotDeleted) {
+                int lc;
+                boolean ktra = true;
+                timThay = true;
+                while (ktra) {
+                    ncc.xuat();
+                    System.out.println("1. Sua ten nha cung cap");
+                    System.out.println("2. Sua dia chi");
+                    System.out.println("3. Sua email");
+                    System.out.println("4. Sua ma so thue");
+                    System.out.println("5. Sua ngay hop tac");
+                    System.out.println("6. Thoat");
+                    System.out.println("Nhap lua chon muon sua: ");
+                    lc = Integer.parseInt(sc.nextLine());
+                    switch (lc) {
+                        case 1: {
+                            System.out.println("Nhap ten nha cung cap moi: ");
+                            ncc.setTenNCC(sc.nextLine());
+                            System.out.println("Da sua ten.");
+                            break;
+                        }
+                        case 2: {
+                            System.out.println("Nhap dia chi moi: ");
+                            ncc.setDiaChi(sc.nextLine());
+                            System.out.println("Da sua dia chi.");
+                            break;
+                        }
+                        case 3: {
+                            System.out.println("Nhap email moi: ");
+                            ncc.setEmail(sc.nextLine());
+                            System.out.println("Da sua email.");
+                            break;
+                        }
+                        case 4: {
+                            System.out.println("Nhap ma so thue moi: ");
+                            ncc.setMaSoThue(sc.nextLine());
+                            System.out.println("Da sua ma so thue.");
+                            break;
+                        }
+                        case 5: {
+                            System.out.println("Nhap ngay hop tac moi: ");
+                            ncc.setNgayHopTac(sc.nextLine());
+                            System.out.println("Da sua ngay hop tac.");
+                            break;
+                        }
+                        case 6: {
+                            ktra = false;
+                            break;
+                        }
+                        default: {
+                            System.out.println("Lua chon khong hop le.");
+                            System.out.println("Vui long lua chon lai.");
+                        }
+                    }
                 }
-                dsncc = Arrays.copyOf(dsncc, dsncc.length - 1);
-                found = true;
+            }
+        }
+        if (!timThay) {
+            System.out.println("Khong tim thay nha cung cap.");
+        }
+    }
+
+    public void xoaPhanTuTheoMa(String maNCC)
+    {
+        for(NhaCungCap ncc : ds){
+            if(ncc.maNCC.equals(maNCC) && ncc.isNotDeleted){
+                ncc.isNotDeleted = false;
                 System.out.println("Da xoa nha cung cap co ma: " + maNCC);
-                break;
+                return;
             }
         }
-        if (!found) {
-            System.out.println("Khong tim thay nha cung cap co ma nay: " + maNCC);
+        System.out.println("Khong tim thay nha cung cap.");
+    }
+
+    public NhaCungCap timKiem(String timNCC)
+    {
+        if(timNCC.startsWith("#ncc")){
+            for(NhaCungCap ncc:ds)
+                if(ncc.maNCC.equals(timNCC) && ncc.isNotDeleted)
+                    return ncc;
         }
-    }
-
-    // Phương thức tìm kiếm nhà cung cấp theo chi phí nhập hàng
-    public void timKiemNhaCungCapTheoChiPhi(double chiPhi) {
-        boolean found = false;
-        for (NhaCungCap ncc : dsncc) {
-            if (ncc.chiPhiNhapHang == chiPhi) {
-                System.out.println(ncc);
-                found = true;
-            }
+        else{
+            for(NhaCungCap ncc:ds)
+                if (ncc.tenNCC.toLowerCase().contains(timNCC.toLowerCase()) && ncc.isNotDeleted)
+                    return ncc;
         }
-        if (!found) {
-            System.out.println("Khong co nha cung cap co chi phi nhap hang: " + chiPhi);
-        }
+        return null;
     }
 
-    public void sapXepNhaCungCapTheoChiPhi() {
-        Arrays.sort(dsncc, (a, b) -> Double.compare(a.chiPhiNhapHang, b.chiPhiNhapHang));
-        System.out.println("Danh sach nha cung cap da duoc sap xep theo chi phi nhap hang.");
-    }
-
-    public void laySoLuongNhaCungCap() {
-        System.out.println("So luong nha cung cap: " + dsncc.length);
-    }
-
-    public void ghiVaoFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ADMIN\\oop_design\\src\\ChuoiCungCap\\danhSachNhaCungCap.txt"))) {
-            for (NhaCungCap ncc : dsncc) {
-                writer.write(ncc.toString());
+    public void nhapVaoFile()
+    {
+        String file = "C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\ChuoiCungCap\\DanhSachNhaCungCap.txt";
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
+            for(NhaCungCap ncc:ds){
+                writer.write(String.join(",",
+                        ncc.getMaNCC(),
+                        ncc.getTenNCC(),
+                        ncc.getDiaChi(),
+                        ncc.getEmail(),
+                        ncc.getMaSoThue(),
+                        String.valueOf(ncc.getNgayHopTac().format(formatter)),
+                        String.valueOf(ncc.isNotDeleted())
+                ));
                 writer.newLine();
             }
-            System.out.println("Ghi file thanh cong!");
-        } catch (IOException e) {
-            System.out.println("Loi ghi file: " + e.getMessage());
+            writer.close();
+            System.out.println("Da nhap vao file.");
+        }
+        catch (IOException e){
+            System.out.println("Khong nhap duoc file.");
         }
     }
 
-    public void docTuFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ADMIN\\oop_design\\src\\ChuoiCungCap\\danhSachNhaCungCap.txt"))) {
+    public void docTuFile()
+    {
+        String file = "C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\ChuoiCungCap\\DanhSachNhaCungCap.txt";
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length == 11) {
-                    String maNhaCungCap = data[0];
-                    String tenNhaCungCap = data[1];
+                if(data.length > 0) {
+                    String maNCC = data[0];
+                    String tenNCC = data[1];
                     String diaChi = data[2];
-                    String thanhPho = data[3];
-                    String quocGia = data[4];
-                    String email = data[5];
-                    String maSoThue = data[6];
-                    LocalDate ngayHopTac = LocalDate.parse(data[7]);
-                    double chiPhiNhapHang = Double.parseDouble(data[8]);
+                    String email = data[3];
+                    String maSoThue = data[4];
+                    LocalDate ngayHopTac = LocalDate.parse(data[5], formatter);
+                    boolean isNotDelete = Boolean.parseBoolean(data[6]);
 
-                    String tenSanPham =(data[9]); 
-                    String ghiChu = data[10];
-
-                    NhaCungCap ncc = new NhaCungCap(maNhaCungCap, tenNhaCungCap, diaChi, thanhPho, quocGia, email, maSoThue, ngayHopTac, chiPhiNhapHang, ghiChu);
+                    NhaCungCap ncc = new NhaCungCap(maNCC, tenNCC, diaChi, email, maSoThue, ngayHopTac, isNotDelete);
                     themNCC(ncc);
                 }
             }
-            System.out.println("Doc file thanh cong!");
-        } catch (IOException e) {
-            System.out.println("Loi doc file: " + e.getMessage());
-        } catch (NumberFormatException e) {
-            System.out.println("Loi dinh dang so trong du lieu: " + e.getMessage());
+            reader.close();
+            System.out.println("Da doc file.");
+        }
+        catch(IOException e){
+            System.out.println("Khong doc duoc file.");
         }
     }
 
-    // Phương thức hiển thị menu
-    public void menu() {
-        int choice;
-        do {
-            System.out.println("===== Quan ly nha cung cap =====");
-            System.out.println("1. Them nha cung cap");
-            System.out.println("2. Xuat danh sach nha cung cap");
-            System.out.println("3. Xoa nha cung cap");
-            System.out.println("4. Tim kiem nha cung cap theo chi phi nhap hang");
-            System.out.println("5. Sap xep nha cung cap theo chi phi nhap hang");
-            System.out.println("6. Lay so luong nha cung cap");
-            System.out.println("7. Ghi danh sach vao file");
-            System.out.println("8. Doc danh sach tu file");
-            System.out.println("0. Thoat");
-            System.out.print("Nhap lua chon: ");
-            choice = sc.nextInt();
-            sc.nextLine(); 
-
-            switch (choice) {
-                case 1 -> {
-                    NhaCungCap ncc = new NhaCungCap();
-                    ncc.nhap();
-                    themNCC(ncc);
-                }
-                case 2 -> xuatNCC();
-                case 3 -> {
-                    System.out.print("Nhap ma nha cung cap can xoa: ");
-                    String maXoa = sc.nextLine();
-                    xoaNhaCungCap(maXoa);
-                }
-                case 4 -> {
-                    System.out.print("Nhap chi phi nhap hang can tim: ");
-                    double chiPhiTimKiem = sc.nextDouble();
-                    timKiemNhaCungCapTheoChiPhi(chiPhiTimKiem);
-                }
-                case 5 -> sapXepNhaCungCapTheoChiPhi();
-                case 6 -> laySoLuongNhaCungCap();
-                case 7 -> ghiVaoFile();
-                case 8 -> docTuFile();
-                case 0 -> System.out.println("Thoat chuong trinh.");
-                default -> System.out.println("Lua chon khong hop le.");
-            }
-        } while (choice != 0);
-    }
 }

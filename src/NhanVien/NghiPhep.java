@@ -2,6 +2,7 @@ package NhanVien;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.Scanner;
 
 import static main_project.oop_project.qlnv;
@@ -122,13 +123,22 @@ public class NghiPhep {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        NghiPhep nghiPhep = (NghiPhep) obj;
-        return nhanVien.getMaNhanVien().equals(nghiPhep.nhanVien.getMaNhanVien()) && ngayBatDau.equals(nghiPhep.ngayBatDau);
+        NghiPhep other = (NghiPhep) obj;
+
+        if (!nhanVien.getMaNhanVien().equals(other.nhanVien.getMaNhanVien())) {
+            return false;
+        }
+
+        LocalDate endThis = ngayBatDau.plusDays(soNgayNghi - 1);
+        LocalDate endOther = other.ngayBatDau.plusDays(other.soNgayNghi - 1);
+
+        return !endThis.isBefore(other.ngayBatDau) && !ngayBatDau.isAfter(endOther);
     }
+
 
     @Override
     public int hashCode() {
-        return (nhanVien.getMaNhanVien() + ngayBatDau.toString()).hashCode();
+        return Objects.hash(nhanVien.getMaNhanVien(), ngayBatDau, soNgayNghi);
     }
 
     public void xuatDonNghiPhep() {

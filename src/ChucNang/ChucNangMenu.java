@@ -497,23 +497,26 @@ public class ChucNangMenu {
             chon = Integer.parseInt(sc.nextLine());
             switch (chon) {
                 case 1: {
-                    //nhap
+                    qlncc.nhapDanhSach();
                     break;
                 }
                 case 2: {
-                    //xuat
+                    qlncc.xuatDanhSach();
                     break;
                 }
                 case 3: {
-                    //sua
+                    System.out.println("Nhap ma nha cung cap muon sua: ");
+                    qlncc.suaPhanTuTheoMa(sc.nextLine());
                     break;
                 }
                 case 4: {
-                    //xoa
+                    System.out.println("Nhap ma nha cung cap muon xoa: ");
+                    qlncc.xoaPhanTuTheoMa(sc.nextLine());
                     break;
                 }
                 case 5: {
-                    //tk
+                    System.out.println("Nhap nha cung cap muon tim: ");
+                    qlncc.timKiem(sc.nextLine());
                     break;
                 }
                 case 6: {

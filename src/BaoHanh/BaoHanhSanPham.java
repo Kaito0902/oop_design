@@ -4,6 +4,7 @@ import KhachHang.KhachHang;
 import NhanVien.NhanVien;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
@@ -23,6 +24,7 @@ public class BaoHanhSanPham {
     static String[] loaiTrangThai = {"Dang xu ly bao hanh", "Da xu ly bao hanh", "Tu choi bao hanh, Da huy"};
     static int tongBaoHanh = 0;
     static Scanner sc = new Scanner(System.in);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public BaoHanhSanPham() {
     }
@@ -125,7 +127,7 @@ public class BaoHanhSanPham {
 
     @Override
     public String toString() {
-        return String.format("%-10s %-15s %-30s %-15s %-15s %-20s", maBaoHanh, khachHang, lyDo, ngayNhan, trangThai, Arrays.toString(lichSuYeuCau));
+        return String.format("%-10s %-15s %-30s %-15s %-15s %-20s", maBaoHanh, khachHang, lyDo, ngayNhan.format(formatter), trangThai, Arrays.toString(lichSuYeuCau));
     }
 
     public void output() {

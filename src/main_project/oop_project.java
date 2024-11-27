@@ -33,6 +33,7 @@ public class oop_project {
         qlnp.docTuFileDSNP();
         qlkm.docTuFile();
 //        qlhd.docTuFileDSHD();
+        qlncc.docTuFile();
         boolean kt = true;
         int lc;
         while (kt) {
