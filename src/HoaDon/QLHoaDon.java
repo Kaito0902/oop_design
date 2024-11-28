@@ -80,19 +80,40 @@ public class QLHoaDon {
     //         }
     //     }
     // }
-    public void sapXepHoaDonTheoNgay() {
+    // public void sapXepHoaDonTheoNgay() {
+    //     for (int i = 0; i < dshd.length - 1; i++) {
+    //         for (int j = 0; j < dshd.length - i - 1; j++) {
+    //             if (dshd[j].getNgayLapHoaDon().isAfter(dshd[j + 1].getNgayLapHoaDon())) {
+    //                 HoaDon temp = dshd[j];
+    //                 dshd[j] = dshd[j + 1];
+    //                 dshd[j + 1] = temp;
+    //             }
+    //         }
+    //     }
+    //         System.out.println("Hoa don sau khi sap xep:");
+    //     for (HoaDon hd : dshd) {
+    //         hd.xuat();
+    //     }
+    // }
+    public void sapXepHoaDonTheoLoai() {
         for (int i = 0; i < dshd.length - 1; i++) {
             for (int j = 0; j < dshd.length - i - 1; j++) {
-                if (dshd[j].getNgayLapHoaDon().isAfter(dshd[j + 1].getNgayLapHoaDon())) {
-                    HoaDon temp = dshd[j];
-                    dshd[j] = dshd[j + 1];
-                    dshd[j + 1] = temp;
+                boolean isFirstDoiTra = dshd[j] instanceof HoaDonDoiTraHang;
+                boolean isSecondBanHang = dshd[j + 1] instanceof HoaDonBanHang;
+                    if (isFirstDoiTra && isSecondBanHang) {
+                        HoaDon temp = dshd[j];
+                        dshd[j] = dshd[j + 1];
+                        dshd[j + 1] = temp;
                 }
             }
         }
-            System.out.println("Hoa don sau khi sap xep:");
+        System.out.println("Sau khi sap xep: ");
         for (HoaDon hd : dshd) {
-            hd.xuat();
+            if (hd instanceof HoaDonBanHang hdbh) {
+                hdbh.xuat();
+            } else if (hd instanceof HoaDonDoiTraHang hddt) {
+                hddt.xuat();
+            }
         }
     }
     
