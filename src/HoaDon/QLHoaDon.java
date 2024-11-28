@@ -204,7 +204,7 @@ public class QLHoaDon {
                 double thanhTien = Double.parseDouble(data[5]);
 
                 ChiTietHoaDonBanHang ctbh = new ChiTietHoaDonBanHang(stt, maSP, soLuong, thanhTien);
-                hdbh.themChiTiet(ctbh);
+                hdbh.themChiTietHoaDonBanHang(ctbh);
 
             } else if (data[0].equals("ChiTietHoaDonDoiTraHang") && hd instanceof HoaDonDoiTraHang htdth) {
                 // Đọc chi tiết của hóa đơn đổi trả hàng
