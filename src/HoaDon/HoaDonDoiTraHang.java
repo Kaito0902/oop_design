@@ -16,8 +16,8 @@ public class HoaDonDoiTraHang extends HoaDon {
     private int soLuongChiTiet = 0;
     private double tongGiaTri; // tong so tien hoan tra
     private String ghiChu; 
-    private double tienHoanTra; // Số tiền hoàn trả sau khi trừ %
-    private double tiLeTru; // Tỷ lệ phần trăm trừ vào số tiền hoàn trả
+    private double tienHoanTra;
+    private double tiLeTru;
     static Scanner scanner = new Scanner(System.in);
 
     public HoaDonDoiTraHang() {
@@ -102,7 +102,6 @@ public class HoaDonDoiTraHang extends HoaDon {
         this.hoaDonGoc = hoaDonGoc;
     }
 
-    // Nhập thông tin hóa đơn đổi trả
     @Override
     public void input() {
         super.input();

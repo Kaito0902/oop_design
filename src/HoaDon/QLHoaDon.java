@@ -19,13 +19,11 @@ public class QLHoaDon {
     private static final Scanner sc = new Scanner(System.in);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    // Thêm hóa đơn mới
     public void themHD(HoaDon hd) {
         dshd = Arrays.copyOf(dshd, dshd.length + 1);
         dshd[dshd.length - 1] = hd;
     }
 
-    // Xuất danh sách hóa đơn
     public void xuatdshd() {
         if (dshd.length == 0) {
             System.out.println("Danh sach hoa don trong!");
@@ -40,7 +38,6 @@ public class QLHoaDon {
         }
     }
 
-    // tìm kiếm hóa đơn theo mã
     public HoaDon timKiemHoaDonTheoMa(String maHoaDon) {
         for (HoaDon hd : dshd) {
             if (hd != null && hd.getMaHoaDon().equals(maHoaDon)) {
@@ -50,33 +47,41 @@ public class QLHoaDon {
         return null;
     }
 
-    // Tìm kiếm hóa đơn theo tên khách hàng
-    // public void timKiemHoaDon() {
-    // System.out.print("Nhap ten khach hang can tim: ");
-    // String tenKhachHang = sc.nextLine();
-    // boolean found = false;
-    // for (HoaDon hd : dshd) {
-    // if (hd != null && hd.getKhachHang().equalsIgnoreCase(tenKhachHang)) {
-    // System.out.println("Hoa don tim thay:");
-    // hd.xuat();
-    // found = true;
-    // }
-    // }
-    // if (!found) {
-    // System.out.println("Khong tim thay hoa don cua khach hang: " + tenKhachHang);
-    // }
-    // }
+  
+    private double getTongTien(HoaDon hd) {
+        if (hd instanceof HoaDonBanHang hdbh) {
+            return hdbh.getTongTien();
+        } else if (hd instanceof HoaDonDoiTraHang hddt) {
+            return hddt.getTongGiaTri();
+        }
+        return 0;
+    }
 
-    // Sắp xếp danh sách hóa đơn theo tổng tiền giảm dần
-    // public void sapXep() {
-    // Arrays.sort(dshd, (hd1, hd2) -> {
-    // if (hd1 == null) return 1;
-    // if (hd2 == null) return -1;
-    // return Double.compare(hd2.getTongSoTien(), hd1.getTongSoTien());
-    // });
-    // System.out.println("Danh sach hoa don da sap xep theo tong tien (giam
-    // dan).");
-    // }
+    
+
+    public void sapXepHoaDonTheoTongTien() {
+        for (int i = 0; i < dshd.length - 1; i++) {
+            for (int j = 0; j < dshd.length - i - 1; j++) {
+                if (getTongTien(dshd[j]) > getTongTien(dshd[j + 1])) {
+                    HoaDon temp = dshd[j];
+                    dshd[j] = dshd[j + 1];
+                    dshd[j + 1] = temp;
+                }
+            }
+        }
+    
+        // Xuất danh sách sau khi sắp xếp
+        System.out.println("Danh sach hoa don sau khi sap xep: ");
+        for (HoaDon hd : dshd) {
+            if (hd instanceof HoaDonBanHang hdbh) {
+                hdbh.xuat();
+            } else if (hd instanceof HoaDonDoiTraHang hddt) {
+                hddt.xuat();
+            }
+        }
+    }
+    
+
 
     // Lấy số lượng hóa đơn hiện tại
     public void laySLHoaDon() {
@@ -207,7 +212,6 @@ public class QLHoaDon {
                 hdbh.themChiTietHoaDonBanHang(ctbh);
 
             } else if (data[0].equals("ChiTietHoaDonDoiTraHang") && hd instanceof HoaDonDoiTraHang htdth) {
-                // Đọc chi tiết của hóa đơn đổi trả hàng
                 int stt = Integer.parseInt(data[1]);
                 String maSP = data[2];
                 String tenSP = data[3];

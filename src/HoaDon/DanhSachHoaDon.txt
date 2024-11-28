@@ -1,0 +1,5 @@
+HD001,25/11/2024,Nguyen Van A,Le Thi B,BanHang,KM001,10.0,5.0,ChuyenKhoan,500000.0
+ChiTietHoaDonBanHang,1,#sp001,Intel Core i9 14900KS,2,200000.0
+ChiTietHoaDonBanHang,2,#sp002,NViDIA Geforce RTX 4090,1,300000.0
+HD002,26/11/2024,Tran Van C,Nguyen Van D,DoiTraHang,200000.0,Loi san xuat,190000.0,5.0
+ChiTietHoaDonDoiTraHang,1,#sp003,SamSung MZ-V8P500BW,1,Loi san xuat,Hoan tra,190000.0
