@@ -48,38 +48,54 @@ public class QLHoaDon {
     }
 
   
-    private double getTongTien(HoaDon hd) {
-        if (hd instanceof HoaDonBanHang hdbh) {
-            return hdbh.getTongTien();
-        } else if (hd instanceof HoaDonDoiTraHang hddt) {
-            return hddt.getTongGiaTri();
-        }
-        return 0;
-    }
+    // private double getTongTien(HoaDon hd) {
+    //     if (hd instanceof HoaDonBanHang hdbh) {
+    //         return hdbh.getTongTien();
+    //     } else if (hd instanceof HoaDonDoiTraHang hddt) {
+    //         return hddt.getTongGiaTri();
+    //     }
+    //     return 0;
+    // }
 
     
 
-    public void sapXepHoaDonTheoTongTien() {
+    // public void sapXepHoaDonTheoTongTien() {
+    //     for (int i = 0; i < dshd.length - 1; i++) {
+    //         for (int j = 0; j < dshd.length - i - 1; j++) {
+    //             if (getTongTien(dshd[j]) > getTongTien(dshd[j + 1])) {
+    //                 HoaDon temp = dshd[j];
+    //                 dshd[j] = dshd[j + 1];
+    //                 dshd[j + 1] = temp;
+    //             }
+    //         }
+    //     }
+    
+    //     // Xuất danh sách sau khi sắp xếp
+    //     System.out.println("Danh sach hoa don sau khi sap xep: ");
+    //     for (HoaDon hd : dshd) {
+    //         if (hd instanceof HoaDonBanHang hdbh) {
+    //             hdbh.xuat();
+    //         } else if (hd instanceof HoaDonDoiTraHang hddt) {
+    //             hddt.xuat();
+    //         }
+    //     }
+    // }
+    public void sapXepHoaDonTheoNgay() {
         for (int i = 0; i < dshd.length - 1; i++) {
             for (int j = 0; j < dshd.length - i - 1; j++) {
-                if (getTongTien(dshd[j]) > getTongTien(dshd[j + 1])) {
+                if (dshd[j].getNgayLapHoaDon().isAfter(dshd[j + 1].getNgayLapHoaDon())) {
                     HoaDon temp = dshd[j];
                     dshd[j] = dshd[j + 1];
                     dshd[j + 1] = temp;
                 }
             }
         }
-    
-        // Xuất danh sách sau khi sắp xếp
-        System.out.println("Danh sach hoa don sau khi sap xep: ");
+            System.out.println("Hoa don sau khi sap xep:");
         for (HoaDon hd : dshd) {
-            if (hd instanceof HoaDonBanHang hdbh) {
-                hdbh.xuat();
-            } else if (hd instanceof HoaDonDoiTraHang hddt) {
-                hddt.xuat();
-            }
+            hd.xuat();
         }
     }
+    
     
 
 
