@@ -1,0 +1,3 @@
+kh01,Nguyen Hong Duy,Nam,19/07/2005,288/55/4F,0982870931,duynguyen19087@gmail.com,Than Thiet,true,10,1,0.05,false,0.0
+kh02,Ngo Dong At,Nam,20/12/2005,288/55/4F,0335591458,at123@gmail.com,Than Thiet,true,20,1,0.05,false,0.0
+kh03,Tran Minh Dang,Nam,12/12/2005,288/55/4F,0988570276,dang123@gmail.com,Than Thiet,true,100,1,0.05,true,0.05

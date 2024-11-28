@@ -76,9 +76,9 @@ public class KhachHangDoiTacDoanhNghiep extends KhachHang implements TraGop{
     @Override
     public String toString() {
         if (traGop)    
-            return super.toString() + String.format("%-10b %-10s %-10.2f %-15d %-10.2f",traGop ,tenCongTy,tinhUuDai(),getTichDiem(), laiSuatTraGop());
+            return super.toString() + String.format("%-10s %-10.2f %-15d %-10b %-10.2f" ,tenCongTy,tinhUuDai(),getTichDiem() ,traGop, laiSuatTraGop());
         else
-            return super.toString() + String.format("%-10b %-10s %-10.2f %-15d",traGop ,tenCongTy ,tinhUuDai(), getTichDiem());
+            return super.toString() + String.format("%-10s %-10.2f %-15d %-10b" ,tenCongTy ,tinhUuDai(), getTichDiem(), traGop);
     }
 
 }

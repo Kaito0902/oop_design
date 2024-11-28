@@ -195,6 +195,55 @@ public class QLKhachHang {
                 }
             // }
         }
+        // cap nhap tu dong vip
+        public void capNhatLoaiKhachHang(QLHoaDon qlHoaDon) {
+            for (int i = 0; i < dskh.length; i++) {
+                KhachHang kh = dskh[i];
+                double tongSoTien = 5000000;//qlHoaDon.getTongSoTien(kh.getMaKhachHang())
+                
+                if (tongSoTien >= 5000000 && !(kh instanceof KhachHangVip)) {//&& kh instanceof KhachHangCaNhan
+
+                    // KhachHang caNhan = (KhachHangCaNhan) kh;
+                    // caNhan.setLoaiKhachHang("Than Thiet"); 
+                    // caNhan.setTichDiem(caNhan.tinhDiemThuong(tongSoTien));
+                    
+                    int heSo = xeploaiheSo(qlHoaDon);
+                    // Nâng cấp lên khách hàng VIP
+                    KhachHang vip = new KhachHangVip(
+                        kh.getHoTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getDiaChi(), kh.getSdt(),
+                        kh.getEmail(), kh.getMaKhachHang(), "Than Thiet",kh.isIsdelete(), kh.getTichDiem(), heSo
+                    );
+
+                    if (kh instanceof KhachHangCaNhan || kh instanceof KhachHangSinhVien) {
+                        ((KhachHangVip) vip).setTraGop(false);
+                    } else if (kh instanceof KhachHangDoiTacDoanhNghiep) {
+                        boolean traGop = ((KhachHangDoiTacDoanhNghiep) kh).isTraGop();
+                        ((KhachHangVip) vip).setTraGop(traGop);
+                    } else {
+                        System.out.println("Không xác định loại khách hàng, không thể thiết lập trả góp!");
+                    }
+                    // System.out.println("Cập nhật thông tin cho khách hàng " + kh.getMaKhachHang() +" sau khi nâng cấp:");
+                    // if (vip instanceof KhachHangVip) {
+                    //     ((KhachHangVip) vip).inputThongTinVip();
+                    // }
+                    // for (int i = 0; i < dskh.length; i++)
+                    //     if (dskh[i].getSdt().equalsIgnoreCase(sdt)){
+                    //         dskh[i] = vip;
+                    //         break;
+                    //     }
+                    dskh[i] = vip;
+                    System.out.println("Khach hang " + kh.getMaKhachHang() + " đã được nâng cấp lên VIP");
+                } else {
+                    // Giữ nguyên nếu không đạt điều kiện
+                    System.out.println("Khach hang " + kh.getMaKhachHang() + " không đủ điều kiện để lên VIP");
+                }
+            }
+        }
+
+        public int xeploaiheSo(QLHoaDon qlHoaDon) {
+            double tongSoTien = 5000000;//qlHoaDon.getTongSoTien(kh.getMaKhachHang())
+            return tongSoTien >= 5000000?1:(tongSoTien>= 10000000?2:(tongSoTien >= 15000000?3:(tongSoTien>= 20000000?4:5)));
+        }
 
     //writetofile
     public void ghiVaoFileDSKH() {
@@ -399,6 +448,7 @@ public class QLKhachHang {
                         System.out.println("===================================");
                         System.out.println("|\t      DANH SACH HOA DON      \t|");
                         System.out.println("===================================");
+                        capNhatLoaiKhachHang(qlhd);
                         xuatdskh();
                     } 
                     break;
@@ -471,10 +521,11 @@ public class QLKhachHang {
                     System.out.println("DA DOC DU LIEU TU FILE!!!");
                     break;
                 case 11:
-                    System.out.println("Nhap sdt de tim khach hang muon nang cap:");
-                    String ma3 = scanner.nextLine();
+                    // System.out.println("Nhap sdt de tim khach hang muon nang cap:");
+                    // String ma3 = scanner.nextLine();
                     if ( dskh.length > 0 ){
-                        capNhatLoaiKhachHang(qlhd,ma3);
+                        // capNhatLoaiKhachHang(qlhd,ma3);
+                        capNhatLoaiKhachHang(qlhd);
                     ghiVaoFileDSKH();
                     }
                     else
