@@ -1,5 +1,8 @@
 package BaoHanh;
 
+import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -7,6 +10,7 @@ public class QLBaoHanh {
     BaoHanhSanPham[] dsBaoHanh = new BaoHanhSanPham[0];
     int soLuong = 0;
     static Scanner sc = new Scanner(System.in);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public void themBaoHanh(BaoHanhSanPham baoHanhSanPham) {
         BaoHanhSanPham[] newdsBaoHanh = Arrays.copyOf(dsBaoHanh, soLuong + 1);
@@ -48,6 +52,56 @@ public class QLBaoHanh {
 
         if (!found) {
             System.out.println("Ma bao hanh khong dung.");
+        }
+    }
+
+    public void docTuFileDSBH() {
+        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\BaoHanh\\danhSachBaoHanhSanPham"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length > 0) {
+                    String maBaoHang = data[0];
+                    String maKhachHang = data[1];
+                    String tenKhachHang = data[2];
+                    String maNhanVienPhuTrach = data[3];
+                    String tenNhanVienPhuTrach = data[4];
+                    String lyDo = data[5];
+                    LocalDate ngayNhan = LocalDate.parse(data[6], formatter);
+                    String trangThai = data[7];
+                    BaoHanhSanPham bhsp = new BaoHanhSanPham(maBaoHang, maKhachHang, maNhanVienPhuTrach, lyDo, ngayNhan, trangThai);
+                    themBaoHanh(bhsp);
+                }
+                else {
+                    System.out.println("Du lieu khong hop le.");
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Loi doc file: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Loi dinh dang so trong du lieu: " + e.getMessage());
+        }
+    }
+
+    public void ghiVaoFileDSBH() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\BaoHanh\\danhSachBaoHanhSanPham"))) {
+            for (BaoHanhSanPham bh : dsBaoHanh){
+                writer.write(String.join(",",
+                        bh.getMaBaoHanh(),
+                        bh.getKhachHang().getMaKhachHang(),
+                        bh.getKhachHang().getHoTen(),
+                        bh.getNhanVienPhuTrach().getMaNhanVien(),
+                        bh.getNhanVienPhuTrach().getTenNhanVien(),
+                        bh.getLyDo(),
+                        String.valueOf(bh.getNgayNhan().format(formatter)),
+                        bh.getTrangThai()
+                ));
+                writer.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Loi ghi file: " + e.getMessage());
         }
     }
 }

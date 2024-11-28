@@ -81,7 +81,7 @@ public class HoaDon {
             setKhachHang(kh);
         }
         else {
-            qlkh.nhapKhachHang();
+//            qlkh.nhapKhachHang();
             setKhachHang(qlkh.timkiemKhachHangTheoSdt(sdt));
         }
 

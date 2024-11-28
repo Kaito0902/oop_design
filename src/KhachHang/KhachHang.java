@@ -3,15 +3,14 @@ package KhachHang;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import ChucNang.ChuanHoaDuLieu;
-import HoaDon.HoaDon;
-import HoaDon.QLHoaDon; 
+import HoaDon.QLHoaDon;
+
+import static ChucNang.ChuanHoaDuLieu.*;
 
 public abstract class KhachHang {
     private static QLKhachHang qlkhGlobal; //123
     static int tongKH = 0;
     static Scanner scanner = new Scanner(System.in);
-    ChuanHoaDuLieu chuanHoa = new ChuanHoaDuLieu();
 
     //atrribute thông tin cá nhân 
     protected String hoTen;
@@ -60,7 +59,7 @@ public abstract class KhachHang {
     }
 
     public void setHoTen(String hoTen) {
-        this.hoTen = chuanHoa.chuanHoaTen(hoTen);
+        this.hoTen = chuanHoaTen(hoTen);
     }
 
     public String getGioiTinh() {
@@ -68,7 +67,7 @@ public abstract class KhachHang {
     }
 
     public void setGioiTinh(String gioiTinh) {
-        this.gioiTinh =  chuanHoa.chuanHoaGioiTinh(gioiTinh);
+        this.gioiTinh =  chuanHoaGioiTinh(gioiTinh);
     }
 
     public String getNgaySinh() {
@@ -76,10 +75,10 @@ public abstract class KhachHang {
     }
 
     public void setNgaySinh(String ngaySinh) {
-        LocalDate date = chuanHoa.chuanHoaNgayThangNam(ngaySinh);
+        LocalDate date = chuanHoaNgayThangNam(ngaySinh);
         while (date == null) {
             ngaySinh = scanner.nextLine();
-            date = chuanHoa.chuanHoaNgayThangNam(ngaySinh);
+            date = chuanHoaNgayThangNam(ngaySinh);
         }
         this.ngaySinh = ngaySinh;
     }
@@ -101,7 +100,7 @@ public abstract class KhachHang {
     }
 
     public void setSdt(String sdt) {
-            this.sdt = chuanHoa.chuanHoaSoDienThoai(sdt,qlkhGlobal);//123
+            this.sdt = chuanHoaSoDienThoai(sdt,qlkhGlobal);//123
     }
 
     public String getEmail() {
@@ -109,7 +108,7 @@ public abstract class KhachHang {
     }
 
     public void setEmail(String email) {
-        this.email = chuanHoa.chuanHoaEmail(email);
+        this.email = chuanHoaEmail(email);
     }
 
     public String getMaKhachHang() {
@@ -191,50 +190,6 @@ public abstract class KhachHang {
             setLoaiKhachHang("Tiem Nang");
     }
 
-    // public void inputGiaoDich(QLHoaDon qlhd) {
-    //     // giao dich
-    //     boolean themgiaodich = false;
-    //     while (true) {
-    //         System.out.println("Ban co muon them giao dich khong(Y/N):");
-    //         String chon = scanner.nextLine().trim().toUpperCase();
-    //         if (chon.equals("Y")){
-    //             themgiaodich = true;
-    //             break;
-    //         }else if (chon.equals("N")){
-    //             themgiaodich = false;
-    //             break;
-    //         }else{
-    //             System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
-    //         }
-    //     }
-        
-    //     while (themgiaodich) {
-    //         HoaDon gd = new HoaDon();
-    //         gd.input();
-
-    //         if ( soluonggiaodich < giaodich.length )
-    //             giaodich[soluonggiaodich++] = gd;
-    //         else
-    //             System.out.println("khong the them giao dich:So luong dat toi da!!!");  
-    //         qlhd.themHD(gd);
-        
-
-    //         while ( true ) {
-    //             System.out.println("Ban co muon them giao dich khac khong(Y/N):");
-    //             String chon = scanner.nextLine().trim().toUpperCase();
-    //             if (chon.equals("Y")) {
-    //                 themgiaodich = true;
-    //                 break;
-    //             } else if (chon.equals("N")) {
-    //                 themgiaodich = false;
-    //                 break;
-    //             } else {
-    //                 System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
-    //             }
-    //         }
-    //     }
-    // }
-
     //output 
     public void output() {
         System.out.println(toString());
@@ -251,7 +206,7 @@ public abstract class KhachHang {
     public boolean ktra (String loaiKH) {
         for (var i : loai)
             if ( i.equalsIgnoreCase(loaiKH) )
-            return true;
+                return true;
         return false; 
     }
 

@@ -359,6 +359,8 @@ public class QLSanPham{
                 String.valueOf(sp.getTrongLuongSP()),
                 sp.getMauSacSP(),
                 String.valueOf(sp.getSoLuongNhap()),
+                String.valueOf(sp.getSoLuongXuat()),
+                String.valueOf(sp.getSoLuongTonKho()),
                 String.valueOf(sp.isNotDeleted()),
                 ""
                 ));
@@ -561,9 +563,7 @@ public class QLSanPham{
                     } 
                 }
             }
-            writer.close();
-            System.out.println("Da nhap vao file.");
-        } 
+        }
         catch (IOException e){
             System.out.println("Khong nhap duoc file.");
         }

@@ -33,6 +33,8 @@ public class oop_project {
         qlsp.docTuFile();
         qlnp.docTuFileDSNP();
         qlkm.docTuFile();
+        qlkh.docTuFileDSKH();
+        qlbh.docTuFileDSBH();
 //        qlhd.docTuFileDSHD();
         qlncc.docTuFile();
         qlddh.docTuFileDSDDH();

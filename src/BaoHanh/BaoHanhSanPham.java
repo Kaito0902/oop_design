@@ -5,8 +5,6 @@ import NhanVien.NhanVien;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 
 import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
@@ -20,7 +18,6 @@ public class BaoHanhSanPham {
     private String lyDo;
     private LocalDate ngayNhan;
     private String trangThai;
-    private String[] lichSuYeuCau;
     static String[] loaiTrangThai = {"Dang xu ly bao hanh", "Da xu ly bao hanh", "Tu choi bao hanh, Da huy"};
     static int tongBaoHanh = 0;
     static Scanner sc = new Scanner(System.in);
@@ -29,14 +26,13 @@ public class BaoHanhSanPham {
     public BaoHanhSanPham() {
     }
 
-    public BaoHanhSanPham(String maBaoHanh, KhachHang khachHang, NhanVien nhanVienPhuTrach, String lyDo, LocalDate ngayNhan, String trangThai, String[] lichSuYeuCau) {
+    public BaoHanhSanPham(String maBaoHanh, String maKhachHang, String maNhanVienPhuTrach, String lyDo, LocalDate ngayNhan, String trangThai) {
         this.maBaoHanh = maBaoHanh;
-        this.khachHang = khachHang;
-        this.nhanVienPhuTrach = nhanVienPhuTrach;
+        this.khachHang = qlkh.timkiemKhachHangTheoMa(maKhachHang);
+        this.nhanVienPhuTrach = qlnv.timKiemNhanVien(maNhanVienPhuTrach);
         this.lyDo = lyDo;
         this.ngayNhan = ngayNhan;
         this.trangThai = trangThai;
-        this.lichSuYeuCau = lichSuYeuCau;
     }
 
     public String getMaBaoHanh() {
@@ -68,15 +64,14 @@ public class BaoHanhSanPham {
     }
 
     public void setNgayNhan(String ngayNhan) {
+        LocalDate nhan = chuanHoaNgayThangNam(ngayNhan);
+        while (nhan.isBefore(LocalDate.now())) {
+            System.out.println("Ngay nhan khong the trong qua khu.");
+            System.out.println("Nhap lai ngay nhan san pham (dd/MM/yyyy): ");
+            ngayNhan = sc.nextLine();
+            nhan = chuanHoaNgayThangNam(ngayNhan);
+        }
         this.ngayNhan = chuanHoaNgayThangNam(ngayNhan);
-    }
-
-    public String[] getLichSuYeuCau() {
-        return lichSuYeuCau;
-    }
-
-    public void setLichSuYeuCau(String[] lichSuYeuCau) {
-        this.lichSuYeuCau = lichSuYeuCau;
     }
 
     public KhachHang getKhachHang() {
@@ -108,26 +103,13 @@ public class BaoHanhSanPham {
         setNgayNhan(sc.nextLine());
 
         setTrangThai(loaiTrangThai[0]);
-        capNhatLichSu(trangThai);
 
         maBaoHanh = "bh" + String.format("%02d", ++tongBaoHanh);
     }
 
-    private void capNhatLichSu(String trangThaiMoi) {
-        if (lichSuYeuCau == null) {
-            lichSuYeuCau = new String[0];
-        }
-
-        String[] lichSuMoi = new String[lichSuYeuCau.length + 1];
-        System.arraycopy(lichSuYeuCau, 0, lichSuMoi, 0, lichSuYeuCau.length);
-
-        lichSuMoi[lichSuYeuCau.length] = "Trang thai cap nhat: " + trangThaiMoi + " vao ngay " + new Date();
-        lichSuYeuCau = lichSuMoi;
-    }
-
     @Override
     public String toString() {
-        return String.format("%-10s %-15s %-30s %-15s %-15s %-20s", maBaoHanh, khachHang, lyDo, ngayNhan.format(formatter), trangThai, Arrays.toString(lichSuYeuCau));
+        return String.format("%-10s %-15s %-30s %-15s %-15s", maBaoHanh, khachHang, lyDo, ngayNhan.format(formatter), trangThai);
     }
 
     public void output() {
