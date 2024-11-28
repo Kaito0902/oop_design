@@ -1,2 +1,2 @@
 kh01,Nguyen Hong Duy,Nam,19/07/2005,dasd,0123456789,dsada,Than Thiet,true,5,2,0.1,false,0.0
-kh02,Duy,Nam,19/07/2005,dsdsd,0982870931,dsdsds,Than Thiet,true,4,3,0.15000000000000002,true,0.05
+kh02,Duy,Nam,19/07/2005,dsdsd,0982870931,dsdsds,Than Thiet,true,4,3,0.15000000000000002,false,0.0

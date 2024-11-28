@@ -3,6 +3,7 @@ package HoaDon;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import DonDatHang.ChiTietDonDatHang;
 import KhachHang.KhachHang;
 import KhuyenMai.KhuyenMai;
 import NhanVien.NhanVien;
@@ -23,11 +24,13 @@ public class HoaDonBanHang extends HoaDon {
     }
 
     // constructor day du tham so
-    public HoaDonBanHang(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang, ChiTietHoaDonBanHang[] chiTietHoaDonList, int soLuongChiTiet, KhuyenMai khuyenMai, double tienThue, double chietKhau, String phuongThucThanhToan, double tongTien) {
-        super(maHoaDon, ngayLapHoaDon, nhanVienLapHoaDon, khachHang);
-        this.chiTietHoaDonBanHangList = chiTietHoaDonList;
+
+
+    public HoaDonBanHang(String maHoaDon, LocalDate ngayLapHoaDon, String maNhanVienLapHoaDon, String maKhachHang, String loaiHoaDon, ChiTietHoaDonBanHang[] chiTietHoaDonBanHangList, int soLuongChiTiet, String maKhuyenMai, double tienThue, double chietKhau, String phuongThucThanhToan, double tongTien) {
+        super(maHoaDon, ngayLapHoaDon, maNhanVienLapHoaDon, maKhachHang, loaiHoaDon);
+        this.chiTietHoaDonBanHangList = chiTietHoaDonBanHangList;
         this.soLuongChiTiet = soLuongChiTiet;
-        this.khuyenMai = khuyenMai;
+        this.khuyenMai = qlkm.timKhuyenMai(maKhuyenMai);
         this.tienThue = tienThue;
         this.chietKhau = chietKhau;
         this.phuongThucThanhToan = phuongThucThanhToan;
@@ -137,11 +140,13 @@ public class HoaDonBanHang extends HoaDon {
         tongTien -= khuyenMai.getTongKhuyenMai(); // Trừ khuyến mãi
     }
 
-//     Ghi thông tin ra chuỗi (hỗ trợ ghi file)
-//    @Override
-//    public String toString() {
-//        String.format("")
-//    }
+    @Override
+    public String toString() {
+        return super.toString()+String.format("%-5s %-5.2f %-5.2f %-15s %-10.2f",khuyenMai.getMaKhuyenMai(),tienThue,chietKhau,phuongThucThanhToan,tongTien);
+    }
+
+
+
 
 
 }

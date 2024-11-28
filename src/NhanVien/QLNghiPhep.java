@@ -78,7 +78,7 @@ public class QLNghiPhep {
     }
 
     public void ghiVaoFileDSNP() {
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\NhanVien\\danhSachDonNghiPhep"))){
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("src/NhanVien/danhSachDonNghiPhep"))){
             for (NghiPhep ds : dsNghiPhep) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 writer.write(String.join(",",
@@ -96,7 +96,7 @@ public class QLNghiPhep {
     }
 
     public void docTuFileDSNP() {
-        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\NhanVien\\danhSachDonNghiPhep"))) {
+        try(BufferedReader reader = new BufferedReader(new FileReader("src/NhanVien/danhSachDonNghiPhep"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");

@@ -134,7 +134,7 @@ public class QLNhaCungCap {
 
     public void nhapVaoFile()
     {
-        String file = "C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\ChuoiCungCap\\DanhSachNhaCungCap.txt";
+        String file = "src/ChuoiCungCap/DanhSachNhaCungCap.txt";
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
             for(NhaCungCap ncc:ds){
                 writer.write(String.join(",",
@@ -156,7 +156,7 @@ public class QLNhaCungCap {
 
     public void docTuFile()
     {
-        String file = "C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\ChuoiCungCap\\DanhSachNhaCungCap.txt";
+        String file = "src/ChuoiCungCap/DanhSachNhaCungCap.txt";
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             String line;
             while ((line = reader.readLine()) != null) {

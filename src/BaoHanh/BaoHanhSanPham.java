@@ -2,18 +2,19 @@ package BaoHanh;
 
 import KhachHang.KhachHang;
 import NhanVien.NhanVien;
+import SanPham.SanPham;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
-import static main_project.oop_project.qlkh;
-import static main_project.oop_project.qlnv;
+import static main_project.oop_project.*;
 
 public class BaoHanhSanPham {
     private String maBaoHanh;
     private KhachHang khachHang;
+    private SanPham sanPham;
     private NhanVien nhanVienPhuTrach;
     private String lyDo;
     private LocalDate ngayNhan;
@@ -26,9 +27,10 @@ public class BaoHanhSanPham {
     public BaoHanhSanPham() {
     }
 
-    public BaoHanhSanPham(String maBaoHanh, String maKhachHang, String maNhanVienPhuTrach, String lyDo, LocalDate ngayNhan, String trangThai) {
+    public BaoHanhSanPham(String maBaoHanh, String maKhachHang, String maSanPham, String maNhanVienPhuTrach, String lyDo, LocalDate ngayNhan, String trangThai) {
         this.maBaoHanh = maBaoHanh;
         this.khachHang = qlkh.timkiemKhachHangTheoMa(maKhachHang);
+        this.sanPham = qlsp.timKiem(maSanPham);
         this.nhanVienPhuTrach = qlnv.timKiemNhanVien(maNhanVienPhuTrach);
         this.lyDo = lyDo;
         this.ngayNhan = ngayNhan;
@@ -63,6 +65,19 @@ public class BaoHanhSanPham {
         return ngayNhan;
     }
 
+    public SanPham getSanPham() {
+        return sanPham;
+    }
+
+    public void setSanPham(SanPham sanPham) {
+        while (sanPham == null) {
+            System.out.println("Khong tim thay san pham.");
+            System.out.println("Vui long nhap lai ma san pham: ");
+            sanPham = qlhd.timSanPhamTrongHoaDon(getKhachHang().getSdt(), sc.nextLine());
+        }
+        this.sanPham = sanPham;
+    }
+
     public void setNgayNhan(String ngayNhan) {
         LocalDate nhan = chuanHoaNgayThangNam(ngayNhan);
         while (nhan.isBefore(LocalDate.now())) {
@@ -79,6 +94,11 @@ public class BaoHanhSanPham {
     }
 
     public void setKhachHang(KhachHang khachHang) {
+        while (khachHang == null) {
+            System.out.println("Khong tim thay khach hang.");
+            System.out.println("Nhap lai so dien thoai khach hang: ");
+            khachHang = qlkh.timkiemKhachHangTheoSdt(sc.nextLine());
+        }
         this.khachHang = khachHang;
     }
 
@@ -93,6 +113,9 @@ public class BaoHanhSanPham {
     public void input() {
         System.out.println("Nhap so dien thoai: ");
         setKhachHang(qlkh.timkiemKhachHangTheoSdt(sc.nextLine()));
+
+        System.out.println("Nhap ma san pham khach hang bao hanh: ");
+        setSanPham(qlhd.timSanPhamTrongHoaDon(getKhachHang().getSdt(), sc.nextLine()));
 
         setNhanVienPhuTrach(qlnv.nguoiDangNhap());
 
@@ -109,7 +132,7 @@ public class BaoHanhSanPham {
 
     @Override
     public String toString() {
-        return String.format("%-10s %-15s %-30s %-15s %-15s", maBaoHanh, khachHang, lyDo, ngayNhan.format(formatter), trangThai);
+        return String.format("%-10s %-10s %-15s %-10s %-15s %-10s %-15s %-30s %-15s %-15s", maBaoHanh, khachHang.getMaKhachHang(), khachHang.getHoTen(), sanPham.getMaSP(), sanPham.getTenSP(), nhanVienPhuTrach.getMaNhanVien(), nhanVienPhuTrach.getTenNhanVien(), lyDo, ngayNhan.format(formatter), trangThai);
     }
 
     public void output() {

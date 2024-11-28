@@ -35,7 +35,7 @@ public class oop_project {
         qlkm.docTuFile();
         qlkh.docTuFileDSKH();
         qlbh.docTuFileDSBH();
-//        qlhd.docTuFileDSHD();
+        qlhd.docTuFileDSHD();
         qlncc.docTuFile();
         qlddh.docTuFileDSDDH();
         boolean kt = true;
@@ -69,11 +69,12 @@ public class oop_project {
                         break;
                     }
                     case 2: {
-                        //tra cuu bang so dien thoai
+                        System.out.println("Nhap so dien thoai cua ban: ");
+                        qlhd.timKiemHoaDon(sc.nextLine());
                         break;
                     }
                     case 3: {
-                        //xem san pham
+                        qlsp.xuatDanhSach();
                         break;
                     }
                     case 4: {

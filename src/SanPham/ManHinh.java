@@ -12,7 +12,7 @@ public class ManHinh extends ThietBiNgoaiVi{
     
     }
 
-    public ManHinh(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String kieuManHinh, String kichThuoc, String tamNen, String doPhanGiai, int tanSoQuet) {
+    public ManHinh(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, String kieuManHinh, String kichThuoc, String tamNen, String doPhanGiai, int tanSoQuet) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, soLuongXuat, soLuongTonKho, isNotDeleted, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.kieuManHinh = kieuManHinh;
         this.kichThuoc = kichThuoc;

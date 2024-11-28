@@ -129,7 +129,7 @@ public class QLSanPham{
 
     public void docTuFile()
     {
-        String file = "C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\SanPham\\DanhSachSanPham.txt";
+        String file = "src/SanPham/DanhSachSanPham.txt";
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             String line;
             while((line = reader.readLine()) != null){
@@ -138,7 +138,7 @@ public class QLSanPham{
                     String maSP = data[0];
                     String tenSP = data[1];
                     float giaSP = Float.parseFloat(data[2]);
-                    String thoiGianBaoHanhSP = data[3];
+                    int thoiGianBaoHanhSP = Integer.parseInt(data[3]);
                     float trongLuongSP = Float.parseFloat(data[4]);
                     String mauSacSP = data[5];
                     int soLuongNhap = Integer.parseInt(data[6]);
@@ -162,7 +162,7 @@ public class QLSanPham{
                         int soLuongLoi = Integer.parseInt(data[21]);
                         float tanSoTurBo = Float.parseFloat(data[22]);
 
-                        CPU cpu = new CPU("", "",0, "", 0, "", 0, 0, 0, true, loaiLinhKien1, nhaSanXuat1, model1, soNhan, soLuongLoi, tanSoTurBo);
+                        CPU cpu = new CPU("", "",0, 0, 0, "", 0, 0, 0, true, loaiLinhKien1, nhaSanXuat1, model1, soNhan, soLuongLoi, tanSoTurBo);
                         SanPham.soLuongSP--;
 
                         String loaiLinhKien2 = data[23];
@@ -174,7 +174,7 @@ public class QLSanPham{
                         int soNhanCUDA = Integer.parseInt(data[29]);
                         String rayTracing = data[30];
 
-                        GPU gpu = new GPU("", "", 0, "", 0, "",0, 0, 0, true, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
+                        GPU gpu = new GPU("", "", 0, 0, 0, "",0, 0, 0, true, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
                         SanPham.soLuongSP--;
 
                         String loaiLinhKien3 = data[31];
@@ -183,7 +183,7 @@ public class QLSanPham{
                         int dungLuongRAM = Integer.parseInt(data[34]);
                         String loaiRAM = data[35];
 
-                        RAM ram = new RAM("", "", 0, "", 0, "", 0, 0, 0, true, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
+                        RAM ram = new RAM("", "", 0, 0, 0, "", 0, 0, 0, true, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
                         SanPham.soLuongSP--;
 
                         String loaiLinhKien4 = data[36];
@@ -192,7 +192,7 @@ public class QLSanPham{
                         int dungLuongBoNho = Integer.parseInt(data[39]);
                         String loaiBoNho = data[40];
 
-                        BoNho boNho = new BoNho("", "", 0, "", 0, "", 0, 0, 0, true, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
+                        BoNho boNho = new BoNho("", "", 0, 0, 0, "", 0, 0, 0, true, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
                         SanPham.soLuongSP--;
 
                         PhanCung[] cacLinhKien = new PhanCung[4];
@@ -221,7 +221,7 @@ public class QLSanPham{
                         int soLuongLoi = Integer.parseInt(data[22]);
                         float tanSoTurBo = Float.parseFloat(data[23]);
 
-                        CPU cpu = new CPU("", "", 0, "", 0, "", 0, 0, 0, true, loaiLinhKien1, nhaSanXuat1, model1, soNhan, soLuongLoi, tanSoTurBo);
+                        CPU cpu = new CPU("", "", 0, 0, 0, "", 0, 0, 0, true, loaiLinhKien1, nhaSanXuat1, model1, soNhan, soLuongLoi, tanSoTurBo);
                         SanPham.soLuongSP--;
 
                         String loaiLinhKien2 = data[24];
@@ -233,7 +233,7 @@ public class QLSanPham{
                         int soNhanCUDA = Integer.parseInt(data[30]);
                         String rayTracing = data[31];
 
-                        GPU gpu = new GPU("", "", 0, "", 0, "", 0, 0, 0, true, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
+                        GPU gpu = new GPU("", "", 0, 0, 0, "", 0, 0, 0, true, loaiLinhKien2, nhaSanXuat2, model2, dungLuongVRAM, loaiVRAM, tocDoXungNhip, soNhanCUDA, rayTracing);
                         SanPham.soLuongSP--;
 
                         String loaiLinhKien3 = data[32];
@@ -242,7 +242,7 @@ public class QLSanPham{
                         int dungLuongRAM = Integer.parseInt(data[35]);
                         String loaiRAM = data[36];
 
-                        RAM ram = new RAM("", "", 0, "", 0, "", 0, 0, 0, true, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
+                        RAM ram = new RAM("", "", 0, 0, 0, "", 0, 0, 0, true, loaiLinhKien3, nhaSanXuat3, model3, dungLuongRAM, loaiRAM);
                         SanPham.soLuongSP--;
 
                         String loaiLinhKien4 = data[37];
@@ -251,7 +251,7 @@ public class QLSanPham{
                         int dungLuongBoNho = Integer.parseInt(data[40]);
                         String loaiBoNho = data[41];
 
-                        BoNho boNho = new BoNho("", "", 0, "", 0, "", 0, 0, 0, true, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
+                        BoNho boNho = new BoNho("", "", 0, 0, 0, "", 0, 0, 0, true, loaiLinhKien4, nhaSanXuat4, model4, dungLuongBoNho, loaiBoNho);
                         SanPham.soLuongSP--;
 
                         PhanCung[] cacLinhKien = new PhanCung[4];
@@ -348,7 +348,7 @@ public class QLSanPham{
 
     public void nhapVaoFile()
     {
-        String file = "C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\SanPham\\DanhSachSanPham.txt";
+        String file = "src/SanPham/DanhSachSanPham.txt";
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
             for(SanPham sp:ds){
                 writer.write(String.join(",",
@@ -626,9 +626,19 @@ public class QLSanPham{
     }
 
     public void nhapSanPhamTuDonDatHang(String maSP, int soLuong){
-        for(SanPham sp:ds){
+        for(SanPham sp : ds){
             if(sp.maSP.equals(maSP) && sp.isNotDeleted){
                 sp.soLuongNhap += soLuong;
+                sp.soLuongTonKho = sp.soLuongNhap - sp.soLuongXuat;
+            }
+        }
+    }
+
+    public void xuatSanPhamTuHoaDon(String maSP, int soLuong) {
+        for (SanPham sp : ds) {
+            if (sp.maSP.equals(maSP) && sp.isNotDeleted) {
+                sp.soLuongXuat += soLuong;
+                sp.soLuongTonKho = sp.soLuongNhap - sp.soLuongXuat;
             }
         }
     }
@@ -649,13 +659,11 @@ public class QLSanPham{
                         Desktop desktop = new Desktop();
                         desktop.loaiMayTinh = "Desktop";
                         desktop.nhap();
-//                        themSanPham(desktop);
                         return desktop;
                     } else if (choiceMT.equalsIgnoreCase("Laptop")) {
                         Laptop laptop = new Laptop();
                         laptop.loaiMayTinh = "Laptop";
                         laptop.nhap();
-//                        themSanPham(laptop);
                         return laptop;
                     } else {
                         System.out.println("Loai may tinh khong ton tai. Vui long nhap lai.");
@@ -671,25 +679,21 @@ public class QLSanPham{
                         CPU cpu = new CPU();
                         cpu.loaiLinhKien = "CPU";
                         cpu.nhap();
-//                        themSanPham(cpu);
                         return cpu;
                     } else if (choicePC.equalsIgnoreCase("GPU")) {
                         GPU gpu = new GPU();
                         gpu.loaiLinhKien = "GPU";
                         gpu.nhap();
-//                        themSanPham(gpu);
                         return gpu;
                     } else if (choicePC.equalsIgnoreCase("RAM")) {
                         RAM ram = new RAM();
                         ram.loaiLinhKien = "RAM";
                         ram.nhap();
-//                        themSanPham(ram);
                         return ram;
                     } else if (choicePC.equalsIgnoreCase("Bo Nho")) {
                         BoNho boNho = new BoNho();
                         boNho.loaiLinhKien = "Bo Nho";
                         boNho.nhap();
-//                        themSanPham(boNho);
                         return boNho;
                     } else {
                         System.out.println("Loai linh kien khong ton tai. Vui long nhap lai.");
@@ -705,19 +709,16 @@ public class QLSanPham{
                         Chuot chuot = new Chuot();
                         chuot.loaiThietBi = "Chuot";
                         chuot.nhap();
-//                        themSanPham(chuot);
                         return chuot;
                     } else if (choiceTB.equalsIgnoreCase("Man Hinh")) {
                         ManHinh manHinh = new ManHinh();
                         manHinh.loaiThietBi = "Man Hinh";
                         manHinh.nhap();
-//                        themSanPham(manHinh);
                         return manHinh;
                     } else if (choiceTB.equalsIgnoreCase("Ban Phim")) {
                         BanPhim banPhim = new BanPhim();
                         banPhim.loaiThietBi = "Ban Phim";
                         banPhim.nhap();
-//                        themSanPham(banPhim);
                         return banPhim;
                     } else {
                         System.out.println("Loai thiet bi khong ton tai. Vui long nhap lai.");

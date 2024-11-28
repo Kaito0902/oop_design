@@ -56,7 +56,7 @@ public class QLBaoHanh {
     }
 
     public void docTuFileDSBH() {
-        try(BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\BaoHanh\\danhSachBaoHanhSanPham"))) {
+        try(BufferedReader reader = new BufferedReader(new FileReader("src/BaoHanh/danhSachBaoHanhSanPham"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
@@ -64,12 +64,14 @@ public class QLBaoHanh {
                     String maBaoHang = data[0];
                     String maKhachHang = data[1];
                     String tenKhachHang = data[2];
-                    String maNhanVienPhuTrach = data[3];
-                    String tenNhanVienPhuTrach = data[4];
-                    String lyDo = data[5];
-                    LocalDate ngayNhan = LocalDate.parse(data[6], formatter);
-                    String trangThai = data[7];
-                    BaoHanhSanPham bhsp = new BaoHanhSanPham(maBaoHang, maKhachHang, maNhanVienPhuTrach, lyDo, ngayNhan, trangThai);
+                    String maSP = data[3];
+                    String tenSP = data[4];
+                    String maNhanVienPhuTrach = data[5];
+                    String tenNhanVienPhuTrach = data[6];
+                    String lyDo = data[7];
+                    LocalDate ngayNhan = LocalDate.parse(data[8], formatter);
+                    String trangThai = data[9];
+                    BaoHanhSanPham bhsp = new BaoHanhSanPham(maBaoHang, maKhachHang, maSP,maNhanVienPhuTrach, lyDo, ngayNhan, trangThai);
                     themBaoHanh(bhsp);
                 }
                 else {
@@ -85,12 +87,14 @@ public class QLBaoHanh {
     }
 
     public void ghiVaoFileDSBH() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\BaoHanh\\danhSachBaoHanhSanPham"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/BaoHanh/danhSachBaoHanhSanPham"))) {
             for (BaoHanhSanPham bh : dsBaoHanh){
                 writer.write(String.join(",",
                         bh.getMaBaoHanh(),
                         bh.getKhachHang().getMaKhachHang(),
                         bh.getKhachHang().getHoTen(),
+                        bh.getSanPham().getMaSP(),
+                        bh.getSanPham().getTenSP(),
                         bh.getNhanVienPhuTrach().getMaNhanVien(),
                         bh.getNhanVienPhuTrach().getTenNhanVien(),
                         bh.getLyDo(),

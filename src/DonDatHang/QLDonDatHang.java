@@ -185,71 +185,60 @@ public class QLDonDatHang {
             System.out.println("2. Sửa số lượng");
             System.out.println("0. Thoát");
             System.out.print("Nhập lựa chọn: ");
-            try {
-                lc = Integer.parseInt(sc.nextLine());
-                switch (lc) {
-                    case 1: {
-                        while (true) {
-                            System.out.println("Bạn muốn chọn sản phẩm có sẵn hay nhập sản phẩm mới?");
-                            System.out.println("1. Chọn sản phẩm có sẵn.");
-                            System.out.println("2. Nhập sản phẩm mới.");
-                            System.out.print("Nhập lựa chọn: ");
-
-                            try {
-                                int luaChonSP = Integer.parseInt(sc.nextLine());
-                                if (luaChonSP == 1) {
-                                    System.out.print("Nhap ma san pham moi: ");
-                                    SanPham spMoi = qlsp.timKiem(sc.nextLine());
-                                    if (spMoi != null) {
-                                        chiTiet.setSanPham(spMoi);
-                                        chiTiet.setThanhTien(chiTiet.tinhThanhTien());
-                                        System.out.println("Da sua san pham.");
-                                        break;
-                                    } else {
-                                        System.out.println("Khong tim thay san pham");
-                                    }
-                                } else if (luaChonSP == 2) {
-                                    chiTiet.setSanPham(qlsp.nhapSanPham());
-                                    chiTiet.setSoLuong(chiTiet.getSanPham().getSoLuongNhap());
-                                    System.out.println("Da sua san pham thanh mot san pham moi.");
-                                    break;
-                                } else {
-                                    System.out.println("Lua chon khong hop le!");
-                                }
-                            } catch (InputMismatchException | NumberFormatException e) {
-                                System.out.println("Lua chon khong hop le! Vui long nhap lua chon la so.");
-                                sc.nextLine();
+            lc = Integer.parseInt(sc.nextLine());
+            switch (lc) {
+                case 1: {
+                    while (true) {
+                        System.out.println("Bạn muốn chọn sản phẩm có sẵn hay nhập sản phẩm mới?");
+                        System.out.println("1. Chọn sản phẩm có sẵn.");
+                        System.out.println("2. Nhập sản phẩm mới.");
+                        System.out.print("Nhập lựa chọn: ");
+                        int luaChonSP = Integer.parseInt(sc.nextLine());
+                        if (luaChonSP == 1) {
+                            System.out.print("Nhap ma san pham moi: ");
+                            SanPham spMoi = qlsp.timKiem(sc.nextLine());
+                            if (spMoi != null) {
+                                chiTiet.setSanPham(spMoi);
+                                chiTiet.setThanhTien(chiTiet.tinhThanhTien());
+                                System.out.println("Da sua san pham.");
+                                break;
+                            } else {
+                                System.out.println("Khong tim thay san pham");
                             }
+                        } else if (luaChonSP == 2) {
+                            chiTiet.setSanPham(qlsp.nhapSanPham());
+                            chiTiet.setSoLuong(chiTiet.getSanPham().getSoLuongNhap());
+                            System.out.println("Da sua san pham thanh mot san pham moi.");
+                            break;
+                        } else {
+                            System.out.println("Lua chon khong hop le!");
                         }
-                        break;
                     }
-                    case 2: {
-                        System.out.print("Nhap so luong moi: ");
-                        chiTiet.setSoLuong(Integer.parseInt(sc.nextLine()));
-                        chiTiet.setThanhTien(chiTiet.tinhThanhTien());
-                        System.out.println("Da sua so luong san pham.");
-                        break;
-
-                    }
-                    case 0: {
-                        ktra = false;
-                        break;
-                    }
-                    default: {
-                        System.out.println("Lua chon khong hop le!");
-                        System.out.println("Vui long nhap lai.");
-                    }
+                    break;
                 }
-            } catch (InputMismatchException | NumberFormatException e) {
-                System.out.println("Lua chon khong hop le! Vui long nhap lua chon la so nguyen.");
-                sc.nextLine();
+                case 2: {
+                    System.out.print("Nhap so luong moi: ");
+                    chiTiet.setSoLuong(Integer.parseInt(sc.nextLine()));
+                    chiTiet.setThanhTien(chiTiet.tinhThanhTien());
+                    System.out.println("Da sua so luong san pham.");
+                    break;
+
+                }
+                case 0: {
+                    ktra = false;
+                    break;
+                }
+                default: {
+                    System.out.println("Lua chon khong hop le!");
+                    System.out.println("Vui long nhap lai.");
+                }
             }
         }
     }
 
 
     public void ghiVaoFileDSDDH() {
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\DonDatHang\\DanhSachDonDatHang.txt"))) {
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("src/DonDatHang/DanhSachDonDatHang.txt"))) {
             for (DonDatHang ddh : dsddh) {
                 writer.write(String.join(",",
                         ddh.getMaDonDatHang(),
@@ -281,9 +270,10 @@ public class QLDonDatHang {
     }
 
     public void docTuFileDSDDH() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\DonDatHang\\DanhSachDonDatHang.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/DonDatHang/DanhSachDonDatHang.txt"))) {
             String line;
             DonDatHang ddh = null;
+
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].startsWith("DDH")) {
@@ -300,7 +290,6 @@ public class QLDonDatHang {
                     themDDH(ddh);
 
                 } else if (data[0].equals("ChiTietDonDatHang") && ddh != null) {
-                    //bo data3
                     int stt = Integer.parseInt(data[1]);
                     String maSP = data[2];
                     String tenSP = data[3];

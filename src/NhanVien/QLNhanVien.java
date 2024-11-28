@@ -33,7 +33,7 @@ public class QLNhanVien {
 
 
     public void ghiVaoFileDSNV() {
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\NhanVien\\danhSachNhanVien.txt"))) {
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("src/NhanVien/danhSachNhanVien.txt"))) {
             for (NhanVien nv : dsNhanVien) {
                 if (nv instanceof NhanVienBanHang nvbh) {
                     writer.write(String.join(",",
@@ -103,7 +103,7 @@ public class QLNhanVien {
     }
 
     public void docTuFileDSNV() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\NhanVien\\danhSachNhanVien.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/NhanVien/danhSachNhanVien.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");

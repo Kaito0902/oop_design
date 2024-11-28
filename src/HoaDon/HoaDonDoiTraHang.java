@@ -23,9 +23,9 @@ public class HoaDonDoiTraHang extends HoaDon {
     public HoaDonDoiTraHang() {
     }
 
-    public HoaDonDoiTraHang(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang, HoaDonBanHang hoaDonGoc, ChiTietHoaDonDoiTra[] dsChiTiet, int soLuongChiTiet, double tongGiaTri, String ghiChu, double tienHoanTra, double tiLeTru) {
-        super(maHoaDon, ngayLapHoaDon, nhanVienLapHoaDon, khachHang);
-        this.hoaDonGoc = hoaDonGoc;
+    public HoaDonDoiTraHang(String maHoaDon, LocalDate ngayLapHoaDon, String maNhanVienLapHoaDon, String maKhachHang, String loaiHoaDon, String maHoaDonGoc, ChiTietHoaDonDoiTra[] dsChiTiet, int soLuongChiTiet, double tongGiaTri, String ghiChu, double tienHoanTra, double tiLeTru) {
+        super(maHoaDon, ngayLapHoaDon, maNhanVienLapHoaDon, maKhachHang, loaiHoaDon);
+        this.hoaDonGoc = (HoaDonBanHang) qlhd.timKiemHoaDonTheoMa(maHoaDonGoc);
         this.dsChiTiet = dsChiTiet;
         this.soLuongChiTiet = soLuongChiTiet;
         this.tongGiaTri = tongGiaTri;
@@ -33,7 +33,6 @@ public class HoaDonDoiTraHang extends HoaDon {
         this.tienHoanTra = tienHoanTra;
         this.tiLeTru = tiLeTru;
     }
-
 
     public HoaDon getHoaDonGoc() {
         return hoaDonGoc;
@@ -149,7 +148,7 @@ public class HoaDonDoiTraHang extends HoaDon {
             System.out.print("Nhap tinh trang san pham (Moi/Cu/Hong): ");
             String tinhTrang = scanner.nextLine();
 
-            ChiTietHoaDonDoiTra chiTietDoiTra = new ChiTietHoaDonDoiTra(i + 1,spDoiTra, soLuong, lyDo, tinhTrang);
+            ChiTietHoaDonDoiTra chiTietDoiTra = new ChiTietHoaDonDoiTra(i + 1, spDoiTra, soLuong, lyDo, tinhTrang);
             themChiTiet(chiTietDoiTra);
 
         }
@@ -181,15 +180,6 @@ public class HoaDonDoiTraHang extends HoaDon {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder(super.toString());
-        builder.append(",").append(hoaDonGoc.toString());
-        for (int i = 0; i < soLuongChiTiet; i++) {
-            builder.append(",").append(dsChiTiet[i].toString());
-        }
-        builder.append(",").append(tongGiaTri)
-               .append(",").append(tiLeTru)
-               .append(",").append(tienHoanTra)
-               .append(",").append(ghiChu);
-        return builder.toString();
+        return super.toString()+String.format("%-10.2f %-15s %-10.2f %-8.2f", tongGiaTri, ghiChu, tienHoanTra, tiLeTru);
     }
 }

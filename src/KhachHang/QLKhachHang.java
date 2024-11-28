@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 import HoaDon.QLHoaDon;
 
+import static main_project.oop_project.qlhd;
+import static main_project.oop_project.qlkh;
+
 public class QLKhachHang {
     KhachHang[] dskh = new KhachHang[0];
     int soLuong = 0;
@@ -161,49 +164,89 @@ public class QLKhachHang {
         }
     }
 
-        // cap nhap khach hang len vip(cần sửa lại)
-        public void capNhatLoaiKhachHang(QLHoaDon qlHoaDon, String sdt) {
-            KhachHang kh = timkiemKhachHangTheoSdt(sdt);
-            if (kh == null) {
-                System.out.println("Không tìm thấy khách hàng với số điện thoại: " + sdt);
-                return;
-            }
-            // for (int i = 0; i < dskh.length; i++) {
-                // KhachHang kh = dskh[i];
-                double tongSoTien = 5000000;//qlHoaDon.getTongSoTien(kh.getMaKhachHang())
-                
-                if (tongSoTien >= 5000000 && !(kh instanceof KhachHangVip)) {//&& kh instanceof KhachHangCaNhan
-
-                    // KhachHang caNhan = (KhachHangCaNhan) kh;
-                    // caNhan.setLoaiKhachHang("Than Thiet"); 
-                    // caNhan.setTichDiem(caNhan.tinhDiemThuong(tongSoTien));
-                    
-                    // Nâng cấp lên khách hàng VIP
-                    KhachHang vip = new KhachHangVip(
-                        kh.getHoTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getDiaChi(), kh.getSdt(),
-                        kh.getEmail(), kh.getMaKhachHang(), "Than Thiet",kh.isIsdelete(), kh.getTichDiem(), 5
-                    );
-
-                    System.out.println("Cập nhật thông tin cho khách hàng " + kh.getMaKhachHang() +" sau khi nâng cấp:");
-                    if (vip instanceof KhachHangVip) {
-                        ((KhachHangVip) vip).inputThongTinVip();
-                    }
-                    for (int i = 0; i < dskh.length; i++)
-                        if (dskh[i].getSdt().equalsIgnoreCase(sdt)){
-                            dskh[i] = vip;
-                            break;
-                        }
-                    System.out.println("Khach hang " + kh.getMaKhachHang() + " đã được nâng cấp lên VIP");
-                } else {
-                    // Giữ nguyên nếu không đạt điều kiện
-                    System.out.println("Khach hang " + kh.getMaKhachHang() + " không đủ điều kiện để lên VIP");
-                }
-            // }
+    // cap nhap khach hang len vip(cần sửa lại)
+    public void capNhatLoaiKhachHang(QLHoaDon qlHoaDon, String sdt) {
+        KhachHang kh = timkiemKhachHangTheoSdt(sdt);
+        if (kh == null) {
+            System.out.println("Không tìm thấy khách hàng với số điện thoại: " + sdt);
+            return;
         }
+        // for (int i = 0; i < dskh.length; i++) {
+            // KhachHang kh = dskh[i];
+            double tongSoTien = 5000000;//qlHoaDon.getTongSoTien(kh.getMaKhachHang())
+
+            if (tongSoTien >= 5000000 && !(kh instanceof KhachHangVip)) {//&& kh instanceof KhachHangCaNhan
+
+                // KhachHang caNhan = (KhachHangCaNhan) kh;
+                // caNhan.setLoaiKhachHang("Than Thiet");
+                // caNhan.setTichDiem(caNhan.tinhDiemThuong(tongSoTien));
+
+                // Nâng cấp lên khách hàng VIP
+                KhachHang vip = new KhachHangVip(
+                    kh.getHoTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getDiaChi(), kh.getSdt(),
+                    kh.getEmail(), kh.getMaKhachHang(), "Than Thiet",kh.isIsdelete(), kh.getTichDiem(), 5
+                );
+
+                System.out.println("Cập nhật thông tin cho khách hàng " + kh.getMaKhachHang() +" sau khi nâng cấp:");
+                if (vip instanceof KhachHangVip) {
+                    ((KhachHangVip) vip).inputThongTinVip();
+                }
+                for (int i = 0; i < dskh.length; i++)
+                    if (dskh[i].getSdt().equalsIgnoreCase(sdt)){
+                        dskh[i] = vip;
+                        break;
+                    }
+                System.out.println("Khach hang " + kh.getMaKhachHang() + " đã được nâng cấp lên VIP");
+            } else {
+                // Giữ nguyên nếu không đạt điều kiện
+                System.out.println("Khach hang " + kh.getMaKhachHang() + " không đủ điều kiện để lên VIP");
+            }
+        // }
+    }
+
+    public void nhapKhachHang() {
+        boolean ktra = true;
+        while (ktra){
+            int lc;
+            System.out.println("1. Them khcanhan.");
+            System.out.println("2. Them khsv.");
+            System.out.println("3. Them khdoitac.");
+            // System.out.println("4. Them khvip.");
+            System.out.println("Nhap lua chon: ");
+            lc = Integer.parseInt(scanner.nextLine());
+            switch (lc) {
+                case 1:
+                    KhachHang x = new KhachHangCaNhan();
+                    x.input(qlhd);
+                    qlkh.themKH(x);
+                    ktra = false;
+                    break;
+                case 2:
+                    KhachHang y = new KhachHangSinhVien();
+                    y.input(qlhd);
+                    qlkh.themKH(y);
+                    ktra = false;
+                    break;
+                case 3:
+                    KhachHang z = new KhachHangDoiTacDoanhNghiep();
+                    z.input(qlhd);
+                    qlkh.themKH(z);
+                    ktra = false;
+                    break;
+                // case "4":
+                //     KhachHang w = new KhachHangVip();
+                //     w.input(qlhd);
+                //     qlkh.themKH(w);
+                //     break;
+                default:
+                    System.out.println("Lua chon khong hop le!!!");
+            }
+        }
+    }
 
     //writetofile
     public void ghiVaoFileDSKH() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\KhachHang\\DanhSachKhachHang.txt"))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/KhachHang/DanhSachKhachHang.txt"))){
             for ( KhachHang kh : dskh )
                 if ( kh instanceof KhachHangCaNhan cn ) {
                     writer.write(String.join(",",
@@ -283,7 +326,7 @@ public class QLKhachHang {
     }
 
     public void docTuFileDSKH() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\KhachHang\\DanhSachKhachHang.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/KhachHang/DanhSachKhachHang.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");

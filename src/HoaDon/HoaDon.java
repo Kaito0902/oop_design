@@ -15,17 +15,19 @@ public class HoaDon {
     protected LocalDate ngayLapHoaDon; 
     protected NhanVien nhanVienLapHoaDon;
     protected KhachHang khachHang;
+    protected String loaiHoaDon;
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     static int tongHoaDon = 0;
     static Scanner scanner = new Scanner(System.in);
     public HoaDon() {
     }
 
-    public HoaDon(String maHoaDon, LocalDate ngayLapHoaDon, NhanVien nhanVienLapHoaDon, KhachHang khachHang) {
+    public HoaDon(String maHoaDon, LocalDate ngayLapHoaDon, String maNhanVienLapHoaDon, String maKhachHang, String loaiHoaDon) {
         this.maHoaDon = maHoaDon;
         this.ngayLapHoaDon = ngayLapHoaDon;
-        this.nhanVienLapHoaDon = nhanVienLapHoaDon;
-        this.khachHang = khachHang;
+        this.nhanVienLapHoaDon = qlnv.timKiemNhanVienTheoMa(maNhanVienLapHoaDon);
+        this.khachHang = qlkh.timkiemKhachHangTheoMa(maKhachHang);
+        this.loaiHoaDon = loaiHoaDon;
     }
 
     // Getter và Setter
@@ -61,6 +63,14 @@ public class HoaDon {
         this.khachHang = khachHang;
     }
 
+    public String getLoaiHoaDon() {
+        return loaiHoaDon;
+    }
+
+    public void setLoaiHoaDon(String loaiHoaDon) {
+        this.loaiHoaDon = loaiHoaDon;
+    }
+
     // Phương thức nhập thông tin hóa đơn
     public void input() {
         System.out.print("Nhap ma hoa don: ");
@@ -81,27 +91,33 @@ public class HoaDon {
             setKhachHang(kh);
         }
         else {
-//            qlkh.nhapKhachHang();
+            qlkh.nhapKhachHang();
             setKhachHang(qlkh.timkiemKhachHangTheoSdt(sdt));
         }
-
         maHoaDon = "hd" + String.format("%02d", ++tongHoaDon);
         tongHoaDon++;
-
     }
 
     // Phương thức xuất thông tin hóa đơn
     public void xuat() {
         System.out.println(toString());
+        if (this instanceof HoaDonBanHang) {
+            for (ChiTietHoaDonBanHang ct : ((HoaDonBanHang) this).getChiTietHoaDonBanHangList()) {
+                System.out.println(ct.toString());
+            }
+        } else {
+            for (ChiTietHoaDonDoiTra ct : ((HoaDonDoiTraHang) this).getDsChiTiet()) {
+                System.out.println(ct.toString());
+            }
+        }
     }
 
-    // Ghi thông tin ra chuỗi (hỗ trợ ghi file)
     @Override
     public String toString() {
         return String.format(
-                "%-15s %-20s %-15s %-20s %-20s %-15s %-30s",
+                "%-5s %-10s %-5s %-18s %-15s %-15s %-10s",
                 maHoaDon, // Mã hóa đơn
-                ngayLapHoaDon, // Ngày lập hóa đơn
+                ngayLapHoaDon.format(formatter), // Ngày lập hóa đơn
                 nhanVienLapHoaDon.getMaNhanVien(), // Mã nhân viên
                 nhanVienLapHoaDon.getTenNhanVien(), // Tên nhân viên
                 khachHang.getHoTen(), // Họ tên khách hàng

@@ -121,7 +121,7 @@ public class QLKhuyenMai {
     }
 
     public void ghiVaoFile() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\KhuyenMai\\DanhSachKhuyenMai.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/KhuyenMai/DanhSachKhuyenMai.txt"))) {
             for (int i = 0; i < soLuongKhuyenMai; i++) {
                 KhuyenMai km = danhSachKhuyenMai[i];
                 writer.write(String.join(",",
@@ -141,7 +141,7 @@ public class QLKhuyenMai {
     }
 
     public void docTuFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ACER\\IdeaProjects\\oop_project\\src\\KhuyenMai\\DanhSachKhuyenMai.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/KhuyenMai/DanhSachKhuyenMai.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");

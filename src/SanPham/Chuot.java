@@ -9,7 +9,7 @@ public class Chuot extends ThietBiNgoaiVi{
 
     }
 
-    public Chuot(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, int dPI, String denLED) {
+    public Chuot(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted, String loaiThietBi, String nhaSanXuat, String phuongThucKetNoi, int dPI, String denLED) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, soLuongXuat, soLuongTonKho, isNotDeleted, loaiThietBi, nhaSanXuat, phuongThucKetNoi);
         this.dPI = dPI;
         this.denLED = denLED;

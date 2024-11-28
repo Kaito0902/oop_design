@@ -10,7 +10,7 @@ public class CPU extends PhanCung{
 
     }
 
-    public CPU(String maSP, String tenSP, float giaSP, String thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted, String loaiLinhKien, String nhaSanXuat, String model, int soNhan, int soLuongLoi, float tanSoTurBo) {
+    public CPU(String maSP, String tenSP, float giaSP, int thoiGianBaoHanhSP, float trongLuongSP, String mauSacSP, int soLuongNhap, int soLuongXuat, int soLuongTonKho, boolean isNotDeleted, String loaiLinhKien, String nhaSanXuat, String model, int soNhan, int soLuongLoi, float tanSoTurBo) {
         super(maSP, tenSP, giaSP, thoiGianBaoHanhSP, trongLuongSP, mauSacSP, soLuongNhap, soLuongXuat, soLuongTonKho, isNotDeleted, loaiLinhKien, nhaSanXuat, model);
         this.soNhan = soNhan;
         this.soLuongLoi = soLuongLoi;

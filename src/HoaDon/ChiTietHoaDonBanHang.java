@@ -18,9 +18,9 @@ public class ChiTietHoaDonBanHang {
     }
 
     // Constructor với tham số
-    public ChiTietHoaDonBanHang(int stt, SanPham sanPham, int soLuong, double thanhTien) {
+    public ChiTietHoaDonBanHang(int stt, String maSanPham, int soLuong, double thanhTien) {
         this.stt = stt;
-        this.sanPham = sanPham;
+        this.sanPham = qlsp.timKiem(maSanPham);
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
     }
@@ -42,6 +42,11 @@ public class ChiTietHoaDonBanHang {
         while (soLuong < 0) {
             System.out.println("So luong khong the am.");
             System.out.println("Nhap lai so luong: ");
+            soLuong = Integer.parseInt(sc.nextLine());
+        }
+        while (soLuong > getSanPham().getSoLuongTonKho()) {
+            System.out.println("So Luong mua lon hon so luong san pham co.");
+            System.out.println("Nhap lai so luong san pham: ");
             soLuong = Integer.parseInt(sc.nextLine());
         }
         this.soLuong = soLuong;
@@ -81,12 +86,15 @@ public class ChiTietHoaDonBanHang {
         System.out.print("Nhap so luong: ");
         setSoLuong(Integer.parseInt(sc.nextLine()));
 
-        tinhThanhTien(); // Tính thành ti0ền sau khi nhập
+        tinhThanhTien();
+
+        qlsp.xuatSanPhamTuHoaDon(getSanPham().getMaSP(), getSoLuong());
+
     }
 
     @Override
     public String toString() {
-        return String.format("%-5d %-20s %-10d %-15.2f\n",
+        return String.format("%-5d %-25s %-10d %-15.2f",
                           stt, sanPham.getTenSP(), soLuong, thanhTien);
     }
 
