@@ -1,4 +1,389 @@
 package KhachHang;
 
+import java.io.*;
+import java.util.Arrays;
+import java.util.Scanner;
+
+import HoaDon.QLHoaDon;
+
+import static main_project.oop_project.qlhd;
+import static main_project.oop_project.qlkh;
+
 public class QLKhachHang {
+    KhachHang[] dskh = new KhachHang[0];
+    int soLuong = 0;
+    static Scanner scanner = new Scanner(System.in);
+
+    //them khach hang
+    public void themKH(KhachHang kh)  {
+        KhachHang[] newkh = Arrays.copyOf(dskh, soLuong+1);
+        newkh[soLuong] = kh;
+        dskh = newkh;
+        soLuong++;
+    }
+
+    //xuat khach hang
+    public void xuatdskh() {
+        if (dskh.length == 0) {
+            System.out.println("DANH SACH KHACH HANG TRONG.");
+        }
+        for ( var i : dskh )
+            if (i.isdelete)
+                i.output();
+    }
+
+    //xuat khach hang vip
+    public void xuatdskhvip() {
+        for ( var i : dskh )
+            if ( i instanceof KhachHangVip)
+                i.output();
+            else
+                System.out.println("Khong co khach hang Vip!!!");
+    }
+
+    //xoa 1 KH
+    public void xoa1KH(String maKH) {
+        boolean ktra = false;
+        for (KhachHang kh : dskh) {
+            if (kh.maKhachHang.equalsIgnoreCase(maKH)) {
+                kh.isdelete = false;
+                ktra = true;
+                System.out.println("Da xoa Kh co ma:" + maKH);
+                break;
+            }
+        }
+        if (!ktra) {
+            System.out.println("Khong tim thay kh co ma: " + maKH);
+        }
+    }
+
+    //timkiemKhbang ma
+    public KhachHang timkiemKhachHangTheoMa(String maKH){
+        for (KhachHang kh : dskh)
+            if (kh.getMaKhachHang().equals(maKH))
+                return kh;
+        return null;
+    }
+
+    //timkiemkhbang sdt
+    public KhachHang timkiemKhachHangTheoSdt(String sdt){
+        for (KhachHang kh : dskh)
+            if (kh.getSdt().equals(sdt))
+                return kh;
+        return null;
+    }
+
+    //tim khach hang co so tien cao nhat 
+//    public void timkiemKhachHangCoTienCaoNhat(QLHoaDon qlHoaDon) {
+//        KhachHang khMax = null;
+//        double maxtien = 0;
+//        for ( KhachHang kh : dskh ){
+//            double max = qlHoaDon.getTongSoTien(kh.getSdt());
+//            if ( max > maxtien ) {
+//                maxtien = max;
+//                khMax = kh;
+//            }
+//        }
+//        if ( khMax != null ){
+//            System.out.println("KH co so tien giao dich cao nhat la:");
+//            khMax.output();
+//        }
+//        else {
+//            System.out.println("Khong tim thay khach hang nao");
+//        }
+//    }
+    
+    //sapxepkh
+    public void sapxep() {
+        for ( int i = 0; i < dskh.length-1; i++ )
+            for ( int j = 0; j < dskh.length; j++ )
+                if ( dskh[i].getHoTen().compareTo(dskh[j].getHoTen()) < 0 ){
+                    KhachHang temp = dskh[i];
+                    dskh[i] = dskh[j];
+                    dskh[j] = temp;
+                }
+        }
+
+    // sua thong tin khach hang (cần sửa lại)
+    public void capNhapThongTinKhachHang(String sdt) {
+        KhachHang kh = timkiemKhachHangTheoSdt(sdt);
+        if ( kh != null) {
+            System.out.println("Cap nhap thong tin khach hang co sdt: " + sdt);
+            int choice;
+            do {
+                System.out.println("1. Sua ten khach hang");
+                System.out.println("2. Sua gioi tinh");
+                System.out.println("3. Sua so dien thoai");
+                System.out.println("4. Sua so ngay sinh");
+                System.out.println("5. Sua email");
+                System.out.println("6. Sua dia chi");
+                System.out.println("7. Thoat!");
+                System.out.println("Nhap lua chon muon sua: ");
+
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        System.out.println("Nhap ten moi: ");
+                        kh.setHoTen(scanner.nextLine());
+                        break;
+                    case 2:
+                        System.out.println("Nhap gioi tinh moi: ");
+                        kh.setGioiTinh(scanner.nextLine());
+                        System.out.println("Da sua gioi tinh.");
+                        break;
+                    case 3:
+                        System.out.println("Nhap so dien thoai moi: "); 
+                        kh.setSdt(scanner.nextLine());
+                        System.out.println("Da sua so dien thoai.");
+                        break;
+                    case 4:
+                        System.out.println("Nhap ngay sinh moi: ");
+                        kh.setNgaySinh(scanner.nextLine());
+                        System.out.println("Da sua ngay sinh.");
+                        break;
+                    case 5:
+                        System.out.println("Nhap email moi: ");
+                        kh.setEmail(scanner.nextLine());
+                        System.out.println("Da sua email.");
+                        break;
+                    case 6:
+                        System.out.println("Nhap dia chi moi: ");
+                        kh.setDiaChi(scanner.nextLine());
+                        System.out.println("Da sua dia chi.");
+                        break;
+                    case 7:
+                        break;
+                    default:
+                        System.out.println("Lua chon khong hop le");
+                        System.out.println("Vui long lua chon lai");
+                        break;
+                }
+            } while (choice != 7);
+        } else {
+            System.out.println("Khong tim thay khach hang voi sdt:" + sdt);
+        }
+    }
+
+    // cap nhap khach hang len vip(cần sửa lại)
+    public void capNhatLoaiKhachHang(QLHoaDon qlHoaDon, String sdt) {
+        KhachHang kh = timkiemKhachHangTheoSdt(sdt);
+        if (kh == null) {
+            System.out.println("Không tìm thấy khách hàng với số điện thoại: " + sdt);
+            return;
+        }
+        // for (int i = 0; i < dskh.length; i++) {
+            // KhachHang kh = dskh[i];
+            double tongSoTien = 5000000;//qlHoaDon.getTongSoTien(kh.getMaKhachHang())
+
+            if (tongSoTien >= 5000000 && !(kh instanceof KhachHangVip)) {//&& kh instanceof KhachHangCaNhan
+
+                // KhachHang caNhan = (KhachHangCaNhan) kh;
+                // caNhan.setLoaiKhachHang("Than Thiet");
+                // caNhan.setTichDiem(caNhan.tinhDiemThuong(tongSoTien));
+
+                // Nâng cấp lên khách hàng VIP
+                KhachHang vip = new KhachHangVip(
+                    kh.getHoTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getDiaChi(), kh.getSdt(),
+                    kh.getEmail(), kh.getMaKhachHang(), "Than Thiet",kh.isIsdelete(), kh.getTichDiem(), 5
+                );
+
+                System.out.println("Cập nhật thông tin cho khách hàng " + kh.getMaKhachHang() +" sau khi nâng cấp:");
+                if (vip instanceof KhachHangVip) {
+                    ((KhachHangVip) vip).inputThongTinVip();
+                }
+                for (int i = 0; i < dskh.length; i++)
+                    if (dskh[i].getSdt().equalsIgnoreCase(sdt)){
+                        dskh[i] = vip;
+                        break;
+                    }
+                System.out.println("Khach hang " + kh.getMaKhachHang() + " đã được nâng cấp lên VIP");
+            } else {
+                // Giữ nguyên nếu không đạt điều kiện
+                System.out.println("Khach hang " + kh.getMaKhachHang() + " không đủ điều kiện để lên VIP");
+            }
+        // }
+    }
+
+    public void nhapKhachHang() {
+        boolean ktra = true;
+        while (ktra){
+            int lc;
+            System.out.println("1. Them khcanhan.");
+            System.out.println("2. Them khsv.");
+            System.out.println("3. Them khdoitac.");
+            // System.out.println("4. Them khvip.");
+            System.out.println("Nhap lua chon: ");
+            lc = Integer.parseInt(scanner.nextLine());
+            switch (lc) {
+                case 1:
+                    KhachHang x = new KhachHangCaNhan();
+                    x.input(qlhd);
+                    qlkh.themKH(x);
+                    ktra = false;
+                    break;
+                case 2:
+                    KhachHang y = new KhachHangSinhVien();
+                    y.input(qlhd);
+                    qlkh.themKH(y);
+                    ktra = false;
+                    break;
+                case 3:
+                    KhachHang z = new KhachHangDoiTacDoanhNghiep();
+                    z.input(qlhd);
+                    qlkh.themKH(z);
+                    ktra = false;
+                    break;
+                // case "4":
+                //     KhachHang w = new KhachHangVip();
+                //     w.input(qlhd);
+                //     qlkh.themKH(w);
+                //     break;
+                default:
+                    System.out.println("Lua chon khong hop le!!!");
+            }
+        }
+    }
+
+    //writetofile
+    public void ghiVaoFileDSKH() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/KhachHang/DanhSachKhachHang.txt"))){
+            for ( KhachHang kh : dskh )
+                if ( kh instanceof KhachHangCaNhan cn ) {
+                    writer.write(String.join(",",
+                    cn.getMaKhachHang(),
+                    cn.getHoTen(),
+                    cn.getGioiTinh(),
+                    cn.getNgaySinh(),
+                    cn.getDiaChi(),
+                    cn.getSdt(),
+                    cn.getEmail(),
+                    cn.getLoaiKhachHang(),
+                    String.valueOf(cn.isdelete),
+                    String.valueOf(cn.getTichDiem()),
+                    String.valueOf(cn.tinhUuDai())
+                    ));
+                    writer.newLine();
+                }
+                else if ( kh instanceof KhachHangSinhVien sv ) {
+                    writer.write(String.join(",",
+                    sv.getMaKhachHang(),
+                    sv.getHoTen(),
+                    sv.getGioiTinh(),
+                    sv.getNgaySinh(),
+                    sv.getDiaChi(),
+                    sv.getSdt(),
+                    sv.getEmail(),
+                    sv.getLoaiKhachHang(),
+                    String.valueOf(sv.isdelete),
+                    String.valueOf(sv.getTichDiem()),
+                    String.valueOf(sv.getDiemTB()),
+                    String.valueOf(sv.tinhUuDai())
+                    ));
+                    writer.newLine();
+                }
+                else if ( kh instanceof KhachHangVip vip ) {
+                    writer.write(String.join(",",
+                    vip.getMaKhachHang(),
+                    vip.getHoTen(),
+                    vip.getGioiTinh(),
+                    vip.getNgaySinh(),
+                    vip.getDiaChi(),
+                    vip.getSdt(),
+                    vip.getEmail(),
+                    vip.getLoaiKhachHang(),
+                    String.valueOf(vip.isdelete),
+                    String.valueOf(vip.getTichDiem()),
+                    String.valueOf(vip.getHeSo()),
+                    String.valueOf(vip.tinhUuDai()),
+                    String.valueOf(vip.isTraGop()),
+                    String.valueOf(vip.laiSuatTraGop())
+                    ));
+                    writer.newLine();
+                }
+                else {
+                    KhachHangDoiTacDoanhNghiep dt = (KhachHangDoiTacDoanhNghiep) kh;
+                    writer.write(String.join(",",
+                    dt.getMaKhachHang(),
+                    dt.getHoTen(),
+                    dt.getGioiTinh(),
+                    dt.getNgaySinh(),
+                    dt.getDiaChi(),
+                    dt.getSdt(),
+                    dt.getEmail(),
+                    dt.getLoaiKhachHang(),
+                    String.valueOf(dt.isdelete),
+                    String.valueOf(dt.getTichDiem()),
+                    dt.getTenCongTy(),
+                    String.valueOf(dt.tinhUuDai()),
+                    String.valueOf(dt.isTraGop()),
+                    String.valueOf(dt.laiSuatTraGop())
+                    ));
+                    writer.newLine();
+                }
+        } catch (IOException e) {
+            System.out.println("Loi ghi file:" + e.getMessage());
+        }
+    }
+
+    public void docTuFileDSKH() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/KhachHang/DanhSachKhachHang.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+
+                if (data.length > 0) {
+                    try {
+                        String maKhachHang = data[0];
+                        String tenKhachHang = data[1];
+                        String gioiTinh = data[2];
+                        String namSinh = data[3];
+                        String diaChi = data[4];
+                        String soDienThoai = data[5];
+                        String eMail = data[6];
+                        String loaiKhachHang = data[7];
+                        boolean isdelete = Boolean.parseBoolean(data[8]);
+                        int tichDiem = Integer.parseInt(data[9]);
+
+                        switch (loaiKhachHang) {
+                            case "Binh Thuong" -> {
+                                KhachHang caNhan = new KhachHangCaNhan(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem);
+                                themKH(caNhan);
+                            }
+                            case "Uu dai" -> {
+                                if (data.length >= 11) {  // Đảm bảo có dữ liệu điểm TB
+                                    double diemTB = Double.parseDouble(data[10]);
+                                    KhachHang sinhVien = new KhachHangSinhVien(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, diemTB);
+                                    themKH(sinhVien);
+                                }
+                            }
+                            case "Than Thiet" -> {
+                                if (data.length >= 12) {  // Đảm bảo có dữ liệu hệ số và trả góp
+                                    int heSo = Integer.parseInt(data[10]);
+                                    boolean traGop = Boolean.parseBoolean(data[11]);
+                                    KhachHang vip = new KhachHangVip(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, heSo);
+                                    ((KhachHangVip) vip).setTraGop(traGop);
+                                    themKH(vip);
+                                }
+                            }
+                            case "Tiem Nang" -> {
+                                if (data.length >= 12) {  // Đảm bảo có dữ liệu công ty và trả góp
+                                    String tenCongTy = data[10];
+                                    boolean traGop = Boolean.parseBoolean(data[11]);
+                                    KhachHang dt = new KhachHangDoiTacDoanhNghiep(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, tenCongTy);
+                                    ((KhachHangDoiTacDoanhNghiep) dt).setTraGop(traGop);
+                                    themKH(dt);
+                                }
+                            }
+                            default -> System.out.println("Du lieu khong hop le cho khach hang: " + loaiKhachHang);
+                        }
+                    } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                        System.out.println("Loi dinh dang hop thieu dong: " + line + " - " + e.getMessage());
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Loi doc tap tin: " + e.getMessage());
+        }
+    }
+
 }

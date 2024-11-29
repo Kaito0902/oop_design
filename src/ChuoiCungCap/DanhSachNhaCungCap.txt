@@ -1,0 +1,5 @@
+#ncc01,Nha cung cap A,So 1 Duong A,nhacungcapA@email.com,MST001,20/10/2023,true
+#ncc02,Nha cung cap B,So 2 Duong B,nhacungcapB@email.com,MST002,15/05/2024,true
+#ncc03,Nha cung cap C,So 3 Duong C,nhacungcapC@email.com,MST003,01/01/2022,true
+#ncc04,Cua hang D,So 4 Duong D,cuahangD@email.com,MST004,10/08/2023,false
+#ncc05,Cong ty E,So 5 Duong E,congtyE@email.com,MST005,25/12/2024,true
