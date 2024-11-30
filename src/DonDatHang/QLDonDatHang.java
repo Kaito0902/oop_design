@@ -17,6 +17,11 @@ public class QLDonDatHang {
     int soLuongDonDatHang;
     static Scanner sc = new Scanner(System.in);
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    public DonDatHang[] getDsddh() {
+        return dsddh;
+    }
+
     public void themDDH(DonDatHang ddh) {
         DonDatHang[] newdsddh = Arrays.copyOf(dsddh, soLuongDonDatHang + 1);
         newdsddh[soLuongDonDatHang] = ddh;
@@ -276,7 +281,6 @@ public class QLDonDatHang {
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].startsWith("ddh")) {
-                    //bo data4
                     String maDonDatHang = data[0];
                     LocalDate ngayDatHang = LocalDate.parse(data[1], formatter);
                     LocalDate ngayNhanHang = LocalDate.parse(data[2], formatter);

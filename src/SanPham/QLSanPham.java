@@ -729,4 +729,54 @@ public class QLSanPham{
             }
         }
     }
+
+    public void thongKeSanPhamBanChay() {
+        System.out.println("=".repeat(85));
+        String title = "Cac san pham ban chay";
+        int padding = (65 - title.length()) / 2;
+        System.out.println(" ".repeat(padding) + title);
+        System.out.println("=".repeat(85));
+
+        System.out.printf("%-15s %-35s %-30s\n",
+                "Ma SP",
+                "Ten San Pham",
+                "Gia San Pham");
+        System.out.println("=".repeat(85));
+
+        for (SanPham sp : ds) {
+            if (sp.getSoLuongTonKho() < sp.getSoLuongXuat() && sp.isNotDeleted()) {
+                System.out.printf("%-15s %-35s %-30.2f\n",
+                        sp.getMaSP(),
+                        sp.getTenSP(),
+                        sp.getGiaSP());
+            }
+        }
+
+        System.out.println("=".repeat(85));
+    }
+
+    public void thongKeSanPhamBanE() {
+        System.out.println("=".repeat(85));
+        String title = "Cac san pham ban e";
+        int padding = (65 - title.length()) / 2;
+        System.out.println(" ".repeat(padding) + title);
+        System.out.println("=".repeat(85));
+
+        System.out.printf("%-15s %-35s %-30s\n",
+                "Ma SP",
+                "Ten San Pham",
+                "Gia San Pham");
+        System.out.println("=".repeat(85));
+
+        for (SanPham sp : ds) {
+            if (sp.getSoLuongTonKho() > sp.getSoLuongXuat() && sp.isNotDeleted()) {
+                System.out.printf("%-15s %-35s %-30.2f\n",
+                        sp.getMaSP(),
+                        sp.getTenSP(),
+                        sp.getGiaSP());
+            }
+        }
+
+        System.out.println("=".repeat(85));
+    }
 }

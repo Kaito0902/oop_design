@@ -6,8 +6,6 @@ public class KhachHangVip extends KhachHang implements TraGop{
 
     //non-parameted
     public KhachHangVip() {
-        this.heSo = 5;
-        this.loaiKhachHang = "Than thiet";
     }
 
     //parameted

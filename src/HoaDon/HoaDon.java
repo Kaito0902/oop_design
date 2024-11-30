@@ -74,10 +74,7 @@ public class HoaDon {
 
     // Phương thức nhập thông tin hóa đơn
     public void input() {
-        System.out.print("Nhap ngay lap hoa don (dd/MM/yyyy): ");
-        String ngayLap = scanner.nextLine();
-        LocalDate ngayLapHoaDon = LocalDate.parse(ngayLap, formatter);
-        setNgayLapHoaDon(ngayLapHoaDon);
+        setNgayLapHoaDon(LocalDate.now());
 
         NhanVien nv = qlnv.nguoiDangNhap();
         setNhanVienLapHoaDon(nv);

@@ -2,6 +2,7 @@ package NhanVien;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -12,6 +13,10 @@ public class QLNhanVien {
     static Scanner sc = new Scanner(System.in);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private NhanVien nguoiDangNhap;
+
+    public NhanVien[] getDsNhanVien() {
+        return dsNhanVien;
+    }
 
     public NhanVien dangNhap(String soDienThoai, String maKhau) {
         for (NhanVien nv : dsNhanVien) {
@@ -163,10 +168,48 @@ public class QLNhanVien {
     public void xuatDanhSachNV() {
         for (NhanVien ds : dsNhanVien) {
             if (ds.isnotdelete) {
+                ds.luong = ds.tinhLuong();
                 ds.output();
             }
         }
     }
+
+    public void resetNgayPhepConLai() {
+        LocalDate today = LocalDate.now();
+        if (today.getMonth() == Month.JANUARY && today.getDayOfMonth() == 1) {
+            for (NhanVien ds : dsNhanVien) {
+                if (ds.isnotdelete && today.getYear() - ds.ngayVaoLam.getYear() >= 1) {
+                    ds.ngayPhepConLai = 12;
+                }
+            }
+        }
+    }
+
+    public void resetThuocTinhNhanVien() {
+        LocalDate today = LocalDate.now();
+        if (today.getDayOfMonth() == 1){
+            for (NhanVien ds : dsNhanVien) {
+                if (ds.isnotdelete) {
+                    ds.resetThuocTinhDauThang();
+                }
+            }
+        }
+    }
+
+    public void tinhLuongCuoiThang() {
+        LocalDate today = LocalDate.now();
+        if (today.getDayOfMonth() == today.lengthOfMonth()){
+            for (NhanVien ds : dsNhanVien) {
+                if (ds.isnotdelete) {
+                    if(ds instanceof NhanVienQuanLy) {
+                        ((NhanVienQuanLy) ds).capNhatChiSoHieuSuatCuoiThang();
+                    }
+                    ds.tinhLuong();
+                }
+            }
+        }
+    }
+
 
     public void suaThongTinNV(String manv) {
         boolean timThay = false;
@@ -206,8 +249,7 @@ public class QLNhanVien {
                         }
                         case 4: {
                             System.out.println("Nhap ngay sinh moi: ");
-                            String ngaySinh = sc.nextLine();
-                            nv.setSinhNhat(ngaySinh);
+                            nv.setSinhNhat(sc.nextLine());
                             System.out.println("Da sua nam sinh.");
                             break;
                         }

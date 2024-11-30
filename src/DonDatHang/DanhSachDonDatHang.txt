@@ -4,3 +4,15 @@ ChiTietDonDatHang,2,#sp002,NVIDIA GeForce RTX 4090,5,3000.0
 ddh002,03/11/2024,07/11/2024,#ncc02,Nha cung cap B,8000.0,Cod,Chua Giao
 ChiTietDonDatHang,1,#sp003,T-Group T-Force Delta,3,1500.0
 ChiTietDonDatHang,2,#sp004,SamSung 980 Pro,8,6500.0
+ddh008,01/11/2024,01/11/2024,#ncc01,Nha cung cap A,9.25E7,Chuyen khoan,Da Giao
+ChiTietDonDatHang,1,#sp001,i9-14900KS,50,1.85E7
+ddh009,02/11/2024,02/11/2024,#ncc02,Nha cung cap B,4.4995E8,Tien mat,Da Giao
+ChiTietDonDatHang,1,#sp002,NVIDIA GeForce RTX 4090,70,5.999E7
+ddh010,03/11/2024,03/11/2024,#ncc03,Nha cung cap C,1.19E7,The,Da Giao
+ChiTietDonDatHang,1,#sp003,T-Group T-Force Delta,100,1190000.0
+ddh011,04/11/2024,04/11/2024,#ncc01,Nha cung cap A,2.97E7,Chuyen khoan,Da Giao
+ChiTietDonDatHang,1,#sp004,SamSung 980 Pro,150,1990000.0
+ddh012,05/11/2024,05/11/2024,#ncc02,Nha cung cap B,4.935E7,Tien mat,Da Giao
+ChiTietDonDatHang,1,#sp005,Logitech G502 X Plus,80,3290000.0
+ddh013,06/11/2024,06/11/2024,#ncc03,Nha cung cap C,4.005E7,The,Da Giao
+ChiTietDonDatHang,1,#sp006,Razer Huntsman V3 Pro TKL,80,5345000.0

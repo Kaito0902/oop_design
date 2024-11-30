@@ -6,8 +6,10 @@ import java.util.Arrays;
 import KhachHang.KhachHangDoiTacDoanhNghiep;
 import KhachHang.KhachHangVip;
 import KhuyenMai.KhuyenMai;
+import NhanVien.NhanVienBanHang;
 import PhieuTraGop.PhieuTraGop;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaSoLieu;
 import static main_project.oop_project.*;
 
 public class HoaDonBanHang extends HoaDon {
@@ -54,15 +56,33 @@ public class HoaDonBanHang extends HoaDon {
     }
 
     public void setKhuyenMai(KhuyenMai khuyenMai) {
+        do {
+            while (khuyenMai == null) {
+                System.out.println("Khuyen mai khong phu hop.");
+                System.out.println("Vui long nhap lai ma khuyen mai: ");
+                khuyenMai = qlkm.timKhuyenMai(scanner.nextLine());
+            }
+            if (getNgayLapHoaDon().isBefore(khuyenMai.getNgayBatDau()) ||
+                    getNgayLapHoaDon().isAfter(khuyenMai.getNgayKetThuc())) {
+                System.out.println("Ngay lap hoa don khong nam trong thoi gian khuyen mai.");
+                System.out.println("Vui long nhap lai ma khuyen mai: ");
+                khuyenMai = null;
+            }
+
+        } while (khuyenMai == null ||
+                getNgayLapHoaDon().isBefore(khuyenMai.getNgayBatDau()) ||
+                getNgayLapHoaDon().isAfter(khuyenMai.getNgayKetThuc()));
+
         this.khuyenMai = khuyenMai;
     }
+
 
     public double getTienThue() {
         return tienThue;
     }
 
     public void setTienThue(double tienThue) {
-        this.tienThue = tienThue;
+        this.tienThue = chuanHoaSoLieu(tienThue);
     }
 
     public double getChietKhau() {
@@ -70,7 +90,7 @@ public class HoaDonBanHang extends HoaDon {
     }
 
     public void setChietKhau(double chietKhau) {
-        this.chietKhau = chietKhau;
+        this.chietKhau = chuanHoaSoLieu(chietKhau);
     }
 
     public String getPhuongThucThanhToan() {
@@ -114,12 +134,12 @@ public class HoaDonBanHang extends HoaDon {
 
     @Override
     public void input() {
-        super.input(); // Nhập thông tin cơ bản từ lớp cha
+        super.input();
 
         setLoaiHoaDon("HoaDonBanHang");
 
         System.out.print("Nhap so luong chi tiet hoa don: ");
-        int soLuong = Integer.parseInt(scanner.nextLine());
+        int soLuong = chuanHoaSoLieu(Integer.parseInt(scanner.nextLine()));
 
         for (int i = 1; i <= soLuong; i++) {
             System.out.println("Nhap chi tiet hoa don thu " + (i) + ":");
@@ -144,12 +164,14 @@ public class HoaDonBanHang extends HoaDon {
             System.out.println("Nhap ma khuyen mai:");
             setKhuyenMai(qlkm.timKhuyenMai(scanner.nextLine()));
         } else {
-            KhuyenMai km = new KhuyenMai();
-            km = null;
-            khuyenMai = km;
+            khuyenMai = null;
         }
 
         tinhTongTien();
+
+        if (getNhanVienLapHoaDon() instanceof NhanVienBanHang) {
+            ((NhanVienBanHang) getNhanVienLapHoaDon()).capNhatDoanhThuVaSoLuongGiaoDich(getTongTien());
+        }
 
         traGop();
 

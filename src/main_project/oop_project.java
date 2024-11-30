@@ -1,5 +1,6 @@
 package main_project;
 
+import MucTieu.QLMucTieu;
 import BaoHanh.QLBaoHanh;
 import ChuoiCungCap.QLNhaCungCap;
 import DonDatHang.QLDonDatHang;
@@ -24,6 +25,7 @@ public class oop_project {
     public static QLDonDatHang qlddh = new QLDonDatHang();
     public static QLNhaCungCap qlncc = new QLNhaCungCap();
     public static QLPhieuTraGop qlptg = new QLPhieuTraGop();
+    public static QLMucTieu qlmt = new QLMucTieu();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -44,6 +46,9 @@ public class oop_project {
         boolean kt = true;
         int lc;
         while (kt) {
+            qlnv.resetNgayPhepConLai();
+            qlnv.resetThuocTinhNhanVien();
+            qlnv.tinhLuongCuoiThang();
             System.out.println("=============================");
             System.out.println("|\t     MENU CHINH       \t|");
             System.out.println("=============================");

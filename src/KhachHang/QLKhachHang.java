@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import HoaDon.QLHoaDon;
+import HoaDon.HoaDon;
+import HoaDon.HoaDonBanHang;
 
 import static main_project.oop_project.qlhd;
 import static main_project.oop_project.qlkh;
@@ -125,6 +126,7 @@ public class QLKhachHang {
                     case 1:
                         System.out.println("Nhap ten moi: ");
                         kh.setHoTen(scanner.nextLine());
+                        System.out.println("Da sua ten");
                         break;
                     case 2:
                         System.out.println("Nhap gioi tinh moi: ");
@@ -355,6 +357,81 @@ public class QLKhachHang {
         } catch (IOException e) {
             System.out.println("Loi doc tap tin: " + e.getMessage());
         }
+    }
+
+    public void thongKeTongChi() {
+        String title = "Chi Tieu Khach Hang";
+        int totalLength = 85;
+        int spaces = (totalLength - title.length()) / 2;
+        System.out.println("=".repeat(totalLength));
+        System.out.printf("%" + (spaces + title.length()) + "s\n", title);
+        System.out.println("=".repeat(totalLength));
+
+        System.out.printf("%-15s %-25s %-20s %-15s\n",
+                "Ma khach hang",
+                "Ten khach hang",
+                "Loai khach hang",
+                "Tong da chi");
+        System.out.println("=".repeat(totalLength));
+
+        for (KhachHang kh : dskh) {
+            double tongChi = 0;
+
+            for (HoaDon hd : qlhd.getDshd()) {
+                if (hd instanceof HoaDonBanHang hdbh) {
+                    if (hdbh.getKhachHang() != null &&
+                            hdbh.getKhachHang().getMaKhachHang().equals(kh.getMaKhachHang())) {
+                        tongChi += hdbh.getTongTien();
+                    }
+                }
+            }
+
+            System.out.printf("%-15s %-25s %-20s %-15.2f\n",
+                    kh.getMaKhachHang(),
+                    kh.getHoTen(),
+                    kh.getLoaiKhachHang(),
+                    tongChi);
+        }
+
+        System.out.println("=".repeat(totalLength));
+    }
+
+
+    public void thongKeTanSuatMuaHang() {
+        String title = "Tan Suat Mua Hang Cua Khach Hang";
+        int totalLength = 85;
+        int spaces = (totalLength - title.length()) / 2;
+        System.out.println("=".repeat(totalLength));
+        System.out.printf("%" + (spaces + title.length()) + "s\n", title);
+        System.out.println("=".repeat(totalLength));
+
+        System.out.printf("%-15s %-25s %-20s %-15s\n",
+                "Ma khach hang",
+                "Ten khach hang",
+                "Loai khach hang",
+                "Tan suat mua");
+        System.out.println("=".repeat(totalLength));
+
+        for (KhachHang kh : dskh) {
+            int tanSuatMua = 0;
+
+            for (HoaDon hd : qlhd.getDshd()) {
+                if (hd instanceof HoaDonBanHang hdbh) {
+                    if (hdbh.getKhachHang() != null &&
+                            hdbh.getKhachHang().getMaKhachHang().equals(kh.getMaKhachHang())) {
+                        tanSuatMua++;
+                    }
+                }
+            }
+
+            System.out.printf("%-15s %-25s %-20s %-15d\n",
+                    kh.getMaKhachHang(),
+                    kh.getHoTen(),
+                    kh.getLoaiKhachHang(),
+                    tanSuatMua);
+        }
+
+        System.out.println("=".repeat(totalLength));
     }
 
 }

@@ -71,7 +71,7 @@ public class QLBaoHanh {
                     String lyDo = data[7];
                     LocalDate ngayNhan = LocalDate.parse(data[8], formatter);
                     String trangThai = data[9];
-                    BaoHanhSanPham bhsp = new BaoHanhSanPham(maBaoHang, maKhachHang, maSP,maNhanVienPhuTrach, lyDo, ngayNhan, trangThai);
+                    BaoHanhSanPham bhsp = new BaoHanhSanPham(maBaoHang, maKhachHang, maSP, maNhanVienPhuTrach, lyDo, ngayNhan, trangThai);
                     themBaoHanh(bhsp);
                 }
                 else {

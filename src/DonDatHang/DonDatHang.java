@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import ChuoiCungCap.NhaCungCap;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaSoLieu;
 import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
 import static main_project.oop_project.qlncc;
 
@@ -140,7 +141,7 @@ public class DonDatHang {
         setNhaCungCap(qlncc.timKiem(sc.nextLine()));
 
         System.out.println("Nhap so luong chi tiet don hang: ");
-        int soLuong = Integer.parseInt(sc.nextLine());
+        int soLuong = chuanHoaSoLieu(Integer.parseInt(sc.nextLine()));
         for (int i = 1; i <= soLuong; i++) {
             ChiTietDonDatHang x = new ChiTietDonDatHang();
             x.input(i);
@@ -164,7 +165,7 @@ public class DonDatHang {
 
     @Override
     public String toString() {
-        return String.format("%-5s %-15s %-15s %-5s %-15s %-10.2f %-10s %-10s", maDonDatHang, ngayDatHang.format(formatter), ngayNhanHang.format(formatter), nhaCungCap.getMaNCC(), nhaCungCap.getTenNCC(), tongTien, hinhThucGiaoHang, trangThai);
+        return String.format("%-5s %-15s %-15s %-5s %-15s %-15.2f %-15s %-10s", maDonDatHang, ngayDatHang.format(formatter), ngayNhanHang.format(formatter), nhaCungCap.getMaNCC(), nhaCungCap.getTenNCC(), tongTien, hinhThucGiaoHang, trangThai);
     }
 
     public void xuat() {

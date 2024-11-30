@@ -1,18 +1,20 @@
-hd001,01/10/2024,nv01,Nguyen Van A,kh01,Nguyen Hong Duy,HoaDonBanHang,km01,10.0,5.0,ChuyenKhoan,1000.0,false
-ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,2,200.0
-ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,1,300.0
+hd001,01/10/2024,nv01,Nguyen Van A,kh01,Nguyen Hong Duy,HoaDonBanHang,km01,10.0,5.0,ChuyenKhoan,500000.0,false
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,2,20000.0
+ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,1,300000.0
 hd002,05/10/2024,nv05,Nguyen Lam Truong,kh01,Nguyen Hong Duy,HoaDonDoiTraHang,hd001,500.0,Khong co,100.0,10.0
 ChiTietHoaDonDoiTraHang,1,#sp001,i9-14900KS,1,Do hong,hu hong,50.0
-hd003,05/10/2024,nv01,Nguyen Van A,kh01,Nguyen Hong Duy,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,2.035E7,false
-ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,1,100.0
+hd003,05/10/2024,nv01,Nguyen Van A,kh01,Nguyen Hong Duy,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,1200000.0,false
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,1,100000.0
 ChiTietHoaDonBanHang,2,#sp003,T-Group T-Force Delta,1,1190000.0
-hd004,05/10/2024,nv02,Le Thi B,kh02,Bui Nguyen Thinh,HoaDonBanHang,km01,0.05,0.1,Chuyen khoan,5.4E7,false
-ChiTietHoaDonBanHang,1,#sp002,NVIDIA GeForce RTX 4090,1,300.0
+hd004,05/10/2024,nv02,Le Thi B,kh02,Bui Nguyen Thinh,HoaDonBanHang,km01,0.05,0.1,Chuyen khoan,250000.0,false
+ChiTietHoaDonBanHang,1,#sp002,NVIDIA GeForce RTX 4090,1,300000.0
 hd005,05/10/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,2.9699E7,true
 ChiTietHoaDonBanHang,1,#sp009,Lenovo LOQ,1,2000000.0
 ChiTietHoaDonBanHang,1,#sp007,ASUS ProArt PA24US,1,2300000.0
 ChiTietHoaDonBanHang,1,#sp005,Logitech G502 X Plus,1,4770500.0
-hd005,05/10/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,2.9699E7,true
-ChiTietHoaDonBanHang,1,#sp009,Lenovo LOQ,1,2000000.0
-ChiTietHoaDonBanHang,1,#sp007,ASUS ProArt PA24US,1,2300000.0
-ChiTietHoaDonBanHang,1,#sp005,Logitech G502 X Plus,1,4770500.0
+hd006,01/11/2024,nv04,Nguyen Khanh Hung,kh04,Ly Van R,HoaDonBanHang,km03,0.07,0.03,The,850000.0,true
+ChiTietHoaDonBanHang,1,#sp004,SamSung 980 Pro,1,850000.0
+hd007,10/11/2024,nv02,Le Thi B,kh02,Bui Nguyen Thinh,HoaDonBanHang,km02,0.1,0.05,Tien mat,4200000.0,false
+ChiTietHoaDonBanHang,1,#sp006,Razer Huntsman V3 Pro TKL,1,4200000.0
+hd008,15/11/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,KHONGAPMA,0.15,0.07,Chuyen khoan,1.5E7,true
+ChiTietHoaDonBanHang,1,#sp008,GVN x ASUS Advanced Ai,1,1.5E7

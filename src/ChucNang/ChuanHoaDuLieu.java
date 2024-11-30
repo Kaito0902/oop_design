@@ -3,7 +3,6 @@ package ChucNang;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import KhachHang.QLKhachHang;
 
 import static main_project.oop_project.qlkh;
 import static main_project.oop_project.qlnv;
@@ -110,6 +109,24 @@ public class ChuanHoaDuLieu {
             System.out.println("Ngay sinh khong hop le! Vui long nhap lai");
             return null;
         }
+    }
+
+    public static int chuanHoaSoLieu(int soLieu){
+        while (soLieu <= 0) {
+            System.out.println("Nhap du lieu khong hop le.");
+            System.out.println("Vui long nhap lai: ");
+            soLieu = Integer.parseInt(scanner.nextLine());
+        }
+        return soLieu;
+    }
+
+    public static double chuanHoaSoLieu(double soLieu){
+        while (soLieu < 0) {
+            System.out.println("Nhap du lieu khong hop le.");
+            System.out.println("Vui long nhap lai: ");
+            soLieu = Integer.parseInt(scanner.nextLine());
+        }
+        return soLieu;
     }
 
 }

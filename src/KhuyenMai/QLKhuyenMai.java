@@ -27,7 +27,7 @@ public class QLKhuyenMai {
                 return ds;
             }
         }
-        return null; // Không tìm thấy khuyến mãi với mã này
+        return null;
     }
 
     public void hienThiDanhSachKhuyenMai() {

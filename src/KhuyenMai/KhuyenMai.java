@@ -60,7 +60,14 @@ public class KhuyenMai {
     }
 
     public void setNgayKetThuc(String ngayKetThuc) {
-        this.ngayKetThuc = chuanHoaNgayThangNam(ngayKetThuc);
+        LocalDate ngayKetThucMoi = chuanHoaNgayThangNam(ngayKetThuc);
+
+        while (ngayKetThucMoi.isBefore(ngayBatDau)) {
+            System.out.println("Ngay ket thuc khong the truoc ngay bat dau.");
+            System.out.println("Vui long nhap lai ngay ket thuc (dd/MM/yyyy): ");
+            ngayKetThucMoi = chuanHoaNgayThangNam(sc.nextLine());
+        }
+        this.ngayKetThuc = ngayKetThucMoi;
     }
 
     public String getDieuKienApDung() {
@@ -112,7 +119,6 @@ public class KhuyenMai {
         maKhuyenMai = "km" + String.format("%02d", ++soLuongKhuyenMai);
     }
 
-    // Phương thức toString để hiển thị thông tin khuyến mãi
     @Override
     public String toString() {
         return String.format("%-5s %-20s %-15s %-15s %-10.2f %-20s", maKhuyenMai, tenKhuyenMai, ngayBatDau, ngayKetThuc, tongKhuyenMai, dieuKienApDung);
@@ -121,6 +127,5 @@ public class KhuyenMai {
     public void xuat(){
         System.out.println(toString());
     }
-    
-    
+
 }

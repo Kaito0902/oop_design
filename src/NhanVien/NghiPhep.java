@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
 import static main_project.oop_project.qlnv;
 
 public class NghiPhep {
@@ -52,6 +53,9 @@ public class NghiPhep {
 
             String lc = sc.nextLine();
             while (!lc.equalsIgnoreCase("y") && !lc.equalsIgnoreCase("n")) {
+                System.out.println("Ban khong con ngay nghi phep nam.");
+                System.out.println("Neu nghi phep ban se khong nhan duoc luong ngay.");
+                System.out.println("So ngay khong nhan luong la " + ngayNghiDu + " ngay.");
                 System.out.println("Lua chon khong hop le.");
                 System.out.println("(Y/N): ");
                 lc = sc.nextLine();
@@ -71,7 +75,15 @@ public class NghiPhep {
         return ngayBatDau;
     }
 
-    public void setNgayBatDau(LocalDate ngayBatDau) {
+    public void setNgayBatDau(String ngayBatDauInput) {
+        LocalDate ngayBatDau = chuanHoaNgayThangNam(ngayBatDauInput);
+
+        while (ngayBatDau.isBefore(LocalDate.now())) {
+            System.out.println("Ngay bat dau nghi khong the la qua khu.");
+            System.out.println("Vui long nhap lai: ");
+            ngayBatDau = chuanHoaNgayThangNam(sc.nextLine());
+        }
+
         this.ngayBatDau = ngayBatDau;
     }
 
@@ -99,9 +111,7 @@ public class NghiPhep {
         setSoNgayNghi(ngayNghi);
 
         System.out.println("Nhập ngày bắt đầu nghỉ phép (dd/MM/yyyy): ");
-        String ngayBatDauString = sc.nextLine();
-        LocalDate ngayBatDau = LocalDate.parse(ngayBatDauString, formatter);
-        setNgayBatDau(ngayBatDau);
+        setNgayBatDau(sc.nextLine());
 
         System.out.println("Nhap ly do muon nghi phep: ");
         setLyDo(sc.nextLine());
@@ -142,8 +152,10 @@ public class NghiPhep {
     }
 
     public void xuatDonNghiPhep() {
+        System.out.println("CONG HOA XA HOI CHU NGHIA VIET NAM");
+        System.out.println("Doc lap - Tu do - Hanh phuc");
         System.out.println("DON XIN NGHI PHEP");
-        System.out.println("Kinh gui: Ban quan ly");
+        System.out.println("Kinh gui: Ban quan ly Cua hang J97");
         System.out.println("Toi ten la: " + getNhanVien().getTenNhanVien());
         System.out.println("Chuc vu: " + getNhanVien().getChucVu());
         System.out.println("Toi gui don nay xin phep nghi " + getSoNgayNghi() + " ngay, nghi tu ngay: " + getNgayBatDau().format(formatter));

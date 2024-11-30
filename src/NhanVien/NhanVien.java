@@ -3,6 +3,7 @@ package NhanVien;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.Month;
 import java.util.Scanner;
 
 import static ChucNang.ChuanHoaDuLieu.*;
@@ -21,7 +22,7 @@ public abstract class NhanVien {
     protected double luong;
     protected String matKhau;
     protected boolean isnotdelete;
-    static double luongCoBan = 250;
+    static double luongCoBan = 6000000;
     static int tongNhanVien = 0;
     static Scanner sc = new Scanner(System.in);
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -213,7 +214,7 @@ public abstract class NhanVien {
 
     @Override
     public String toString() {
-        return String.format("%-8s %-20s %-13s %-30s %-12s %-8s %-20s %-12s %-12.5f",
+        return String.format("%-8s %-20s %-13s %-30s %-12s %-8s %-20s %-12s %-15.5f",
                 maNhanVien, tenNhanVien, soDienThoai, email, sinhNhat.format(formatter), gioiTinh,
                 chucVu, ngayVaoLam.format(formatter), luong);
     }
@@ -224,8 +225,7 @@ public abstract class NhanVien {
 
     public abstract double heSoPhuCap();
     public abstract double tinhLuong();
-
-    // System.out.println("Nhan vien " + getTenNhanVien() + " da xin nghi " + soNgayNghi + " ngay. Con lai: " + this.ngayPhepConLai + " ngay phep.");
+    public abstract void resetThuocTinhDauThang();
 
     public void nghiPhep(int soNgayNghi) {
         if (soNgayNghi <= this.ngayPhepConLai) {
@@ -234,6 +234,13 @@ public abstract class NhanVien {
             double luongBiTru = tinhLuong() / 30 * soNgayNghi;
             luong -= luongBiTru;
             this.ngayPhepConLai = 0;
+        }
+    }
+
+    public void resetSoNgayNghiPhepConLai(){
+        LocalDate today = LocalDate.now();
+        if (today.getMonth() == Month.JANUARY && today.getDayOfMonth() == 1) {
+            ngayPhepConLai = 12;
         }
     }
 }

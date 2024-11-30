@@ -1,11 +1,13 @@
 package HoaDon;
 
+import NhanVien.NhanVienBanHang;
 import SanPham.SanPham;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaSoLieu;
 import static main_project.oop_project.qlhd;
 
 public class HoaDonDoiTraHang extends HoaDon {
@@ -49,8 +51,8 @@ public class HoaDonDoiTraHang extends HoaDon {
     }
 
     public void setSoLuongChiTiet(int soLuongChiTiet) {
-        while (soLuongChiTiet > hoaDonGoc.getSoLuongChiTiet()) {
-            System.out.println("So luong da lon hon hoa don goc.");
+        while (soLuongChiTiet > hoaDonGoc.getSoLuongChiTiet() || soLuongChiTiet <= 0) {
+            System.out.println("So luong da lon hon hoa don goc va lon hon 0.");
             System.out.println("Nhap lai so luong chi tiet: ");
             soLuongChiTiet = Integer.parseInt(scanner.nextLine());
         }
@@ -86,7 +88,7 @@ public class HoaDonDoiTraHang extends HoaDon {
     }
 
     public void setTiLeTru(double tiLeTru) {
-        this.tiLeTru = tiLeTru;
+        this.tiLeTru = chuanHoaSoLieu(tiLeTru);
     }
 
     public void setHoaDonGoc(HoaDonBanHang hoaDonGoc) {
@@ -118,7 +120,7 @@ public class HoaDonDoiTraHang extends HoaDon {
         }
 
         System.out.print("Nhap so luong chi tiet doi tra: ");
-        setSoLuongChiTiet(scanner.nextInt());
+        setSoLuongChiTiet(Integer.parseInt(scanner.nextLine()));
 
         for (int i = 0; i < soLuongChiTiet; i++) {
             System.out.print("Chon san pham doi tra (nhap so thu tu): ");
@@ -134,7 +136,7 @@ public class HoaDonDoiTraHang extends HoaDon {
             SanPham spDoiTra = ctGoc.getSanPham();
 
             System.out.print("Nhap so luong doi tra: ");
-            int soLuong = Integer.parseInt(scanner.nextLine());
+            int soLuong = chuanHoaSoLieu(Integer.parseInt(scanner.nextLine()));
 
             if (soLuong > ctGoc.getSoLuong()) {
                 System.out.println("So luong doi tra vuot qua so luong mua.");
@@ -145,19 +147,24 @@ public class HoaDonDoiTraHang extends HoaDon {
             System.out.print("Nhap ly do doi tra: ");
             String lyDo = scanner.nextLine();
 
-            System.out.print("Nhap tinh trang san pham (Moi/Cu/Hong): ");
+            System.out.print("Nhap tinh trang san pham: ");
             String tinhTrang = scanner.nextLine();
 
             ChiTietHoaDonDoiTra chiTietDoiTra = new ChiTietHoaDonDoiTra(i + 1, spDoiTra, soLuong, lyDo, tinhTrang);
             themChiTiet(chiTietDoiTra);
 
+            if (getNhanVienLapHoaDon() instanceof NhanVienBanHang) {
+                ((NhanVienBanHang) getNhanVienLapHoaDon()).capNhatDoanhThuVaSoLuongGiaoDich(0);
+            }
+
         }
 
         System.out.print("Nhap ty le tru (%): ");
-        this.tiLeTru = Double.parseDouble(scanner.nextLine());
+        setTiLeTru(Double.parseDouble(scanner.nextLine()));
 
         System.out.print("Nhap ghi chu: ");
-        this.ghiChu = scanner.nextLine();
+        setGhiChu(scanner.nextLine());
+
         tinhTongGiaTri();
 
     }
