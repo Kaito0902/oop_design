@@ -28,6 +28,7 @@ public class HoaDon {
         this.nhanVienLapHoaDon = qlnv.timKiemNhanVienTheoMa(maNhanVienLapHoaDon);
         this.khachHang = qlkh.timkiemKhachHangTheoMa(maKhachHang);
         this.loaiHoaDon = loaiHoaDon;
+        tongHoaDon++;
     }
 
     // Getter và Setter
@@ -73,13 +74,7 @@ public class HoaDon {
 
     // Phương thức nhập thông tin hóa đơn
     public void input() {
-        System.out.print("Nhap ma hoa don: ");
-        setMaHoaDon(scanner.nextLine());
-
-        System.out.print("Nhap ngay lap hoa don (dd/MM/yyyy): ");
-        String ngayLap = scanner.nextLine();
-        LocalDate ngayLapHoaDon = LocalDate.parse(ngayLap, formatter);
-        setNgayLapHoaDon(ngayLapHoaDon);
+        setNgayLapHoaDon(LocalDate.now());
 
         NhanVien nv = qlnv.nguoiDangNhap();
         setNhanVienLapHoaDon(nv);
@@ -95,7 +90,6 @@ public class HoaDon {
             setKhachHang(qlkh.timkiemKhachHangTheoSdt(sdt));
         }
         maHoaDon = "hd" + String.format("%02d", ++tongHoaDon);
-        tongHoaDon++;
     }
 
     // Phương thức xuất thông tin hóa đơn
@@ -115,7 +109,7 @@ public class HoaDon {
     @Override
     public String toString() {
         return String.format(
-                "%-5s %-10s %-5s %-18s %-15s %-15s %-10s",
+                "%-5s %-10s %-5s %-18s %-18s %-13s %-15s",
                 maHoaDon, // Mã hóa đơn
                 ngayLapHoaDon.format(formatter), // Ngày lập hóa đơn
                 nhanVienLapHoaDon.getMaNhanVien(), // Mã nhân viên

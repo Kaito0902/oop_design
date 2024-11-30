@@ -2,16 +2,21 @@ package NhanVien;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class QLNhanVien {
-    public NhanVien[] dsNhanVien = new NhanVien[0];
+    NhanVien[] dsNhanVien = new NhanVien[0];
     int soLuong = 0;
     static Scanner sc = new Scanner(System.in);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private NhanVien nguoiDangNhap;
+
+    public NhanVien[] getDsNhanVien() {
+        return dsNhanVien;
+    }
 
     public NhanVien dangNhap(String soDienThoai, String maKhau) {
         for (NhanVien nv : dsNhanVien) {
@@ -141,14 +146,14 @@ public class QLNhanVien {
                             NhanVienQuanLy nvql = new NhanVienQuanLy(maNhanVien, tenNhanVien, soDienThoai, email, sinhNhat, gioiTinh, chucVu, ngayVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete, chiSoHieuSuat);
                             themNV(nvql);
                         }
-                        default -> System.out.println("Dữ liệu không hợp lệ cho nhân viên: " + line);
+                        default -> System.out.println("Du lieu khong hop le cho nhân viên: " + line);
                     }
                 }
             }
         } catch (IOException e) {
-            System.out.println("Lỗi đọc file: " + e.getMessage());
+            System.out.println("Loi doc file: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Lỗi định dạng số trong dữ liệu: " + e.getMessage());
+            System.out.println("Loi dinh dang so trong du lieu: " + e.getMessage());
         }
     }
 
@@ -163,10 +168,48 @@ public class QLNhanVien {
     public void xuatDanhSachNV() {
         for (NhanVien ds : dsNhanVien) {
             if (ds.isnotdelete) {
+                ds.luong = ds.tinhLuong();
                 ds.output();
             }
         }
     }
+
+    public void resetNgayPhepConLai() {
+        LocalDate today = LocalDate.now();
+        if (today.getMonth() == Month.JANUARY && today.getDayOfMonth() == 1) {
+            for (NhanVien ds : dsNhanVien) {
+                if (ds.isnotdelete && today.getYear() - ds.ngayVaoLam.getYear() >= 1) {
+                    ds.ngayPhepConLai = 12;
+                }
+            }
+        }
+    }
+
+    public void resetThuocTinhNhanVien() {
+        LocalDate today = LocalDate.now();
+        if (today.getDayOfMonth() == 1){
+            for (NhanVien ds : dsNhanVien) {
+                if (ds.isnotdelete) {
+                    ds.resetThuocTinhDauThang();
+                }
+            }
+        }
+    }
+
+    public void tinhLuongCuoiThang() {
+        LocalDate today = LocalDate.now();
+        if (today.getDayOfMonth() == today.lengthOfMonth()){
+            for (NhanVien ds : dsNhanVien) {
+                if (ds.isnotdelete) {
+                    if(ds instanceof NhanVienQuanLy) {
+                        ((NhanVienQuanLy) ds).capNhatChiSoHieuSuatCuoiThang();
+                    }
+                    ds.tinhLuong();
+                }
+            }
+        }
+    }
+
 
     public void suaThongTinNV(String manv) {
         boolean timThay = false;
@@ -206,8 +249,7 @@ public class QLNhanVien {
                         }
                         case 4: {
                             System.out.println("Nhap ngay sinh moi: ");
-                            String ngaySinh = sc.nextLine();
-                            nv.setSinhNhat(ngaySinh);
+                            nv.setSinhNhat(sc.nextLine());
                             System.out.println("Da sua nam sinh.");
                             break;
                         }
@@ -279,8 +321,18 @@ public class QLNhanVien {
         }
     }
 
+    public NhanVien timKiemNhanVienTheoSDT(String sdt) {
+        for (NhanVien nv : dsNhanVien) {
+            if (nv.getSoDienThoai().equals(sdt)) {
+                return nv;
+            }
+        }
+        return null;
+    }
+
 
     public void thongKeNVBH() {
+        System.out.println("====================================================================================");
         System.out.println("|                                NHAN VIEN BAN HANG                               |");
         System.out.println("====================================================================================");
         System.out.printf("%-10s %-20s %-20s %-15s %-15s\n", "Ma NV", "Ten NV", "So luong giao dich", "Doanh thu", "Luong");
@@ -302,6 +354,7 @@ public class QLNhanVien {
     }
 
     public void thongKeNVKT(){
+        System.out.println("===========================================================================");
         System.out.println("|                         NHAN VIEN KY THUAT                              |");
         System.out.println("===========================================================================");
         System.out.printf("%-10s %-20s %-20s %-15s\n","Ma NV","Ten NV", "So luong bao hanh" ,"Luong" );
@@ -321,6 +374,7 @@ public class QLNhanVien {
     }
 
     public void thongKeNVQL(){
+        System.out.println("===========================================================================");
         System.out.println("|                         NHAN VIEN QUAN LY                               |");
         System.out.println("===========================================================================");
         System.out.printf("%-10s %-20s %-20s %-15s\n","Ma NV","Ten NV", "Chi so hieu suat" ,"Luong" );

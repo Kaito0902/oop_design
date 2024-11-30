@@ -39,18 +39,23 @@ public class ChiTietHoaDonBanHang {
     }
 
     public void setSoLuong(int soLuong) {
-        while (soLuong < 0) {
-            System.out.println("So luong khong the am.");
-            System.out.println("Nhap lai so luong: ");
-            soLuong = Integer.parseInt(sc.nextLine());
-        }
-        while (soLuong > getSanPham().getSoLuongTonKho()) {
-            System.out.println("So Luong mua lon hon so luong san pham co.");
-            System.out.println("Nhap lai so luong san pham: ");
-            soLuong = Integer.parseInt(sc.nextLine());
-        }
+        do {
+            while (soLuong < 0) {
+                System.out.println("So luong khong the am.");
+                System.out.println("Nhap lai so luong: ");
+                soLuong = Integer.parseInt(sc.nextLine());
+            }
+
+            if (soLuong > getSanPham().getSoLuongTonKho()) {
+                System.out.println("So luong mua lon hon so luong san pham co.");
+                System.out.println("Nhap lai so luong san pham: ");
+                soLuong = -1;
+            }
+
+        } while (soLuong < 0 || soLuong > getSanPham().getSoLuongTonKho());
         this.soLuong = soLuong;
     }
+
 
     public double getThanhTien() {
         return thanhTien;
@@ -71,7 +76,7 @@ public class ChiTietHoaDonBanHang {
 
     // Phương thức tính lại thành tiền
     private void tinhThanhTien() {
-        this.thanhTien = this.soLuong * this.sanPham.getGiaSP();
+        this.thanhTien = this.soLuong * this.sanPham.thanhTien();
     }
 
     // Phương thức nhập thông tin chi tiết hóa đơn

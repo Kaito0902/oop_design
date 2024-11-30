@@ -91,7 +91,7 @@ public class QLNghiPhep {
                 writer.newLine();
             }
         }  catch (IOException e) {
-            System.out.println("Lỗi ghi file: " + e.getMessage());
+            System.out.println("Loi ghi file: " + e.getMessage());
         }
     }
 
@@ -113,9 +113,9 @@ public class QLNghiPhep {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Lỗi đọc file: " + e.getMessage());
+            System.out.println("Loi doc file: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Lỗi định dạng số trong dữ liệu: " + e.getMessage());
+            System.out.println("Loi dinh dang so trong du lieu: " + e.getMessage());
         }
     }
 

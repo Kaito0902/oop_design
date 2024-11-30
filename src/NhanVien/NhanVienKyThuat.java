@@ -63,7 +63,7 @@ public class NhanVienKyThuat extends NhanVien {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-30s %-5d", Arrays.toString(kyNangChuyenMon), soLuuTruBaoHanh);
+        return super.toString() + String.format("%-10d %-5d", kyNangChuyenMon.length, soLuuTruBaoHanh);
     }
 
     @Override
@@ -77,22 +77,31 @@ public class NhanVienKyThuat extends NhanVien {
     }
 
     @Override
+    public void resetThuocTinhDauThang() {
+        this.soLuuTruBaoHanh = 0;
+    }
+
+    public void capNhatSoLuuTruBaoHanh(){
+        soLuuTruBaoHanh++;
+        luong = tinhLuong();
+    }
+
+    @Override
     public void menunv() {
         boolean kt = true;
         int lc;
         while (kt) {
-            System.out.println("=============================");
-            System.out.println("|\t     MENU CHINH       \t|");
-            System.out.println("=============================");
-            System.out.printf("| %-30s |\n", "1. Quan ly san pham");
-            System.out.printf("| %-30s |\n", "2. Quan ly don dat hang");
-            System.out.printf("| %-30s |\n", "3. Bao hanh va sua chua");
-            System.out.printf("| %-30s |\n", "4. Thong ke san pham");
-            System.out.printf("| %-30s |\n", "5. Xem thong tin ban than");
-            System.out.printf("| %-30s |\n", "6. Xin nghi phep");
-            System.out.printf("| %-30s |\n", "7. Doi mat khau");
-            System.out.printf("| %-30s |\n", "8. Dang xuat");
-            System.out.println("=============================");
+            System.out.println("================================");
+            System.out.println("|\t       MENU CHINH       \t|");
+            System.out.println("================================");
+            System.out.printf("| %-28s |\n", "1. Quan ly san pham");
+            System.out.printf("| %-28s |\n", "2. Quan ly don dat hang");
+            System.out.printf("| %-28s |\n", "3. Bao hanh va sua chua");
+            System.out.printf("| %-28s |\n", "4. Xem thong tin ban than");
+            System.out.printf("| %-28s |\n", "5. Xin nghi phep");
+            System.out.printf("| %-28s |\n", "6. Doi mat khau");
+            System.out.printf("| %-28s |\n", "7. Dang xuat");
+            System.out.println("================================");
             System.out.print("Nhap lua chon: ");
             lc = Integer.parseInt(sc.nextLine());
             switch (lc) {
@@ -109,21 +118,17 @@ public class NhanVienKyThuat extends NhanVien {
                     break;
                 }
                 case 4: {
-                    //thongkesp
-                    break;
-                }
-                case 5: {
                     output();
                     break;
                 }
-                case 6: {
+                case 5: {
                     NghiPhep nghiPhep = new NghiPhep();
                     nghiPhep.input();
                     qlnp.themDonNghiPhep(nghiPhep);
                     qlnp.ghiVaoFileDSNP();
                     break;
                 }
-                case 7: {
+                case 6: {
                     System.out.println("Nhap mat khau cu: ");
                     String matKhauCu = sc.nextLine();
                     int dem = 0;
@@ -147,7 +152,7 @@ public class NhanVienKyThuat extends NhanVien {
                     }
                     break;
                 }
-                case 8: {
+                case 7: {
                     kt = false;
                     break;
                 }

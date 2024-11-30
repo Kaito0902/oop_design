@@ -75,21 +75,32 @@ public class NhanVienBanHang extends NhanVien implements ThuongDoanhThu{
     }
 
     @Override
+    public void resetThuocTinhDauThang() {
+        this.soLuongGiaoDich = 0;
+        this.doanhThu = 0;
+    }
+
+    public void capNhatDoanhThuVaSoLuongGiaoDich(double doanhThu) {
+        this.doanhThu += doanhThu;
+        soLuongGiaoDich++;
+        luong = tinhLuong();
+    }
+
+    @Override
     public void menunv() {
         boolean kt = true;
         int lc;
         while (kt) {
-            System.out.println("===================================");
-            System.out.println("|\t     MENU CHINH       \t|");
-            System.out.println("===================================");
-            System.out.printf("| %-31s|\n", "1. Quan ly san pham");
-            System.out.printf("| %-31s|\n", "2. Quan ly khach hang va hoa don");
-            System.out.printf("| %-31s|\n", "3. Thong ke doanh so");
-            System.out.printf("| %-31s|\n", "4. Xem thong tin ban than");
-            System.out.printf("| %-31s|\n", "5. Xin nghi phep");
-            System.out.printf("| %-31s|\n", "6. Doi mat khau");
-            System.out.printf("| %-31s|\n", "7. Dang xuat");
-            System.out.println("===================================");
+            System.out.println("======================================");
+            System.out.println("|            MENU CHINH              |");
+            System.out.println("======================================");
+            System.out.printf("| %-35s|\n", "1. Quan ly san pham");
+            System.out.printf("| %-35s|\n", "2. Quan ly khach hang va hoa don");
+            System.out.printf("| %-35s|\n", "3. Xem thong tin ban than");
+            System.out.printf("| %-35s|\n", "4. Xin nghi phep");
+            System.out.printf("| %-35s|\n", "5. Doi mat khau");
+            System.out.printf("| %-35s|\n", "6. Dang xuat");
+            System.out.println("======================================");
             System.out.print("Nhap lua chon: ");
             lc = Integer.parseInt(sc.nextLine());
             switch (lc) {
@@ -102,21 +113,17 @@ public class NhanVienBanHang extends NhanVien implements ThuongDoanhThu{
                     break;
                 }
                 case 3: {
-                    //thongke
-                    break;
-                }
-                case 4: {
                     output();
                     break;
                 }
-                case 5: {
+                case 4: {
                     NghiPhep nghiPhep = new NghiPhep();
                     nghiPhep.input();
                     qlnp.themDonNghiPhep(nghiPhep);
                     qlnp.ghiVaoFileDSNP();
                     break;
                 }
-                case 6: {
+                case 5: {
                     System.out.println("Nhap mat khau cu: ");
                     String matKhauCu = sc.nextLine();
                     int dem = 0;
@@ -140,7 +147,7 @@ public class NhanVienBanHang extends NhanVien implements ThuongDoanhThu{
                     }
                     break;
                 }
-                case 7: {
+                case 6: {
                     kt = false;
                     break;
                 }

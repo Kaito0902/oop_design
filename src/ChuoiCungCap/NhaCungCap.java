@@ -1,12 +1,10 @@
 package ChuoiCungCap;
 
-import ChucNang.ChuanHoaDuLieu;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import static ChucNang.ChuanHoaDuLieu.chuanHoaEmail;
-import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
+import static ChucNang.ChuanHoaDuLieu.*;
 
 public class NhaCungCap {
     protected String maNCC;
@@ -50,7 +48,7 @@ public class NhaCungCap {
     }
 
     public void setTenNCC(String tenNCC) {
-        this.tenNCC = tenNCC;
+        this.tenNCC = chuanHoaTen(tenNCC);
     }
 
     public String getDiaChi() {

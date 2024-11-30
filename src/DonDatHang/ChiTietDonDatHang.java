@@ -5,6 +5,7 @@ import SanPham.SanPham;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaSoLieu;
 import static main_project.oop_project.qlsp;
 
 public class ChiTietDonDatHang{
@@ -53,7 +54,7 @@ public class ChiTietDonDatHang{
     }
 
     public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+        this.soLuong = chuanHoaSoLieu(soLuong);
     }
 
     public void input(int stt) {
@@ -100,7 +101,7 @@ public class ChiTietDonDatHang{
 
     @Override
     public String toString() {
-        return String.format("%-3s %-5s %-12s %-8d %-10.2f", soThuTu, sanPham.getMaSP(), sanPham.getTenSP(), soLuong, thanhTien);
+        return String.format("%-3s %-8s %-25s %-8d %-10.2f", soThuTu, sanPham.getMaSP(), sanPham.getTenSP(), soLuong, thanhTien);
     }
 
     public void ouput() {

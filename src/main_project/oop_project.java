@@ -1,5 +1,6 @@
 package main_project;
 
+import MucTieu.QLMucTieu;
 import BaoHanh.QLBaoHanh;
 import ChuoiCungCap.QLNhaCungCap;
 import DonDatHang.QLDonDatHang;
@@ -9,6 +10,7 @@ import KhuyenMai.QLKhuyenMai;
 import NhanVien.QLNghiPhep;
 import NhanVien.QLNhanVien;
 import SanPham.QLSanPham;
+import PhieuTraGop.QLPhieuTraGop;
 
 import java.util.Scanner;
 
@@ -22,6 +24,8 @@ public class oop_project {
     public static QLKhuyenMai qlkm = new QLKhuyenMai();
     public static QLDonDatHang qlddh = new QLDonDatHang();
     public static QLNhaCungCap qlncc = new QLNhaCungCap();
+    public static QLPhieuTraGop qlptg = new QLPhieuTraGop();
+    public static QLMucTieu qlmt = new QLMucTieu();
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -38,16 +42,21 @@ public class oop_project {
         qlhd.docTuFileDSHD();
         qlncc.docTuFile();
         qlddh.docTuFileDSDDH();
+
         boolean kt = true;
         int lc;
         while (kt) {
+            qlnv.resetNgayPhepConLai();
+            qlnv.resetThuocTinhNhanVien();
+            qlnv.tinhLuongCuoiThang();
             System.out.println("=============================");
             System.out.println("|\t     MENU CHINH       \t|");
             System.out.println("=============================");
             System.out.println("| 1. Dang nhap             \t|");
             System.out.println("| 2. Tra cuu don           \t|");
-            System.out.println("| 3. Xem san pham          \t|");
-            System.out.println("| 4. Thoat                 \t|");
+            System.out.println("| 3. Tra cuu bao hanh      \t|");
+            System.out.println("| 4. Xem san pham          \t|");
+            System.out.println("| 5. Thoat                 \t|");
             System.out.println("=============================");
             System.out.println("Nhap lua chon: ");
             try {
@@ -74,10 +83,13 @@ public class oop_project {
                         break;
                     }
                     case 3: {
+                        //baohanh
+                    }
+                    case 4: {
                         qlsp.xuatDanhSach();
                         break;
                     }
-                    case 4: {
+                    case 5: {
                         kt = false;
                         break;
                     }

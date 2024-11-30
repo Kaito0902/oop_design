@@ -2,6 +2,7 @@ package BaoHanh;
 
 import KhachHang.KhachHang;
 import NhanVien.NhanVien;
+import NhanVien.NhanVienKyThuat;
 import SanPham.SanPham;
 
 import java.time.LocalDate;
@@ -31,10 +32,11 @@ public class BaoHanhSanPham {
         this.maBaoHanh = maBaoHanh;
         this.khachHang = qlkh.timkiemKhachHangTheoMa(maKhachHang);
         this.sanPham = qlsp.timKiem(maSanPham);
-        this.nhanVienPhuTrach = qlnv.timKiemNhanVien(maNhanVienPhuTrach);
+        this.nhanVienPhuTrach = qlnv.timKiemNhanVienTheoMa(maNhanVienPhuTrach);
         this.lyDo = lyDo;
         this.ngayNhan = ngayNhan;
         this.trangThai = trangThai;
+        tongBaoHanh++;
     }
 
     public String getMaBaoHanh() {
@@ -127,12 +129,16 @@ public class BaoHanhSanPham {
 
         setTrangThai(loaiTrangThai[0]);
 
+        if (getNhanVienPhuTrach() instanceof NhanVienKyThuat) {
+            ((NhanVienKyThuat) getNhanVienPhuTrach()).capNhatSoLuuTruBaoHanh();
+        }
+
         maBaoHanh = "bh" + String.format("%02d", ++tongBaoHanh);
     }
 
     @Override
     public String toString() {
-        return String.format("%-10s %-10s %-15s %-10s %-15s %-10s %-15s %-30s %-15s %-15s", maBaoHanh, khachHang.getMaKhachHang(), khachHang.getHoTen(), sanPham.getMaSP(), sanPham.getTenSP(), nhanVienPhuTrach.getMaNhanVien(), nhanVienPhuTrach.getTenNhanVien(), lyDo, ngayNhan.format(formatter), trangThai);
+        return String.format("%-5s %-5s %-20s %-5s %-25s %-5s %-20s %-30s %-15s %-15s", maBaoHanh, khachHang.getMaKhachHang(), khachHang.getHoTen(), sanPham.getMaSP(), sanPham.getTenSP(), nhanVienPhuTrach.getMaNhanVien(), nhanVienPhuTrach.getTenNhanVien(), lyDo, ngayNhan.format(formatter), trangThai);
     }
 
     public void output() {

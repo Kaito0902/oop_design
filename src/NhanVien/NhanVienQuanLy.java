@@ -1,11 +1,13 @@
 package NhanVien;
 
 
+import MucTieu.MucTieuDoanhThu;
+
 import java.time.LocalDate;
+import java.time.YearMonth;
 
 import static ChucNang.ChucNangMenu.*;
-import static main_project.oop_project.qlnp;
-import static main_project.oop_project.qlnv;
+import static main_project.oop_project.*;
 
 public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
     private double chiSoHieuSuat;
@@ -43,8 +45,24 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
         return 0.1;
     }
 
-    // tinh chi so hieu suat (50%, 30%, 20%)
-    // doanh thu, ty le hai long, chi phi (muc tieu/ thuc te)
+    public double tinhChiSoHieuSuat(YearMonth thangNam, double doanhThuthucTe) {
+        MucTieuDoanhThu mucTieu = qlmt.timMucTieu(thangNam);
+        if (mucTieu != null && mucTieu.getDoanhThu() != 0) {
+            return doanhThuthucTe / mucTieu.getDoanhThu();
+        } else {
+            return -1;
+        }
+    }
+
+    public void capNhatChiSoHieuSuatCuoiThang() {
+        LocalDate today = LocalDate.now();
+        YearMonth thangNamHienTai = YearMonth.from(today);
+        double doanhThuThucTe = qlhd.tinhTongDoanhThuThangHienTai();
+        double chiSo = tinhChiSoHieuSuat(thangNamHienTai, doanhThuThucTe);
+        if (chiSo != -1) {
+            this.chiSoHieuSuat = chiSo;
+        }
+    }
 
     @Override
     public double thuongDoanhThu() {
@@ -65,6 +83,11 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
     @Override
     public double tinhLuong() {
         return luongCoBan*heSoLuong + luongCoBan*heSoPhuCap() + luongCoBan*thuongDoanhThu();
+    }
+
+    @Override
+    public void resetThuocTinhDauThang() {
+        this.chiSoHieuSuat = 0;
     }
 
     @Override
@@ -101,6 +124,7 @@ public class NhanVienQuanLy extends NhanVien implements ThuongDoanhThu {
                 }
                 case 3: {
                     menuKM();
+                    break;
                 }
                 case 4: {
                     menuSP();

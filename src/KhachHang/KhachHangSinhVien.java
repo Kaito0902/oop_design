@@ -25,7 +25,7 @@ public class KhachHangSinhVien extends KhachHang {
     }
 
     public void setDiemTB(double diemTB) {
-        while (diemTB < 0.0 && diemTB > 10.0 ) {
+        while (diemTB < 0.0 || diemTB > 10.0 ) {
             System.out.println("diemtb khong duoc duoi 0 ");
             System.out.println("Vui long nhap lai: ");
             diemTB = scanner.nextDouble();
@@ -35,8 +35,8 @@ public class KhachHangSinhVien extends KhachHang {
 
     //input
     @Override
-    public void input(QLHoaDon qlhd) {
-        super.input(qlhd);
+    public void input() {
+        super.input();
         System.out.println("Nhap diem TB:");
         setDiemTB(Double.parseDouble(scanner.nextLine()));
     }
@@ -58,7 +58,7 @@ public class KhachHangSinhVien extends KhachHang {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10.2f %-10.2f %-15d", diemTB ,tinhUuDai(), getTichDiem());
+        return super.toString() + String.format("%-10.2f %-10.2f %-10d", diemTB ,tinhUuDai(), getTichDiem());
     }
     
 }
