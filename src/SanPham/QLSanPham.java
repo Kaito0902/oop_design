@@ -779,31 +779,5 @@ public class QLSanPham{
     
         System.out.println("=".repeat(85));
     }
-    
-    public void thongKeTonKho() {
-        System.out.println("=".repeat(80));
-        String title = "Thong Ke So Luong Ton Kho Cua San Pham";
-        int padding = (80 - title.length()) / 2;
-        System.out.println(" ".repeat(padding) + title);
-        System.out.println("=".repeat(80));
-    
-        System.out.printf("%-15s %-30s %-15s %-20s\n", 
-                          "Ma San Pham", 
-                          "Ten San Pham", 
-                          "Ton Kho", 
-                          "Gia San Pham");
-        System.out.println("=".repeat(80));
-    
-        for (SanPham sp : ds) {
-            if (sp.isNotDeleted()) {  
-                System.out.printf("%-15s %-30s %-15d %-20.2f\n", 
-                                  sp.getMaSP(), 
-                                  sp.getTenSP(), 
-                                  sp.getSoLuongTonKho(),  
-                                  sp.getGiaSP());  
-            }
-        }
-    
-        System.out.println("=".repeat(80));
-    }
+ 
 }
