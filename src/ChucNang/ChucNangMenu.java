@@ -15,8 +15,7 @@ import NhanVien.NhanVienBanHang;
 import NhanVien.NhanVienKyThuat;
 import NhanVien.NhanVienQuanLy;
 import SanPham.SanPham;
-import DoanhThu.DoanhThu;
-import DoanhThu.ChiTietDoanhThu;
+
 
 import java.util.Scanner;
 
@@ -647,10 +646,12 @@ public class ChucNangMenu {
             System.out.println("===================================");
             System.out.printf("| %-34s|\n", "1. Xem thong ke doanh thu");
             System.out.printf("| %-34s|\n", "2. Xem ti le tang truong");
-            System.out.printf("| %-34s|\n", "3. Xem thong ke san pham");
-            System.out.printf("| %-34s|\n", "4. Xem thong ke kho");
-            System.out.printf("| %-34s|\n", "5. Xem thong nhan vien");
-            System.out.printf("| %-34s|\n", "6. Thoat                     |");
+            System.out.printf("| %-34s|\n", "3. Xem loi nhuan");
+            System.out.printf("| %-34s|\n", "4. Xem thong ke san pham");
+            System.out.printf("| %-34s|\n", "5. Xem thong ke kho");
+            System.out.printf("| %-34s|\n", "6. Xem thong ke nhan vien");
+            System.out.printf("| %-34s|\n", "7. Xem thong ke khach hang");
+            System.out.printf("| %-34s|\n", "8. Thoat                     |");
             System.out.println("===================================");
             System.out.print("Nhap lua chon: ");
             chon = Integer.parseInt(sc.nextLine());
@@ -684,6 +685,7 @@ public class ChucNangMenu {
                 case 2: {
                     System.out.println("1. Ti le tang truong theo thang");
                     System.out.println("2. Ti le tang truong theo nam");
+                    System.out.println("Nhap lua chon: ");
                     int lc = Integer.parseInt(sc.nextLine());       
                     switch (lc) {
                         case 1:{
@@ -702,10 +704,53 @@ public class ChucNangMenu {
                     break;
                 }
                 case 3: {
-                    //kho
+                    System.out.println("1. Tinh loi nhuan thang");
+                    System.out.println("2. Tinh loi nhuan nam");
+                    System.out.println("Nhap lua chon: ");
+                    int lc = Integer.parseInt(sc.nextLine());       
+                    switch (lc) {
+                        case 1:{
+                            qlhd.tinhLoiNhuanThang();
+                            break;
+                        }
+                        case 2:{
+                            qlhd.tinhLoiNhuanNam();
+                            break;
+                        }
+                        default: {
+                            System.out.println("Lua chon khong hop le");
+                            System.out.println("Vui long lua chon lai");
+                        }
+                    }
                     break;
                 }
-                case 5: {
+                case 4:{
+                    System.out.println("1. Thong ke san pham ban chay");
+                    System.out.println("2. Thong ke san pham ban e");
+                    System.out.println("3. Thong ke san pham ton kho");
+                    System.out.println("Nhap lua chon: ");
+                    int lc = Integer.parseInt(sc.nextLine());       
+                    switch (lc) {
+                        case 1:{
+                            qlsp.thongKeSanPhamBanChay();
+                            break;
+                        }
+                        case 2:{
+                            qlsp.thongKeSanPhamBanE();
+                            break;
+                        }
+                        default: {
+                            System.out.println("Lua chon khong hop le");
+                            System.out.println("Vui long lua chon lai");
+                        }
+                    }
+                    break;
+                }
+                case 5:{
+                    qlsp.thongKeTonKho();
+                    break;
+                }
+                case 6: {
                     System.out.println("1.Thong ke nhan vien ban hang");
                     System.out.println("2.Thong ke nhan vien ky thuat");
                     System.out.println("3.Thong ke nhan vien quan ly");
@@ -731,7 +776,28 @@ public class ChucNangMenu {
                     }
                     break;
                 }
-                case 6: {
+                case 7:{
+                    System.out.println("1. Thong ke chi tieu khach hang");
+                    System.out.println("2. Thong ke tan suat mua hang cua khach hang");
+                    System.out.println("Nhap lua chon: ");
+                    int lc = Integer.parseInt(sc.nextLine());
+                    switch (lc) {
+                        case 1:{
+                            qlkh.thongKeTongChi();
+                            break;
+                        }
+                        case 2:{
+                            qlkh.thongKeTanSuatMuaHang();
+                            break;
+                    }
+                    default: {
+                        System.out.println("Lua chon khong hop le");
+                        System.out.println("Vui long lua chon lai");
+                    }
+                }
+                break;
+            }
+                case 8: {
                     ktra = false;
                     break;
                 }

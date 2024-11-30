@@ -137,6 +137,10 @@ public abstract class NhanVien {
         this.chucVu = chucVu;
     }
 
+    public boolean getIsnotdelete() {
+        return isnotdelete;
+    }
+
     public boolean dangNhap(String soDienThoai, String matKhau) {
         return this.soDienThoai.equals(soDienThoai) && this.matKhau.equals(matKhau);
     }

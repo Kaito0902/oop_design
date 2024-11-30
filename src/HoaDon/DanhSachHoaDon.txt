@@ -1,8 +1,8 @@
-hd001,01/05/2024,nv01,Nguyen Van A,kh01,Nguyen B,HoaDonBanHang,km01,10,5,ChuyenKhoan,1000
-hd004,01/06/2024,nv01,Nguyen Van A,kh01,Nguyen B,HoaDonBanHang,km01,10,5,ChuyenKhoan,3000
-hd002,10/09/2024,nv01,Nguyen Van B,kh02,Nguyen C,HoaDonBanHang,km01,10,5,ChuyenKhoan,2000
-hd003,30/10/2024,nv01,Nguyen Van C,kh03,Nguyen D,HoaDonBanHang,km01,10,5,ChuyenKhoan,3000
-hd005,29/12/2024,nv01,Nguyen Van C,kh03,Nguyen D,HoaDonBanHang,km01,10,5,ChuyenKhoan,9000
+hd001,01/03/2024,nv01,Nguyen Van A,kh01,Nguyen B,HoaDonBanHang,km01,10,5,ChuyenKhoan,7000000
+hd004,01/05/2024,nv01,Nguyen Van A,kh01,Nguyen B,HoaDonBanHang,km01,10,5,ChuyenKhoan,3000
+hd002,10/07/2024,nv01,Nguyen Van B,kh02,Nguyen C,HoaDonBanHang,km01,10,5,ChuyenKhoan,2000
+hd003,30/09/2024,nv01,Nguyen Van C,kh03,Nguyen D,HoaDonBanHang,km01,10,5,ChuyenKhoan,3000
+hd005,29/11/2024,nv01,Nguyen Van C,kh03,Nguyen D,HoaDonBanHang,km01,10,5,ChuyenKhoan,90000
 
 hd001,01/05/2025,nv01,Nguyen Van A,kh01,Nguyen B,HoaDonBanHang,km01,10,5,ChuyenKhoan,1000
 hd004,01/06/2025,nv01,Nguyen Van A,kh01,Nguyen B,HoaDonBanHang,km01,10,5,ChuyenKhoan,3000

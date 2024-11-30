@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class QLNhanVien {
-    NhanVien[] dsNhanVien = new NhanVien[0];
+    public NhanVien[] dsNhanVien = new NhanVien[0];
     int soLuong = 0;
     static Scanner sc = new Scanner(System.in);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

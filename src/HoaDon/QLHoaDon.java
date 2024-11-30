@@ -1,8 +1,10 @@
 package HoaDon;
 
 import KhachHang.KhachHang;
+import NhanVien.NhanVien;
 import SanPham.SanPham;
-
+import DonDatHang.DonDatHang;
+import DonDatHang.QLDonDatHang;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +13,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import DonDatHang.DonDatHang;
+import DonDatHang.QLDonDatHang;
+import NhanVien.QLNhanVien;
+import static main_project.oop_project.qlddh;
+import static main_project.oop_project.qlhd;
+import static main_project.oop_project.qlnv;
+import static main_project.oop_project.qlkh;
+
 public class QLHoaDon {
+    private QLDonDatHang qlDonDatHang;
     public HoaDon[] dshd = new HoaDon[0];
     static Scanner sc = new Scanner(System.in);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -396,17 +407,23 @@ public class QLHoaDon {
     }
 
     public void thongKe_TiLeTangTruongThang() {
-        System.out.print("Nhap nam can thong ke: ");
-        int nam = sc.nextInt(); 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yyyy");
+        // System.out.print("Nhap nam can thong ke: ");
+        // int nam = sc.nextInt(); 
     
-        System.out.print("Nhap thang can xem ti le tang truong (1-12): ");
-        int thang = sc.nextInt(); 
+        // System.out.print("Nhap thang can xem ti le tang truong (1-12): ");
+        // int thang = sc.nextInt(); 
     
-        if (thang < 1 || thang > 12) {
-            System.out.println("Thang khong hop le! Vui long nhap tu 1 den 12.");
-            return;
-        }
-    
+        // if (thang < 1 || thang > 12) {
+        //     System.out.println("Thang khong hop le! Vui long nhap tu 1 den 12.");
+        //     return;
+        // }
+        System.out.print("Nhap thang va nam can thong ke tang truong (MM/yyyy): ");
+        String thangNamNhap = sc.nextLine();
+        try{
+            LocalDate ngayThangNam = LocalDate.parse("01/" + thangNamNhap, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            int thang = ngayThangNam.getMonthValue();
+            int nam = ngayThangNam.getYear();
         double[] doanhThuThang = new double[12]; // Mảng lưu doanh thu theo tháng
         boolean found = false;
     
@@ -444,7 +461,11 @@ public class QLHoaDon {
         }
     
         System.out.println("=============================================================================");
+    }catch (Exception e) {
+        System.out.println("Loi: Vui long nhap thang va nam dung dinh dang (MM/yyyy).");
     }
+    }
+
 
     public void thongKe_TiLeTangTruongNam() {
         System.out.print("Nhap nam can thong ke: ");
@@ -492,5 +513,144 @@ public class QLHoaDon {
     
         System.out.println("=============================================================================");
     }
+
+   public void tinhLoiNhuanThang() {
+    System.out.print("Nhap thang va nam can tinh loi nhuan (MM/YYYY): ");
+    String input = sc.nextLine();
+
+    try {
+        if (!input.matches("^\\d{2}/\\d{4}$")) {
+            System.out.println("Dinh dang thang/nam khong hop le. Vui long nhap lai (MM/YYYY).");
+            return;
+        }
+
+        String[] parts = input.split("/");
+        int thang = Integer.parseInt(parts[0]);
+        int nam = Integer.parseInt(parts[1]);
+
+        if (thang < 1 || thang > 12) {
+            System.out.println("Thang khong hop le. Vui long nhap lai.");
+            return;
+        }
+
+        double doanhThuThang = 0;
+        double tongTienDonDatHangThang = 0;
+
+        for (HoaDon hd : dshd) {
+            if (hd instanceof HoaDonBanHang) {
+                HoaDonBanHang hdbh = (HoaDonBanHang) hd;
+                if (hdbh.getNgayLapHoaDon().getMonthValue() == thang &&
+                    hdbh.getNgayLapHoaDon().getYear() == nam) {
+                    doanhThuThang += hdbh.getTongTien();
+                }
+            }
+        }
+
+        
+        for (DonDatHang ddh : qlddh.dsddh) {
+            if (ddh.getNgayDatHang().getMonthValue() == thang &&
+                ddh.getNgayDatHang().getYear() == nam) {
+                tongTienDonDatHangThang += ddh.getTongTien();  
+            }
+        }
+
+        double loiNhuanThang = doanhThuThang - tongTienDonDatHangThang;
+        
+        double tongLuongNhanVien = 0;
+        for (NhanVien nv : qlnv.dsNhanVien){
+            if(nv.getIsnotdelete()){
+                tongLuongNhanVien += nv.getLuong();
+            } 
+        }
+
+
+        System.out.println("---------------------------------------------------------");
+        System.out.printf("%-30s %-20s\n", "Tong luong nhan vien thang", "Loi nhuan thang");
+        System.out.printf("%-30.2f %-20.2f\n", tongLuongNhanVien, loiNhuanThang);
+        System.out.println("---------------------------------------------------------");
+
+    } catch (Exception e) {
+        System.out.println("Dinh dang thang/nam khong hop le. Vui long nhap lai.");
+    }
+}
+
+public void tinhLoiNhuanNam() {
+    System.out.print("Nhap nam can tinh loi nhuan (YYYY): ");
+    String input = sc.nextLine();
+
+    try {
+        int nam = Integer.parseInt(input);
+
+        if (nam < 1) {
+            System.out.println("Nam khong hop le. Vui long nhap lai.");
+            return;
+        }
+
+        double doanhThuNam = 0;
+        double tongTienDonDatHangNam = 0;
+        double tongLuongNhanVienNam = 0;
+        double loiNhuanNam = 0;
+
+        // Tính tổng doanh thu cả năm
+        for (HoaDon hd : dshd) {
+            if (hd instanceof HoaDonBanHang) {
+                HoaDonBanHang hdbh = (HoaDonBanHang) hd;
+                if (hdbh.getNgayLapHoaDon().getYear() == nam) {
+                    doanhThuNam += hdbh.getTongTien();
+                }
+            }
+        }
+
+        // Tính tổng tiền đơn đặt hàng trong năm
+        for (DonDatHang ddh : qlddh.dsddh) {
+            if (ddh.getNgayDatHang().getYear() == nam) {
+                tongTienDonDatHangNam += ddh.getTongTien();  
+            }
+        }
+
+        // Tính tổng lương nhân viên cho một năm
+        for (NhanVien nv : qlnv.dsNhanVien) {
+            if (nv.getIsnotdelete()) {
+                tongLuongNhanVienNam += nv.getLuong();
+            }
+        }
+
+        // Tính lợi nhuận năm
+        loiNhuanNam = doanhThuNam - tongTienDonDatHangNam;
+
+        // In kết quả với định dạng bảng
+        System.out.println("---------------------------------------------------------");
+        System.out.printf("%-30s %-20s\n", "Tong luong nhan vien nam", "Loi nhuan nam");
+        System.out.printf("%-30.2f %-20.2f\n", tongLuongNhanVienNam * 12, loiNhuanNam); // Nhân lương nhân viên tháng với 12
+        System.out.println("---------------------------------------------------------");
+
+    } catch (Exception e) {
+        System.out.println("Dinh dang nam khong hop le. Vui long nhap lai.");
+    }
+}
+
+// public void thongKeTongChi() {
+//         System.out.printf("%-15s %-20s %-15s %-15s\n", "Ma khach hang", "Ten khach hang", "Loai khach hang", "Tong da chi");
+
+//         for (KhachHang kh : qlkh.dskh) {
+//             double tongChi = 0;
+
+//             // Duyệt qua danh sách hóa đơn để tính tổng chi cho khách hàng này
+//             for (HoaDon hd : dshd) {
+//                 if (hd instanceof HoaDonBanHang hdbh) {
+//                     if (hdbh.getKhachHang().getMaKhachHang().equals(kh.getMaKhachHang())) {
+//                         tongChi += hdbh.getTongTien();
+//                     }
+//                 }
+//             }
+
+//             // Xuất thông tin khách hàng
+//             System.out.printf("%-15s %-20s %-15s %-15.2f\n",
+//                     kh.getMaKhachHang(),
+//                     kh.getHoTen(),
+//                     kh.getLoaiKhachHang(), // Sử dụng trực tiếp loại khách hàng từ đối tượng
+//                     tongChi);
+//         }
+//     }
 
 }

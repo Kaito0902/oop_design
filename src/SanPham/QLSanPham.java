@@ -729,4 +729,94 @@ public class QLSanPham{
             }
         }
     }
+
+    public void thongKeSanPhamBanChay() {
+        // In tiêu đề chính và căn giữa
+        System.out.println("=".repeat(85));
+        String title = "Cac san pham ban chay";
+        int padding = (65 - title.length()) / 2;
+        System.out.println(" ".repeat(padding) + title);
+        System.out.println("=".repeat(85));
+    
+        // In tiêu đề các cột
+        System.out.printf("%-15s %-35s %-30s\n", 
+                          "Ma SP", 
+                          "Ten San Pham", 
+                          "Gia San Pham");
+        System.out.println("=".repeat(85));
+    
+        // Duyệt qua danh sách các sản phẩm
+        for (SanPham sp : ds) {
+            // Kiểm tra nếu sản phẩm bán chạy (soLuongTonKho < soLuongXuat)
+            if (sp.getSoLuongTonKho() < sp.getSoLuongXuat() && sp.isNotDeleted()) {
+                // In các thông tin của sản phẩm, thay loaiSP bằng giaSP
+                System.out.printf("%-15s %-35s %-30.2f\n", 
+                                  sp.getMaSP(), 
+                                  sp.getTenSP(), 
+                                  sp.getGiaSP());  // Xuất giaSP thay vì loaiSP
+            }
+        }
+    
+        System.out.println("=".repeat(85));
+    }
+    
+    public void thongKeSanPhamBanE() {
+        // In tiêu đề chính và căn giữa
+        System.out.println("=".repeat(85));
+        String title = "Cac san pham ban e";
+        int padding = (65 - title.length()) / 2;
+        System.out.println(" ".repeat(padding) + title);
+        System.out.println("=".repeat(85));
+    
+        // In tiêu đề các cột
+        System.out.printf("%-15s %-35s %-30s\n", 
+                          "Ma SP", 
+                          "Ten San Pham", 
+                          "Gia San Pham");
+        System.out.println("=".repeat(85));
+    
+        // Duyệt qua danh sách các sản phẩm
+        for (SanPham sp : ds) {
+            // Kiểm tra nếu sản phẩm bán ế (soLuongTonKho > soLuongXuat)
+            if (sp.getSoLuongTonKho() > sp.getSoLuongXuat() && sp.isNotDeleted()) {
+                // In các thông tin của sản phẩm, thay loaiSP bằng giaSP
+                System.out.printf("%-15s %-35s %-30.2f\n", 
+                                  sp.getMaSP(), 
+                                  sp.getTenSP(), 
+                                  sp.getGiaSP());  // Xuất giaSP thay vì loaiSP
+            }
+        }
+    
+        System.out.println("=".repeat(85));
+    }
+    
+    public void thongKeTonKho() {
+        // In tiêu đề chính và căn giữa
+        System.out.println("=".repeat(80));
+        String title = "Thong Ke So Luong Ton Kho Cua San Pham";
+        int padding = (80 - title.length()) / 2;
+        System.out.println(" ".repeat(padding) + title);
+        System.out.println("=".repeat(80));
+    
+        // In tiêu đề các cột
+        System.out.printf("%-15s %-30s %-15s %-20s\n", 
+                          "Ma San Pham", 
+                          "Ten San Pham", 
+                          "Ton Kho", 
+                          "Gia San Pham");
+        System.out.println("=".repeat(80));
+    
+        // Duyệt qua danh sách các sản phẩm
+        for (SanPham sp : ds) {
+            if (sp.isNotDeleted()) {  // Kiểm tra sản phẩm chưa bị xóa
+                System.out.printf("%-15s %-30s %-15d %-20.2f\n", 
+                                  sp.getMaSP(), 
+                                  sp.getTenSP(), 
+                                  sp.getSoLuongTonKho(),  // Số lượng tồn kho
+                                  sp.getGiaSP());  // Giá sản phẩm
+            }
+        }
+    
+        System.out.println("=".repeat(80));
+    }
 }

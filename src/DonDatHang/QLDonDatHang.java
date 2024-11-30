@@ -9,12 +9,16 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import HoaDon.HoaDon;
+import HoaDon.HoaDonBanHang;
+import HoaDon.QLHoaDon;
+
 import static DonDatHang.DonDatHang.loaiTrangThai;
 import static main_project.oop_project.qlncc;
 import static main_project.oop_project.qlsp;
 
 public class QLDonDatHang {
-    DonDatHang[] dsddh = new DonDatHang[0];
+    public DonDatHang[] dsddh = new DonDatHang[0];
     int soLuongDonDatHang;
     static Scanner sc = new Scanner(System.in);
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -304,5 +308,9 @@ public class QLDonDatHang {
             System.out.println("Loi doc file: " + e.getMessage());
         }
     }
+
+  
+    
+
 
 }
