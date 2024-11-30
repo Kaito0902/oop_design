@@ -141,14 +141,14 @@ public class QLNhanVien {
                             NhanVienQuanLy nvql = new NhanVienQuanLy(maNhanVien, tenNhanVien, soDienThoai, email, sinhNhat, gioiTinh, chucVu, ngayVaoLam, heSoLuong, ngayPhepConLai, luong, matKhau, isdelete, chiSoHieuSuat);
                             themNV(nvql);
                         }
-                        default -> System.out.println("Dữ liệu không hợp lệ cho nhân viên: " + line);
+                        default -> System.out.println("Du lieu khong hop le cho nhân viên: " + line);
                     }
                 }
             }
         } catch (IOException e) {
-            System.out.println("Lỗi đọc file: " + e.getMessage());
+            System.out.println("Loi doc file: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.out.println("Lỗi định dạng số trong dữ liệu: " + e.getMessage());
+            System.out.println("Loi dinh dang so trong du lieu: " + e.getMessage());
         }
     }
 
@@ -277,6 +277,15 @@ public class QLNhanVien {
                 }
             }
         }
+    }
+
+    public NhanVien timKiemNhanVienTheoSDT(String sdt) {
+        for (NhanVien nv : dsNhanVien) {
+            if (nv.getSoDienThoai().equals(sdt)) {
+                return nv;
+            }
+        }
+        return null;
     }
 
 

@@ -28,6 +28,7 @@ public class KhuyenMai {
         this.tongKhuyenMai = tongKhuyenMai;
         this.dieuKienApDung = dieuKienApDung;
         this.isdelete = isdelete;
+        soLuongKhuyenMai++;
     }
 
     public String getMaKhuyenMai() {
@@ -104,7 +105,7 @@ public class KhuyenMai {
         System.out.print("Nhap dieu kien ap dung: ");
         setDieuKienApDung(sc.nextLine());
 
-        System.out.print("Nhap tong khuyen mai: ");
+        System.out.print("Nhap tong khuyen mai (theo %): ");
         setTongKhuyenMai(Double.parseDouble(sc.nextLine()));
 
         isdelete = false;

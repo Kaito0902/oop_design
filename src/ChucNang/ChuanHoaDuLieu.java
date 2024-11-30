@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import KhachHang.QLKhachHang;
 
+import static main_project.oop_project.qlkh;
+import static main_project.oop_project.qlnv;
+
 
 public class ChuanHoaDuLieu {
     static Scanner scanner = new Scanner(System.in);
@@ -30,27 +33,36 @@ public class ChuanHoaDuLieu {
                     && email.indexOf('@') < email.lastIndexOf('.')) { // '@' nằm trước '.'
                 return email; // Trả về email hợp lệ
             } else {
-                System.out.println("Email không hợp lệ! Vui lòng nhập lại:");
+                System.out.println("Email khong hop le! Vui long nhap lai:");
                 email = scanner.nextLine(); // Yêu cầu nhập lại
             }
         }
     }
 
     // chuan hoa so dien thoai theo dinh dang (0xxxxxxxxx)
-    public static String chuanHoaSoDienThoai (String sdt) {
+    public static String chuanHoaSoDienThoainv(String sdt) {
         while (true) {
+            // Loại bỏ tất cả ký tự không phải số
             sdt = sdt.replaceAll("\\D", "");
+
+            // Kiểm tra số điện thoại có đúng định dạng
             if (sdt.length() == 10 && sdt.charAt(0) == '0') {
-                return sdt;
+                // Kiểm tra số điện thoại đã tồn tại hay chưa
+                if (qlnv.timKiemNhanVien(sdt) != null) {
+                    System.out.println("So dien thoai da ton tai! Vui long nhap so khac:");
+                    sdt = scanner.nextLine(); // Nhập lại số điện thoại mới
+                    continue;
+                }
+                return sdt; // Nếu hợp lệ và không trùng, trả về
             } else {
-                System.out.println("Số điện thoại không hợp lệ! Yêu cầu nhập số điện thoại 10 chữ số, bắt đầu bằng số 0.");
-                sdt = scanner.nextLine().replace("\\D", "");
+                System.out.println("So dien thoai khong hop le! Yeu cau nhap so dien thoai 10 chu so, bat dau bang so 0.");
+                sdt = scanner.nextLine(); // Nhập lại số điện thoại mới
             }
         }
     }
 
     // chuan hoa so dien thoai danh cho khach hang
-    public static String chuanHoaSoDienThoai(String sdt, QLKhachHang qlkh) {
+    public static String chuanHoaSoDienThoaikh(String sdt) {
         while (true) {
             // Loại bỏ tất cả ký tự không phải số
             sdt = sdt.replaceAll("\\D", "");
@@ -59,13 +71,13 @@ public class ChuanHoaDuLieu {
             if (sdt.length() == 10 && sdt.charAt(0) == '0') {
                 // Kiểm tra số điện thoại đã tồn tại hay chưa
                 if (qlkh.timkiemKhachHangTheoSdt(sdt) != null) {
-                    System.out.println("Số điện thoại đã tồn tại! Vui lòng nhập số khác:");
+                    System.out.println("So dien thoai da ton tai! Vui long nhap so khac:");
                     sdt = scanner.nextLine(); // Nhập lại số điện thoại mới
                     continue;
                 }
                 return sdt; // Nếu hợp lệ và không trùng, trả về
             } else {
-                System.out.println("Số điện thoại không hợp lệ! Yêu cầu nhập số điện thoại 10 chữ số, bắt đầu bằng số 0.");
+                System.out.println("So dien thoai khong hop le! Yeu cau nhap so dien thoai 10 chu so, bat dau bang so 0.");
                 sdt = scanner.nextLine(); // Nhập lại số điện thoại mới
             }
         }
@@ -83,7 +95,7 @@ public class ChuanHoaDuLieu {
             } else if (gioiTinh.equals("khac")) {
                 return "Khac";
             } else {
-                System.out.println("Giới tính không hợp lệ! Vui lòng nhập lại:");
+                System.out.println("Gioi tinh khong hop le! Vui long nhap lai:");
                 gioiTinh = scanner.nextLine();
             }
         }
@@ -95,7 +107,7 @@ public class ChuanHoaDuLieu {
         try {
             return LocalDate.parse(ngay, formatter);
         } catch (Exception e) {
-            System.out.println("Ngày sinh không hợp lệ! Vui lòng nhập lại (định dạng: dd/MM/yyyy):");
+            System.out.println("Ngay sinh khong hop le! Vui long nhap lai");
             return null;
         }
     }

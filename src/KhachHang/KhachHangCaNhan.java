@@ -1,7 +1,5 @@
 package KhachHang;
 
-import HoaDon.HoaDon;
-
 public class KhachHangCaNhan extends KhachHang {
 
     public KhachHangCaNhan () {
@@ -16,10 +14,10 @@ public class KhachHangCaNhan extends KhachHang {
 
     //tinhdiem thuong
     @Override
-    public int tinhDiemThuong( double tongSoTien ) { //can thuoc tinh tong so tiền để viết điều kiện 
+    public int tinhDiemThuong( double tongSoTien ) { //can thuoc tinh tong so tiền để viết điều kiện
         if ( tongSoTien >= 10000000)
             return (int) (tongSoTien / 100000 )*5;
-        return (int) (tongSoTien / 100000);             
+        return (int) (tongSoTien / 100000);
     }
 
 
@@ -31,7 +29,7 @@ public class KhachHangCaNhan extends KhachHang {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10.2f %-15d",tinhUuDai(), getTichDiem());
+        return super.toString() + String.format("%-10.2f %-10d",tinhUuDai(), getTichDiem());
     }
     
 }

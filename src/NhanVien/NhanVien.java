@@ -1,6 +1,7 @@
 package NhanVien;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -42,6 +43,7 @@ public abstract class NhanVien {
         this.luong = luong;
         this.matKhau = matKhau;
         this.isnotdelete = isdelete;
+        tongNhanVien++;
     }
 
     public String getMaNhanVien() {
@@ -50,6 +52,14 @@ public abstract class NhanVien {
 
     public String getTenNhanVien() {
         return tenNhanVien;
+    }
+
+    public boolean isIsnotdelete() {
+        return isnotdelete;
+    }
+
+    public void setIsnotdelete(boolean isnotdelete) {
+        this.isnotdelete = isnotdelete;
     }
 
     public String getSoDienThoai() {
@@ -85,7 +95,7 @@ public abstract class NhanVien {
     }
 
     public void setSoDienThoai(String soDienThoai) {
-        this.soDienThoai = soDienThoai;
+        this.soDienThoai = chuanHoaSoDienThoainv(soDienThoai);
     }
 
     public LocalDate getSinhNhat() {
@@ -93,8 +103,25 @@ public abstract class NhanVien {
     }
 
     public void setSinhNhat(String sinhNhat) {
-        this.sinhNhat = chuanHoaNgayThangNam(sinhNhat);
+        LocalDate ngaySinh = chuanHoaNgayThangNam(sinhNhat);
+
+        assert ngaySinh != null;
+        int age = Period.between(ngaySinh, LocalDate.now()).getYears();
+
+        // Kiểm tra tuổi người dùng có đủ 18 chưa
+        while (age < 18) {
+            System.out.println("Chưa đủ 18 tuổi.");
+            System.out.println("Vui lòng nhập lại ngày sinh (dd/MM/yyyy): ");
+            sinhNhat = sc.nextLine();
+            ngaySinh = chuanHoaNgayThangNam(sinhNhat);
+
+            assert ngaySinh != null;
+            age = Period.between(ngaySinh, LocalDate.now()).getYears();
+        }
+
+        this.sinhNhat = ngaySinh;
     }
+
 
     public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = chuanHoaGioiTinh(gioiTinh);
@@ -109,7 +136,12 @@ public abstract class NhanVien {
     }
 
     public void setNgayVaoLam(String ngayVaoLam) {
-        this.ngayVaoLam = chuanHoaNgayThangNam(ngayVaoLam);
+        LocalDate ngayVaoLamDate = chuanHoaNgayThangNam(ngayVaoLam);
+        if (ngayVaoLamDate.isAfter(LocalDate.now())) {
+            this.ngayVaoLam = LocalDate.now();
+        } else {
+            this.ngayVaoLam = chuanHoaNgayThangNam(ngayVaoLam);
+        }
     }
 
     public void setNgayPhepConLai(int ngayPhepConLai) {
@@ -177,12 +209,11 @@ public abstract class NhanVien {
         maNhanVien = "nv" + String.format("%02d", ++tongNhanVien);
         matKhau = String.valueOf(sinhNhat.getYear());
 
-        tongNhanVien++;
     }
 
     @Override
     public String toString() {
-        return String.format("%-8s %-20s %-13s %-30s %-8s %-8s %-20s %-8s %-12.5f",
+        return String.format("%-8s %-20s %-13s %-30s %-12s %-8s %-20s %-12s %-12.5f",
                 maNhanVien, tenNhanVien, soDienThoai, email, sinhNhat.format(formatter), gioiTinh,
                 chucVu, ngayVaoLam.format(formatter), luong);
     }
@@ -205,5 +236,4 @@ public abstract class NhanVien {
             this.ngayPhepConLai = 0;
         }
     }
-
 }

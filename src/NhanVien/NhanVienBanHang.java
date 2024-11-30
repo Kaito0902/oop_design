@@ -79,17 +79,17 @@ public class NhanVienBanHang extends NhanVien implements ThuongDoanhThu{
         boolean kt = true;
         int lc;
         while (kt) {
-            System.out.println("===================================");
-            System.out.println("|\t     MENU CHINH       \t|");
-            System.out.println("===================================");
-            System.out.printf("| %-31s|\n", "1. Quan ly san pham");
-            System.out.printf("| %-31s|\n", "2. Quan ly khach hang va hoa don");
-            System.out.printf("| %-31s|\n", "3. Thong ke doanh so");
-            System.out.printf("| %-31s|\n", "4. Xem thong tin ban than");
-            System.out.printf("| %-31s|\n", "5. Xin nghi phep");
-            System.out.printf("| %-31s|\n", "6. Doi mat khau");
-            System.out.printf("| %-31s|\n", "7. Dang xuat");
-            System.out.println("===================================");
+            System.out.println("======================================");
+            System.out.println("|            MENU CHINH              |");
+            System.out.println("======================================");
+            System.out.printf("| %-35s|\n", "1. Quan ly san pham");
+            System.out.printf("| %-35s|\n", "2. Quan ly khach hang va hoa don");
+            System.out.printf("| %-35s|\n", "3. Thong ke doanh so");
+            System.out.printf("| %-35s|\n", "4. Xem thong tin ban than");
+            System.out.printf("| %-35s|\n", "5. Xin nghi phep");
+            System.out.printf("| %-35s|\n", "6. Doi mat khau");
+            System.out.printf("| %-35s|\n", "7. Dang xuat");
+            System.out.println("======================================");
             System.out.print("Nhap lua chon: ");
             lc = Integer.parseInt(sc.nextLine());
             switch (lc) {

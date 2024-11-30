@@ -1,6 +1,5 @@
 package ChuoiCungCap;
 
-import ChucNang.ChuanHoaDuLieu;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;

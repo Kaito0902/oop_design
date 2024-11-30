@@ -3,12 +3,10 @@ package KhachHang;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import HoaDon.QLHoaDon;
-
 import static ChucNang.ChuanHoaDuLieu.*;
+import static main_project.oop_project.qlhd;
 
 public abstract class KhachHang {
-    private static QLKhachHang qlkhGlobal; //123
     static int tongKH = 0;
     static Scanner scanner = new Scanner(System.in);
 
@@ -22,7 +20,7 @@ public abstract class KhachHang {
     protected String maKhachHang;
     protected String loaiKhachHang;
     protected boolean isdelete;
-    private String[] loai = {"Tiem nang", "Than Thiet", "Uu dai", "Binh Thuong"};  
+    static String[] loai = {"Tiem nang", "Than Thiet", "Uu dai", "Binh Thuong"};
 
     //các thuộc tính/tính năng thêm cho khách hàng
     // protected HoaDon giaodich[] = new HoaDon[5];//1khách hàng có nhiều hóa đơn mua hàng
@@ -95,12 +93,8 @@ public abstract class KhachHang {
         return sdt;
     }
 
-    public static void setQLKhachHang(QLKhachHang qlkh) {//123
-        qlkhGlobal = qlkh;
-    }
-
     public void setSdt(String sdt) {
-            this.sdt = chuanHoaSoDienThoai(sdt,qlkhGlobal);//123
+            this.sdt = chuanHoaSoDienThoaikh(sdt);//123
     }
 
     public String getEmail() {
@@ -151,23 +145,24 @@ public abstract class KhachHang {
     }
 
     //input
-    public void input(QLHoaDon qlhd) {
+    public void input() {
         tongKH++;
         inputInfo();
         inputType();
-        // inputGiaoDich(qlhd);
-        capNhapTichDiem(qlhd);
+        // inputGiaoDich();
+
+        tichDiem = 0;
     }
 
     // nhap thong tin khach hang
     public void inputInfo() {
         System.out.println("Nhap HoTen:");
         setHoTen(scanner.nextLine());
-        System.out.println("Nhập giới tính (Nam, Nữ, Khác):");
+        System.out.println("Nhap gioi tinh (Nam, Nu, Khac):");
         setGioiTinh(scanner.nextLine());
         System.out.println("Nhap SoDienThoai:");
         setSdt(scanner.nextLine()); 
-        System.out.println("Nhap ngay sinh(định dạng: dd/MM/yyyy):");
+        System.out.println("Nhap ngay sinh(đinh dang: dd/MM/yyyy):");
         setNgaySinh(scanner.nextLine());
         System.out.println("Nhap email:");
         setEmail(scanner.nextLine());
@@ -198,7 +193,7 @@ public abstract class KhachHang {
     //toString
     @Override
     public String toString() {
-        return String.format("%-10s %-20s %-10s %-15s %-15s %-15s %-10s %-20s",getMaKhachHang(), hoTen, gioiTinh, sdt, ngaySinh, email, 
+        return String.format("%-10s %-20s %-10s %-15s %-15s %-25s %-15s %-15s",getMaKhachHang(), hoTen, gioiTinh, sdt, ngaySinh, email,
         diaChi, loaiKhachHang);
     }
 
@@ -225,13 +220,9 @@ public abstract class KhachHang {
     //tinh UuDai
     public abstract double tinhUuDai();
     //tinh diemThuong
-    public abstract int tinhDiemThuong(double tongSoTien);
+    public abstract int tinhDiemThuong(double tongTien);
 
-    // cap nhap tich diem
-    public void  capNhapTichDiem(QLHoaDon qlHoaDon) {
-        double tongSoTien = 1000000;//qlHoaDon.getTongSoTien(maKhachHang)
-        int diemThuong = (int)tinhDiemThuong(tongSoTien);
-        tichDiem = diemThuong;
+    public void capNhatDiemThuong(double tienMua) {
+        tichDiem += (int) (tinhDiemThuong(tienMua)*(1 - tinhUuDai()));
     }
-
 }

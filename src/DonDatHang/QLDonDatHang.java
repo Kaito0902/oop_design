@@ -6,7 +6,6 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static DonDatHang.DonDatHang.loaiTrangThai;
@@ -181,18 +180,18 @@ public class QLDonDatHang {
         boolean ktra = true;
         while (ktra) {
             chiTiet.ouput();
-            System.out.println("1. Sửa sản phẩm");
-            System.out.println("2. Sửa số lượng");
-            System.out.println("0. Thoát");
-            System.out.print("Nhập lựa chọn: ");
+            System.out.println("1. Sua san pham");
+            System.out.println("2. Sua so luong");
+            System.out.println("0. Thoat");
+            System.out.print("Nhap lua chon: ");
             lc = Integer.parseInt(sc.nextLine());
             switch (lc) {
                 case 1: {
                     while (true) {
-                        System.out.println("Bạn muốn chọn sản phẩm có sẵn hay nhập sản phẩm mới?");
-                        System.out.println("1. Chọn sản phẩm có sẵn.");
-                        System.out.println("2. Nhập sản phẩm mới.");
-                        System.out.print("Nhập lựa chọn: ");
+                        System.out.println("Ban muon chon san pham co san hay san pham moi ?");
+                        System.out.println("1. Chon san pham co san.");
+                        System.out.println("2. Nhap san pham moi.");
+                        System.out.print("Nhap lua chon: ");
                         int luaChonSP = Integer.parseInt(sc.nextLine());
                         if (luaChonSP == 1) {
                             System.out.print("Nhap ma san pham moi: ");
@@ -276,7 +275,7 @@ public class QLDonDatHang {
 
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data[0].startsWith("DDH")) {
+                if (data[0].startsWith("ddh")) {
                     //bo data4
                     String maDonDatHang = data[0];
                     LocalDate ngayDatHang = LocalDate.parse(data[1], formatter);

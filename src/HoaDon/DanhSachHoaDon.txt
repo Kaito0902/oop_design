@@ -1,5 +1,18 @@
-hd001,01/11/2024,nv01,Nguyen Van A,kh01,Nguyen B,HoaDonBanHang,km01,10,5,ChuyenKhoan,1000
-ChiTietHoaDonBanHang,1,#sp001,Sản phẩm A,2,200
-ChiTietHoaDonBanHang,2,#sp002,Sản phẩm B,1,300
-hd002,05/11/2024,nv05,Nguyen Lam Truong,kh01,Nguyen B,HoaDonDoiTraHang,hd001,500,Khong co,100,10
-ChiTietHoaDonDoiTraHang,1,#sp001,Sản phẩm A,1,Do hong,hu hong,50
+hd001,01/10/2024,nv01,Nguyen Van A,kh01,Nguyen Hong Duy,HoaDonBanHang,km01,10.0,5.0,ChuyenKhoan,1000.0,false
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,2,200.0
+ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,1,300.0
+hd002,05/10/2024,nv05,Nguyen Lam Truong,kh01,Nguyen Hong Duy,HoaDonDoiTraHang,hd001,500.0,Khong co,100.0,10.0
+ChiTietHoaDonDoiTraHang,1,#sp001,i9-14900KS,1,Do hong,hu hong,50.0
+hd003,05/10/2024,nv01,Nguyen Van A,kh01,Nguyen Hong Duy,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,2.035E7,false
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,1,100.0
+ChiTietHoaDonBanHang,2,#sp003,T-Group T-Force Delta,1,1190000.0
+hd004,05/10/2024,nv02,Le Thi B,kh02,Bui Nguyen Thinh,HoaDonBanHang,km01,0.05,0.1,Chuyen khoan,5.4E7,false
+ChiTietHoaDonBanHang,1,#sp002,NVIDIA GeForce RTX 4090,1,300.0
+hd005,05/10/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,2.9699E7,true
+ChiTietHoaDonBanHang,1,#sp009,Lenovo LOQ,1,2000000.0
+ChiTietHoaDonBanHang,1,#sp007,ASUS ProArt PA24US,1,2300000.0
+ChiTietHoaDonBanHang,1,#sp005,Logitech G502 X Plus,1,4770500.0
+hd005,05/10/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,2.9699E7,true
+ChiTietHoaDonBanHang,1,#sp009,Lenovo LOQ,1,2000000.0
+ChiTietHoaDonBanHang,1,#sp007,ASUS ProArt PA24US,1,2300000.0
+ChiTietHoaDonBanHang,1,#sp005,Logitech G502 X Plus,1,4770500.0

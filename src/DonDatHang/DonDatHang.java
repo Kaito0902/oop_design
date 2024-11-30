@@ -39,6 +39,7 @@ public class DonDatHang {
         this.tongTien = tongTien;
         this.hinhThucGiaoHang = hinhThucGiaoHang;
         this.trangThai = trangThai;
+        soLuongDDH++;
     }
 
     public String getMaDonDatHang() {
@@ -128,7 +129,7 @@ public class DonDatHang {
 
     public void nhap() {
 
-        maDonDatHang = "DDH" + String.format("%03d", ++soLuongDDH);
+        maDonDatHang = "ddh" + String.format("%03d", ++soLuongDDH);
 
         setNgayDatHang(LocalDate.now());
 

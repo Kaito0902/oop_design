@@ -1,12 +1,8 @@
 package KhachHang;
 
-import HoaDon.HoaDon;
-import HoaDon.QLHoaDon;
-
 public class KhachHangDoiTacDoanhNghiep extends KhachHang implements TraGop{
     //attribute
     private String tenCongTy;
-    private boolean traGop;
 
     //non-parameted
     public KhachHangDoiTacDoanhNghiep() {
@@ -29,42 +25,22 @@ public class KhachHangDoiTacDoanhNghiep extends KhachHang implements TraGop{
         this.tenCongTy = tenCongTy;
     }
 
-    public boolean isTraGop() {
-        return traGop;
-    }
-
-    public void setTraGop(boolean traGop) {
-        this.traGop = traGop;
-    }
 
     //input kiem tra co muon tra gop
     @Override
-    public void input(QLHoaDon qlhd) {
-        super.input(qlhd);
+    public void input() {
+        super.input();
         System.out.println("Nhap ten cong ty:");
         setTenCongTy(scanner.nextLine());
-        while (true) {
-            System.out.println("Ban co muon thanh toan tra gop?(Y/N):");
-            String chon = scanner.nextLine().trim().toUpperCase();
-            if ( chon.equals("Y")){
-                traGop = true;
-                break;
-            }else if (chon.equals("N")){
-                traGop = false;
-                break;
-            }else {
-                System.out.println("Lựa chọn không hợp lệ! Vui lòng nhập 'Y' hoặc 'N'.");
-            }
-        }
     }
 
     @Override
     public double laiSuatTraGop() {
-        return traGop ? 0.03:0;
+        return 0.03;
     }
 
     @Override
-    public int tinhDiemThuong( double tongSoTien ) {
+    public int tinhDiemThuong(double tongSoTien ) {
         return (int) (tongSoTien / 100000)*10;
     }
 
@@ -75,10 +51,7 @@ public class KhachHangDoiTacDoanhNghiep extends KhachHang implements TraGop{
 
     @Override
     public String toString() {
-        if (traGop)    
-            return super.toString() + String.format("%-10b %-10s %-10.2f %-15d %-10.2f",traGop ,tenCongTy,tinhUuDai(),getTichDiem(), laiSuatTraGop());
-        else
-            return super.toString() + String.format("%-10b %-10s %-10.2f %-15d",traGop ,tenCongTy ,tinhUuDai(), getTichDiem());
+            return super.toString() + String.format("%-10s %-10.2f %-10d" ,tenCongTy ,tinhUuDai(), getTichDiem());
     }
 
 }

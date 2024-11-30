@@ -1,2 +1,20 @@
-kh01,Nguyen Hong Duy,Nam,19/07/2005,dasd,0123456789,dsada,Than Thiet,true,5,2,0.1,false,0.0
-kh02,Duy,Nam,19/07/2005,dsdsd,0982870931,dsdsds,Than Thiet,true,4,3,0.15000000000000002,false,0.0
+kh01,Nguyen Hong Duy,Nam,19/07/2005,Ho Chi Minh,0123456789,duythattha@gmail.com,Than Thiet,true,5,2,0.1,0.05
+kh02,Bui Nguyen Thinh,Nam,12/05/2000,Ho Chi Minh,0912345678,thinhnguyen3@gmail.com,Than Thiet,true,0,5,0.25,0.05
+kh03,Tran Van G,Nam,16/04/2001,Hai Phong,0987654327,g@gmail.com,Than Thiet,true,400,5,0.25,0.05
+kh04,Ly Van R,Nam,26/02/2001,Hai Phong,0987654337,r@gmail.com,Tiem Nang,true,900,Cong ty Y,0.02,0.03
+kh05,Le Van C,Nam,12/12/2002,Da Nang,0987654323,c@gmail.com,Binh Thuong,true,200,0.0
+kh06,Nguyen Thi M,Nu,21/09/2001,Hai Phong,0987654332,m@gmail.com,Than Thiet,true,650,2,0.1,0.05
+kh07,Hoang Van E,Nam,14/02/2004,Can Tho,0987654325,e@gmail.com,Binh Thuong,true,300,0.0
+kh08,Le Thi U,Nu,29/05/2004,Can Tho,0987654340,u@gmail.com,Tiem Nang,true,1050,Cong ty U,0.02,0.03
+kh09,Le Thi O,Nu,23/11/2003,Ho Chi Minh,0987654334,o@gmail.com,Than Thiet,true,750,4,0.2,0.05
+kh10,Tran Thi B,Nu,11/11/2001,Hai Phong,0987654322,b@gmail.com,Binh Thuong,true,150,0.0
+kh11,Le Thi H,Nu,17/05/2002,Da Nang,0987654328,h@gmail.com,Uu dai,true,450,9.5,0.11
+kh12,Hoang Thi Q,Nu,25/01/2000,Ha Noi,0987654336,q@gmail.com,Tiem Nang,true,850,Cong ty X,0.02,0.03
+kh13,Pham Van I,Nam,18/06/2003,Ho Chi Minh,0987654329,i@gmail.com,Than Thiet,true,629,1,0.05,0.05
+kh14,Nguyen Thi S,Nu,27/03/2002,Da Nang,0987654338,s@gmail.com,Tiem Nang,true,950,Cong ty Z,0.02,0.03
+kh15,Tran Van T,Nam,28/04/2003,Ho Chi Minh,0987654339,t@gmail.com,Tiem Nang,true,1000,Cong ty T,0.02,0.03
+kh16,Nguyen Thi F,Nu,15/03/2000,Ha Noi,0987654326,f@gmail.com,Uu dai,true,350,8.5,0.11
+kh17,Ly Van L,Nam,20/08/2000,Ha Noi,0987654331,l@gmail.com,Than Thiet,true,600,1,0.05,0.05
+kh18,Pham Van P,Nam,24/12/2004,Can Tho,0987654335,p@gmail.com,Than Thiet,true,800,5,0.25,0.05
+kh19,Pham Thi D,Nu,13/01/2003,Ho Chi Minh,0987654324,d@gmail.com,Binh Thuong,true,250,0.0
+kh20,Nguyen Van A,Nam,10/10/2000,Ha Noi,0987654321,a@gmail.com,Binh Thuong,true,100,0.0

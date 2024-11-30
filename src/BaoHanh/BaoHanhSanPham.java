@@ -35,6 +35,7 @@ public class BaoHanhSanPham {
         this.lyDo = lyDo;
         this.ngayNhan = ngayNhan;
         this.trangThai = trangThai;
+        tongBaoHanh++;
     }
 
     public String getMaBaoHanh() {

@@ -1,13 +1,13 @@
-km01,Giam gia mua he,01/06/2023,31/07/2023,0.1,Don hang tren 5 trieu,false
-km02,Back to school,15/08/2023,15/09/2023,0.05,Tat ca san pham,false
-km03,Tri an khach hang,01/10/2023,31/10/2023,0.15,Khach hang VIP,false
-km04,Flash sale cuoi tuan,05/11/2023,06/11/2023,0.2,Laptop gaming,false
-km05,Khuyen mai dac biet,20/12/2023,25/12/2023,0.25,Don hang tren 10 trieu,false
-km06,Giam gia sinh nhat,10/01/2024,15/01/2024,0.1,Nhap ma sinh nhat,false
-km07,Uu dai mua xuan,01/03/2024,31/03/2024,0.07,Laptop van phong,false
-km08,He ruc ro,01/07/2024,31/08/2024,0.12,Phu kien,false
-km09,Black Friday,25/11/2024,26/11/2024,0.3,Tat ca san pham,false
-km10,Giang sinh an lanh,15/12/2024,24/12/2024,0.18,Laptop mong nhe,false
-km11,Khuyen mai Tet,20/01/2024,10/02/2024,0.08,Don hang tren 7 trieu,false
-km12,Giam gia dac biet,08/03/2024,09/03/2024,0.15,Laptop cao cap,false
-km13,Giam gia he soc,15/06/2023,30/06/2023,0.22,Laptop hoc tap,true
+km01,Giam gia mua he,01/06/2023,31/07/2023,10.0,Don hang tren 5 trieu,false
+km02,Back to school,15/08/2023,15/09/2023,5.0,Tat ca san pham,false
+km03,Tri an khach hang,01/10/2023,31/10/2023,15.0,Khach hang VIP,false
+km04,Flash sale cuoi tuan,05/11/2023,06/11/2023,20.0,Laptop gaming,false
+km05,Khuyen mai dac biet,20/12/2023,25/12/2023,25.0,Don hang tren 10 trieu,false
+km06,Giam gia sinh nhat,10/01/2024,15/01/2024,10.0,Nhap ma sinh nhat,false
+km07,Uu dai mua xuan,01/03/2024,31/03/2024,7.0,Laptop van phong,false
+km08,He ruc ro,01/07/2024,31/08/2024,12.0,Phu kien,false
+km09,Black Friday,25/11/2024,26/11/2024,30.0,Tat ca san pham,false
+km10,Giang sinh an lanh,15/12/2024,24/12/2024,18.0,Laptop mong nhe,false
+km11,Khuyen mai Tet,20/01/2024,10/02/2024,8.0,Don hang tren 7 trieu,false
+km12,Giam gia dac biet,08/03/2024,09/03/2024,15.0,Laptop cao cap,false
+km13,Giam gia he soc,15/06/2023,30/06/2023,22.0,Laptop hoc tap,true

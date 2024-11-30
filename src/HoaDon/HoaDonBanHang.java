@@ -3,12 +3,12 @@ package HoaDon;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import DonDatHang.ChiTietDonDatHang;
-import KhachHang.KhachHang;
+import KhachHang.KhachHangDoiTacDoanhNghiep;
+import KhachHang.KhachHangVip;
 import KhuyenMai.KhuyenMai;
-import NhanVien.NhanVien;
+import PhieuTraGop.PhieuTraGop;
 
-import static main_project.oop_project.qlkm;
+import static main_project.oop_project.*;
 
 public class HoaDonBanHang extends HoaDon {
     private ChiTietHoaDonBanHang[] chiTietHoaDonBanHangList = new ChiTietHoaDonBanHang[0]; // Danh sách chi tiết hóa đơn
@@ -18,23 +18,27 @@ public class HoaDonBanHang extends HoaDon {
     private double chietKhau;
     private String phuongThucThanhToan; 
     private double tongTien; // Tổng tiền của hóa đơn
+    private boolean traGop;
 
     // Constructor mặc định
     public HoaDonBanHang() {
     }
 
     // constructor day du tham so
-
-
-    public HoaDonBanHang(String maHoaDon, LocalDate ngayLapHoaDon, String maNhanVienLapHoaDon, String maKhachHang, String loaiHoaDon, ChiTietHoaDonBanHang[] chiTietHoaDonBanHangList, int soLuongChiTiet, String maKhuyenMai, double tienThue, double chietKhau, String phuongThucThanhToan, double tongTien) {
+    public HoaDonBanHang(String maHoaDon, LocalDate ngayLapHoaDon, String maNhanVienLapHoaDon, String maKhachHang, String loaiHoaDon, ChiTietHoaDonBanHang[] chiTietHoaDonBanHangList, int soLuongChiTiet, String maKhuyenMai, double tienThue, double chietKhau, String phuongThucThanhToan, double tongTien, boolean traGop) {
         super(maHoaDon, ngayLapHoaDon, maNhanVienLapHoaDon, maKhachHang, loaiHoaDon);
         this.chiTietHoaDonBanHangList = chiTietHoaDonBanHangList;
         this.soLuongChiTiet = soLuongChiTiet;
-        this.khuyenMai = qlkm.timKhuyenMai(maKhuyenMai);
+        if (!maKhuyenMai.equals("KHONGAPMA")){
+            this.khuyenMai = qlkm.timKhuyenMai(maKhuyenMai);
+        } else {
+            this.khuyenMai = null;
+        }
         this.tienThue = tienThue;
         this.chietKhau = chietKhau;
         this.phuongThucThanhToan = phuongThucThanhToan;
         this.tongTien = tongTien;
+        this.traGop = traGop;
     }
 
     public ChiTietHoaDonBanHang[] getChiTietHoaDonBanHangList() {
@@ -85,6 +89,14 @@ public class HoaDonBanHang extends HoaDon {
         this.chiTietHoaDonBanHangList = chiTietHoaDonBanHangList;
     }
 
+    public boolean isTraGop() {
+        return traGop;
+    }
+
+    public void setTraGop(boolean traGop) {
+        this.traGop = traGop;
+    }
+
     public void setSoLuongChiTiet(int soLuongChiTiet) {
         this.soLuongChiTiet = soLuongChiTiet;
     }
@@ -104,11 +116,13 @@ public class HoaDonBanHang extends HoaDon {
     public void input() {
         super.input(); // Nhập thông tin cơ bản từ lớp cha
 
+        setLoaiHoaDon("HoaDonBanHang");
+
         System.out.print("Nhap so luong chi tiet hoa don: ");
         int soLuong = Integer.parseInt(scanner.nextLine());
 
         for (int i = 1; i <= soLuong; i++) {
-            System.out.println("Nhap chi tiet hoa don thu " + (i + 1) + ":");
+            System.out.println("Nhap chi tiet hoa don thu " + (i) + ":");
             ChiTietHoaDonBanHang chiTiet = new ChiTietHoaDonBanHang();
             chiTiet.input(1);
             themChiTietHoaDonBanHang(chiTiet);
@@ -123,10 +137,100 @@ public class HoaDonBanHang extends HoaDon {
         System.out.print("Nhap phuong thuc thanh toan: ");
         setPhuongThucThanhToan(scanner.nextLine());
 
-        System.out.println("Nhap ma khuyen mai:");
-        qlkm.timKhuyenMai(scanner.nextLine());
+        System.out.println("Co ap dung khuyen mai khong? (Co/Khong):");
+        String apDungKhuyenMai = scanner.nextLine().trim();
 
-        tinhTongTien(); // Tính tổng tiền hóa đơn
+        if (apDungKhuyenMai.equalsIgnoreCase("Co")) {
+            System.out.println("Nhap ma khuyen mai:");
+            setKhuyenMai(qlkm.timKhuyenMai(scanner.nextLine()));
+        } else {
+            KhuyenMai km = new KhuyenMai();
+            km = null;
+            khuyenMai = km;
+        }
+
+        tinhTongTien();
+
+        traGop();
+
+        getKhachHang().capNhatDiemThuong(getTongTien());
+    }
+
+    public void suDungDiem() {
+        boolean ktra = true;
+        while (ktra) {
+            if (getKhachHang().getTichDiem() >= 100) {
+                System.out.println("Co muon su dung diem de giam gia?");
+                System.out.println("1. Co");
+                System.out.println("2. Khong");
+                int lc = Integer.parseInt(scanner.nextLine());
+                switch (lc) {
+                    case 1: {
+                        int tichDiem = getKhachHang().getTichDiem();
+                        double giamGia = tichDiem * 500;
+
+                        if (giamGia >= tongTien) {
+                            giamGia = tongTien;
+                            int diemSuDung = (int) (tongTien / 500);
+                            getKhachHang().setTichDiem(tichDiem - diemSuDung);
+                        } else {
+                            getKhachHang().setTichDiem(0);
+                        }
+
+                        tongTien -= giamGia;
+                        System.out.println("Bạn đã giảm giá " + giamGia + " đồng.");
+                        System.out.println("Số tiền còn lại: " + tongTien + " đồng.");
+                        ktra = false;
+                        break;
+                    }
+                    case 2: {
+                        ktra = false;
+                        break;
+                    }
+                    default: {
+                        System.out.println("Lua chon khong hop le.");
+                        System.out.println("Vui long lua chon lai.");
+                    }
+                }
+            } else {
+                ktra = false;
+            }
+        }
+    }
+
+    public void traGop() {
+        boolean ktra = true;
+        while (ktra){
+            if ((getKhachHang() instanceof KhachHangVip || getKhachHang() instanceof KhachHangDoiTacDoanhNghiep) && getTongTien() >= 3000000) {
+                System.out.println("Co muon tra gop hay khong ?");
+                System.out.println("1. Co");
+                System.out.println("2. Khong");
+                System.out.println("Nhap lua chon: ");
+                int lc = Integer.parseInt(scanner.nextLine());
+                switch (lc) {
+                    case 1: {
+                        PhieuTraGop phieu = new PhieuTraGop();
+                        phieu.input(this);
+                        qlptg.themPhieuTraGop(phieu);
+                        setTraGop(true);
+                        ktra = false;
+                        break;
+                    }
+                    case 2: {
+                        setTraGop(false);
+                        ktra = false;
+                        break;
+                    }
+                    default: {
+                        System.out.println("Lua chon khong hop le.");
+                        System.out.println("Vui long lua chon lai.");
+                    }
+                }
+            }
+            else {
+                ktra = false;
+            }
+        }
     }
 
     // Phương thức tính tổng tiền hóa đơn
@@ -137,16 +241,17 @@ public class HoaDonBanHang extends HoaDon {
         }
         tongTien += tongTien * (tienThue / 100); // Thêm thuế
         tongTien -= tongTien * (chietKhau / 100); // Trừ chiết khấu
-        tongTien -= khuyenMai.getTongKhuyenMai(); // Trừ khuyến mãi
+        if(khuyenMai != null){
+            tongTien -= tongTien * (khuyenMai.getTongKhuyenMai() / 100); // Trừ khuyến mãi
+        }
     }
 
     @Override
     public String toString() {
-        return super.toString()+String.format("%-5s %-5.2f %-5.2f %-15s %-10.2f",khuyenMai.getMaKhuyenMai(),tienThue,chietKhau,phuongThucThanhToan,tongTien);
+        String maKhuyenMai = (khuyenMai != null) ? khuyenMai.getMaKhuyenMai() : "KHONGAPMA";
+        return super.toString() + String.format("%-12s %-8.2f %-8.2f %-15s %-10.2f",
+                maKhuyenMai, tienThue, chietKhau,
+                phuongThucThanhToan, tongTien);
     }
-
-
-
-
 
 }

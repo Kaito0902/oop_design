@@ -1,7 +1,5 @@
 package HoaDon;
 
-import KhachHang.KhachHang;
-import NhanVien.NhanVien;
 import SanPham.SanPham;
 
 import java.time.LocalDate;
@@ -105,6 +103,8 @@ public class HoaDonDoiTraHang extends HoaDon {
     @Override
     public void input() {
         super.input();
+
+        setLoaiHoaDon("HoaDonDoiTraHang");
 
         System.out.println("Nhap ma hoa don goc: ");
         HoaDon hd = qlhd.timKiemHoaDonTheoMa(scanner.nextLine());

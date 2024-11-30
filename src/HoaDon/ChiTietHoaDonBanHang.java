@@ -71,7 +71,7 @@ public class ChiTietHoaDonBanHang {
 
     // Phương thức tính lại thành tiền
     private void tinhThanhTien() {
-        this.thanhTien = this.soLuong * this.sanPham.getGiaSP();
+        this.thanhTien = this.soLuong * this.sanPham.thanhTien();
     }
 
     // Phương thức nhập thông tin chi tiết hóa đơn

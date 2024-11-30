@@ -74,24 +74,24 @@ public class QLKhachHang {
     }
 
     //tim khach hang co so tien cao nhat 
-//    public void timkiemKhachHangCoTienCaoNhat(QLHoaDon qlHoaDon) {
-//        KhachHang khMax = null;
-//        double maxtien = 0;
-//        for ( KhachHang kh : dskh ){
-//            double max = qlHoaDon.getTongSoTien(kh.getSdt());
-//            if ( max > maxtien ) {
-//                maxtien = max;
-//                khMax = kh;
-//            }
-//        }
-//        if ( khMax != null ){
-//            System.out.println("KH co so tien giao dich cao nhat la:");
-//            khMax.output();
-//        }
-//        else {
-//            System.out.println("Khong tim thay khach hang nao");
-//        }
-//    }
+    public void timkiemKhachHangCoTienCaoNhat() {
+        KhachHang khMax = null;
+        double maxtien = 0;
+        for ( KhachHang kh : dskh ){
+            double max = qlhd.tinhTongTien(kh.getMaKhachHang());
+            if (max > maxtien) {
+                maxtien = max;
+                khMax = kh;
+            }
+        }
+        if ( khMax != null ){
+            System.out.println("KH co so tien giao dich cao nhat la:");
+            khMax.output();
+        }
+        else {
+            System.out.println("Khong tim thay khach hang nao");
+        }
+    }
     
     //sapxepkh
     public void sapxep() {
@@ -104,7 +104,7 @@ public class QLKhachHang {
                 }
         }
 
-    // sua thong tin khach hang (cần sửa lại)
+    // sua thong tin khach hang
     public void capNhapThongTinKhachHang(String sdt) {
         KhachHang kh = timkiemKhachHangTheoSdt(sdt);
         if ( kh != null) {
@@ -164,45 +164,32 @@ public class QLKhachHang {
         }
     }
 
-    // cap nhap khach hang len vip(cần sửa lại)
-    public void capNhatLoaiKhachHang(QLHoaDon qlHoaDon, String sdt) {
-        KhachHang kh = timkiemKhachHangTheoSdt(sdt);
-        if (kh == null) {
-            System.out.println("Không tìm thấy khách hàng với số điện thoại: " + sdt);
-            return;
-        }
-        // for (int i = 0; i < dskh.length; i++) {
-            // KhachHang kh = dskh[i];
-            double tongSoTien = 5000000;//qlHoaDon.getTongSoTien(kh.getMaKhachHang())
+    public void capNhatLoaiKhachHang() {
+        for (int i = 0; i < dskh.length; i++) {
+            KhachHang kh = dskh[i];
+            double tongSoTien = qlhd.tinhTongTien(kh.getMaKhachHang());
 
-            if (tongSoTien >= 5000000 && !(kh instanceof KhachHangVip)) {//&& kh instanceof KhachHangCaNhan
+            if (tongSoTien >= 5000000 && !(kh instanceof KhachHangVip) && !(kh instanceof KhachHangDoiTacDoanhNghiep)) {
+                // Tính hệ số
+                int heSo = xeploaiheSo(kh);
 
-                // KhachHang caNhan = (KhachHangCaNhan) kh;
-                // caNhan.setLoaiKhachHang("Than Thiet");
-                // caNhan.setTichDiem(caNhan.tinhDiemThuong(tongSoTien));
-
-                // Nâng cấp lên khách hàng VIP
+                // Tạo đối tượng KhachHangVip mới
                 KhachHang vip = new KhachHangVip(
-                    kh.getHoTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getDiaChi(), kh.getSdt(),
-                    kh.getEmail(), kh.getMaKhachHang(), "Than Thiet",kh.isIsdelete(), kh.getTichDiem(), 5
+                        kh.getHoTen(), kh.getGioiTinh(), kh.getNgaySinh(), kh.getDiaChi(), kh.getSdt(),
+                        kh.getEmail(), kh.getMaKhachHang(), "Than Thiet", kh.isIsdelete(), kh.getTichDiem(), heSo
                 );
 
-                System.out.println("Cập nhật thông tin cho khách hàng " + kh.getMaKhachHang() +" sau khi nâng cấp:");
-                if (vip instanceof KhachHangVip) {
-                    ((KhachHangVip) vip).inputThongTinVip();
-                }
-                for (int i = 0; i < dskh.length; i++)
-                    if (dskh[i].getSdt().equalsIgnoreCase(sdt)){
-                        dskh[i] = vip;
-                        break;
-                    }
-                System.out.println("Khach hang " + kh.getMaKhachHang() + " đã được nâng cấp lên VIP");
-            } else {
-                // Giữ nguyên nếu không đạt điều kiện
-                System.out.println("Khach hang " + kh.getMaKhachHang() + " không đủ điều kiện để lên VIP");
+                // Cập nhật lại thông tin khách hàng trong danh sách sau khi nâng cấp
+                dskh[i] = vip;
             }
-        // }
+        }
     }
+
+    public int xeploaiheSo(KhachHang kh) {
+        double tongSoTien = qlhd.tinhTongTien(kh.getMaKhachHang());
+        return tongSoTien >= 25000000 ? 5 : tongSoTien >= 20000000 ? 4 : tongSoTien >= 15000000 ? 3 : tongSoTien >= 10000000 ? 2 : 1;
+    }
+
 
     public void nhapKhachHang() {
         boolean ktra = true;
@@ -217,25 +204,25 @@ public class QLKhachHang {
             switch (lc) {
                 case 1:
                     KhachHang x = new KhachHangCaNhan();
-                    x.input(qlhd);
+                    x.input();
                     qlkh.themKH(x);
                     ktra = false;
                     break;
                 case 2:
                     KhachHang y = new KhachHangSinhVien();
-                    y.input(qlhd);
+                    y.input();
                     qlkh.themKH(y);
                     ktra = false;
                     break;
                 case 3:
                     KhachHang z = new KhachHangDoiTacDoanhNghiep();
-                    z.input(qlhd);
+                    z.input();
                     qlkh.themKH(z);
                     ktra = false;
                     break;
                 // case "4":
                 //     KhachHang w = new KhachHangVip();
-                //     w.input(qlhd);
+                //     w.input();
                 //     qlkh.themKH(w);
                 //     break;
                 default:
@@ -295,7 +282,6 @@ public class QLKhachHang {
                     String.valueOf(vip.getTichDiem()),
                     String.valueOf(vip.getHeSo()),
                     String.valueOf(vip.tinhUuDai()),
-                    String.valueOf(vip.isTraGop()),
                     String.valueOf(vip.laiSuatTraGop())
                     ));
                     writer.newLine();
@@ -315,7 +301,6 @@ public class QLKhachHang {
                     String.valueOf(dt.getTichDiem()),
                     dt.getTenCongTy(),
                     String.valueOf(dt.tinhUuDai()),
-                    String.valueOf(dt.isTraGop()),
                     String.valueOf(dt.laiSuatTraGop())
                     ));
                     writer.newLine();
@@ -332,52 +317,38 @@ public class QLKhachHang {
                 String[] data = line.split(",");
 
                 if (data.length > 0) {
-                    try {
-                        String maKhachHang = data[0];
-                        String tenKhachHang = data[1];
-                        String gioiTinh = data[2];
-                        String namSinh = data[3];
-                        String diaChi = data[4];
-                        String soDienThoai = data[5];
-                        String eMail = data[6];
-                        String loaiKhachHang = data[7];
-                        boolean isdelete = Boolean.parseBoolean(data[8]);
-                        int tichDiem = Integer.parseInt(data[9]);
+                    String maKhachHang = data[0];
+                    String tenKhachHang = data[1];
+                    String gioiTinh = data[2];
+                    String namSinh = data[3];
+                    String diaChi = data[4];
+                    String soDienThoai = data[5];
+                    String eMail = data[6];
+                    String loaiKhachHang = data[7];
+                    boolean isdelete = Boolean.parseBoolean(data[8]);
+                    int tichDiem = Integer.parseInt(data[9]);
 
-                        switch (loaiKhachHang) {
-                            case "Binh Thuong" -> {
-                                KhachHang caNhan = new KhachHangCaNhan(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem);
-                                themKH(caNhan);
-                            }
-                            case "Uu dai" -> {
-                                if (data.length >= 11) {  // Đảm bảo có dữ liệu điểm TB
-                                    double diemTB = Double.parseDouble(data[10]);
-                                    KhachHang sinhVien = new KhachHangSinhVien(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, diemTB);
-                                    themKH(sinhVien);
-                                }
-                            }
-                            case "Than Thiet" -> {
-                                if (data.length >= 12) {  // Đảm bảo có dữ liệu hệ số và trả góp
-                                    int heSo = Integer.parseInt(data[10]);
-                                    boolean traGop = Boolean.parseBoolean(data[11]);
-                                    KhachHang vip = new KhachHangVip(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, heSo);
-                                    ((KhachHangVip) vip).setTraGop(traGop);
-                                    themKH(vip);
-                                }
-                            }
-                            case "Tiem Nang" -> {
-                                if (data.length >= 12) {  // Đảm bảo có dữ liệu công ty và trả góp
-                                    String tenCongTy = data[10];
-                                    boolean traGop = Boolean.parseBoolean(data[11]);
-                                    KhachHang dt = new KhachHangDoiTacDoanhNghiep(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, tenCongTy);
-                                    ((KhachHangDoiTacDoanhNghiep) dt).setTraGop(traGop);
-                                    themKH(dt);
-                                }
-                            }
-                            default -> System.out.println("Du lieu khong hop le cho khach hang: " + loaiKhachHang);
+                    switch (loaiKhachHang) {
+                        case "Binh Thuong" -> {
+                            KhachHang caNhan = new KhachHangCaNhan(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem);
+                            themKH(caNhan);
                         }
-                    } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                        System.out.println("Loi dinh dang hop thieu dong: " + line + " - " + e.getMessage());
+                        case "Uu dai" -> {
+                            double diemTB = Double.parseDouble(data[10]);
+                            KhachHang sinhVien = new KhachHangSinhVien(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, diemTB);
+                            themKH(sinhVien);
+                        }
+                        case "Than Thiet" -> {
+                            int heSo = Integer.parseInt(data[10]);
+                            KhachHang vip = new KhachHangVip(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, heSo);
+                            themKH(vip);
+                        }
+                        case "Tiem Nang" -> {
+                            String tenCongTy = data[10];
+                            KhachHang dt = new KhachHangDoiTacDoanhNghiep(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, tenCongTy);
+                            themKH(dt);
+                        }
+                        default -> System.out.println("Du lieu khong hop le cho khach hang: " + loaiKhachHang);
                     }
                 }
             }
