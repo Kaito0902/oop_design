@@ -4,15 +4,20 @@ import KhachHang.KhachHang;
 import SanPham.SanPham;
 import NhanVien.NhanVien;
 import DonDatHang.DonDatHang;
+import MucTieu.MucTieuDoanhThu;
+import MucTieu.QLMucTieu;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 
 import static main_project.oop_project.qlddh;
 import static main_project.oop_project.qlnv;
+import static main_project.oop_project.qlmt;;
+
 
 public class QLHoaDon {
     HoaDon[] dshd = new HoaDon[0];
@@ -355,15 +360,15 @@ public class QLHoaDon {
 
     public void thongKe_DoanhThuThang() {
         Scanner sc = new Scanner(System.in);
-        HoaDon[] dshd = this.dshd; // Lấy danh sách hóa đơn hiện tại
+        HoaDon[] dshd = this.dshd; 
         double tongDoanhThuThang = 0;
         int soHoaDon = 0;
         boolean found = false;
 
-        // Định dạng để nhập tháng/năm
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yyyy");
 
-        // Nhập tháng/năm cần thống kê
+        
         System.out.print("Nhap thang va nam can thong ke (MM/yyyy): ");
         String thangNamNhap = sc.nextLine();
 
@@ -686,6 +691,49 @@ public class QLHoaDon {
             System.out.println("Dinh dang nam khong hop le. Vui long nhap lai.");
         }
     }
+
+public void thongKeMucTieuTheoThang() {
+    System.out.print("Nhap thang muon thong ke (MM/YYYY): ");
+    String thangNamStr = sc.nextLine();
+
+    try {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yyyy");
+        YearMonth thangNam = YearMonth.parse(thangNamStr, formatter);
+
+        qlmt.docTuFileDSMT();
+
+
+        MucTieuDoanhThu mt = qlmt.timMucTieu(thangNam);
+
+        if (mt == null) {
+            System.out.println("Khong co muc tieu cho thang " + thangNamStr);
+            return;
+        }
+
+        double doanhThuThucTe = 0;
+        for (HoaDon hd : dshd) {
+            if (hd instanceof HoaDonBanHang hdbh) {
+                LocalDate ngayLap = hdbh.getNgayLapHoaDon();
+                if (YearMonth.from(ngayLap).equals(thangNam)) {
+                    doanhThuThucTe += hdbh.getTongTien();
+                }
+            }
+        }
+
+        String nhanXet = doanhThuThucTe >= mt.getDoanhThu()
+                         ? "Dat doanh thu tot"
+                         : "Doanh thu chua dat muc tieu, can phan tich nguyen nhan";
+        System.out.println("=============================================================================");
+        System.out.printf("%-20s %-15s %-50s\n", "Doanh thu thang", "Muc tieu", "Nhan xet");
+        System.out.println("=============================================================================");
+        System.out.printf("%-20.2f %-15.2f %-50s\n", doanhThuThucTe, mt.getDoanhThu(), nhanXet);
+        System.out.println("=============================================================================");
+
+    } catch (Exception e) {
+        System.out.println("Loi dinh dang thang/nam hoac du lieu khong hop le: " + e.getMessage());
+    }
+}
+
 
 
 }

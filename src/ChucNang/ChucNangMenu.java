@@ -811,6 +811,7 @@ public class ChucNangMenu {
                 case 7: {
                     System.out.println("1. Xem muc tieu cua cong ty");
                     System.out.println("2. Dat muc tieu doanh thu cho cong ty (Dau thang)");
+                    System.out.println("3. Xem so sanh muc tieu");
                     System.out.println("Nhap lua chon: ");
                     int lc = Integer.parseInt(sc.nextLine());
                     LocalDate today = LocalDate.now();
@@ -838,6 +839,10 @@ public class ChucNangMenu {
                             } else {
                                 System.out.println("Chua toi thoi gian nhap muc tieu. Chi duoc nhap vao dau thang.");
                             }
+                            break;
+                        }
+                        case 3:{
+                            qlhd.thongKeMucTieuTheoThang();
                             break;
                         }
                         default:{
