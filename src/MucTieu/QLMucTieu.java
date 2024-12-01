@@ -26,7 +26,7 @@ public class QLMucTieu {
     }
 
     public void ghiVaoFileDSMT() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/MucTieu/DanhSachMucTieuDoanhThu.txt"))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/MucTieu/MucTieuThangDoanhThu.txt"))){
             for (MucTieuDoanhThu ds : dsMuctieu){
                 writer.write(String.join(",",
                         ds.getThangNam().format(formatter),
@@ -41,7 +41,7 @@ public class QLMucTieu {
     }
 
     public void docTuFileDSMT() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/MucTieu/DanhSachMucTieuDoanhThu.txt"))){
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/MucTieu/MucTieuThangDoanhThu.txt"))){
             String line;
             while ((line = reader.readLine()) != null){
                 String[] data = line.split(",");

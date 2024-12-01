@@ -94,7 +94,6 @@ public class ChucNangMenu {
             System.out.printf("| %-45s|\n", "11. Sap xep hoa don theo loai");
             System.out.printf("| %-45s|\n", "12. Tim kiem hoa don theo ma");
             System.out.printf("| %-45s|\n", "13. Xuat phieu hoa don");
-
             System.out.printf("| %-45s|\n", "14. Thanh toan ky tra gop");
             System.out.printf("| %-45s|\n", "15. Xuat danh danh sach phieu tra gop");
             System.out.printf("| %-45s|\n", "16. Thoat");

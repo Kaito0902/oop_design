@@ -56,7 +56,7 @@ public class QLBaoHanh {
     }
 
     public void docTuFileDSBH() {
-        try(BufferedReader reader = new BufferedReader(new FileReader("src/BaoHanh/danhSachBaoHanhSanPham"))) {
+        try(BufferedReader reader = new BufferedReader(new FileReader("src/BaoHanh/danhSachBaoHanhSanPham.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
@@ -87,7 +87,7 @@ public class QLBaoHanh {
     }
 
     public void ghiVaoFileDSBH() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/BaoHanh/danhSachBaoHanhSanPham"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/BaoHanh/danhSachBaoHanhSanPham.txt"))) {
             for (BaoHanhSanPham bh : dsBaoHanh){
                 writer.write(String.join(",",
                         bh.getMaBaoHanh(),
