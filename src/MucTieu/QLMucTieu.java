@@ -14,6 +14,7 @@ public class QLMucTieu {
         MucTieuDoanhThu[] newds = Arrays.copyOf(dsMuctieu, soLuong + 1);
         newds[soLuong] = mucTieuDoanhThu;
         dsMuctieu = newds;
+        soLuong++;
     }
 
     public MucTieuDoanhThu timMucTieu(YearMonth thangNam) {
