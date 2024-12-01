@@ -26,7 +26,6 @@ public class ChiTietDonDatHang{
         this.sanPham = qlsp.timKiem(maSanPham);
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
-        setThanhTien(tinhThanhTien());
     }
 
     public int getSoThuTu() {

@@ -3,3 +3,4 @@ km02,Back to school,15/08/2024,15/09/2024,5.0,Giam gia ngay tu truong,false
 km03,Tri an khach hang,01/10/2024,31/10/2024,15.0,Giam gia tri an nhung khach hang da ung ho,false
 km04,Flash sale cuoi tuan,05/11/2024,06/11/2024,20.0,Cuoi tuan bung no mua sam tha ga,false
 km05,Khuyen mai dac biet,20/12/2024,25/12/2024,25.0,Khuyen mai soc,false
+km06,Khuyen mai cuoi nam,01/12/2024,15/12/2024,3.0,Cuoi nam thoa mua sam,false

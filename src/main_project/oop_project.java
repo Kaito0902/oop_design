@@ -45,9 +45,6 @@ public class oop_project {
         qlncc.docTuFile();
         qlddh.docTuFileDSDDH();
         qlmt.docTuFileDSMT();
-        qlhd.tinhTongTienHD();
-        qlhd.tinhTongChiPhi();
-        qlddh.tinhTongTienDDH();
 
         boolean kt = true;
         int lc;

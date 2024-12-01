@@ -28,8 +28,6 @@ public class ChiTietHoaDonBanHang {
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.thanhTien = thanhTien;
-        setDonGia(getSanPham().thanhTien());
-        tinhThanhTien();
     }
 
     // Getter và Setter

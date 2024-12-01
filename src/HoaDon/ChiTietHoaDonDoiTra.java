@@ -28,8 +28,6 @@ public class ChiTietHoaDonDoiTra {
         this.tinhTrang = tinhTrang;
         this.donGia = donGia;
         this.thanhTien = thanhTien;
-        setDonGia(getSanPhamTra().thanhTien());
-        tinhThanhTien();
     }
 
     public ChiTietHoaDonDoiTra(int stt, SanPham sanPhamTra, int soLuong, String lyDo, String tinhTrang, double donGia) {

@@ -759,6 +759,7 @@ public class QLSanPham{
                         fm.format(sp.getGiaSP()).replace("₫", "VND"));
             }
         }
+        System.out.println("=".repeat(85));
     }
 
 

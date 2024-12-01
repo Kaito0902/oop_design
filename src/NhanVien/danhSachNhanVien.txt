@@ -1,13 +1,13 @@
 nv01,Nguyen Van A,0123456789,nguyenvana@example.com,25/12/1990,Nam,Nhan vien quan ly,18/06/2015,1.2,12,8400000.0,1990,true,1.0
-nv02,Le Thi B,0987654321,lethib@example.com,12/05/1985,Nu,Nhan vien quan ly,12/05/2020,1.5,10,9600000.0,1985,true,0.9
-nv03,Ngo Dong At,0353532144,ngoquoctinh.kg83@gmail.com,09/02/2005,Nam,Nhan vien quan ly,15/11/2021,1.3,5,8400000.0,2005,true,0.0
-nv04,Nguyen Khanh Hung,0123401234,khanhhung1996@gmail.com,05/05/1996,Nam,Nhan vien quan ly,17/04/2014,1.6,12,1.02E7,1996,true,0.0
-nv05,Nguyen Lam Truong,0909090909,truong0909@gmail.com,15/02/1999,Nam,Nhan vien ky thuat,19/07/2018,1.8,12,1.104E7,1999,true,cai win;cai dat phan mem,0
-nv06,Le Thi Hong,0913141516,hongthi98@gmail.com,19/08/1998,Nu,Nhan vien ban hang,21/01/2021,1.2,12,7200000.0,1998,true,0.0,0
-nv07,Nguyen Hong Duy,0982870931,Duydep123@gmail.com,21/03/2005,Nam,Nhan vien quan ly,09/11/2021,1.7,10,1.08E7,123,true,0.0
-nv08,Tran Van Binh,0876346534,binhoffiso98@gmail.com,07/06/2003,Nam,Nhan vien ban hang,18/04/2022,1.5,12,9000000.0,2003,true,0.0,0
-nv09,Phan Van Nguyen,0912648673,nguyenphan12@gmail.com,13/09/1995,Nam,Nhan vien ban hang,26/05/2023,1.3,12,7800000.0,1995,true,0.0,0
-nv10,Pham Thang,0359624547,thangdudoi@gmail.com,29/03/1989,Nam,Nhan vien ky thuat,31/05/2019,1.7,12,1.056E7,1989,true,cai dat he thong;cai win;sua chua phan cung,0
-nv11,Tran Ngoc Han,0983457632,hanhayho@gmail.com,03/03/2001,Nu,Nhan vien ban hang,18/07/2022,1.3,12,7800000.0,2001,true,0.0,0
-nv12,Huynh Anh Dung,0956736789,anhdung89@gmail.com,29/08/2000,Nam,Nhan vien ky thuat,07/11/2021,1.7,12,1.08E7,2000,true,cai win;cai dat phan men;cai dat he thong;cai dat drive;sua chua thiet bi ngoai vi,0
-nv13,Ngo Ba Kha,0905030205,khabanhotu@gmail.com,23/07/1988,Nam,Nhan vien ky thuat,15/03/2021,1.4,12,8640000.0,1988,true,cai dat drive;cai dat phan men,0
+nv02,Le Thi B,0987654321,lethib@example.com,12/05/1985,Nu,Nhan vien quan ly,12/05/2020,1.5,10,1.02E7,1985,true,1.0
+nv03,Ngo Dong At,0353532144,ngoquoctinh.kg83@gmail.com,09/02/2005,Nam,Nhan vien quan ly,15/11/2021,1.3,5,9000000.0,2005,true,1.0
+nv04,Nguyen Khanh Hung,0123401234,khanhhung1996@gmail.com,05/05/1996,Nam,Nhan vien quan ly,17/04/2014,1.6,12,1.08E7,1996,true,1.0
+nv05,Nguyen Lam Truong,0909090909,truong0909@gmail.com,15/02/1999,Nam,Nhan vien ky thuat,19/07/2018,1.8,12,1.11E7,1999,true,cai win;cai dat phan mem,1
+nv06,Le Thi Hong,0913141516,hongthi98@gmail.com,19/08/1998,Nu,Nhan vien ban hang,21/01/2021,1.2,12,4.4481844600000006E8,1998,true,6.2499778E9,2
+nv07,Nguyen Hong Duy,0982870931,Duydep123@gmail.com,21/03/2005,Nam,Nhan vien quan ly,09/11/2021,1.7,10,1.14E7,123,true,1.0
+nv08,Tran Van Binh,0876346534,binhoffiso98@gmail.com,07/06/2003,Nam,Nhan vien ban hang,18/04/2022,1.5,12,5.249311283320001E9,2003,true,7.4859875476E10,2
+nv09,Phan Van Nguyen,0912648673,nguyenphan12@gmail.com,13/09/1995,Nam,Nhan vien ban hang,26/05/2023,1.3,12,9140215.15,1995,true,1.7431645E7,2
+nv10,Pham Thang,0359624547,thangdudoi@gmail.com,29/03/1989,Nam,Nhan vien ky thuat,31/05/2019,1.7,12,1.068E7,1989,true,cai dat he thong;cai win;sua chua phan cung,2
+nv11,Tran Ngoc Han,0983457632,hanhayho@gmail.com,03/03/2001,Nu,Nhan vien ban hang,18/07/2022,1.3,12,7.499970561880001E9,2001,true,1.07030150884E11,1
+nv12,Huynh Anh Dung,0956736789,anhdung89@gmail.com,29/08/2000,Nam,Nhan vien ky thuat,07/11/2021,1.7,12,1.086E7,2000,true,cai win;cai dat phan men;cai dat he thong;cai dat drive;sua chua thiet bi ngoai vi,1
+nv13,Ngo Ba Kha,0905030205,khabanhotu@gmail.com,23/07/1988,Nam,Nhan vien ky thuat,15/03/2021,1.4,12,8700000.0,1988,true,cai dat drive;cai dat phan men,1

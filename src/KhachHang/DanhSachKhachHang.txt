@@ -1,9 +1,9 @@
-kh01,Nguyen Hong Duy,Nam,19/07/2005,Ho Chi Minh,0123456789,duythattha@gmail.com,Than Thiet,true,5,2,0.1,0.05
-kh02,Bui Nguyen Thinh,Nam,12/05/2000,Ho Chi Minh,0912345678,thinhnguyen3@gmail.com,Than Thiet,true,0,5,0.25,0.05
-kh03,Tran Van G,Nam,16/04/2001,Hai Phong,0987654327,g@gmail.com,Than Thiet,true,400,5,0.25,0.05
-kh04,Ly Van R,Nam,26/02/2001,Hai Phong,0987654337,r@gmail.com,Tiem Nang,true,900,Cong ty Y,0.02,0.03
+kh01,Nguyen Hong Duy,Nam,19/07/2005,Ho Chi Minh,0123456789,duythattha@gmail.com,Than Thiet,true,17636,2,0.1,0.05
+kh02,Bui Nguyen Thinh,Nam,12/05/2000,Ho Chi Minh,0912345678,thinhnguyen3@gmail.com,Than Thiet,true,8379,5,0.25,0.05
+kh03,Tran Van G,Nam,16/04/2001,Hai Phong,0987654327,g@gmail.com,Than Thiet,true,309661,5,0.25,0.05
+kh04,Ly Van R,Nam,26/02/2001,Hai Phong,0987654337,r@gmail.com,Tiem Nang,true,32358,Cong ty Y,0.02,0.03
 kh05,Le Van C,Nam,12/12/2002,Da Nang,0987654323,c@gmail.com,Binh Thuong,true,200,0.0
-kh06,Nguyen Thi M,Nu,21/09/2001,Hai Phong,0987654332,m@gmail.com,Than Thiet,true,650,2,0.1,0.05
+kh06,Nguyen Thi M,Nu,21/09/2001,Hai Phong,0987654332,m@gmail.com,Than Thiet,true,1433,2,0.1,0.05
 kh07,Hoang Van E,Nam,14/02/2004,Can Tho,0987654325,e@gmail.com,Binh Thuong,true,300,0.0
 kh08,Le Thi U,Nu,29/05/2004,Can Tho,0987654340,u@gmail.com,Tiem Nang,true,1050,Cong ty U,0.02,0.03
 kh09,Le Thi O,Nu,23/11/2003,Ho Chi Minh,0987654334,o@gmail.com,Than Thiet,true,750,4,0.2,0.05

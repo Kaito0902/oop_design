@@ -1,12 +1,15 @@
 package MucTieu;
 
+import java.text.NumberFormat;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class MucTieuDoanhThu {
     private YearMonth thangNam; 
     private double doanhThu;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yyyy");
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     public MucTieuDoanhThu(YearMonth thangNam, double doanhThu) {
         this.thangNam = thangNam;
@@ -31,6 +34,6 @@ public class MucTieuDoanhThu {
 
     @Override
     public String toString() {
-        return "Muc tieu doanh thu thang " + thangNam.format(formatter) + ": " + doanhThu;
+        return "Muc tieu doanh thu thang " + thangNam.format(formatter) + ": " + fm.format(doanhThu).replace("₫", "VND");
     }
 }

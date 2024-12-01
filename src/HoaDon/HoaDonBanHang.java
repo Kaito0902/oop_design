@@ -144,7 +144,7 @@ public class HoaDonBanHang extends HoaDon {
         for (int i = 1; i <= soLuong; i++) {
             System.out.println("Nhap chi tiet hoa don thu " + (i) + ":");
             ChiTietHoaDonBanHang chiTiet = new ChiTietHoaDonBanHang();
-            chiTiet.input(1);
+            chiTiet.input(i);
             themChiTietHoaDonBanHang(chiTiet);
         }
 

@@ -308,11 +308,4 @@ public class QLDonDatHang {
         }
     }
 
-    //sexoa
-    public void tinhTongTienDDH(){
-        for (DonDatHang ddh : dsddh) {
-            ddh.setTongTien(ddh.tinhTongTien());
-        }
-    }
-
 }

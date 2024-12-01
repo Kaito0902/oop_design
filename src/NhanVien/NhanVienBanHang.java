@@ -46,7 +46,7 @@ public class NhanVienBanHang extends NhanVien implements ThuongDoanhThu{
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%-10.2f %-10d", doanhThu, soLuongGiaoDich);
+        return super.toString() + String.format("%-10d ", soLuongGiaoDich);
     }
 
     @Override

@@ -1,10 +1,12 @@
 package NhanVien;
 
 import java.io.*;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class QLNhanVien {
@@ -12,6 +14,7 @@ public class QLNhanVien {
     int soLuong = 0;
     static Scanner sc = new Scanner(System.in);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
     private NhanVien nguoiDangNhap;
 
     public NhanVien[] getDsNhanVien() {
@@ -341,12 +344,12 @@ public class QLNhanVien {
 
         for (NhanVien nv : dsNhanVien) {
             if (nv instanceof NhanVienBanHang nvbh) {
-                System.out.printf("%-10s %-20s %-20d %-15.2f %-15.2f\n",
+                System.out.printf("%-10s %-20s %-20d %-15s %-15s\n",
                         nvbh.getMaNhanVien(),
                         nvbh.getTenNhanVien(),
                         nvbh.getSoLuongGiaoDich(),
-                        nvbh.getDoanhThu(),
-                        nvbh.tinhLuong()
+                        fm.format(nvbh.getDoanhThu()).replace("₫", "VND"),
+                        fm.format(nvbh.tinhLuong()).replace("₫", "VND")
                 );
             }
         }
@@ -362,11 +365,11 @@ public class QLNhanVien {
         System.out.println("---------------------------------------------------------------------------");
         for(NhanVien nv : dsNhanVien){
             if(nv instanceof NhanVienKyThuat nvkt){
-                System.out.printf("%-10s %-20s %-20d %-15.2f\n",
+                System.out.printf("%-10s %-20s %-20d %-15s\n",
                         nvkt.getMaNhanVien(),
                         nvkt.getTenNhanVien(),
                         nvkt.getSoLuuTruBaoHanh(),
-                        nvkt.tinhLuong()
+                        fm.format(nvkt.tinhLuong()).replace("₫", "VND")
                 );
             }
         }
@@ -382,17 +385,16 @@ public class QLNhanVien {
         System.out.println("---------------------------------------------------------------------------");
         for(NhanVien nv : dsNhanVien){
             if (nv instanceof NhanVienQuanLy nvql) {
-                System.out.printf("%-10s %-20s %-20.2f %-15.2f\n",
+                System.out.printf("%-10s %-20s %-20.2f %-15s\n",
                         nvql.getMaNhanVien(),
                         nvql.getTenNhanVien(),
                         nvql.getChiSoHieuSuat(),
-                        nvql.tinhLuong()
+                        fm.format(nvql.tinhLuong()).replace("₫", "VND")
                 );
             }
         }
         System.out.println("===========================================================================");
     }
-
 
 
 }

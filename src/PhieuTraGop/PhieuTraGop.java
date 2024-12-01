@@ -44,12 +44,6 @@ public class PhieuTraGop {
         this.lichSuTraGop = lichSuTraGop;
         this.soKyDaTra = soKyDaTra;
         soLuongPhieu++;
-        setSoTienTraTruoc(0.2*getHoaDon().getTongTien());
-
-        setSoTienConLai(getHoaDon().getTongTien() - soTienTraTruoc);
-
-        TraGop khachHangTraGop = (TraGop) getHoaDon().getKhachHang();
-        setSoTienMoiKy(soTienConLai / soKyTraGop + khachHangTraGop.laiSuatTraGop()*getHoaDon().getTongTien());
     }
 
     public String getMaPhieuTraGop() {
@@ -201,8 +195,8 @@ public class PhieuTraGop {
 
     public void output() {
         System.out.println(toString());
-        for (KyTraGop ky : lichSuTraGop){
-            System.out.println(ky.toString());
+        for (int i = 0; i < lichSuTraGop.length; i++){
+            System.out.println(lichSuTraGop[i].toString());
         }
         System.out.println();
     }
