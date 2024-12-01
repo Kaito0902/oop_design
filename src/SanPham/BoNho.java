@@ -62,7 +62,7 @@ public class BoNho extends PhanCung{
         super.xuat();
         System.out.println("Dung luong bo nho: " + dungLuongBoNho + "GB");
         System.out.println("Loai bo nho: " + loaiBoNho);
-        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
+        System.out.println("Tong tien phai tra: " + fm.format(thanhTien()).replace("₫", " VND"));
     }
 
     @Override

@@ -331,7 +331,9 @@ public class QLNhanVien {
     }
 
 
+//Bui Nguyen Thinh
     public void thongKeNVBH() {
+        System.out.println("====================================================================================");
         System.out.println("|                                NHAN VIEN BAN HANG                               |");
         System.out.println("====================================================================================");
         System.out.printf("%-10s %-20s %-20s %-15s %-15s\n", "Ma NV", "Ten NV", "So luong giao dich", "Doanh thu", "Luong");
@@ -353,6 +355,7 @@ public class QLNhanVien {
     }
 
     public void thongKeNVKT(){
+        System.out.println("===========================================================================");
         System.out.println("|                         NHAN VIEN KY THUAT                              |");
         System.out.println("===========================================================================");
         System.out.printf("%-10s %-20s %-20s %-15s\n","Ma NV","Ten NV", "So luong bao hanh" ,"Luong" );
@@ -372,6 +375,7 @@ public class QLNhanVien {
     }
 
     public void thongKeNVQL(){
+        System.out.println("===========================================================================");
         System.out.println("|                         NHAN VIEN QUAN LY                               |");
         System.out.println("===========================================================================");
         System.out.printf("%-10s %-20s %-20s %-15s\n","Ma NV","Ten NV", "Chi so hieu suat" ,"Luong" );
@@ -388,6 +392,7 @@ public class QLNhanVien {
         }
         System.out.println("===========================================================================");
     }
+
 
 
 }

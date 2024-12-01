@@ -57,7 +57,7 @@ public class Desktop extends MayTinh implements HienThiCauHinh{
         System.out.println("Case desktop: " + casePC);
         System.out.println("Tan nhiet desktop: " + tanNhiet);
         hienThiCauHinh();
-        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
+        System.out.println("Tong tien phai tra: " + fm.format(thanhTien()).replace("₫", " VND"));
     }
 
     @Override

@@ -37,7 +37,7 @@ public class QLPhieuTraGop {
     }
 
     public void ghiVaoFileDSPTG() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/TraGop/danhSachPhieuTraGop.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/PhieuTraGop/danhSachPhieuTraGop.txt"))) {
             for (PhieuTraGop ph : dsPhieuTraGop) {
                 writer.write(String.join(",",
                         ph.getMaPhieuTraGop(),
@@ -66,7 +66,7 @@ public class QLPhieuTraGop {
     }
 
     public void docTuFileDSPTG() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/TraGop/danhSachPhieuTraGop.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/PhieuTraGop/danhSachPhieuTraGop.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");

@@ -75,7 +75,7 @@ public class Laptop extends MayTinh implements HienThiCauHinh{
         System.out.println("Thoi luong pin Laptop: " + thoiLuongPin + "h");
         System.out.println("Loai laptop: " + loaiLaptop);
         hienThiCauHinh();
-        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
+        System.out.println("Tong tien phai tra: " + fm.format(thanhTien()).replace("₫", " VND"));
     }
 
     @Override

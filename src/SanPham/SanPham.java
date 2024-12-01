@@ -1,5 +1,7 @@
 package SanPham;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 public abstract class SanPham{      
@@ -15,6 +17,7 @@ public abstract class SanPham{
     protected boolean isNotDeleted;
     static int soLuongSP = 0;
     static Scanner sc = new Scanner(System.in);
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     public SanPham()
     {

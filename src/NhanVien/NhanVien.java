@@ -1,9 +1,11 @@
 package NhanVien;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.Month;
+import java.util.Locale;
 import java.util.Scanner;
 
 import static ChucNang.ChuanHoaDuLieu.*;
@@ -26,6 +28,7 @@ public abstract class NhanVien {
     static int tongNhanVien = 0;
     static Scanner sc = new Scanner(System.in);
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     public NhanVien() {
     }
@@ -214,9 +217,9 @@ public abstract class NhanVien {
 
     @Override
     public String toString() {
-        return String.format("%-8s %-20s %-13s %-30s %-12s %-8s %-20s %-12s %-15.5f",
+        return String.format("%-8s %-20s %-13s %-30s %-12s %-8s %-20s %-12s %-18s",
                 maNhanVien, tenNhanVien, soDienThoai, email, sinhNhat.format(formatter), gioiTinh,
-                chucVu, ngayVaoLam.format(formatter), luong);
+                chucVu, ngayVaoLam.format(formatter), fm.format(luong).replace("₫", "VND"));
     }
 
     public void output() {

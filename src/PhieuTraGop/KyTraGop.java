@@ -1,6 +1,9 @@
 package PhieuTraGop;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class KyTraGop {
@@ -8,6 +11,8 @@ public class KyTraGop {
     private LocalDate ngayTra;
     private double soTien;
     static Scanner sc = new Scanner(System.in);
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     public KyTraGop() {
     }
@@ -44,7 +49,7 @@ public class KyTraGop {
 
     @Override
     public String toString() {
-        return String.format("Kỳ %d: Ngày trả: %s, Số tiền: %.2f VND",
-                kyThu, ngayTra, soTien);
+        return String.format("Ky %d: Ngay tra: %s, So tien: %s VND",
+                kyThu, ngayTra, fm.format(soTien).replace("₫", ""));
     }
 }

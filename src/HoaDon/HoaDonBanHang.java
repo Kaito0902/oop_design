@@ -271,9 +271,32 @@ public class HoaDonBanHang extends HoaDon {
     @Override
     public String toString() {
         String maKhuyenMai = (khuyenMai != null) ? khuyenMai.getMaKhuyenMai() : "KHONGAPMA";
-        return super.toString() + String.format("%-12s %-8.2f %-8.2f %-15s %-10.2f",
+        return super.toString() + String.format("%-12s %-8.2f %-8.2f %-15s %-10s",
                 maKhuyenMai, tienThue, chietKhau,
-                phuongThucThanhToan, tongTien);
+                phuongThucThanhToan, fm.format(tongTien).replace("₫", ""));
+    }
+
+    @Override
+    public void xuatPhieu() {
+        System.out.println("Cua hang Dien tu J97");
+        System.out.println("HOA DON BAN HANG");
+        System.out.println("Thong tin khach hang");
+        System.out.println("Ten khach hang: " + getKhachHang().getHoTen());
+        System.out.println("So dien thoai: " + getKhachHang().getSdt());
+        System.out.println("Dia chi: " + getKhachHang().getDiaChi());
+        System.out.printf("%-8s %-30s %-15s %-20s %-20s\n", "STT", "Ten san pham", "So luong", "Don gia", "Thanh Tien");
+        for (ChiTietHoaDonBanHang ct : chiTietHoaDonBanHangList){
+            System.out.println(ct.toString());
+        }
+        System.out.println("Thue: " + getTienThue() + " %");
+        System.out.println("Chiet khau: " + getChietKhau() + " %");
+        if (getKhuyenMai() != null){
+            System.out.println("Khuyen mai: " + getKhuyenMai().getTenKhuyenMai());
+        }
+        System.out.println("Tổng cộng: " + fm.format(getTongTien()).replace("₫", "VND"));
+        System.out.println("Ngay lap hoa don: " + getNgayLapHoaDon().format(formatter));
+        System.out.println("Nhan vien lap hoa don: " + getNhanVienLapHoaDon().getTenNhanVien());
+        System.out.println("Cam on quy khach da mua hang tai J97!");
     }
 
 }

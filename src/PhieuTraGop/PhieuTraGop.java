@@ -2,10 +2,13 @@ package PhieuTraGop;
 
 import HoaDon.HoaDonBanHang;
 import KhachHang.TraGop;
+
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 import static main_project.oop_project.qlhd;
@@ -24,6 +27,7 @@ public class PhieuTraGop {
     static int soLuongPhieu = 0;
     static Scanner sc = new Scanner(System.in);
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     public PhieuTraGop() {
     }
@@ -40,6 +44,12 @@ public class PhieuTraGop {
         this.lichSuTraGop = lichSuTraGop;
         this.soKyDaTra = soKyDaTra;
         soLuongPhieu++;
+        setSoTienTraTruoc(0.2*getHoaDon().getTongTien());
+
+        setSoTienConLai(getHoaDon().getTongTien() - soTienTraTruoc);
+
+        TraGop khachHangTraGop = (TraGop) getHoaDon().getKhachHang();
+        setSoTienMoiKy(soTienConLai / soKyTraGop + khachHangTraGop.laiSuatTraGop()*getHoaDon().getTongTien());
     }
 
     public String getMaPhieuTraGop() {
@@ -131,17 +141,19 @@ public class PhieuTraGop {
 
         maPhieuTraGop = "ptg" + String.format("%03d", ++soLuongPhieu);
 
-        setSoTienTraTruoc(0.2*hoaDon.getTongTien());
+        setHoaDon(hoaDon);
 
-        setSoTienConLai(hoaDon.getTongTien() - soTienTraTruoc);
+        setSoTienTraTruoc(0.2*getHoaDon().getTongTien());
+
+        setSoTienConLai(getHoaDon().getTongTien() - soTienTraTruoc);
 
         System.out.println("Nhap so ky tra gop: ");
         setSoKyTraGop(Integer.parseInt(sc.nextLine()));
 
-        TraGop khachHangTraGop = (TraGop) hoaDon.getKhachHang();
-        setSoTienMoiKy(soTienConLai / soKyTraGop + khachHangTraGop.laiSuatTraGop()*hoaDon.getTongTien());
+        TraGop khachHangTraGop = (TraGop) getHoaDon().getKhachHang();
+        setSoTienMoiKy(soTienConLai / soKyTraGop + khachHangTraGop.laiSuatTraGop()*getHoaDon().getTongTien());
 
-        setNgayBatDau(hoaDon.getNgayLapHoaDon());
+        setNgayBatDau(getHoaDon().getNgayLapHoaDon());
 
         setNgayKetThuc(ngayBatDau.plusMonths(soKyTraGop));
 
@@ -173,22 +185,26 @@ public class PhieuTraGop {
 
     @Override
     public String toString() {
-        return String.format("Phiếu trả góp:\n" +
-                        "- Mã phiếu: %s\n" +
-                        "- Mã hóa đơn: %s\n" +
-                        "- Tổng số kỳ: %d\n" +
-                        "- Số tiền mỗi kỳ: %.2f VND\n" +
-                        "- Ngày bắt đầu: %s\n" +
-                        "- Ngày kết thúc: %s\n" +
-                        "- Kỳ trả góp hiện tại: %d/%d\n" +
-                        "- Đã trả hết: %s\n",
-                maPhieuTraGop, hoaDon.getMaHoaDon(), soKyTraGop, soTienMoiKy,
-                ngayBatDau, ngayKetThuc, kyTraGopHienTai(), soKyTraGop,
-                daTraHet() ? "Có" : "Chưa");
+        return String.format("Phieu tra gop:\n" +
+                        "- Ma phieu: %s\n" +
+                        "- Ma hoa don: %s\n" +
+                        "- Tong so ky: %d\n" +
+                        "- So tien moi ky: %s VND\n" +
+                        "- Ngay bat dau: %s\n" +
+                        "- Ngay ket thuc: %s\n" +
+                        "- Ky tra gop hien tai: %d/%d\n" +
+                        "- Da tra het: %s",
+                maPhieuTraGop, hoaDon.getMaHoaDon(), soKyTraGop, fm.format(soTienMoiKy).replace("₫", ""),
+                ngayBatDau.format(formatter), ngayKetThuc.format(formatter), kyTraGopHienTai(), soKyTraGop,
+                daTraHet() ? "Co" : "Chua");
     }
 
     public void output() {
         System.out.println(toString());
+        for (KyTraGop ky : lichSuTraGop){
+            System.out.println(ky.toString());
+        }
+        System.out.println();
     }
 
     public void thanhToanKy() {

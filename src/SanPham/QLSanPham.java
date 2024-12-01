@@ -5,13 +5,16 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class QLSanPham{
     private SanPham[] ds = new SanPham[0];
     private int soLuong = 0;
     static Scanner sc = new Scanner(System.in);
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     public void themSanPham(SanPham sp)
     {
@@ -594,22 +597,6 @@ public class QLSanPham{
         System.out.println("Khong tim thay san pham.");
     }
 
-    // public void xoaPhanTuTheoMa(String maSP)
-    // {
-    //     for(SanPham sp:ds){
-    //         if(sp.maSP.equals(maSP)){
-    //             SanPham[] newDs = Arrays.copyOf(this.ds, this.ds.length - 1);
-    //             for(int i = 0, j = 0; i < ds.length; i++)
-    //                 if(!ds[i].maSP.equals(maSP))
-    //                     newDs[j++] = ds[i];
-    //             ds = newDs;
-    //             System.out.println("Da xoa san phan co ma: " + maSP);
-    //             return;
-    //         }
-    //     }
-    //     System.out.println("Khong tim thay san pham.");
-    // }
-
     public SanPham timKiem(String timSP)
     {
         if(timSP.startsWith("#sp")){
@@ -646,90 +633,86 @@ public class QLSanPham{
     public SanPham nhapSanPham() {
         while (true) {
             System.out.println("Ban muon nhap loai san pham nao: ");
-            System.out.println("May Tinh - Phan Cung - Thiet Bi Ngoai Vi");
-            String choiceSP = sc.nextLine();
-
-            if (choiceSP.equalsIgnoreCase("May Tinh")) {
-                while (true) {
+            System.out.println("1. May Tinh - 2. Phan Cung - 3. Thiet Bi Ngoai Vi");
+            int choiceSP = Integer.parseInt(sc.nextLine());
+            switch (choiceSP) {
+                case 1:
                     System.out.println("Ban muon nhap loai may tinh nao: ");
-                    System.out.println("Desktop - Laptop");
-                    String choiceMT = sc.nextLine();
-
-                    if (choiceMT.equalsIgnoreCase("Desktop")) {
-                        Desktop desktop = new Desktop();
-                        desktop.loaiMayTinh = "Desktop";
-                        desktop.nhap();
-                        return desktop;
-                    } else if (choiceMT.equalsIgnoreCase("Laptop")) {
-                        Laptop laptop = new Laptop();
-                        laptop.loaiMayTinh = "Laptop";
-                        laptop.nhap();
-                        return laptop;
-                    } else {
-                        System.out.println("Loai may tinh khong ton tai. Vui long nhap lai.");
+                    System.out.println("1. Desktop - 2. Laptop");
+                    int choiceMT = Integer.parseInt(sc.nextLine());
+                    switch (choiceMT) {
+                        case 1:
+                            Desktop desktop = new Desktop();
+                            desktop.loaiMayTinh = "Desktop";
+                            desktop.nhap();
+                            return desktop;
+                        case 2:
+                            Laptop laptop = new Laptop();
+                            laptop.loaiMayTinh = "Laptop";
+                            laptop.nhap();
+                            return laptop;
+                        default:
+                            throw new AssertionError();
                     }
-                }
-            } else if (choiceSP.equalsIgnoreCase("Phan Cung")) {
-                while (true) {
+                case 2:
                     System.out.println("Ban muon nhap loai linh kien nao: ");
-                    System.out.println("CPU - GPU - RAM - Bo Nho");
-                    String choicePC = sc.nextLine();
-
-                    if (choicePC.equalsIgnoreCase("CPU")) {
-                        CPU cpu = new CPU();
-                        cpu.loaiLinhKien = "CPU";
-                        cpu.nhap();
-                        return cpu;
-                    } else if (choicePC.equalsIgnoreCase("GPU")) {
-                        GPU gpu = new GPU();
-                        gpu.loaiLinhKien = "GPU";
-                        gpu.nhap();
-                        return gpu;
-                    } else if (choicePC.equalsIgnoreCase("RAM")) {
-                        RAM ram = new RAM();
-                        ram.loaiLinhKien = "RAM";
-                        ram.nhap();
-                        return ram;
-                    } else if (choicePC.equalsIgnoreCase("Bo Nho")) {
-                        BoNho boNho = new BoNho();
-                        boNho.loaiLinhKien = "Bo Nho";
-                        boNho.nhap();
-                        return boNho;
-                    } else {
-                        System.out.println("Loai linh kien khong ton tai. Vui long nhap lai.");
+                    System.out.println("1. CPU - 2. GPU - 3. RAM - 4. Bo Nho");
+                    int choicePC = Integer.parseInt(sc.nextLine());
+                    switch (choicePC) {
+                        case 1:
+                            CPU cpu = new CPU();
+                            cpu.loaiLinhKien = "CPU";
+                            cpu.nhap();
+                            return cpu;
+                        case 2:
+                            GPU gpu = new GPU();
+                            gpu.loaiLinhKien = "GPU";
+                            gpu.nhap();
+                            return gpu;
+                        case 3:
+                            RAM ram = new RAM();
+                            ram.loaiLinhKien = "RAM";
+                            ram.nhap();
+                            return ram;
+                        case 4:
+                            BoNho boNho = new BoNho();
+                            boNho.loaiLinhKien = "Bo Nho";
+                            boNho.nhap();
+                            return boNho;
+                        default:
+                            throw new AssertionError();
                     }
-                }
-            } else if (choiceSP.equalsIgnoreCase("Thiet Bi Ngoai Vi")) {
-                while (true) {
+                case 3:
                     System.out.println("Ban muon nhap thiet bi nao: ");
-                    System.out.println("Chuot - Man Hinh - Ban Phim");
-                    String choiceTB = sc.nextLine();
-
-                    if (choiceTB.equalsIgnoreCase("Chuot")) {
-                        Chuot chuot = new Chuot();
-                        chuot.loaiThietBi = "Chuot";
-                        chuot.nhap();
-                        return chuot;
-                    } else if (choiceTB.equalsIgnoreCase("Man Hinh")) {
-                        ManHinh manHinh = new ManHinh();
-                        manHinh.loaiThietBi = "Man Hinh";
-                        manHinh.nhap();
-                        return manHinh;
-                    } else if (choiceTB.equalsIgnoreCase("Ban Phim")) {
-                        BanPhim banPhim = new BanPhim();
-                        banPhim.loaiThietBi = "Ban Phim";
-                        banPhim.nhap();
-                        return banPhim;
-                    } else {
-                        System.out.println("Loai thiet bi khong ton tai. Vui long nhap lai.");
+                    System.out.println("1. Chuot - 2. Man Hinh - 3. Ban Phim");
+                    int choiceTB = Integer.parseInt(sc.nextLine());
+                    switch (choiceTB) {
+                        case 1:
+                            Chuot chuot = new Chuot();
+                            chuot.loaiThietBi = "Chuot";
+                            chuot.nhap();
+                            return chuot;
+                        case 2:
+                            ManHinh manHinh = new ManHinh();
+                            manHinh.loaiThietBi = "Man Hinh";
+                            manHinh.nhap();
+                            return manHinh;
+                        case 3:
+                            BanPhim banPhim = new BanPhim();
+                            banPhim.loaiThietBi = "Ban Phim";
+                            banPhim.nhap();
+                            return banPhim;
+                        default:
+                            throw new AssertionError();
                     }
-                }
-            } else {
-                System.out.println("Loai san pham khong ton tai. Vui long nhap lai.");
+                default:
+                    throw new AssertionError();
             }
         }
     }
 
+
+//Bui Nguyen Thinh
     public void thongKeSanPhamBanChay() {
         System.out.println("=".repeat(85));
         String title = "Cac san pham ban chay";
@@ -745,10 +728,10 @@ public class QLSanPham{
 
         for (SanPham sp : ds) {
             if (sp.getSoLuongTonKho() < sp.getSoLuongXuat() && sp.isNotDeleted()) {
-                System.out.printf("%-15s %-35s %-30.2f\n",
+                System.out.printf("%-15s %-35s %-30s\n",
                         sp.getMaSP(),
                         sp.getTenSP(),
-                        sp.getGiaSP());
+                        fm.format(sp.getGiaSP()).replace("₫", "VND"));
             }
         }
 
@@ -770,13 +753,13 @@ public class QLSanPham{
 
         for (SanPham sp : ds) {
             if (sp.getSoLuongTonKho() > sp.getSoLuongXuat() && sp.isNotDeleted()) {
-                System.out.printf("%-15s %-35s %-30.2f\n",
+                System.out.printf("%-15s %-35s %-30s\n",
                         sp.getMaSP(),
                         sp.getTenSP(),
-                        sp.getGiaSP());
+                        fm.format(sp.getGiaSP()).replace("₫", "VND"));
             }
         }
-
-        System.out.println("=".repeat(85));
     }
+
+
 }

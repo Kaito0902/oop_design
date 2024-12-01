@@ -6,18 +6,22 @@ import NhanVien.NhanVien;
 import DonDatHang.DonDatHang;
 
 import java.io.*;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaNgayThangNam;
 import static main_project.oop_project.qlddh;
 import static main_project.oop_project.qlnv;
 
 public class QLHoaDon {
     HoaDon[] dshd = new HoaDon[0];
     static Scanner sc = new Scanner(System.in);
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     public HoaDon[] getDshd() {
         return dshd;
@@ -41,6 +45,23 @@ public class QLHoaDon {
         }
     }
 
+    //sexoa
+    public void tinhTongTienHD(){
+        for (HoaDon hd : dshd) {
+            if (hd instanceof HoaDonBanHang){
+                ((HoaDonBanHang) hd).tinhTongTien();
+            }
+        }
+    }
+
+    public void tinhTongChiPhi(){
+        for (HoaDon hd : dshd){
+            if (hd instanceof HoaDonDoiTraHang){
+                ((HoaDonDoiTraHang)hd).tinhTongGiaTri();
+            }
+        }
+    }
+
     // tìm kiếm hóa đơn theo mã
     public HoaDon timKiemHoaDonTheoMa(String maHoaDon) {
         for (HoaDon hd : dshd) {
@@ -57,6 +78,19 @@ public class QLHoaDon {
             if (hd.getKhachHang().getSdt().equals(soDienThoai)) {
                 found = true;
                 hd.xuat();
+            }
+        }
+        if (!found) {
+            System.out.println("Khong tim thay hoa don cua khach hang: ");
+        }
+    }
+
+    public void xuatPhieuHoaDon(String maHoaDon){
+        boolean found = false;
+        for (HoaDon hd : dshd) {
+            if (hd.getMaHoaDon().equals(maHoaDon)){
+                found = true;
+                hd.xuatPhieu();
             }
         }
         if (!found) {
@@ -141,6 +175,7 @@ public class QLHoaDon {
                                 ctbh.getSanPham().getMaSP(),
                                 ctbh.getSanPham().getTenSP(),
                                 String.valueOf(ctbh.getSoLuong()),
+                                String.valueOf(ctbh.getDonGia()),
                                 String.valueOf(ctbh.getThanhTien())
                         ));
                         writer.newLine();
@@ -169,6 +204,7 @@ public class QLHoaDon {
                                 String.valueOf(ctdt.getSoLuong()),
                                 ctdt.getLyDo(),
                                 ctdt.getTinhTrang(),
+                                String.valueOf(ctdt.getDonGia()),
                                 String.valueOf(ctdt.getThanhTien())
                         ));
                         writer.newLine();
@@ -225,9 +261,10 @@ public class QLHoaDon {
                     String maSP = data[2];
                     String tenSP = data[3];
                     int soLuong = Integer.parseInt(data[4]);
-                    double thanhTien = Double.parseDouble(data[5]);
+                    double donGia = Double.parseDouble(data[5]);
+                    double thanhTien = Double.parseDouble(data[6]);
 
-                    ChiTietHoaDonBanHang ctbh = new ChiTietHoaDonBanHang(stt, maSP, soLuong, thanhTien);
+                    ChiTietHoaDonBanHang ctbh = new ChiTietHoaDonBanHang(stt, maSP, soLuong, donGia, thanhTien);
                     hdbh.themChiTietHoaDonBanHang(ctbh);
                     hdbh.setSoLuongChiTiet(hdbh.getChiTietHoaDonBanHangList().length);
 
@@ -238,9 +275,10 @@ public class QLHoaDon {
                     int soLuong = Integer.parseInt(data[4]);
                     String lyDo = data[5];
                     String tinhTrang = data[6];
-                    double thanhTien = Double.parseDouble(data[7]);
+                    double donGia = Double.parseDouble(data[7]);
+                    double thanhTien = Double.parseDouble(data[8]);
 
-                    ChiTietHoaDonDoiTra ctdt = new ChiTietHoaDonDoiTra(stt, maSP, soLuong, lyDo, tinhTrang, thanhTien);
+                    ChiTietHoaDonDoiTra ctdt = new ChiTietHoaDonDoiTra(stt, maSP, soLuong, lyDo, tinhTrang, donGia, thanhTien);
                     hddth.themChiTiet(ctdt);
                     hddth.setSoLuongChiTiet(hddth.getDsChiTiet().length);
                 } else {
@@ -309,61 +347,51 @@ public class QLHoaDon {
 
     //Bui Nguyen Thinh
     public void thongKe_DoanhThuNgay() {
-        Scanner sc = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         System.out.print("Nhap ngay muon thong ke (dd/MM/yyyy): ");
-        String ngayNhap = sc.nextLine();
-        LocalDate ngayThangNam = LocalDate.parse(ngayNhap, formatter);
+        LocalDate ngayThangNam = chuanHoaNgayThangNam(sc.nextLine());
 
         String ngayThangNamFormatted = ngayThangNam.format(formatter);
-
-
         HoaDon[] dshd = this.dshd;
         double tongDoanhThuNgay = 0;
         boolean found = false;
-
+        System.out.println("==============================================================================");
         System.out.println("|                         THONG KE DOANH THU THEO NGAY                       |");
         System.out.println("==============================================================================");
         System.out.printf("%-15s %-20s %-30s %-20s\n", "Ngay", "Ma hoa don", "Nhan vien lap hoa don", "Tong so tien");
         System.out.println("==============================================================================");
 
         for (HoaDon hd : dshd) {
-            if (hd instanceof HoaDonBanHang && hd.getNgayLapHoaDon().equals(ngayThangNam)) {
+            if (hd instanceof HoaDonBanHang hdbh && hd.getNgayLapHoaDon().equals(ngayThangNam)) {
                 found = true;
-                HoaDonBanHang hdbh = (HoaDonBanHang) hd;
                 tongDoanhThuNgay += hdbh.getTongTien();
-                System.out.printf("%-15s %-20s %-30s %-20.2f\n", ngayThangNam, hd.getMaHoaDon(), hd.getNhanVienLapHoaDon().getTenNhanVien(), hdbh.getTongTien());
+                System.out.printf("%-15s %-20s %-30s %-20s\n", ngayThangNamFormatted, hd.getMaHoaDon(), hd.getNhanVienLapHoaDon().getTenNhanVien(), fm.format(hdbh.getTongTien()).replace("₫", "VND"));
             }
         }
-
 
         if (!found) {
             System.out.println("Khong co hoa don nao duoc lap vao ngay " + ngayThangNamFormatted);
         } else {
             System.out.println("==============================================================================");
-            System.out.printf("%-65s %-20.2s\n", "Tong doanh thu trong ngay: ", tongDoanhThuNgay + "VND");
+            System.out.printf("%-65s %-20s VND\n", "Tong doanh thu trong ngay: ", fm.format(tongDoanhThuNgay).replace("₫", ""));
         }
         System.out.println("==============================================================================");
     }
 
 
+
     public void thongKe_DoanhThuThang() {
-        Scanner sc = new Scanner(System.in);
-        HoaDon[] dshd = this.dshd; // Lấy danh sách hóa đơn hiện tại
+        HoaDon[] dshd = this.dshd;
         double tongDoanhThuThang = 0;
         int soHoaDon = 0;
         boolean found = false;
 
-        // Định dạng để nhập tháng/năm
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yyyy");
 
-        // Nhập tháng/năm cần thống kê
         System.out.print("Nhap thang va nam can thong ke (MM/yyyy): ");
         String thangNamNhap = sc.nextLine();
 
         try {
-            LocalDate ngayThangNam = LocalDate.parse("01/" + thangNamNhap, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            LocalDate ngayThangNam = LocalDate.parse("01/" + thangNamNhap, formatter);
             int thang = ngayThangNam.getMonthValue();
             int nam = ngayThangNam.getYear();
 
@@ -371,8 +399,14 @@ public class QLHoaDon {
             String separator = "=".repeat(100);
             String subSeparator = "-".repeat(100);
 
+            String title = "THONG KE DOANH THU THEO THANG";
+            int width = separator.length();
+            int padding = (width - title.length()) / 2;
+            String centeredTitle = " ".repeat(padding) + title;
+
             // Tiêu đề bảng
-            System.out.println("|                         THONG KE DOANH THU THEO THANG                   |");
+            System.out.println(separator);
+            System.out.println(centeredTitle);
             System.out.println(separator);
             System.out.printf("%-10s %-15s %25s %30s\n", "Thang", "So hoa don", "Ngay hoa don", "Tong tien moi hoa don");
             System.out.println(separator);
@@ -395,7 +429,7 @@ public class QLHoaDon {
                     tongDoanhThuThang += hdbh.getTongTien();
                     System.out.printf("%50s %28s\n",
                             hd.getNgayLapHoaDon().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                            String.format("%.2f VND", hdbh.getTongTien()));
+                            String.format("%s VND", fm.format(hdbh.getTongTien()).replace("₫", "")));
                 }
             }
 
@@ -405,7 +439,7 @@ public class QLHoaDon {
             } else {
 
                 System.out.println(subSeparator);
-                System.out.printf("%-65s %-20.2f\n", "Tong doanh thu trong thang: ", tongDoanhThuThang);
+                System.out.printf("%-65s %-20s\n", "Tong doanh thu trong thang: ", fm.format(tongDoanhThuThang).replace("₫", ""));
                 System.out.println(subSeparator);
             }
         } catch (Exception e) {
@@ -415,14 +449,14 @@ public class QLHoaDon {
 
     public void thongKe_DoanhThuNam() {
         System.out.print("Nhap nam can thong ke doanh thu: ");
-        int nam = sc.nextInt(); // Nhap nam tu ban phim
+        int nam = Integer.parseInt(sc.nextLine()); // Nhap nam tu ban phim
         double[] doanhThuThang = new double[12];
         double tongDoanhThuNam = 0;
         boolean found = false;
-
-        System.out.println("|                          THONG KE DOANH THU THEO NAM                         |");
         System.out.println("=============================================================================================");
-        System.out.printf("%-10s %-15s %-20s\n", "Nam", "Thang", "Tong doanh thu (trieu)");
+        System.out.println("                           THONG KE DOANH THU THEO NAM                                      ");
+        System.out.println("=============================================================================================");
+        System.out.printf("%-10s %-15s %-20s\n", "Nam", "Thang", "Tong doanh thu");
         System.out.println("=============================================================================================");
 
         // Tong hop doanh thu theo thang
@@ -437,7 +471,7 @@ public class QLHoaDon {
         // Hien thi doanh thu tung thang
         for (int i = 0; i < 12; i++) {
             if (doanhThuThang[i] > 0) {
-                double doanhThu = doanhThuThang[i];
+                double doanhThu = doanhThuThang[i] / 1_000_000;
                 tongDoanhThuNam += doanhThuThang[i];
                 System.out.printf("%-10d %-15s %-20.2s\n", nam, "Thang " + (i + 1), doanhThu + "VND");
             }
@@ -454,58 +488,57 @@ public class QLHoaDon {
     }
 
     public void thongKe_TiLeTangTruongThang() {
-        System.out.print("Nhap nam can thong ke: ");
-        int nam = sc.nextInt();
 
-        System.out.print("Nhap thang can xem ti le tang truong (1-12): ");
-        int thang = sc.nextInt();
-
-        if (thang < 1 || thang > 12) {
-            System.out.println("Thang khong hop le! Vui long nhap tu 1 den 12.");
-            return;
-        }
-
-        double[] doanhThuThang = new double[12]; // Mảng lưu doanh thu theo tháng
-        boolean found = false;
+        System.out.print("Nhap thang va nam can thong ke tang truong (MM/yyyy): ");
+        String thangNamNhap = sc.nextLine();
+        try{
+            LocalDate ngayThangNam = LocalDate.parse("01/" + thangNamNhap, formatter);
+            int thang = ngayThangNam.getMonthValue();
+            int nam = ngayThangNam.getYear();
+            double[] doanhThuThang = new double[12]; // Mảng lưu doanh thu theo tháng
+            boolean found = false;
 
 
-        for (HoaDon hd : dshd) {
-            if (hd instanceof HoaDonBanHang hdbh && hd.getNgayLapHoaDon().getYear() == nam) {
-                int month = hdbh.getNgayLapHoaDon().getMonthValue() - 1; // Chỉ số tháng (0-based)
-                doanhThuThang[month] += hdbh.getTongTien();
-                found = true;
+            for (HoaDon hd : dshd) {
+                if (hd instanceof HoaDonBanHang hdbh && hd.getNgayLapHoaDon().getYear() == nam) {
+                    int month = hdbh.getNgayLapHoaDon().getMonthValue() - 1; // Chỉ số tháng (0-based)
+                    doanhThuThang[month] += hdbh.getTongTien();
+                    found = true;
+                }
             }
+
+            if (!found) {
+                System.out.println("Khong co hoa don nao trong nam " + nam);
+                return;
+            }
+
+
+            double doanhThuThangNay = doanhThuThang[thang - 1]; // Doanh thu tháng hiện tại (index 0-based)
+            double doanhThuThangTruoc = (thang > 1) ? doanhThuThang[thang - 2] : 0; // Doanh thu tháng trước (index 0-based)
+            System.out.println("=============================================================================");
+            System.out.println("|                          THONG KE TI LE TANG TRUONG                           |");
+            System.out.println("=============================================================================");
+            System.out.printf("%-25s %-25s %-20s\n", "Doanh thu thang nay", "Doanh thu thang truoc", "Ti le tang truong (%)");
+            System.out.println("=============================================================================");
+
+            if (doanhThuThangTruoc > 0) {
+                double tiLeTangTruong = ((doanhThuThangNay - doanhThuThangTruoc) / doanhThuThangTruoc) * 100;
+                System.out.printf("%-25.2f %-25.2f %-20.2f\n", doanhThuThangNay / 1_000_000, doanhThuThangTruoc / 1_000_000, tiLeTangTruong);
+            } else if (doanhThuThangNay > 0) {
+                System.out.printf("%-25.2f %-25s %-20s\n", doanhThuThangNay / 1_000_000, "0", "Moi tang truong");
+            } else {
+                System.out.printf("%-25s %-25s %-20s\n", "0", "0", "Khong thay doi");
+            }
+
+            System.out.println("=============================================================================");
+        }catch (Exception e) {
+            System.out.println("Loi: Vui long nhap thang va nam dung dinh dang (MM/yyyy).");
         }
-
-        if (!found) {
-            System.out.println("Khong co hoa don nao trong nam " + nam);
-            return;
-        }
-
-
-        double doanhThuThangNay = doanhThuThang[thang - 1]; // Doanh thu tháng hiện tại (index 0-based)
-        double doanhThuThangTruoc = (thang > 1) ? doanhThuThang[thang - 2] : 0; // Doanh thu tháng trước (index 0-based)
-
-        System.out.println("|                          THONG KE TI LE TANG TRUONG                              |");
-        System.out.println("================================================================================");
-        System.out.printf("%-25s %-25s %-20s\n", "Doanh thu thang nay", "Doanh thu thang truoc", "Ti le tang truong (%)");
-        System.out.println("================================================================================");
-
-        if (doanhThuThangTruoc > 0) {
-            double tiLeTangTruong = ((doanhThuThangNay - doanhThuThangTruoc) / doanhThuThangTruoc) * 100;
-            System.out.printf("%-25.2f trieu %-25.2f trieu %-20.2f\n", doanhThuThangNay / 1_000_000, doanhThuThangTruoc / 1_000_000, tiLeTangTruong);
-        } else if (doanhThuThangNay > 0) {
-            System.out.printf("%-25.2f %-25s %-20s\n", doanhThuThangNay / 1_000_000, "0", "Moi tang truong");
-        } else {
-            System.out.printf("%-25s %-25s %-20s\n", "0", "0", "Khong thay doi");
-        }
-
-        System.out.println("================================================================================");
     }
 
     public void thongKe_TiLeTangTruongNam() {
         System.out.print("Nhap nam can thong ke: ");
-        int nam = sc.nextInt();
+        int nam = Integer.parseInt(sc.nextLine());
 
         double doanhThuNamNay = 0;
         double doanhThuNamTruoc = 0;
@@ -531,7 +564,7 @@ public class QLHoaDon {
             System.out.println("Khong co hoa don nao trong ca nam " + nam + " va nam " + (nam - 1));
             return;
         }
-
+        System.out.println("================================================================================");
         System.out.println("|                         THONG KE TI LE TANG TRUONG NAM                       |");
         System.out.println("================================================================================");
         System.out.printf("%-25s %-25s %-20s\n", "Doanh thu nam nay", "Doanh thu nam truoc", "Ti le tang truong (%)");
@@ -607,8 +640,8 @@ public class QLHoaDon {
             double loiNhuanThang = doanhThuThang - tongTienDonDatHangThang - tongTienHoanTraThang;
 
             System.out.println("---------------------------------------------------------");
-            System.out.printf("%-30s %-20s\n", "Tong luong nhan vien thang", "Loi nhuan thang");
-            System.out.printf("%-30.2f %-20.2f\n", tongLuongNhanVien, loiNhuanThang);
+            System.out.printf("%-30s %-30s\n", "Tong luong nhan vien thang", "Loi nhuan thang");
+            System.out.printf("%-30s %-30s\n", fm.format(tongLuongNhanVien).replace("₫", "VND"), fm.format(loiNhuanThang).replace("₫", "VND"));
             System.out.println("---------------------------------------------------------");
 
         } catch (Exception e) {
@@ -666,14 +699,12 @@ public class QLHoaDon {
 
             // Hiển thị kết quả
             System.out.println("---------------------------------------------------------");
-            System.out.printf("%-30s %-20s\n", "Tong luong nhan vien nam", "Loi nhuan nam");
-            System.out.printf("%-30.2f %-20.2f\n", tongLuongNhanVienNam, loiNhuanNam);
+            System.out.printf("%-30s %-30s\n", "Tong luong nhan vien nam", "Loi nhuan nam");
+            System.out.printf("%-30s %-30s\n", fm.format(tongLuongNhanVienNam).replace("₫", "VND"), fm.format(loiNhuanNam).replace("₫", "VND"));
             System.out.println("---------------------------------------------------------");
 
         } catch (Exception e) {
             System.out.println("Dinh dang nam khong hop le. Vui long nhap lai.");
         }
     }
-
-
 }

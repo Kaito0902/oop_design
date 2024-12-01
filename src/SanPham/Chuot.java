@@ -60,6 +60,6 @@ public class Chuot extends ThietBiNgoaiVi{
         super.xuat();
         System.out.println("DPI chuot: " + dPI);
         System.out.println("Den LED chuot: " + denLED);
-        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
+        System.out.println("Tong tien phai tra: " + fm.format(thanhTien()).replace("₫", " VND"));
     }
 }

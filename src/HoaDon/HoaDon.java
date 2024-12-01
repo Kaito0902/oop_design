@@ -1,7 +1,9 @@
 package HoaDon;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 
 import KhachHang.KhachHang;
@@ -10,15 +12,16 @@ import NhanVien.NhanVien;
 import static main_project.oop_project.qlkh;
 import static main_project.oop_project.qlnv;
 
-public class HoaDon {
+public abstract class HoaDon {
     protected String maHoaDon; 
     protected LocalDate ngayLapHoaDon; 
     protected NhanVien nhanVienLapHoaDon;
     protected KhachHang khachHang;
     protected String loaiHoaDon;
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     static int tongHoaDon = 0;
     static Scanner scanner = new Scanner(System.in);
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
     public HoaDon() {
     }
 
@@ -119,5 +122,7 @@ public class HoaDon {
                 khachHang.getDiaChi() // Địa chỉ khách hàng
         );
     }
+
+    public abstract void xuatPhieu();
 
 }
