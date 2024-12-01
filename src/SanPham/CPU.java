@@ -96,7 +96,7 @@ public class CPU extends PhanCung{
         System.out.println("So nhan CPU: " + soNhan);
         System.out.println("So loi CPU: " + soLuongLoi);
         System.out.println("Tan so turbo CPU: " + tanSoTurBo + "GHz");
-        System.out.println("Tong tien phai tra: " + thanhTien() + " VND");
+        System.out.println("Tong tien phai tra: " + fm.format(thanhTien()).replace("₫", " VND"));
     }
 
     @Override

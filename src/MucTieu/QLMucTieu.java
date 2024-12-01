@@ -5,24 +5,15 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
-import DonDatHang.DonDatHang;
-
 public class QLMucTieu {
     MucTieuDoanhThu[] dsMuctieu = new MucTieuDoanhThu[0];
     int soLuong = 0;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yyyy");
 
-    
-  
-
     public void themMucTieu(MucTieuDoanhThu mucTieuDoanhThu){
         MucTieuDoanhThu[] newds = Arrays.copyOf(dsMuctieu, soLuong + 1);
         newds[soLuong] = mucTieuDoanhThu;
         dsMuctieu = newds;
-    }
-
-    public MucTieuDoanhThu[] getDsMucTieu() {
-        return dsMuctieu;
     }
 
     public MucTieuDoanhThu timMucTieu(YearMonth thangNam) {

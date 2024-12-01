@@ -1,5 +1,6 @@
 package main_project;
 
+import KhachHang.KhachHang;
 import MucTieu.QLMucTieu;
 import BaoHanh.QLBaoHanh;
 import ChuoiCungCap.QLNhaCungCap;
@@ -40,15 +41,20 @@ public class oop_project {
         qlkh.docTuFileDSKH();
         qlbh.docTuFileDSBH();
         qlhd.docTuFileDSHD();
+        qlptg.docTuFileDSPTG();
         qlncc.docTuFile();
         qlddh.docTuFileDSDDH();
+        qlmt.docTuFileDSMT();
+        qlhd.tinhTongTienHD();
+        qlhd.tinhTongChiPhi();
+        qlddh.tinhTongTienDDH();
 
         boolean kt = true;
         int lc;
         while (kt) {
-            qlnv.resetNgayPhepConLai();
-            qlnv.resetThuocTinhNhanVien();
-            qlnv.tinhLuongCuoiThang();
+//            qlnv.resetNgayPhepConLai();
+//            qlnv.resetThuocTinhNhanVien();
+//            qlnv.tinhLuongCuoiThang();
             System.out.println("=============================");
             System.out.println("|\t     MENU CHINH       \t|");
             System.out.println("=============================");
@@ -83,7 +89,14 @@ public class oop_project {
                         break;
                     }
                     case 3: {
-                        //baohanh
+                        System.out.println("Nhap so dien thoai khach hang: ");
+                        KhachHang kh = qlkh.timkiemKhachHangTheoSdt(sc.nextLine());
+                        if (kh == null) {
+                            System.out.println("Khong tim thay khach hang.");
+                        } else {
+                            qlhd.HienSanPhamBaoHanh(kh);
+                        }
+                        break;
                     }
                     case 4: {
                         qlsp.xuatDanhSach();

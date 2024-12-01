@@ -103,12 +103,20 @@ public class ChuanHoaDuLieu {
     //chuan hoa ngaySinh localdate
     public static LocalDate chuanHoaNgayThangNam(String ngay) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        try {
-            return LocalDate.parse(ngay, formatter);
-        } catch (Exception e) {
-            System.out.println("Ngay sinh khong hop le! Vui long nhap lai");
-            return null;
+        LocalDate ngayParsed = null;
+
+        while (ngayParsed == null) {
+            try {
+                ngayParsed = LocalDate.parse(ngay, formatter);
+            } catch (Exception e) {
+                System.out.println("Ngay thang nam khong hop le! Vui long nhap lai.");
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Nhap lai ngay thang nam (dd/MM/yyyy): ");
+                ngay = sc.nextLine();
+            }
         }
+
+        return ngayParsed;
     }
 
     public static int chuanHoaSoLieu(int soLieu){
@@ -128,5 +136,6 @@ public class ChuanHoaDuLieu {
         }
         return soLieu;
     }
+
 
 }

@@ -71,7 +71,7 @@ public class RAM extends PhanCung{
         super.xuat();
         System.out.println("Dung luong RAM: " + dungLuongRAM + "GB");
         System.out.println("Loai RAM: " + loaiRAM);
-        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
+        System.out.println("Tong tien phai tra: " + fm.format(thanhTien()).replace("₫", " VND"));
     }
 
     @Override

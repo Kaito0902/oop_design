@@ -99,6 +99,6 @@ public class ManHinh extends ThietBiNgoaiVi{
         System.out.println("Tan so quet man hinh: " + tanSoQuet + "Hz");
         System.out.println("Tam nen man hinh: " + tamNen);
         System.out.println("Nhap do phan giai man hinh: " + doPhanGiai);
-        System.out.println("Tong tien phai tra: " + String.format("%.3f", thanhTien()) + " VND");
+        System.out.println("Tong tien phai tra: " + fm.format(thanhTien()).replace("₫", " VND"));
     }
 }

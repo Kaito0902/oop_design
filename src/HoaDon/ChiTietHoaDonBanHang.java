@@ -1,5 +1,7 @@
 package HoaDon;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 import SanPham.SanPham;
@@ -10,19 +12,24 @@ public class ChiTietHoaDonBanHang {
     private int stt; // Số thứ tự
     private SanPham sanPham;
     private int soLuong;
+    private double donGia;
     private double thanhTien;
     static Scanner sc = new Scanner(System.in);
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     // Constructor mặc định
     public ChiTietHoaDonBanHang() {
     }
 
     // Constructor với tham số
-    public ChiTietHoaDonBanHang(int stt, String maSanPham, int soLuong, double thanhTien) {
+    public ChiTietHoaDonBanHang(int stt, String maSanPham, int soLuong, double donGia, double thanhTien) {
         this.stt = stt;
         this.sanPham = qlsp.timKiem(maSanPham);
         this.soLuong = soLuong;
+        this.donGia = donGia;
         this.thanhTien = thanhTien;
+        setDonGia(getSanPham().thanhTien());
+        tinhThanhTien();
     }
 
     // Getter và Setter
@@ -56,6 +63,13 @@ public class ChiTietHoaDonBanHang {
         this.soLuong = soLuong;
     }
 
+    public double getDonGia() {
+        return donGia;
+    }
+
+    public void setDonGia(double donGia) {
+        this.donGia = donGia;
+    }
 
     public double getThanhTien() {
         return thanhTien;
@@ -91,6 +105,8 @@ public class ChiTietHoaDonBanHang {
         System.out.print("Nhap so luong: ");
         setSoLuong(Integer.parseInt(sc.nextLine()));
 
+        setDonGia(getSanPham().thanhTien());
+
         tinhThanhTien();
 
         qlsp.xuatSanPhamTuHoaDon(getSanPham().getMaSP(), getSoLuong());
@@ -99,8 +115,8 @@ public class ChiTietHoaDonBanHang {
 
     @Override
     public String toString() {
-        return String.format("%-5d %-25s %-10d %-15.2f",
-                          stt, sanPham.getTenSP(), soLuong, thanhTien);
+        return String.format("%-8d %-30s %-15d %-20s %-20s",
+                          stt, sanPham.getTenSP(), soLuong, fm.format(donGia).replace("₫", "VND"), fm.format(thanhTien).replace("₫", "VND"));
     }
 
 

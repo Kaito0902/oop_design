@@ -331,6 +331,7 @@ public class QLNhanVien {
     }
 
 
+//Bui Nguyen Thinh
     public void thongKeNVBH() {
         System.out.println("====================================================================================");
         System.out.println("|                                NHAN VIEN BAN HANG                               |");
@@ -391,6 +392,7 @@ public class QLNhanVien {
         }
         System.out.println("===========================================================================");
     }
+
 
 
 }

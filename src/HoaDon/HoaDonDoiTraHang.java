@@ -144,13 +144,15 @@ public class HoaDonDoiTraHang extends HoaDon {
                 continue;
             }
 
+            double donGia = hdGoc.getChiTietHoaDonBanHangList()[stt - 1].getDonGia();
+
             System.out.print("Nhap ly do doi tra: ");
             String lyDo = scanner.nextLine();
 
             System.out.print("Nhap tinh trang san pham: ");
             String tinhTrang = scanner.nextLine();
 
-            ChiTietHoaDonDoiTra chiTietDoiTra = new ChiTietHoaDonDoiTra(i + 1, spDoiTra, soLuong, lyDo, tinhTrang);
+            ChiTietHoaDonDoiTra chiTietDoiTra = new ChiTietHoaDonDoiTra(i + 1, spDoiTra, soLuong, lyDo, tinhTrang, donGia);
             themChiTiet(chiTietDoiTra);
 
             if (getNhanVienLapHoaDon() instanceof NhanVienBanHang) {
@@ -177,7 +179,7 @@ public class HoaDonDoiTraHang extends HoaDon {
     }
 
     // Tính tổng giá trị hoàn trả và áp dụng tỷ lệ trừ
-    private void tinhTongGiaTri() {
+    public void tinhTongGiaTri() {
         this.tongGiaTri = 0;
         for (int i = 0; i < soLuongChiTiet; i++) {
             this.tongGiaTri += dsChiTiet[i].getThanhTien();
@@ -187,6 +189,28 @@ public class HoaDonDoiTraHang extends HoaDon {
 
     @Override
     public String toString() {
-        return super.toString()+String.format("%-10.2f %-15s %-10.2f %-8.2f", tongGiaTri, ghiChu, tienHoanTra, tiLeTru);
+        return super.toString()+String.format("%-15s %-15s %-10.2f %15s", fm.format(tongGiaTri).replace("₫", ""), fm.format(tienHoanTra).replace("₫", ""), tiLeTru, ghiChu);
+    }
+
+    @Override
+    public void xuatPhieu() {
+        System.out.println("Cua hang Dien tu J97");
+        System.out.println("HOA DON BAN HANG");
+        System.out.println("Thong tin khach hang");
+        System.out.println("Ten khach hang: " + getKhachHang().getHoTen());
+        System.out.println("So dien thoai: " + getKhachHang().getSdt());
+        System.out.println("Dia chi: " + getKhachHang().getDiaChi());
+        System.out.println("Thong tin hoa don goc: " + getHoaDonGoc().getMaHoaDon());
+        System.out.println("Ngay mua hang: " + getHoaDonGoc().getNgayLapHoaDon().format(formatter));
+        System.out.printf("%-8s %-30s %-15s %-20s %-20s %-15s %-15s\n", "STT", "Ten san pham", "So luong", "Don gia", "Thanh Tien", "Ly do", "Tinh trang");
+        for (ChiTietHoaDonDoiTra ct : dsChiTiet){
+            System.out.println(ct.toString());
+        }
+        System.out.println("Tong gia tri: " + fm.format(getTongGiaTri()).replace("₫", "VND"));
+        System.out.println("Ti le khau tru: " + getTiLeTru());
+        System.out.println("Tien hoan tra: " + fm.format(getTienHoanTra()).replace("₫", "VND") + " %");
+        System.out.println("Ngay lap hoa don doi tra: " + getNgayLapHoaDon().format(formatter));
+        System.out.println("Nhan vien xu ly: " + getNhanVienLapHoaDon().getTenNhanVien());
+        System.out.println("Cam on quy khach da su dung dich vu cua J97");
     }
 }

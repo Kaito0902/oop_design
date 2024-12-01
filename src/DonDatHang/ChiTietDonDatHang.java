@@ -2,7 +2,9 @@ package DonDatHang;
 
 import SanPham.SanPham;
 
+import java.text.NumberFormat;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 import static ChucNang.ChuanHoaDuLieu.chuanHoaSoLieu;
@@ -14,6 +16,7 @@ public class ChiTietDonDatHang{
     private int soLuong;
     private double thanhTien;
     static Scanner sc = new Scanner(System.in);
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     public ChiTietDonDatHang(){        
     }
@@ -23,6 +26,7 @@ public class ChiTietDonDatHang{
         this.sanPham = qlsp.timKiem(maSanPham);
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
+        setThanhTien(tinhThanhTien());
     }
 
     public int getSoThuTu() {
@@ -101,7 +105,7 @@ public class ChiTietDonDatHang{
 
     @Override
     public String toString() {
-        return String.format("%-3s %-8s %-25s %-8d %-10.2f", soThuTu, sanPham.getMaSP(), sanPham.getTenSP(), soLuong, thanhTien);
+        return String.format("%-3s %-8s %-30s %-12d %-20s %-20s", soThuTu, sanPham.getMaSP(), sanPham.getTenSP(), soLuong, fm.format(sanPham.getGiaSP()).replace("₫", "VND"), fm.format(thanhTien).replace("₫","VND"));
     }
 
     public void ouput() {

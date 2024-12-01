@@ -1,8 +1,10 @@
 package DonDatHang;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 import ChuoiCungCap.NhaCungCap;
@@ -25,6 +27,7 @@ public class DonDatHang {
     static int soLuongDDH = 0;
     static Scanner sc = new Scanner(System.in);
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
 
     public DonDatHang() {
@@ -165,7 +168,7 @@ public class DonDatHang {
 
     @Override
     public String toString() {
-        return String.format("%-5s %-15s %-15s %-5s %-15s %-15.2f %-15s %-10s", maDonDatHang, ngayDatHang.format(formatter), ngayNhanHang.format(formatter), nhaCungCap.getMaNCC(), nhaCungCap.getTenNCC(), tongTien, hinhThucGiaoHang, trangThai);
+        return String.format("%-10s %-15s %-15s %-10s %-20s %-20s %-15s %-10s", maDonDatHang, ngayDatHang.format(formatter), ngayNhanHang.format(formatter), nhaCungCap.getMaNCC(), nhaCungCap.getTenNCC(), fm.format(tongTien).replace("₫","VND"), hinhThucGiaoHang, trangThai);
     }
 
     public void xuat() {

@@ -1,9 +1,9 @@
-#sp001,i9-14900KS,1.85E7,6,0.5,xanh,100,50,50,true,CPU,Intel,Intel Core i9 14900KS,32,24,6.2
-#sp002,NVIDIA GeForce RTX 4090,5.999E7,12,0.5,den,150,80,70,true,GPU,Nvidia,ASUS ROG Strix LC GeForce,24,GDDR6X,2610.0,16384,Co
-#sp003,T-Group T-Force Delta,1190000.0,6,0.2,den,200,100,100,true,RAM,TeamGroup,T-Group T-Force Delta 1x16GB 3600,16,DDR4-3600
-#sp004,SamSung 980 Pro,1990000.0,6,1.2,den,300,150,150,true,Bo Nho,SamSung,MZ-V8P500BW,512,SSD
-#sp005,Logitech G502 X Plus,3290000.0,24,0.1,trang,200,120,80,true,Chuot,Logitech,Khong Day,25000,RGB Light Sync
-#sp006,Razer Huntsman V3 Pro TKL,5345000.0,24,0.5,den,150,70,80,true,Ban Phim,Razer,Co Day,Razer Chroma™ RGB,Razer Analog Optical Switch Gen-2
-#sp007,ASUS ProArt PA24US,2000000.0,24,3.0,hong,50,30,20,true,Man Hinh,Acer,Day,Phang,15.6 inches,144,OLED,4K
+#sp001,i9-14900KS,1.85E7,6,0.5,xanh,60,3,57,true,CPU,Intel,Intel Core i9 14900KS,32,24,6.2
+#sp002,NVIDIA GeForce RTX 4090,5.999E7,12,0.5,den,75,2,73,true,GPU,Nvidia,ASUS ROG Strix LC GeForce,24,GDDR6X,2610.0,16384,Co
+#sp003,T-Group T-Force Delta,1190000.0,6,0.2,den,100,1,99,true,RAM,TeamGroup,T-Group T-Force Delta 1x16GB 3600,16,DDR4-3600
+#sp004,SamSung 980 Pro,1990000.0,6,1.2,den,150,55,95,true,Bo Nho,SamSung,MZ-V8P500BW,512,SSD
+#sp005,Logitech G502 X Plus,3290000.0,24,0.1,trang,80,1,79,true,Chuot,Logitech,Khong Day,25000,RGB Light Sync
+#sp006,Razer Huntsman V3 Pro TKL,5345000.0,24,0.5,den,80,1,79,true,Ban Phim,Razer,Co Day,Razer Chroma™ RGB,Razer Analog Optical Switch Gen-2
+#sp007,ASUS ProArt PA24US,2000000.0,24,3.0,hong,50,50,0,true,Man Hinh,Acer,Day,Phang,15.6 inches,144,OLED,4K
 #sp008,GVN x ASUS Advanced Ai,1.4E8,36,10.0,den,10,5,5,true,Desktop,Asus,GVN x ASUS Advanced Ai,Win 11,Co,ASUS ROG Hyperion GR701,ASUS ROG STRIX LC III 360 ARGB LCD,CPU,Intel,Intel Core i9 14900KS,32,24,6.2,GPU,Nvidia,ASUS ROG Strix LC GeForce,24,GDDR6X,2610.0,16384,Co,RAM,TeamGroup,T-Group T-Force Delta 1x16GB 3600,16,DDR4-3600,Bo Nho,SamSung,MZ-V8P500BW,512,SSD
 #sp009,Lenovo LOQ,2.899E7,24,2.4,xam,80,50,30,true,Laptop,Lenovo,Lenovo LOQ 15IRX9 83DV00D5VN,Win 11,Co,15.6 inches,3.5,Gaming,CPU,Intel,Intel Core i9 14900KS,32,24,6.2,GPU,Nvidia,ASUS ROG Strix LC GeForce,24,GDDR6X,2610.0,16384,Co,RAM,TeamGroup,T-Group T-Force Delta 1x16GB 3600,16,DDR4-3600,Bo Nho,SamSung,MZ-V8P500BW,512,SSD

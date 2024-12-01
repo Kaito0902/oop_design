@@ -1,7 +1,9 @@
 package KhachHang;
 
 import java.io.*;
+import java.text.NumberFormat;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 import HoaDon.HoaDon;
@@ -14,6 +16,7 @@ public class QLKhachHang {
     KhachHang[] dskh = new KhachHang[0];
     int soLuong = 0;
     static Scanner scanner = new Scanner(System.in);
+    static NumberFormat fm = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     //them khach hang
     public void themKH(KhachHang kh)  {
@@ -359,6 +362,8 @@ public class QLKhachHang {
         }
     }
 
+
+    //Bui Nguyen Thinh
     public void thongKeTongChi() {
         String title = "Chi Tieu Khach Hang";
         int totalLength = 85;
@@ -386,11 +391,11 @@ public class QLKhachHang {
                 }
             }
 
-            System.out.printf("%-15s %-25s %-20s %-15.2f\n",
+            System.out.printf("%-15s %-25s %-20s %-15s\n",
                     kh.getMaKhachHang(),
                     kh.getHoTen(),
                     kh.getLoaiKhachHang(),
-                    tongChi);
+                    fm.format(tongChi).replace("₫", "VND"));
         }
 
         System.out.println("=".repeat(totalLength));
@@ -433,5 +438,6 @@ public class QLKhachHang {
 
         System.out.println("=".repeat(totalLength));
     }
+
 
 }
