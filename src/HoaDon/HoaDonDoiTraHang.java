@@ -169,6 +169,7 @@ public class HoaDonDoiTraHang extends HoaDon {
 
         tinhTongGiaTri();
 
+        xuatPhieu();
     }
 
     public void themChiTiet(ChiTietHoaDonDoiTra chiTietHoaDonDoiTra) {

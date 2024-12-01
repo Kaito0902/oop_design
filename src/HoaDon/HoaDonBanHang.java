@@ -176,6 +176,8 @@ public class HoaDonBanHang extends HoaDon {
         traGop();
 
         getKhachHang().capNhatDiemThuong(getTongTien());
+
+        xuatPhieu();
     }
 
     public void suDungDiem() {
