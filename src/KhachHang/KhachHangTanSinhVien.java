@@ -1,20 +1,17 @@
 package KhachHang;
 
-import HoaDon.HoaDon;
-import HoaDon.QLHoaDon;
-
-public class KhachHangSinhVien extends KhachHang {
+public class KhachHangTanSinhVien extends KhachHang {
     //attributes
     private double diemTB;
 
     //non-parameted constructor
-    public KhachHangSinhVien() {
+    public KhachHangTanSinhVien() {
         this.loaiKhachHang = "Uu dai";
     }
 
     //parameted constructor
-    public KhachHangSinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
-            String maKhachHang, String loaiKhachHang,boolean isdelete, int tichDiem, double diemTB) {
+    public KhachHangTanSinhVien(String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String email,
+                                String maKhachHang, String loaiKhachHang, boolean isdelete, int tichDiem, double diemTB) {
         super(hoTen, gioiTinh, ngaySinh, diaChi, sdt, email, maKhachHang, loaiKhachHang,isdelete, tichDiem);
         this.diemTB = diemTB;
     }

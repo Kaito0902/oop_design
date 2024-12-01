@@ -7,7 +7,7 @@ import HoaDon.HoaDonBanHang;
 import HoaDon.HoaDonDoiTraHang;
 import KhachHang.KhachHangCaNhan;
 import KhachHang.KhachHangDoiTacDoanhNghiep;
-import KhachHang.KhachHangSinhVien;
+import KhachHang.KhachHangTanSinhVien;
 import KhachHang.KhachHang;
 import KhuyenMai.KhuyenMai;
 import MucTieu.MucTieuDoanhThu;
@@ -22,7 +22,6 @@ import java.time.YearMonth;
 import java.util.Scanner;
 
 import static ChucNang.ChuanHoaDuLieu.chuanHoaSoLieu;
-import static ChucNang.ChuanHoaDuLieu.scanner;
 import static main_project.oop_project.*;
 
 public class ChucNangMenu {
@@ -118,7 +117,7 @@ public class ChucNangMenu {
                             qlkh.themKH(x);
                             break;
                         case 2:
-                            KhachHang y = new KhachHangSinhVien();
+                            KhachHang y = new KhachHangTanSinhVien();
                             y.input();
                             qlkh.themKH(y);
                             break;

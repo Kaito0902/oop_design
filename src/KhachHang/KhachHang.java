@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import static ChucNang.ChuanHoaDuLieu.*;
-import static main_project.oop_project.qlhd;
 
 public abstract class KhachHang {
     static int tongKH = 0;
@@ -176,7 +175,7 @@ public abstract class KhachHang {
             // System.out.println("Nhap loai khach hang (Tiem nang, Than Thiet, Uu dai, Binh Thuong):");
             setLoaiKhachHang("Binh Thuong");
         }
-        else if ( this instanceof KhachHangSinhVien ) {
+        else if ( this instanceof KhachHangTanSinhVien) {
             setLoaiKhachHang("Uu dai");
         }
         else if ( this instanceof KhachHangVip ){

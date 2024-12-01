@@ -214,7 +214,7 @@ public class QLKhachHang {
                     ktra = false;
                     break;
                 case 2:
-                    KhachHang y = new KhachHangSinhVien();
+                    KhachHang y = new KhachHangTanSinhVien();
                     y.input();
                     qlkh.themKH(y);
                     ktra = false;
@@ -256,7 +256,7 @@ public class QLKhachHang {
                     ));
                     writer.newLine();
                 }
-                else if ( kh instanceof KhachHangSinhVien sv ) {
+                else if ( kh instanceof KhachHangTanSinhVien sv ) {
                     writer.write(String.join(",",
                     sv.getMaKhachHang(),
                     sv.getHoTen(),
@@ -340,7 +340,7 @@ public class QLKhachHang {
                         }
                         case "Uu dai" -> {
                             double diemTB = Double.parseDouble(data[10]);
-                            KhachHang sinhVien = new KhachHangSinhVien(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, diemTB);
+                            KhachHang sinhVien = new KhachHangTanSinhVien(tenKhachHang, gioiTinh, namSinh, diaChi, soDienThoai, eMail, maKhachHang, loaiKhachHang, isdelete, tichDiem, diemTB);
                             themKH(sinhVien);
                         }
                         case "Than Thiet" -> {
