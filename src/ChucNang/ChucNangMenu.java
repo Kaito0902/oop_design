@@ -517,9 +517,10 @@ public class ChucNangMenu {
             System.out.printf("| %-34s|\n", "3. Sua thong tin nhan vien theo ma");
             System.out.printf("| %-34s|\n", "4. Xoa nhan vien theo ma");
             System.out.printf("| %-34s|\n", "5. Tim kiem nhan vien");
-            System.out.printf("| %-34s|\n", "6. Xuat danh sach nghi phep");
-            System.out.printf("| %-34s|\n", "7. Duyet don nghi phep");
-            System.out.printf("| %-34s|\n", "8. Thoat                     ");
+            System.out.printf("| %-34s|\n", "6. Sap xep nhan vien");
+            System.out.printf("| %-34s|\n", "7. Xuat danh sach nghi phep");
+            System.out.printf("| %-34s|\n", "8. Duyet don nghi phep");
+            System.out.printf("| %-34s|\n", "9. Thoat                     ");
             System.out.println("=====================================");
             System.out.print("Nhap lua chon: ");
             chon = Integer.parseInt(sc.nextLine());
@@ -590,16 +591,20 @@ public class ChucNangMenu {
                     }
                     break;
                 }
-                case 6: {
+                case 6:{
+                    qlnv.sapXepDSNV();
+                    break;
+                }
+                case 7: {
                     System.out.println("DANH SACH DON XIN NGHI");
                     qlnp.xuatDanhSach();
                     break;
                 }
-                case 7: {
+                case 8: {
                     qlnp.pheDuyetDon(qlnv.nguoiDangNhap());
                     break;
                 }
-                case 8: {
+                case 9: {
                     ktra = false;
                     break;
                 }
