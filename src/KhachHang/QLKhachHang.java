@@ -196,7 +196,7 @@ public class QLKhachHang {
     }
 
 
-    public void nhapKhachHang() {
+    public void nhapKhachHang(String sdt) {
         boolean ktra = true;
         while (ktra){
             int lc;
@@ -209,19 +209,19 @@ public class QLKhachHang {
             switch (lc) {
                 case 1:
                     KhachHang x = new KhachHangCaNhan();
-                    x.input();
+                    x.input(sdt);
                     qlkh.themKH(x);
                     ktra = false;
                     break;
                 case 2:
                     KhachHang y = new KhachHangTanSinhVien();
-                    y.input();
+                    y.input(sdt);
                     qlkh.themKH(y);
                     ktra = false;
                     break;
                 case 3:
                     KhachHang z = new KhachHangDoiTacDoanhNghiep();
-                    z.input();
+                    z.input(sdt);
                     qlkh.themKH(z);
                     ktra = false;
                     break;

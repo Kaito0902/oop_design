@@ -52,12 +52,14 @@ public class QLPhieuTraGop {
                 ));
                 writer.newLine();
                 for (KyTraGop ky : ph.getLichSuTraGop()) {
-                    writer.write(String.join(",",
-                            String.valueOf(ky.getKyThu()),
-                            ky.getNgayTra().format(formatter),
-                            String.valueOf(ky.getSoTien())
-                    ));
-                    writer.newLine();
+                    if (ky != null){
+                        writer.write(String.join(",",
+                                String.valueOf(ky.getKyThu()),
+                                ky.getNgayTra().format(formatter),
+                                String.valueOf(ky.getSoTien())
+                        ));
+                        writer.newLine();
+                    }
                 }
             }
         } catch (IOException e) {

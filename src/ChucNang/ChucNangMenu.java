@@ -77,6 +77,7 @@ public class ChucNangMenu {
             qlkh.ghiVaoFileDSKH();
             qlhd.ghiVaoFileDSHD();
             qlkh.capNhatLoaiKhachHang();
+            qlsp.nhapVaoFile();
             qlptg.ghiVaoFileDSPTG();
             System.out.println("================================================");
             System.out.println("|\t            MENU GIAO DICH              \t|");
@@ -393,6 +394,7 @@ public class ChucNangMenu {
         int chon;
         while (ktra) {
             qlddh.ghiVaoFileDSDDH();
+            qlsp.nhapVaoFile();
             System.out.println("===========================================");
             System.out.println("|\t         MENU DON DAT HANG            |");
             System.out.println("===========================================");

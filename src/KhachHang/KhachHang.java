@@ -153,6 +153,15 @@ public abstract class KhachHang {
         tichDiem = 0;
     }
 
+    public void input(String sdt) {
+        tongKH++;
+        inputInfo(sdt);
+        inputType();
+        // inputGiaoDich();
+
+        tichDiem = 0;
+    }
+
     // nhap thong tin khach hang
     public void inputInfo() {
         System.out.println("Nhap HoTen:");
@@ -161,6 +170,21 @@ public abstract class KhachHang {
         setGioiTinh(scanner.nextLine());
         System.out.println("Nhap SoDienThoai:");
         setSdt(scanner.nextLine()); 
+        System.out.println("Nhap ngay sinh(đinh dang: dd/MM/yyyy):");
+        setNgaySinh(scanner.nextLine());
+        System.out.println("Nhap email:");
+        setEmail(scanner.nextLine());
+        System.out.println("Nhap dia chi:");
+        setDiaChi(scanner.nextLine());
+        isdelete = true;
+    }
+
+    public void inputInfo(String sdt) {
+        System.out.println("Nhap HoTen:");
+        setHoTen(scanner.nextLine());
+        System.out.println("Nhap gioi tinh (Nam, Nu, Khac):");
+        setGioiTinh(scanner.nextLine());
+        setSdt(sdt);
         System.out.println("Nhap ngay sinh(đinh dang: dd/MM/yyyy):");
         setNgaySinh(scanner.nextLine());
         System.out.println("Nhap email:");

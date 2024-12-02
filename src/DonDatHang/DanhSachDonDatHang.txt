@@ -4,21 +4,27 @@ ChiTietDonDatHang,2,#sp002,NVIDIA GeForce RTX 4090,5,2.99950016E8
 ddh002,03/11/2024,07/11/2024,#ncc02,Nha cung cap B,1.949E7,Cod,Chua Giao
 ChiTietDonDatHang,1,#sp003,T-Group T-Force Delta,3,3570000.0
 ChiTietDonDatHang,2,#sp004,SamSung 980 Pro,8,1.592E7
-ddh008,01/11/2024,01/11/2024,#ncc01,Nha cung cap A,9.25E8,Chuyen khoan,Da Giao
+ddh003,01/11/2024,01/11/2024,#ncc01,Nha cung cap A,9.25E8,Chuyen khoan,Da Giao
 ChiTietDonDatHang,1,#sp001,i9-14900KS,50,9.25E8
-ddh009,02/11/2024,02/11/2024,#ncc02,Nha cung cap B,4.199300096E9,Tien mat,Da Giao
+ddh004,02/11/2024,02/11/2024,#ncc02,Nha cung cap B,4.199300096E9,Tien mat,Da Giao
 ChiTietDonDatHang,1,#sp002,NVIDIA GeForce RTX 4090,70,4.199300096E9
-ddh010,03/11/2024,03/11/2024,#ncc03,Nha cung cap C,1.19E8,The,Da Giao
+ddh005,03/11/2024,03/11/2024,#ncc03,Nha cung cap C,1.19E8,The,Da Giao
 ChiTietDonDatHang,1,#sp003,T-Group T-Force Delta,100,1.19E8
-ddh011,04/11/2024,04/11/2024,#ncc01,Nha cung cap A,2.985E8,Chuyen khoan,Da Giao
+ddh006,04/11/2024,04/11/2024,#ncc01,Nha cung cap A,2.985E8,Chuyen khoan,Da Giao
 ChiTietDonDatHang,1,#sp004,SamSung 980 Pro,150,2.985E8
-ddh012,05/11/2024,05/11/2024,#ncc02,Nha cung cap B,2.632E8,Tien mat,Da Giao
+ddh007,05/11/2024,05/11/2024,#ncc02,Nha cung cap B,2.632E8,Tien mat,Da Giao
 ChiTietDonDatHang,1,#sp005,Logitech G502 X Plus,80,2.632E8
-ddh013,06/11/2024,06/11/2024,#ncc03,Nha cung cap C,4.276E8,The,Da Giao
+ddh008,06/11/2024,06/11/2024,#ncc03,Nha cung cap C,4.276E8,The,Da Giao
 ChiTietDonDatHang,1,#sp006,Razer Huntsman V3 Pro TKL,80,4.276E8
-ddh014,11/11/2024,13/11/2024,#ncc04,Cua hang D,1.0E8,Tien mat,Da Giao
+ddh009,11/11/2024,13/11/2024,#ncc04,Cua hang D,1.0E8,Tien mat,Da Giao
 ChiTietDonDatHang,1,#sp007,ASUS ProArt PA24US,50,1.0E8
-ddh015,11/11/2024,14/11/2024,#ncc04,Cua hang D,1.4E9,Tien mat,Da Giao
+ddh010,11/11/2024,14/11/2024,#ncc04,Cua hang D,1.4E9,Tien mat,Da Giao
 ChiTietDonDatHang,1,#sp008,GVN x ASUS Advanced Ai,10,1.4E9
-ddh016,11/11/2024,15/11/2024,#ncc05,Cong ty E,2.3192E9,The,Da Giao
+ddh011,11/11/2024,15/11/2024,#ncc05,Cong ty E,2.3192E9,The,Da Giao
 ChiTietDonDatHang,1,#sp009,Lenovo LOQ,80,2.3192E9
+ddh012,02/12/2024,04/12/2024,#ncc01,Nha cung cap A,7.84900032E8,xe,Dang xu ly
+ChiTietDonDatHang,1,#sp001,i9-14900KS,10,1.85E8
+ChiTietDonDatHang,2,#sp002,NVIDIA GeForce RTX 4090,10,5.99900032E8
+ddh013,02/12/2024,05/12/2024,#ncc01,Nha cung cap A,7.84900032E8,xe,Dang xu ly
+ChiTietDonDatHang,1,#sp001,i9-14900KS,10,1.85E8
+ChiTietDonDatHang,2,#sp002,NVIDIA GeForce RTX 4090,10,5.99900032E8

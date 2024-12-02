@@ -1,7 +1,9 @@
 package ChucNang;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 import static main_project.oop_project.qlkh;
@@ -82,6 +84,19 @@ public class ChuanHoaDuLieu {
         }
     }
 
+    // chuan hoa so dien thoai theo dinh dang (0xxxxxxxxx)
+    public static String chuanHoaSoDienThoai (String sdt) {
+        while (true) {
+            sdt = sdt.replaceAll("\\D", "");
+            if (sdt.length() == 10 && sdt.charAt(0) == '0') {
+                return sdt;
+            } else {
+                System.out.println("Số điện thoại không hợp lệ! Yêu cầu nhập số điện thoại 10 chữ số, bắt đầu bằng số 0.");
+                sdt = scanner.nextLine().replace("\\D", "");
+            }
+        }
+    }
+
     // chuan hoa gioi tinh (Nam,Nu,Khac)
     public static String chuanHoaGioiTinh (String gioiTinh) {
         while (true) {
@@ -107,12 +122,30 @@ public class ChuanHoaDuLieu {
 
         while (ngayParsed == null) {
             try {
+                // Parse ngày
                 ngayParsed = LocalDate.parse(ngay, formatter);
+
+                // Kiểm tra logic ngày
+                int day = ngayParsed.getDayOfMonth();
+                int month = ngayParsed.getMonthValue();
+                int year = ngayParsed.getYear();
+
+                // Số ngày tối đa của tháng
+                int maxDays = YearMonth.of(year, month).lengthOfMonth();
+
+                if (day > maxDays) {
+                    throw new Exception("Ngày không hợp lệ trong tháng!");
+                }
+            } catch (DateTimeParseException e) {
+                System.out.println("Định dạng ngày tháng năm không hợp lệ! Vui lòng nhập lại.");
             } catch (Exception e) {
-                System.out.println("Ngay thang nam khong hop le! Vui long nhap lai.");
-                Scanner sc = new Scanner(System.in);
-                System.out.println("Nhap lai ngay thang nam (dd/MM/yyyy): ");
-                ngay = sc.nextLine();
+                System.out.println(e.getMessage());
+            } finally {
+                if (ngayParsed == null) {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Nhập lại ngày tháng năm (dd/MM/yyyy): ");
+                    ngay = sc.nextLine();
+                }
             }
         }
 

@@ -161,6 +161,7 @@ public class HoaDonBanHang extends HoaDon {
         String apDungKhuyenMai = scanner.nextLine().trim();
 
         if (apDungKhuyenMai.equalsIgnoreCase("Co")) {
+            qlkm.hienThiDanhSachKhuyenMai();
             System.out.println("Nhap ma khuyen mai:");
             setKhuyenMai(qlkm.timKhuyenMai(scanner.nextLine()));
         } else {

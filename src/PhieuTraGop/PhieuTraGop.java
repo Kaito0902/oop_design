@@ -196,7 +196,9 @@ public class PhieuTraGop {
     public void output() {
         System.out.println(toString());
         for (int i = 0; i < lichSuTraGop.length; i++){
-            System.out.println(lichSuTraGop[i].toString());
+            if(lichSuTraGop[i] != null){
+                System.out.println(lichSuTraGop[i].toString());
+            };
         }
         System.out.println();
     }

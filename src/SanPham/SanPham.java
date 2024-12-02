@@ -175,5 +175,7 @@ public abstract class SanPham{
         System.out.println("Trong luong san pham: " + trongLuongSP + "kg");
         System.out.println("Mau sac san pham: " + mauSacSP);
         System.out.println("So luong san pham nhap: " + soLuongNhap);
+        System.out.println("So luong ton kho: " + soLuongTonKho);
+        System.out.println("So luong xuat: " + soLuongXuat);
     }
 }

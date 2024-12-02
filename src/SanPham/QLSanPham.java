@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaSoLieu;
+
 public class QLSanPham{
     private SanPham[] ds = new SanPham[0];
     private int soLuong = 0;
@@ -624,6 +626,11 @@ public class QLSanPham{
     public void xuatSanPhamTuHoaDon(String maSP, int soLuong) {
         for (SanPham sp : ds) {
             if (sp.maSP.equals(maSP) && sp.isNotDeleted) {
+                while (soLuong > sp.soLuongTonKho){
+                    System.out.println("So luong san pham khong du");
+                    System.out.println("Vui long nhap lai so luong: ");
+                    soLuong = chuanHoaSoLieu(Integer.parseInt(sc.nextLine()));
+                }
                 sp.soLuongXuat += soLuong;
                 sp.soLuongTonKho = sp.soLuongNhap - sp.soLuongXuat;
             }

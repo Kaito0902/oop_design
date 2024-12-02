@@ -82,6 +82,7 @@ public class ChiTietDonDatHang{
                         setSanPham(sp);
                         System.out.print("Nhap so luong nhap: ");
                         setSoLuong(Integer.parseInt(sc.nextLine()));
+                        qlsp.nhapSanPhamTuDonDatHang(getSanPham().getMaSP(), getSoLuong());
                         break;
                     } else {
                         System.out.println("Khong tim thay san pham.");

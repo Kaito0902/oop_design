@@ -9,6 +9,8 @@ import java.util.Scanner;
 import KhachHang.KhachHang;
 import NhanVien.NhanVien;
 
+import static ChucNang.ChuanHoaDuLieu.chuanHoaSoDienThoai;
+import static ChucNang.ChuanHoaDuLieu.chuanHoaSoDienThoaikh;
 import static main_project.oop_project.qlkh;
 import static main_project.oop_project.qlnv;
 
@@ -84,12 +86,12 @@ public abstract class HoaDon {
 
         System.out.println("Nhap so dien thoai khach hang:");
         String sdt = scanner.nextLine();
-        KhachHang kh = qlkh.timkiemKhachHangTheoSdt(sdt);
+        KhachHang kh = qlkh.timkiemKhachHangTheoSdt(chuanHoaSoDienThoai(sdt));
         if (kh != null) {
             setKhachHang(kh);
         }
         else {
-            qlkh.nhapKhachHang();
+            qlkh.nhapKhachHang(sdt);
             setKhachHang(qlkh.timkiemKhachHangTheoSdt(sdt));
         }
         maHoaDon = "hd" + String.format("%02d", ++tongHoaDon);

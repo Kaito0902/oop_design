@@ -1,23 +1,43 @@
-hd001,01/10/2024,nv06,Nguyen Van A,kh01,Nguyen Hong Duy,HoaDonBanHang,km01,10.0,5.0,ChuyenKhoan,1.0880409751200001E8,false
+hd001,01/10/2024,nv06,Le Thi Hong,kh01,Nguyen Hong Duy,HoaDonBanHang,km01,10.0,5.0,ChuyenKhoan,1.0880409751200001E8,false
 ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,2,2.035E7,4.07E7
 ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,1,7.4987504E7,7.4987504E7
-hd002,05/10/2024,nv09,Nguyen Lam Truong,kh01,Nguyen Hong Duy,HoaDonDoiTraHang,hd001,1.85E7,Khong co,1.665E7,10.0
+hd002,05/10/2024,nv09,Phan Van Nguyen,kh01,Nguyen Hong Duy,HoaDonDoiTraHang,hd001,1.85E7,Khong co,1.665E7,10.0
 ChiTietHoaDonDoiTraHang,1,#sp001,i9-14900KS,1,Do hong,hu hong,2.035E7,1.85E7
-hd003,05/10/2024,nv06,Nguyen Van A,kh01,Nguyen Hong Duy,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,2.1799778E7,false
+hd003,05/10/2024,nv06,Le Thi Hong,kh01,Nguyen Hong Duy,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,2.1799778E7,false
 ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,1,2.035E7,2.035E7
 ChiTietHoaDonBanHang,2,#sp003,T-Group T-Force Delta,1,1428000.0,1428000.0
-hd004,05/10/2024,nv08,Le Thi B,kh02,Bui Nguyen Thinh,HoaDonBanHang,km01,0.05,0.1,Chuyen khoan,6.745497547882321E7,false
+hd004,05/10/2024,nv08,Tran Van Binh,kh02,Bui Nguyen Thinh,HoaDonBanHang,km01,0.05,0.1,Chuyen khoan,6.745497547882321E7,false
 ChiTietHoaDonBanHang,1,#sp002,NVIDIA GeForce RTX 4090,1,7.4987504E7,7.4987504E7
 hd005,05/10/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,KHONGAPMA,0.1,0.0,Tien mat,1.964432486016E9,true
 ChiTietHoaDonBanHang,1,#sp009,Lenovo LOQ,50,3.21789E7,1.608945024E9
 ChiTietHoaDonBanHang,2,#sp007,ASUS ProArt PA24US,50,2300000.0,1.15E8
 ChiTietHoaDonBanHang,3,#sp005,Logitech G502 X Plus,50,4770500.0,2.38524992E8
-hd006,01/11/2024,nv11,Nguyen Khanh Hung,kh04,Ly Van R,HoaDonBanHang,km03,0.07,0.03,The,1.0703015088401054E8,false
+hd006,01/11/2024,nv11,Tran Ngoc Han,kh04,Ly Van R,HoaDonBanHang,km03,0.07,0.03,The,1.0703015088401054E8,false
 ChiTietHoaDonBanHang,1,#sp004,SamSung 980 Pro,55,2288500.0,1.25867504E8
-hd007,10/11/2024,nv08,Le Thi B,kh02,Bui Nguyen Thinh,HoaDonBanHang,km02,0.1,0.05,Tien mat,7112400.8705750005,false
+hd007,10/11/2024,nv08,Tran Van Binh,kh02,Bui Nguyen Thinh,HoaDonBanHang,km02,0.1,0.05,Tien mat,7112400.8705750005,false
 ChiTietHoaDonBanHang,1,#sp006,Razer Huntsman V3 Pro TKL,1,7483000.0,7483000.0
 hd008,15/11/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,KHONGAPMA,0.15,0.07,Chuyen khoan,7.846263768E8,true
 ChiTietHoaDonBanHang,1,#sp008,GVN x ASUS Advanced Ai,5,1.568E8,7.84E8
 hd09,01/12/2024,nv09,Phan Van Nguyen,kh06,Nguyen Thi M,HoaDonBanHang,KHONGAPMA,10.0,5.0,The,1.7431645E7,true
 ChiTietHoaDonBanHang,1,#sp003,T-Group T-Force Delta,5,1428000.0,7140000.0
 ChiTietHoaDonBanHang,2,#sp005,Logitech G502 X Plus,2,4770500.0,9541000.0
+hd10,02/12/2024,nv03,Ngo Dong At,kh21,Sinh Vien,HoaDonBanHang,KHONGAPMA,10.0,5.0,Tien mat,2.126575E7,false
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,1,2.035E7,2.035E7
+hd11,02/12/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,km06,10.0,5.0,Tien mat,1.172666384296E8,true
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,2,2.035E7,4.07E7
+ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,1,7.4987504E7,7.4987504E7
+hd12,02/12/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,km06,10.0,5.0,tien mat,1.172666384296E8,true
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,2,2.035E7,4.07E7
+ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,1,7.4987504E7,7.4987504E7
+hd13,02/12/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,km06,10.0,5.0,tien mat,1.932777218592E8,true
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,2,2.035E7,4.07E7
+ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,2,7.4987504E7,1.49975008E8
+hd14,02/12/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,km06,10.0,5.0,tien mat,4.831943208664E8,true
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,5,2.035E7,1.0175E8
+ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,5,7.4987504E7,3.74937536E8
+hd15,02/12/2024,nv03,Ngo Dong At,kh22,Nguyen Van Tung,HoaDonBanHang,km06,10.0,5.0,tien mat,2.6928880528879994E8,false
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,2,2.035E7,4.07E7
+ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,3,7.4987504E7,2.24962512E8
+hd16,02/12/2024,nv03,Ngo Dong At,kh03,Tran Van G,HoaDonBanHang,km06,10.0,5.0,the,3.659276662184E8,true
+ChiTietHoaDonBanHang,1,#sp001,i9-14900KS,3,2.035E7,6.105E7
+ChiTietHoaDonBanHang,2,#sp002,NVIDIA GeForce RTX 4090,4,7.4987504E7,2.99950016E8

@@ -45,7 +45,7 @@ public class ChiTietHoaDonBanHang {
 
     public void setSoLuong(int soLuong) {
         do {
-            while (soLuong < 0) {
+            while (soLuong <= 0) {
                 System.out.println("So luong khong the am.");
                 System.out.println("Nhap lai so luong: ");
                 soLuong = Integer.parseInt(sc.nextLine());
@@ -78,11 +78,20 @@ public class ChiTietHoaDonBanHang {
     }
 
     public void setSanPham(SanPham sanPham) {
-        while (sanPham == null) {
-            System.out.println("Khong tim thay san pham.");
-            System.out.println("Nhap lai ma hoac ten san pham: ");
-            sanPham = qlsp.timKiem(sc.nextLine());
-        }
+
+        do {
+            while (sanPham == null) {
+                System.out.println("Khong tim thay san pham.");
+                System.out.println("Nhap lai ma hoac ten san pham: ");
+                sanPham = qlsp.timKiem(sc.nextLine());
+            }
+
+            while (sanPham.getSoLuongTonKho() == 0) {
+                System.out.println("So luong san pham da het");
+                System.out.println("Nhap lai ma hoac ten san pham: ");
+                sanPham = qlsp.timKiem(sc.nextLine());
+            }
+        }while (sanPham == null || sanPham.getSoLuongTonKho() == 0);
         this.sanPham = sanPham;
     }
 
